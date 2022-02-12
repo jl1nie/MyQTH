@@ -1,0 +1,9 @@
+PRAGMA foreign_keys=OFF;
+BEGIN TRANSACTION;
+CREATE TABLE jaffpota(pota text, jaff text, name text, location text, locid text,type text, level integer, namek text, lat real,lng real);
+CREATE INDEX jaffpota_index on jaffpota(level, lat, lng);
+.separator ,
+.import JAFFPOTAXref.csv jaffpota
+.output jaffpota.dump
+.dump
+.exit

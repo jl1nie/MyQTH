@@ -1,0 +1,647 @@
+<html>
+<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-QM71F063G7"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-QM71F063G7');
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.1/dist/leaflet.css" />
+
+<!------------------------------------------------------------------>
+<!-- Font Awesome -->
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+<!-- Google Fonts -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
+<!-- Bootstrap core CSS -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
+<!-- Material Design Bootstrap -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/css/mdb.min.css" rel="stylesheet">
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/11.0.2/css/bootstrap-slider.min.css" rel="stylesheet">
+<!------------------------------------------------------------------>
+<link rel="shortcut icon" href="favicon.ico">
+<link href="font/css/open-iconic-bootstrap.css" rel="stylesheet">
+<title>MyAct.ga</title>
+<style>
+.progress { height: 2px;}
+
+@media screen and (max-width: 767px){
+#map {
+ width: auto;
+ height: calc(var(--vh, 1vh)*100 - 30px);
+ border:1px solid #aaa;
+}
+#qrvinfo {
+ width: auto;
+ height: calc(var(--vh, 1vh)*100 - 30px);
+ overflow:auto;
+ border:1px solid #aaa;
+ -webkit-overflow-scrolling:touch;
+ }
+}
+@media screen and (min-width: 768px) {
+#map {
+ width: auto;
+ height:calc(var(--vh, 1vh)*100 - 56px);
+ border:1px solid #aaa;
+ }
+#qrvinfo {
+ width: auto;
+ height: calc(var(--vh, 1vh)*100 - 56px);
+ overflow:auto;
+ border:1px solid #aaa;
+ -webkit-overflow-scrolling:touch;
+ }
+}
+.modal-header {
+    padding-top: 3px;
+    height: 20px;
+    padding-bottom: 3px;
+}
+.modal-body > .img-responsive {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.navbar-dark .navbar-toggler {
+border-color: rgba(0,0,0,0);
+}
+.navbar-toggler-icon {
+font-size: 0.8em;
+}
+.collapse.in {
+ height: auto;
+}
+
+i.semantic-ui-custom {
+  margin-top: 9px;
+}
+@keyframes blink {
+  50% { opacity: 0.3; }
+}
+@-webkit-keyframes blink {
+  50% { opacity: 0.3; }
+}
+.blink-me {
+  animation: blink 1s linear infinite;
+  -webkit-animation: blink 1s linear infinite;
+}
+
+.btn {
+ margin: 0.1rem !important ; padding: 0.4rem 0.5rem !important;
+}
+
+.my-tooltip-label {
+    color: white;	
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    font-size: 8px;
+}
+
+</style>
+</head>
+<body>
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://unpkg.com/leaflet@1.3.1/dist/leaflet.js"></script>
+<script src="https://unpkg.com/topojson@3.0.2/dist/topojson.min.js"></script> 
+<!---------------------------------------------------------------------->
+<!-- JQuery -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<!-- Bootstrap tooltips -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
+<!-- Bootstrap core JavaScript -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.min.js"></script>
+<!-- MDB core JavaScript -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/js/mdb.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/11.0.2/bootstrap-slider.min.js"></script>
+
+<!------------------------------------------------------------------------>
+<!-- plugin -->
+<link rel="stylesheet" href="css/leaflet.extra-markers.min.css" />
+<script src="js/leaflet.extra-markers.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.3.1/dist/semantic.min.css">
+<link rel="stylesheet" href="js/L.Control.ZoomLabel.css">
+<script src="js/L.Control.ZoomLabel.js"></script>
+<!-- plugin -->
+
+  <nav class="navbar navbar-expand-md navbar-dark bg-dark text-light">
+    <span class="navbar-brand" style="cursor: hand;cursor: pointer;"><h4>MyACT.ga</h4></span>
+    <button type="button" class="btn btn-amber" onClick="clickQTHButton()"><i class="fas fa-map-marked-alt">QTH</i></button>
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-prefs"><i class="fas fa-cog"></i></button>
+
+<small><span id="clock_time" style="cursor: default;" ></span></small>
+  </nav>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+	<div id="map"></div>
+      </div>
+    </div>
+  </div>
+  <div class="modal" id="modal-prefs" tabindex="-1" role="dialog" aria-labelledby="staticModalLabel" aria-hidden="true" data-show="true" data-keyboard="false" data-backdrop="static">
+	<div class="modal-dialog">
+	  <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title">Preferences</h4>
+            </div><!-- /modal-header -->
+            <div class="modal-body">
+	      <div class="form-check">
+		<input class="form-check-input" type="checkbox" value="" id="sota_ref" onclick="clickPrefs()">
+		<label class="form-check-label" for="flexCheckDefault">SOTA<br>
+		</label>
+	      </div>
+	      <div class="form-check">
+		<input class="form-check-input" type="checkbox" value="" id="pota_ref" onclick="clickPrefs()">
+		<label class="form-check-label" for="flexCheckDefault">POTA<br>
+		</label>
+		</div>
+	      <div class="form-check">
+		<input class="form-check-input" type="checkbox" value="" id="jaff_ref" onclick="clickPrefs()">
+		<label class="form-check-label" for="flexCheckDefault">JAFF<br>
+		</label>
+	      </div>
+	      <div class="form-check">
+		<input class="form-check-input" type="checkbox" value="" id="popup_permanent" onclick="clickPrefs()">
+		<label class="form-check-label" for="flexCheckDefault"> 公園名を常に表示<br>
+		</label>
+	      </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal" onClick="closePrefs()">Close</button>
+            </div>
+	  </div> <!-- /.modal-content -->
+	</div> <!-- /.modal-dialog -->
+  </div> <!-- /.modal -->
+  
+</body>
+<!-- Optional JavaScript -->
+<style type="text/css">
+    i.semantic-ui-custom {
+        margin-top: 9px;
+    }
+</style>
+
+ <script>
+let vh = window.innerHeight * 0.01;
+document.documentElement.style.setProperty('--vh', `${vh}px`);
+window.addEventListener('resize',()=> {
+let vh = window.innerHeight * 0.01;
+  document.documentElement.style.setProperty('--vh', `${vh}px`);
+});
+
+var osm = L.tileLayer('https://tile.thunderforest.com/outdoors/{z}/{x}/{y}.png?apikey=767750c193e54ceeb3aee08d880bdb90',{
+    attribution: "<a href='https://www.thunderforest.com/'>Thunderforest</a>"});
+var gsi = L.tileLayer('https://cyberjapandata.gsi.go.jp/xyz/std/{z}/{x}/{y}.png', {
+    attribution: "<a href='https://maps.gsi.go.jp/development/ichiran.html' target='_blank'>地理院タイル</a>"
+});
+
+var map = L.map('map',{
+    layers: [ gsi ]
+});
+L.control.scale().addTo(map);
+L.control.zoomLabel().addTo(map);
+var popup = L.popup();
+  
+function displayPopup(area, latlng, isMarker, isGPS) {
+    var lat = Math.round(latlng.lat * 1000000,4)/1000000,
+	lng = Math.round(latlng.lng * 1000000,4)/1000000,
+	gsiuri= 'https://maps.gsi.go.jp/#15/';
+
+    if (isGPS) {
+	Cookies.set('my_qth_lat',lat)
+	Cookies.set('my_qth_lng',lng)
+    }
+    
+    var resfun = function(res) {
+	if (res['errors'] == 'OUTSIDE_JA') {
+	    mesg = 'Pos: ' + lat +','+ lng + '<br>GL: '+res['maidenhead'];
+        }
+	else if (res['errors'] != 'OK') {
+ 	    mesg = 'Parameter out of range.';
+	} else {
+	    accu = '<small>[' + res['hsrc'].replace('（','').replace('）','') + ']</small>'
+
+	    if (isGPS) 
+		pos = '<br>位置:<a href="'+ gsiuri + latlng.lat + '/' + latlng.lng + '" target="_blank">' + lat + ',' + lng +'</a>';
+	    else
+		pos = '<i><br>位置:<a href="'+ gsiuri + latlng.lat + '/' + latlng.lng + '" target="_blank">' + lat + ',' + lng +'</a></i>';
+	    
+	    if (res['type'] == 'JCC') {
+			if (res['ward'] != undefined)
+			    mesg = 'JCC'+res['jcc']+ ' 区番号:' + res['ward'] + '<br>' + res['pref'] + res['addr2'] + res['addr1'] + '<br>GL:' + res['maidenhead'] + pos + '<br> 標高:' + res['elevation'] + 'm';
+			else
+			    mesg = 'JCC'+res['jcc']+ '<br>' + res['pref'] + res['addr2'] + res['addr1'] + '<br>GL:' + res['maidenhead'] + pos + '<br> 標高:' + res['elevation'] + 'm';
+		}
+		else
+		    mesg = 'JCG'+res['jcg']+ res['hamlog']+ '<br>' + res['pref'] + res['addr2'] + res['addr1']+ '<br>GL:' + res['maidenhead'] + pos + '<br> 標高:' + res['elevation'] + 'm';
+	}
+
+	if (isMarker) {
+	    mesg = '<h4>' + mesg + '</h4>';
+	    if (qth_marker != null)
+		qth_marker.bindPopup(mesg).openPopup();
+	} else {
+	    if (area != '')
+		area = '<u><b>' + area + '</b></u><br>';
+	    popup.setContent(area + mesg + accu);
+	    popup.setLatLng(latlng).openOn(map)
+	}
+    }
+    $.getJSON('https://www.sotalive.tk/api/reverse-geocoder/LonLatToAddressElev?','lat='+latlng.lat+'&lon='+latlng.lng,resfun);
+}
+
+var prefs =
+       { 'popup_permanent': true,
+	 'sota_ref': true,
+	 'pota_ref': true,
+	 'jaff_ref': true
+       }
+   
+function clickPrefs() {
+    for(var k in prefs) {
+	var el = document.getElementById(k);
+	if (el.checked == true) {
+	    prefs[k] = true;
+	    Cookies.set(k, 'true')
+	} else {
+	    prefs[k] = false;
+	    Cookies.set(k, 'false')
+	}
+    }
+}
+
+function readCookie(pref) {
+    for (var k in pref) {
+	var ck = Cookies.get(k);
+	if (ck  == undefined) {
+	    if (pref[k])
+		Cookies.set(k, 'true')
+	    else
+		Cookies.set(k, 'false')
+	} else {
+	    if (ck == 'true')
+		pref[k] = true
+	    else
+		pref[k] = false
+	}
+	var el = document.getElementById(k);
+	if (pref[k])
+	    el.checked = true
+	else
+	    el.checked = false;
+    }
+}
+
+function closePrefs() {
+    window.location.reload();
+}
+
+readCookie(prefs);
+   
+function selectRef(pota, jaff) {
+    var pname = '';
+    
+    if (pota != '' && prefs['pota_ref']) {
+		pname = pota
+		if (jaff != '' && prefs['jaff_ref'])
+		    pname += '/' + jaff
+    } else if (prefs['jaff_ref'])
+	pname = jaff;
+
+    return pname;
+}
+   
+qth_marker = null
+function QTHdragend(e) {
+    var latlng = e.target.getLatLng();
+    map.setView(latlng, 15); 
+    displayPopup('', latlng, true, false);
+}
+
+function callbkQTHOk(arg) {
+    var latlng = [arg.coords.latitude, arg.coords.longitude],
+	options = {
+        prefix: 'icon'
+        ,icon: 'user'
+        ,shape: 'circle'
+        ,markerColor: 'yellow'
+        ,extraClasses: 'semantic-ui-custom'
+	};
+
+    map.setView(latlng, 15);
+
+    if (qth_marker != null)
+	map.removeLayer(qth_marker)
+	    
+    qth_marker = L.marker(latlng,
+			  {draggable:true, icon: L.ExtraMarkers.icon(options)});
+
+    qth_marker.addTo(map);
+    displayPopup('', {lat:latlng[0], lng:latlng[1]}, true, true);
+    qth_marker.on('dragend', QTHdragend);
+};
+
+function callbkQTHNG(arg) {
+    var emsg = "エラーが発生しました",
+	lat = Cookies.get('my_qth_lat'),
+	lng = Cookies.get('my_qth_lng'),
+	zoom = 13;
+
+    switch(arg.code) {
+    case 1:
+	emesg = "位置情報の利用が許可されていません";
+	break;
+    case 2:
+	emesg = "端末位置がわかりませんでした";
+	break;
+    case 3:
+	emesg = "タイムアウトしました";
+	break;
+    }
+    window.alert(emesg);
+
+    if (lat) 
+	latlng = [ parseFloat(lat), parseFloat(lng)];
+    else {
+	latlng = [37.514444, 137.712222];
+	zoom = 6;
+    };
+    map.setView(latlng, zoom);
+};
+
+function clickQTHButton () {
+    if (typeof navigator.geolocation === 'undefined') {
+	window . alert('ブラウザが位置情報取得に対応していません');
+	map.setView([37.514444, 137.712222], 6);
+    }
+
+    var options = {
+	"enableHighAccuracy": true,
+	"timeout": 10000,
+	"maximumAge": 0
+    }
+    navigator.geolocation.getCurrentPosition(callbkQTHOk, callbkQTHNG, options);
+};
+
+function clock() {
+    var now = new Date();
+    var tm = now.toString();
+    tm  = tm.replace(/:\d{2} GMT\+.+/,'');
+    document.getElementById("clock_time").innerHTML=tm;
+}
+
+function escapeStr(str) {
+    var escstr;
+    if (!str)
+	escstr = ""
+    else
+	escstr = str
+    var replacement = [[/&/g, "&amp;"],[/</g, "&lt;"],[/>/g, "&gt;<br>"],[/"/g, "&quot;"]]
+    for(var e in replacement)
+	escstr = escstr.replace(replacement[e][0],replacement[e][1]);
+    escstr = escstr.replace(/<br>$/,'');
+    return escstr;
+}
+
+var show_summit_marker = [];
+   
+function deleteSummitMarker() {
+    while (show_summit_marker.length > 0) {
+	var m = show_summit_marker.pop()
+	map.removeLayer(m)
+    }
+}
+
+var _popupMarker = null
+
+function clearSummitMarker() {
+    userChange = true
+    _popupMarker = null
+}
+
+function popupSummitMarker(latlng) {
+    userChange = true
+    _popupMarker = latlng
+}
+
+function placeSummitMarkers(nw ,se, z) {
+    var popup,elev,prefix,level;
+
+    if (z > 10) {
+	elev = 0;
+	level = 2;
+    }
+    else if (z > 9) {
+	elev = 800;
+	level = 1;
+    }
+    else if (z > 8) {
+	elev = 1000;
+	level = 0;
+    }
+    else if (z > 6) {
+	elev = 1500;
+	level = 0;
+    }
+    else {
+	elev = 4000;
+	level = 0;
+    }
+    
+    prefix = 'ja?'
+    
+    $.getJSON('https://www.sotalive.tk/api/sotasummits/'+prefix,'lat='+nw[0]+'&lon='+nw[1]+'&lat2='+se[0]+'&lon2='+se[1]+'&elevation='+elev+'&park='+level +'&flag=0',function(res) {
+	if (res['errors'] != 'OK') {
+	    return;
+	}
+	if (prefs['sota_ref'])
+	    for(const s of res['summits']) {
+		var sname;
+		sname = s['name_k']
+		var mesg = '<b>'+s['code']+' '+s['name']+'</b><br>'+sname+'&nbsp'+s['elev']+'m,'+s['pts']+'pts (+' + s['bonus'] +')<br>GL:' + s['maidenhead'] + '<br>' +escapeStr(s['desc'])
+		mesg += '<br>Activations: ' + s['actcnt']
+		if (s['actcnt']!= 0)
+		    mesg += '<br>Last Activation: ' + s['lastact'] + '(' + s['lastcall'] + ')'
+		popup = false
+		if (_popupMarker &&
+		    s['lat'] == _popupMarker[0] &&
+		    s['lon'] == _popupMarker[1]) {
+		    popup = true
+		    _popupMarker = null
+		}
+		show_summit_marker.push(
+		    placeSummitMarker([s['lat'],s['lon']], z, s['elev'], s['actcnt'], mesg, popup))
+		
+	    }
+	for(const s of res['parks']) {
+	    var pname =selectRef(s['pota'],s['jaff']);
+	    if (pname != '')
+		show_summit_marker.push(
+		    placeParkMarker([s['lat'],s['lon']], z, s['lv'], pname  + ' ' + s['name_k']))
+	}
+    })
+}
+
+function placeSummitMarker(coords, z, elev, actcnt, mesg, popupfl) {
+
+    var rad;
+    if (z > 14)
+	rad = 10
+    else if (z > 12)
+	rad = 8
+    else if (z > 10)
+	rad = 6
+    else
+	rad = 4
+
+    var fillc,
+	border = "#4e342e"
+
+    if (elev > 1500)
+	fillc ="#c62828"
+    else if (elev > 1100)
+	fillc = "#ef6c00"
+    else if (elev > 850)
+	fillc = "#f9a825"
+    else if (elev > 650)
+	fillc = "#9e9d24"
+    else if (elev > 500)
+	fillc = "#558b2f"
+    else
+	fillc = "#1b5e20"
+    
+    var marker =
+	L.circleMarker(coords,
+		       {color: border,
+			fillColor: fillc,
+			radius:rad,
+			weight:2,
+			fillOpacity:0.8,
+			opacity:1
+		       });
+    if (z > 11) {
+	marker.bindTooltip(String(actcnt),
+			   {permanent: true, direction: 'center', className: 'my-tooltip-label',offset:[0,0]})
+    }
+    var m = marker.addTo(map);
+    
+    m.on('click',function(e) {
+	var l = e['target']['_latlng']
+	popupSummitMarker([l['lat'],l['lng']]);
+    });
+    
+    if (popupfl)
+	marker.bindPopup(mesg).openPopup();
+    else
+	marker.bindPopup(mesg)
+    return m;
+
+}
+
+function placeParkMarker(coords, z, level,  mesg) {
+
+    var options = {
+        prefix: 'icon'
+        ,icon: 'tree'
+        ,shape: 'square'
+        ,markerColor: 'green-light'
+        ,extraClasses: 'semantic-ui-custom'
+    };
+    var lv = Number(level)
+    var marker = L.marker(coords,{icon:L.ExtraMarkers.icon(options)})
+    marker.bindTooltip(mesg,
+		       {permanent: prefs['popup_permanent'], direction: 'center',offset:[0,-20]})
+
+    var m = marker.addTo(map);
+    return m;
+}
+
+L.TopoJSON = L.GeoJSON.extend({
+    addData: function (data) {
+        var geojson, key;
+        if (data.type === "Topology") {
+            for (key in data.objects) {
+		if (data.objects.hasOwnProperty(key)) {
+                    geojson = topojson.feature(data, data.objects[key]);
+                    L.GeoJSON.prototype.addData.call(this, geojson);
+		}
+            }
+            return this;
+        }
+        L.GeoJSON.prototype.addData.call(this, data);
+        return this;
+    }
+});
+
+L.topoJson = function (data, options) {
+    return new L.TopoJSON(data, options);
+};
+
+var geojson = L.topoJson(null, {
+    style: function(feature){
+        return {
+            color: "#000",
+            opacity: 1,
+            weight: 1,
+            fillColor: '#9fa8da',
+            fillOpacity: 0.3
+        }
+    },
+    onEachFeature: function(feature, layer) {
+	var area = selectRef(feature.properties.POTA,feature.properties.JAFF)
+	layer.on('contextmenu', function(e) {
+	    displayPopup(area, e.latlng, false, false);
+	});
+    }
+}).addTo(map);
+
+var parkareas = null;
+   
+async function getGeoData(url) {
+    let response = await fetch(url);
+    let data = await response.json();
+    parkarea = data;
+    return data;
+}
+
+getGeoData('json/jaffpota.json').then(data => geojson.addData(data));
+
+userChange = true;
+
+map.on('click', function(e) {
+    displayPopup('', e.latlng, false, false);
+});
+   
+
+map.on('dragend',function(e) {
+    userChange = true
+})
+
+map.on('zoomend',function(e) {
+    userChange = true
+})
+       
+map.on('moveend',function(e) {
+    if (userChange) {
+	userChange = false
+	deleteSummitMarker()
+	var z = map.getZoom()
+	var b = map.getBounds();
+	placeSummitMarkers([b['_northEast']['lat'], b['_southWest']['lng']],
+			   [b['_southWest']['lat'], b['_northEast']['lng']],z)}
+});
+
+clickQTHButton();
+clock();
+setInterval(clock,5000);
+</script>
+</body>
+</html>
