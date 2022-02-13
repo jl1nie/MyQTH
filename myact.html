@@ -435,9 +435,9 @@ function popupSummitMarker(latlng) {
 function placeSummitMarkers(nw ,se, z) {
     var popup,elev,prefix,level;
 
-    if (z > 10) {
+    if (z > 11) {
 	elev = 0;
-	level = 2;
+	level = 0;
     }
     else if (z > 9) {
 	elev = 800;
@@ -445,15 +445,15 @@ function placeSummitMarkers(nw ,se, z) {
     }
     else if (z > 8) {
 	elev = 1000;
-	level = 0;
+	level = 10;
     }
     else if (z > 6) {
 	elev = 1500;
-	level = 0;
+	level = 20;
     }
     else {
 	elev = 4000;
-	level = 0;
+	level = 30;
     }
     
     prefix = 'ja?'
@@ -485,7 +485,7 @@ function placeSummitMarkers(nw ,se, z) {
 	    var pname =selectRef(s['pota'],s['jaff']);
 	    if (pname != '')
 		show_summit_marker.push(
-		    placeParkMarker([s['lat'],s['lon']], z, s['lv'], pname  + ' ' + s['name_k']))
+		    placeParkMarker([s['lat'],s['lon']], z, pname  + ' ' + s['name_k']))
 	}
     })
 }
@@ -546,7 +546,7 @@ function placeSummitMarker(coords, z, elev, actcnt, mesg, popupfl) {
 
 }
 
-function placeParkMarker(coords, z, level,  mesg) {
+function placeParkMarker(coords, z,  mesg) {
 
     var options = {
         prefix: 'icon'
@@ -555,7 +555,6 @@ function placeParkMarker(coords, z, level,  mesg) {
         ,markerColor: 'green-light'
         ,extraClasses: 'semantic-ui-custom'
     };
-    var lv = Number(level)
     var marker = L.marker(coords,{icon:L.ExtraMarkers.icon(options)})
     marker.bindTooltip(mesg,
 		       {permanent: prefs['popup_permanent'], direction: 'center',offset:[0,20]})
