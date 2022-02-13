@@ -130,6 +130,9 @@ i.semantic-ui-custom {
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.3.1/dist/semantic.min.css">
 <link rel="stylesheet" href="js/L.Control.ZoomLabel.css">
 <script src="js/L.Control.ZoomLabel.js"></script>
+<script src="js/regionfill.js"></script>
+<script src="js/getDEM.js"></script>
+<script src="js/actzone.js"></script>
 <!-- plugin -->
 
   <nav class="navbar navbar-expand-md navbar-dark bg-dark text-light">
@@ -188,7 +191,7 @@ i.semantic-ui-custom {
     }
 </style>
 
- <script>
+<script>
 let vh = window.innerHeight * 0.01;
 document.documentElement.style.setProperty('--vh', `${vh}px`);
 window.addEventListener('resize',()=> {
@@ -536,6 +539,7 @@ function placeSummitMarker(coords, z, elev, actcnt, mesg, popupfl) {
     m.on('click',function(e) {
 	var l = e['target']['_latlng']
 	popupSummitMarker([l['lat'],l['lng']]);
+	displayActivationZone(l, -0.8);
     });
     
     if (popupfl)
@@ -630,6 +634,7 @@ map.on('zoomend',function(e) {
 })
 
 function redrawMarkers() {
+    redoActivationZone();
     deleteSummitMarker()
     var z = map.getZoom()
     var b = map.getBounds();
