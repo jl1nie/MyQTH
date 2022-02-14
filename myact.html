@@ -211,7 +211,19 @@ var map = L.map('map',{
 L.control.scale().addTo(map);
 L.control.zoomLabel().addTo(map);
 var popup = L.popup();
+
+var last_area = null;
+var last_mesg = '';
   
+function redrawPopup() {
+    if (last_area != null) {
+	var ctnt = '<b>' + selectRef(last_area, true) + '</b><br>' + last_mesg;
+	console.log(ctnt);
+	popup.setContent(ctnt);
+	popup.update();
+    }
+}
+
 function displayPopup(area, latlng, isMarker, isGPS) {
     var lat = Math.round(latlng.lat * 1000000,4)/1000000,
 	lng = Math.round(latlng.lng * 1000000,4)/1000000,
@@ -251,10 +263,11 @@ function displayPopup(area, latlng, isMarker, isGPS) {
 	    if (qth_marker != null)
 		qth_marker.bindPopup(mesg).openPopup();
 	} else {
-	    if (area != '')
-		area = '<b>' + area + '</b><br>';
-	    popup.setContent(area + mesg + accu);
-	    popup.setLatLng(latlng).openOn(map)
+	    cnt = '<b>' + selectRef(area, true) + '</b><br>' + mesg;
+	    popup.setContent(cnt);
+	    popup.setLatLng(latlng).openOn(map);
+	    last_area = area;
+	    last_mesg = mesg;
 	}
     }
     $.getJSON('https://www.sotalive.tk/api/reverse-geocoder/LonLatToAddressElev?','lat='+latlng.lat+'&lon='+latlng.lng,resfun);
@@ -303,30 +316,37 @@ function readCookie(pref) {
 }
 
 function closePrefs() {
+    redrawPopup();
     redrawMarkers();
 }
 
 readCookie(prefs);
-   
-function selectRef(pota, jaff) {
-    var pname = '';
-    
-    if (pota != '' && prefs['pota_ref']) {
-		pname = pota
-		if (jaff != '' && prefs['jaff_ref'])
-		    pname += '/' + jaff
-    } else if (prefs['jaff_ref'])
-	pname = jaff;
 
-    return pname;
+function selectRef(area, br) {
+  var pname = '';
+    
+  if (area['pota'] != '' && prefs['pota_ref']) {
+      pname = area['pota']
+      if (area['jaff'] != '' && prefs['jaff_ref'])
+	  pname += '/' + area['jaff']
+  } else if (prefs['jaff_ref'])
+      pname = area['jaff'];
+  
+  if (pname != '' && area['name'] != '') {
+      if(br)
+	  pname += '<br>'
+      pname += area['name']
+  }
+  
+  return pname;
 }
    
 qth_marker = null
 
-   function QTHdragend(e) {
+function QTHdragend(e) {
     var latlng = e.target.getLatLng();
     map.setView(latlng, 15); 
-    displayPopup('', latlng, true, false);
+    displayPopup({}, latlng, true, false);
 }
 
 function callbkQTHOk(arg) {
@@ -348,7 +368,7 @@ function callbkQTHOk(arg) {
 			  {draggable:true, icon: L.ExtraMarkers.icon(options)});
 
     qth_marker.addTo(map);
-    displayPopup('', {lat:latlng[0], lng:latlng[1]}, true, true);
+    displayPopup({}, {lat:latlng[0], lng:latlng[1]}, true, true);
     qth_marker.on('dragend', QTHdragend);
 };
 
@@ -485,10 +505,12 @@ function placeSummitMarkers(nw ,se, z) {
 		
 	    }
 	for(const s of res['parks']) {
-	    var pname =selectRef(s['pota'],s['jaff']);
+	    var pname =selectRef({'pota':s['pota'],
+				  'jaff':s['jaff'],
+				  'name':s['name_k']},false);
 	    if (pname != '')
 		show_summit_marker.push(
-		    placeParkMarker([s['lat'],s['lon']], z, pname  + ' ' + s['name_k']))
+		    placeParkMarker([s['lat'],s['lon']], z, pname))
 	}
     })
 }
@@ -599,16 +621,18 @@ var geojson = L.topoJson(null, {
     },
     onEachFeature: function(feature, layer) {
 	layer.on('click', function(e) {
-	    var area = selectRef(feature.properties.POTA,feature.properties.JAFF);
-	    area += '<br>' + feature.properties.NAME;
-	    displayPopup(area, e.latlng, false, false);
+	    displayPopup({'name':feature.properties.NAME,
+			  'pota':feature.properties.POTA,
+			  'jaff':feature.properties.JAFF},
+			 e.latlng, false, false);
 	    L.DomEvent.stop(e);
 	});
 	layer.on('contextmenu', function(e) {
-	    var area = selectRef(feature.properties.POTA,feature.properties.JAFF);
-	    area += '<br>' + feature.properties.NAME;
-
-	    displayPopup(area, e.latlng, false, false);
+	    displayPopup({'name':feature.properties.NAME,
+			  'pota':feature.properties.POTA,
+			  'jaff':feature.properties.JAFF},
+			 e.latlng, false, false);
+	    L.DomEvent.stop(e);
 	});
     }
 });
