@@ -132,7 +132,7 @@ function displayActivationZone(latlng, uplmt) {
 	else {
 	    L.contourLayer(lat, lng, zoom, res['elevation'], uplmt, vdist, hdist,{
 		attribution: "<a href='https://little-ctc.com/sota_hp/' target='_blank'>JCC/JCGデータ</a>",
-		minZoom: 12,
+		minZoom: 14,
 		maxZoom: 18,
 		maxNativeZoom: 14
 	    },function (l,latlon,moved) {

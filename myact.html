@@ -252,7 +252,7 @@ function displayPopup(area, latlng, isMarker, isGPS) {
 		qth_marker.bindPopup(mesg).openPopup();
 	} else {
 	    if (area != '')
-		area = '<u><b>' + area + '</b></u><br>';
+		area = '<b>' + area + '</b><br>';
 	    popup.setContent(area + mesg + accu);
 	    popup.setLatLng(latlng).openOn(map)
 	}
@@ -598,12 +598,16 @@ var geojson = L.topoJson(null, {
         }
     },
     onEachFeature: function(feature, layer) {
-	var area = selectRef(feature.properties.POTA,feature.properties.JAFF)
 	layer.on('click', function(e) {
+	    var area = selectRef(feature.properties.POTA,feature.properties.JAFF);
+	    area += '<br>' + feature.properties.NAME;
 	    displayPopup(area, e.latlng, false, false);
 	    L.DomEvent.stop(e);
 	});
 	layer.on('contextmenu', function(e) {
+	    var area = selectRef(feature.properties.POTA,feature.properties.JAFF);
+	    area += '<br>' + feature.properties.NAME;
+
 	    displayPopup(area, e.latlng, false, false);
 	});
     }
@@ -617,7 +621,7 @@ async function getGeoData(url) {
     return data;
 }
 
-getGeoData('json/jaffpota.json').then(data => geojson.addData(data));
+getGeoData('json/jaffpota-annotated.json').then(data => geojson.addData(data));
 
 userChange = true;
 
