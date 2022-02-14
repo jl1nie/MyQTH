@@ -218,7 +218,6 @@ var last_mesg = '';
 function redrawPopup() {
     if (last_area != null) {
 	var ctnt = '<b>' + selectRef(last_area, true) + '</b><br>' + last_mesg;
-	console.log(ctnt);
 	popup.setContent(ctnt);
 	popup.update();
     }
@@ -263,7 +262,11 @@ function displayPopup(area, latlng, isMarker, isGPS) {
 	    if (qth_marker != null)
 		qth_marker.bindPopup(mesg).openPopup();
 	} else {
-	    cnt = '<b>' + selectRef(area, true) + '</b><br>' + mesg;
+	    cnt = selectRef(area, true);
+	    if (cnt != '')
+		cnt = '<b>' + cnt + '</b><br>' + mesg;
+	    else
+		cnt = mesg;
 	    popup.setContent(cnt);
 	    popup.setLatLng(latlng).openOn(map);
 	    last_area = area;
@@ -324,7 +327,10 @@ readCookie(prefs);
 
 function selectRef(area, br) {
   var pname = '';
-    
+
+  if (area['pota'] == undefined || area['jaff'] == undefined)
+	return '';
+
   if (area['pota'] != '' && prefs['pota_ref']) {
       pname = area['pota']
       if (area['jaff'] != '' && prefs['jaff_ref'])
@@ -650,7 +656,7 @@ getGeoData('json/jaffpota-annotated.json').then(data => geojson.addData(data));
 userChange = true;
 
 map.on('click', function(e) {
-    displayPopup('', e.latlng, false, false);
+    displayPopup({}, e.latlng, false, false);
 });
 
 map.on('dragend',function(e) {
