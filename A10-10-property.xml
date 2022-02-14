@@ -1,0 +1,3140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:ksj="http://nlftp.mlit.go.jp/ksj/schemas/ksj-app" xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:sch="http://www.ascc.net/xml/schematron" xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://nlftp.mlit.go.jp/ksj/schemas/ksj-app" elementFormDefault="qualified" version="4.0">
+ <xsd:annotation>
+  <xsd:documentation>A10(H22)：自然公園地域</xsd:documentation>
+ </xsd:annotation>
+ <!-- 外部参照 -->
+ <xsd:import namespace="http://www.opengis.net/gml/3.2" schemaLocation="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19136_Schemas/gml.xsd"/>
+ <xsd:include schemaLocation="Ksj_Common.xsd"/>
+ <!-- 基底要素 -->
+ <xsd:element name="Dataset">
+  <xsd:complexType>
+   <xsd:complexContent>
+    <xsd:extension base="gml:AbstractFeatureType">
+     <xsd:choice minOccurs="0" maxOccurs="unbounded">
+      <xsd:element ref="gml:AbstractGML"/>
+      <xsd:element ref="gml:CompositeValue"/>
+     </xsd:choice>
+    </xsd:extension>
+   </xsd:complexContent>
+  </xsd:complexType>
+ </xsd:element>
+ <!-- 要素定義 -->
+ <xsd:element name="NaturalPark2" type="ksj:NaturalPark2Type" substitutionGroup="gml:AbstractFeature"/>
+ <xsd:complexType name="NaturalPark2Type">
+  <xsd:annotation>
+   <xsd:documentation>自然公園地域</xsd:documentation>
+  </xsd:annotation>
+  <xsd:complexContent>
+   <xsd:extension base="gml:AbstractFeatureType">
+    <xsd:sequence>
+     <xsd:element name="bounds" type="gml:SurfacePropertyType">
+      <xsd:annotation>
+       <xsd:documentation>範囲</xsd:documentation>
+      </xsd:annotation>
+     </xsd:element>
+     <xsd:element name="prefectureCode" type="gml:CodeType" minOccurs="0">
+      <xsd:annotation>
+       <xsd:documentation>都道府県コード</xsd:documentation>
+       <xsd:appinfo>
+        <gml:defaultCodeSpace>PrefectureCode.xml</gml:defaultCodeSpace>
+       </xsd:appinfo>
+      </xsd:annotation>
+     </xsd:element>
+     <xsd:element name="developmentBureauCode" type="ksj:DevelopmentBureauCodeType" minOccurs="0">
+      <xsd:annotation>
+       <xsd:documentation>振興局コード</xsd:documentation>
+      </xsd:annotation>
+     </xsd:element>
+     <xsd:element name="naturalParkClassCode" type="ksj:NaturalParkClassCodeType" minOccurs="0">
+      <xsd:annotation>
+       <xsd:documentation>自然公園区分コード</xsd:documentation>
+      </xsd:annotation>
+     </xsd:element>
+     <xsd:element name="naturalParkCode" type="ksj:NaturalParkCode2Type" minOccurs="0">
+      <xsd:annotation>
+       <xsd:documentation>自然公園地域区分コード</xsd:documentation>
+      </xsd:annotation>
+     </xsd:element>
+     <xsd:element name="naturalParkNameCode" type="ksj:NaturalParkNameCodeType" minOccurs="0">
+      <xsd:annotation>
+       <xsd:documentation>自然公園名称コード</xsd:documentation>
+      </xsd:annotation>
+     </xsd:element>
+     <xsd:element name="elementClassCode" type="ksj:ElementClassCodeType" minOccurs="0">
+      <xsd:annotation>
+       <xsd:documentation>要素区分コード</xsd:documentation>
+      </xsd:annotation>
+     </xsd:element>
+    </xsd:sequence>
+   </xsd:extension>
+  </xsd:complexContent>
+ </xsd:complexType>
+ <xsd:complexType name="NaturalPark2PropertyType">
+  <xsd:sequence minOccurs="0">
+   <xsd:element ref="ksj:NaturalPark2"/>
+  </xsd:sequence>
+  <xsd:attributeGroup ref="gml:AssociationAttributeGroup"/>
+  <xsd:attributeGroup ref="gml:OwnershipAttributeGroup"/>
+ </xsd:complexType>
+ <xsd:complexType name="NaturalPark2MemberType">
+  <xsd:complexContent>
+   <xsd:extension base="gml:AbstractMemberType">
+    <xsd:sequence minOccurs="0">
+     <xsd:element ref="ksj:NaturalPark2"/>
+    </xsd:sequence>
+    <xsd:attributeGroup ref="gml:AssociationAttributeGroup"/>
+   </xsd:extension>
+  </xsd:complexContent>
+ </xsd:complexType>
+ <xsd:simpleType name="DevelopmentBureauCodeType">
+  <xsd:annotation>
+   <xsd:documentation>振興局コード</xsd:documentation>
+  </xsd:annotation>
+  <xsd:union memberTypes="ksj:DevelopmentBureauCodeEnumType ksj:DevelopmentBureauCodeOtherType"/>
+ </xsd:simpleType>
+ <xsd:simpleType name="DevelopmentBureauCodeEnumType">
+  <xsd:restriction base="xsd:string">
+   <xsd:enumeration value="00">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>北海道以外の都府県</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="01">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>石狩振興局</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="02">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>渡島総合振興局</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="03">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>檜山振興局</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="04">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>後志総合振興局</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="05">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>空知総合振興局</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="06">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>上川総合振興局</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="07">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>留萌振興局</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="08">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>宗谷総合振興局</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="09">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>オホーツク総合振興局</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="10">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>胆振総合振興局</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="11">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>日高振興局</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="12">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>十勝総合振興局</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="13">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>釧路総合振興局</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="14">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>根室振興局</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+  </xsd:restriction>
+ </xsd:simpleType>
+ <xsd:simpleType name="DevelopmentBureauCodeOtherType">
+  <xsd:restriction base="xsd:string">
+   <xsd:pattern value="other: \w{2,}"/>
+  </xsd:restriction>
+ </xsd:simpleType>
+ <xsd:simpleType name="NaturalParkClassCodeType">
+  <xsd:annotation>
+   <xsd:documentation>自然公園区分コード</xsd:documentation>
+  </xsd:annotation>
+  <xsd:union memberTypes="ksj:NaturalParkClassCodeEnumType ksj:NaturalParkClassCodeOtherType"/>
+ </xsd:simpleType>
+ <xsd:simpleType name="NaturalParkClassCodeEnumType">
+  <xsd:restriction base="xsd:string">
+   <xsd:enumeration value="1">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>国立公園</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="2">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>国定公園</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="3">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>都道府県県立自然公園</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+  </xsd:restriction>
+ </xsd:simpleType>
+ <xsd:simpleType name="NaturalParkClassCodeOtherType">
+  <xsd:restriction base="xsd:string">
+   <xsd:pattern value="other: \w{2,}"/>
+  </xsd:restriction>
+ </xsd:simpleType>
+ <xsd:simpleType name="NaturalParkNameCodeType">
+  <xsd:annotation>
+   <xsd:documentation>自然公園名称コード</xsd:documentation>
+  </xsd:annotation>
+  <xsd:union memberTypes="ksj:NaturalParkNameCodeEnumType ksj:NaturalParkNameCodeOtherType"/>
+ </xsd:simpleType>
+ <xsd:simpleType name="NaturalParkNameCodeEnumType">
+  <xsd:restriction base="xsd:string">
+   <xsd:enumeration value="001">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>利尻礼文サロベツ</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="002">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>知床</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="003">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>阿寒</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="004">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>釧路湿原</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="005">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>大雪山</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="006">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>支笏洞爺</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="007">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>十和田八幡平</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="008">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>三陸復興</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="009">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>磐梯朝日</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="010">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>日光</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="011">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>尾瀬</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="012">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>上信越高原</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="013">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>秩父多摩甲斐</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="014">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>小笠原</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="015">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>富士箱根伊豆</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="016">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>中部山岳</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="017">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>白山</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="018">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>南アルプス</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="019">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>伊勢志摩</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="020">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>吉野熊野</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="021">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>山陰海岸</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="022">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>瀬戸内海</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="023">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>大山隠岐</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="024">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>足摺宇和海</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="025">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>西海</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="026">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>雲仙天草</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="027">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>阿蘇くじゅう</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="028">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>霧島錦江湾</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="029">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>西表石垣</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="101">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>暑寒別天売焼尻</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="102">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>網走</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="103">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>ニセコ積丹小樽海岸</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="104">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>日高山脈襟裳</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="105">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>大沼</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="106">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>下北半島</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="107">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>津軽</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="108">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>早池峰</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="109">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>栗駒</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="110">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>三陸復興</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="111">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>蔵王</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="112">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>男鹿</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="113">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>鳥海</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="114">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>越後三山只見</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="115">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>水郷筑波</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="116">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>妙義荒船佐久高原</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="117">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>南房総</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="118">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>明治の森高尾</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="119">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>丹沢大山(国定公園)</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="120">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>佐渡弥彦米山</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="121">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>能登半島</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="122">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>越前加賀海岸</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="123">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>若狭湾</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="124">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>八ヶ岳中信高原</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="125">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>天竜奥三河</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="126">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>揖斐関ケ原養老</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="127">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>飛騨木曽川</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="128">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>愛知高原</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="129">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>三河湾</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="130">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>鈴鹿</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="131">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>室生赤目青山</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="132">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>琵琶湖</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="133">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>丹後天橋立大江山</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="134">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>明治の森箕面</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="135">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>金剛生駒紀泉</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="136">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>氷ノ山後山那岐山</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="137">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>大和青垣</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="138">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>高野龍神</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="139">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>比婆道後帝釈</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="140">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>西中国山地</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="141">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>北長門海岸</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="142">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>秋吉台</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="143">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>剣山</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="144">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>室戸阿南海岸</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="145">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>石鎚</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="146">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>北九州</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="147">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>玄海</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="148">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>耶馬日田英彦山</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="149">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>壱岐対馬</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="150">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>九州中央山地</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="151">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>日豊海岸</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="152">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>祖母傾（国定公園）</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="153">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>日南海岸</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="154">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>奄美群島</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="155">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>沖縄海岸</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="156">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>沖縄戦跡</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="201">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>厚岸</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="202">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>富良野芦別</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="203">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>檜山</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="204">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>恵山</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="205">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>野付風蓮</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="206">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>松前矢越</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="207">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>北オホーツク</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="208">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>野幌森林公園</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="209">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>狩場茂津多</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="210">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>朱鞠内</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="211">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>天塩岳</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="212">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>斜里岳</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="213">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>浅虫夏泊</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="214">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>大鰐碇ヶ関温泉郷</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="215">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>三陸復興</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="216">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>名久井岳</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="217">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>芦野池沼群</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="218">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>黒石温泉郷</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="219">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>岩木高原</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="220">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>津軽白神</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="221">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>久慈平庭</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="222">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>外山早坂高原</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="223">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>花巻温泉郷</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="224">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>湯田温泉峡</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="225">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>折爪馬仙峡</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="226">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>五葉山</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="227">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>室根高原</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="228">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>松島</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="229">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>旭山</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="230">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>蔵王高原</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="231">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>二口峡谷</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="232">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>気仙沼</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="233">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>船形連峰</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="234">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>硯上山万石浦</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="235">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>阿武隈渓谷</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="236">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>田沢湖抱返り</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="237">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>きみまち阪</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="238">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>八森岩館</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="239">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>森吉山</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="240">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>太平山(秋田県)</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="241">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>田代岳</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="242">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>真木真昼</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="243">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>秋田白神</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="244">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>庄内海浜</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="245">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>御所山</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="246">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>県南</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="247">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>加無山</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="248">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>天童高原</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="249">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>最上川</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="250">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>霊山</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="251">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>霞ヶ城</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="252">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>南湖</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="253">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>奥久慈(福島県)</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="254">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>磐城海岸</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="255">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>松川浦</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="256">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>勿来</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="257">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>只見柳津</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="258">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>大川羽鳥</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="259">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>阿武隈高原中部</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="260">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>夏井川渓谷</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="261">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>大洗</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="262">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>太田</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="263">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>水戸</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="264">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>御前山</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="265">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>奥久慈(茨城県)</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="266">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>花園花貫</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="267">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>笠間</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="268">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>吾国愛宕</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="269">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>高鈴</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="270">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>益子</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="271">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>太平山(栃木県)</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="272">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>唐沢山</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="273">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>前日光</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="274">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>足利</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="275">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>宇都宮</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="276">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>那珂川</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="277">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>八溝</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="278">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>狭山(埼玉県)</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="279">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>奥武蔵</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="280">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>黒山</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="281">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>長瀞玉淀</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="282">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>比企丘陵</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="283">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>上武</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="284">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>武甲</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="285">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>安行武南</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="286">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>両神</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="287">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>西秩父</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="288">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>大利根</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="289">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>嶺岡山系</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="290">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>養老渓谷奥清澄</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="291">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>高宕山</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="292">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>九十九里</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="293">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>富山</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="294">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>印旛手賀</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="295">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>笠森鶴舞</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="296">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>滝山</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="297">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>高尾陣場</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="298">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>多摩丘陵</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="299">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>狭山(東京都)</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="300">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>羽村草花丘陵</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="301">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>秋川丘陵</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="302">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>丹沢大山(神奈川県)</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="303">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>真鶴半島</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="304">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>奥湯河原</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="305">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>陣馬相模湖</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="306">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>瀬波笹川流れ粟島</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="307">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>胎内二王子</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="308">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>阿賀野川ライン</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="309">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>五頭連峰</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="310">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>奥早出粟守門</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="311">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>魚沼連峰</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="312">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>米山福浦八景</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="313">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>久比岐</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="314">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>白馬山麓</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="315">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>小佐渡</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="316">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>直峰松之山大池</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="317">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>長岡東山山本山</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="318">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>親不知子不知</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="319">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>朝日</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="320">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>有峰</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="321">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>五箇山</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="322">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>白木水無</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="323">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>医王山(富山県)</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="324">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>獅子吼・手取</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="325">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>山中・大日山</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="326">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>碁石ケ峰</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="327">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>白山一里野</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="328">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>医王山(石川県)</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="329">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>奥越高原</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="330">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>四尾連湖</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="331">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>南アルプス巨摩</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="332">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>中央アルプス</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="333">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>御岳</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="334">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>三峰川水系</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="335">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>塩嶺王城</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="336">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>聖山高原</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="337">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>天竜小渋水系</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="338">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>恵那峡</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="339">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>胞山</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="340">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>千本松原</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="341">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>揖斐</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="342">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>宇津江四十八滝</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="343">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>奥飛騨数河流葉</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="344">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>裏木曽</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="345">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>伊吹</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="346">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>奥長良川</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="347">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>位山舟山</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="348">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>土岐三国山</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="349">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>野麦</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="350">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>せせらぎ渓谷</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="351">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>天生</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="352">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>御嶽山</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="353">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>浜名湖</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="354">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>日本平</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="355">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>奥大井</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="356">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>御前崎遠州灘</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="357">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>渥美半島</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="358">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>南知多</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="359">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>石巻山多米</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="360">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>桜淵</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="361">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>段戸高原</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="362">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>振草渓谷</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="363">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>本宮山</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="364">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>赤目一志峡</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="365">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>水郷</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="366">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>伊勢の海</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="367">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>香肌峡</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="368">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>奥伊勢宮川峡</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="369">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>三上・田上・信楽</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="370">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>朽木・葛川</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="371">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>湖東</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="372">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>笠置山</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="373">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>保津峡</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="374">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>るり渓</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="375">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>北摂</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="376">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>猪名川渓谷</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="377">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>清水東条湖立杭</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="378">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>多紀連山</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="379">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>朝来群山</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="380">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>音水ちくさ</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="381">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>西播丘陵</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="382">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>但馬山岳</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="383">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>出石糸井</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="384">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>播磨中部丘陵</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="385">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>雪彦峰山</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="386">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>笠形山千ヶ峰</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="387">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>矢田</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="388">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>吉野川津風呂</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="389">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>月ヶ瀬神野山</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="390">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>高野山町石道玉川峡</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="391">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>龍門山</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="392">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>生石高原</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="393">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>西有田</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="394">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>白崎海岸</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="395">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>煙樹海岸</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="396">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>城ヶ森鉾尖</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="397">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>果無山脈</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="398">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>吉野熊野</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="399">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>吉野熊野</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="400">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>日置川</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="401">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>白見山和田川峡</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="402">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>古座川</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="403">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>三朝東郷湖</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="404">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>奥日野</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="405">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>西因幡</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="406">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>浜田海岸</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="407">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>青野山</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="408">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>江川水系</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="409">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>鬼の舌震</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="410">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>清水月山</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="411">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>宍道湖北山</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="412">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>立久恵峡</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="413">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>蟠竜湖</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="414">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>竜頭八重滝</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="415">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>千丈渓</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="416">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>断魚渓・観音滝</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="417">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>高梁川上流</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="418">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>吉備史跡</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="419">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>湯原奥津</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="420">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>吉備路風土記の丘</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="421">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>備作山地</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="422">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>吉備清流</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="423">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>吉井川中流</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="424">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>南原峡</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="425">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>山野峡</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="426">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>竹林寺用倉山</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="427">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>仏通寺御調八幡宮</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="428">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>三倉岳</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="429">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>神之瀬峡</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="430">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>石城山</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="431">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>長門峡</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="432">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>豊田</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="433">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>羅漢山</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="434">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>箸蔵</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="435">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>土柱高越</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="436">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>大麻山</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="437">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>東山渓</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="438">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>中部山渓</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="439">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>奥宮川内谷</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="440">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>大滝大川</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="441">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>肱川</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="442">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>金砂湖</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="443">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>奥道後玉川</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="444">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>篠山</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="445">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>四国カルスト(愛媛県)</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="446">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>佐田岬半島宇和海</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="447">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>皿ヶ嶺連峰</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="448">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>入野</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="449">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>奥物部</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="450">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>白髪山</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="451">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>宿毛</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="452">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>手結住吉</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="453">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>横倉山</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="454">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>横浪</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="455">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>興津</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="456">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>須崎湾</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="457">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>中津渓谷</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="458">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>龍河洞</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="459">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>安居渓谷</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="460">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>四国カルスト(高知県)</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="461">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>北山</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="462">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>梶ヶ森</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="463">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>魚梁瀬</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="464">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>鷲尾山</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="465">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>工石山陣ヶ森</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="466">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>大宰府</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="467">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>筑後川</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="468">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>筑豊</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="469">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>矢部川</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="470">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>脊振雷山</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="471">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>黒髪山</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="472">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>多良岳(佐賀県)</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="473">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>天山</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="474">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>八幡岳</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="475">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>脊振・北山</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="476">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>川上・金立</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="477">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>多良岳(長崎県)</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="478">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>野母半島</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="479">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>北松</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="480">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>大村湾</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="481">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>西彼杵半島</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="482">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>島原半島</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="483">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>金峰山</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="484">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>小岱山</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="485">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>奥球磨</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="486">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>芦北海岸</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="487">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>三角大矢野海辺</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="488">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>矢部周辺</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="489">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>五木五家荘</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="490">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>国東半島</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="491">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>豊後水道</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="492">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>神角寺芹川</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="493">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>津江山系</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="494">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>祖母傾(大分県)</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="495">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>祖母傾(宮崎県)</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="496">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>尾鈴</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="497">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>西都原杉安峡</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="498">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>母智丘・関之尾</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="499">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>わにつか</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="500">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>矢岳高原</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="501">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>吹上浜</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="502">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>阿久根</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="503">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>坊野間</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="504">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>藺牟田池</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="505">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>川内川流域</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="506">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>高隈山</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="507">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>大隅南部</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="508">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>甑島</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="509">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>トカラ列島</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="510">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>久米島</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="511">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>伊良部</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="512">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>渡名喜</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+  </xsd:restriction>
+ </xsd:simpleType>
+ <xsd:simpleType name="NaturalParkNameCodeOtherType">
+  <xsd:restriction base="xsd:string">
+   <xsd:pattern value="other: \w{2,}"/>
+  </xsd:restriction>
+ </xsd:simpleType>
+ <xsd:simpleType name="NaturalParkCode2Type">
+  <xsd:annotation>
+   <xsd:documentation>自然公園地域区分コード(A10(H22))</xsd:documentation>
+  </xsd:annotation>
+  <xsd:union memberTypes="ksj:NaturalParkCode2EnumType ksj:NaturalParkCode2OtherType"/>
+ </xsd:simpleType>
+ <xsd:simpleType name="NaturalParkCode2EnumType">
+  <xsd:restriction base="xsd:string">
+   <xsd:enumeration value="1">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>特別保護地区</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="2">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>第1種特別地域</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="3">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>第2種特別地域</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="4">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>第3種特別地域</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="5">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>普通地域（海域含む）</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="6">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>海域公園地区</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="7">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>その他（詳細区分未決定等）</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="8">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>特別地域</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+  </xsd:restriction>
+ </xsd:simpleType>
+ <xsd:simpleType name="NaturalParkCode2OtherType">
+  <xsd:restriction base="xsd:string">
+   <xsd:pattern value="other: \w{2,}"/>
+  </xsd:restriction>
+ </xsd:simpleType>
+ <xsd:simpleType name="ElementClassCodeType">
+  <xsd:annotation>
+   <xsd:documentation>要素区分コード</xsd:documentation>
+  </xsd:annotation>
+  <xsd:union memberTypes="ksj:ElementClassCodeEnumType ksj:ElementClassCodeOtherType"/>
+ </xsd:simpleType>
+ <xsd:simpleType name="ElementClassCodeEnumType">
+  <xsd:restriction base="xsd:string">
+   <xsd:enumeration value="1">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>外周ポリゴン</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="2">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>詳細ポリゴン</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+  </xsd:restriction>
+ </xsd:simpleType>
+ <xsd:simpleType name="ElementClassCodeOtherType">
+  <xsd:restriction base="xsd:string">
+   <xsd:pattern value="other: \w{2,}"/>
+  </xsd:restriction>
+ </xsd:simpleType>
+</xsd:schema>
