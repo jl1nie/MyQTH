@@ -342,7 +342,10 @@ function selectRef(area) {
       pname += '<br>'
       pname += area['name']
   }
-  pname = '<div style="text-align:center">' + pname + '</div>'
+    
+  if (pname != '')
+      pname = '<div style="text-align:center">' + pname + '</div>';
+
   return pname;
 }
    
