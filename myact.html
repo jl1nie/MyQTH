@@ -217,7 +217,7 @@ var last_mesg = '';
   
 function redrawPopup() {
     if (last_area != null) {
-	var ctnt = '<b>' + selectRef(last_area, true) + '</b><br>' + last_mesg;
+	var ctnt = '<b>' + selectRef(last_area) + '</b>' + last_mesg;
 	popup.setContent(ctnt);
 	popup.update();
     }
@@ -262,9 +262,9 @@ function displayPopup(area, latlng, isMarker, isGPS) {
 	    if (qth_marker != null)
 		qth_marker.bindPopup(mesg).openPopup();
 	} else {
-	    cnt = selectRef(area, true);
+	    cnt = selectRef(area);
 	    if (cnt != '')
-		cnt = '<b>' + cnt + '</b><br>' + mesg;
+		cnt = '<b>' + cnt + '</b>' + mesg;
 	    else
 		cnt = mesg;
 	    popup.setContent(cnt);
@@ -325,7 +325,7 @@ function closePrefs() {
 
 readCookie(prefs);
 
-function selectRef(area, br) {
+function selectRef(area) {
   var pname = '';
 
   if (area['pota'] == undefined || area['jaff'] == undefined)
@@ -339,11 +339,10 @@ function selectRef(area, br) {
       pname = area['jaff'];
   
   if (pname != '' && area['name'] != '') {
-      if(br)
-	  pname += '<br>'
+      pname += '<br>'
       pname += area['name']
   }
-  
+  pname = '<div style="text-align:center">' + pname + '</div>'
   return pname;
 }
    
@@ -513,7 +512,7 @@ function placeSummitMarkers(nw ,se, z) {
 	for(const s of res['parks']) {
 	    var pname =selectRef({'pota':s['pota'],
 				  'jaff':s['jaff'],
-				  'name':s['name_k']},false);
+				  'name':s['name_k']});
 	    if (pname != '')
 		show_summit_marker.push(
 		    placeParkMarker([s['lat'],s['lon']], z, pname))
