@@ -59,16 +59,22 @@
  }
 }
 .modal-header {
-    padding-top: 3px;
-    height: 20px;
-    padding-bottom: 3px;
+    padding-top: 2px;
+    height: 24px;
+    padding-bottom: 2px;
+}
+.modal-footer {
+    padding-top: 2px;
+    height: 24px;
+    padding-bottom: 2px;
 }
 .modal-body > .img-responsive {
-    display: block;
     margin-left: auto;
     margin-right: auto;
 }
-
+.slider.slider-horizontal {
+    width:100px !important;
+}
 .navbar-dark .navbar-toggler {
 border-color: rgba(0,0,0,0);
 }
@@ -153,28 +159,33 @@ i.semantic-ui-custom {
 	<div class="modal-dialog">
 	  <div class="modal-content">
             <div class="modal-header">
-              <h4 class="modal-title">Preferences</h4>
+              <h4 class="modal-title"><b>Preferences</b></h4>
             </div><!-- /modal-header -->
             <div class="modal-body">
-	      <div class="form-check">
-		<input class="form-check-input" type="checkbox" value="" id="sota_ref" onclick="clickPrefs()">
-		<label class="form-check-label" for="flexCheckDefault">SOTA<br>
-		</label>
-	      </div>
-	      <div class="form-check">
-		<input class="form-check-input" type="checkbox" value="" id="pota_ref" onclick="clickPrefs()">
-		<label class="form-check-label" for="flexCheckDefault">POTA<br>
-		</label>
+	      <div class ="form-group">
+		<label class="control-label"><u>表示対象</u></label>
+		<div class="custom-control custom-checkbox">
+		  <input class="custom-control-input" type="checkbox" value="" id="sota_ref" onclick="clickPrefs()">
+		  <label class="custom-control-label" for="sota_ref">SOTA</label>
 		</div>
-	      <div class="form-check">
-		<input class="form-check-input" type="checkbox" value="" id="jaff_ref" onclick="clickPrefs()">
-		<label class="form-check-label" for="flexCheckDefault">JAFF<br>
-		</label>
+		<div class="custom-control custom-checkbox">
+		  <input class="custom-control-input" type="checkbox" value="" id="pota_ref" onclick="clickPrefs()">
+		  <label class="custom-control-label" for="pota_ref">POTA</label>
+		</div>
+		<div class="custom-control custom-checkbox">
+		  <input class="custom-control-input" type="checkbox" value="" id="jaff_ref" onclick="clickPrefs()">
+		  <label class="custom-control-label" for="jaff_ref">JAFF</label>
+		</div>
 	      </div>
-	      <div class="form-check">
-		<input class="form-check-input" type="checkbox" value="" id="popup_permanent" onclick="clickPrefs()">
-		<label class="form-check-label" for="flexCheckDefault"> 公園名を常に表示<br>
-		</label>
+	      <div class ="form-group">
+		<label class="control-label"><u>マーカ</u></label>
+		<p>表示する数:&nbsp&nbsp<b>多</b>&nbsp&nbsp&nbsp
+		  <input id="zoom-threshold" data-slider-id='ex1Slider' type="text" data-slider-min="9" data-slider-max="12" data-slider-step="1" data-slider-value="12"/>&nbsp&nbsp&nbsp&nbsp<b>少</b>
+		</p>
+		<div class="custom-control custom-checkbox">
+		  <input class="custom-control-input" type="checkbox" value="" id="popup_permanent" onclick="clickPrefs()">
+		  <label class="custom-control-label" for="popup_permanent"> 公園名を常に表示</label>
+		</div>
 	      </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-default" data-dismiss="modal" onClick="closePrefs()">Close</button>
@@ -278,20 +289,32 @@ function displayPopup(area, latlng, isMarker, isGPS) {
 
 var prefs =
        { 'popup_permanent': true,
+	 'zoom_threshold': 12,
 	 'sota_ref': true,
 	 'pota_ref': true,
 	 'jaff_ref': true
        }
+
+$('#zoom-threshold').slider({
+    formatter: function(value) {
+	prefs['zoom_threshold'] = Number(value);
+	return '全ての公園を表示するズームレベル ' + value;
+    }
+});
    
 function clickPrefs() {
     for(var k in prefs) {
-	var el = document.getElementById(k);
-	if (el.checked == true) {
-	    prefs[k] = true;
-	    Cookies.set(k, 'true')
-	} else {
-	    prefs[k] = false;
-	    Cookies.set(k, 'false')
+	if (k == 'zoom_threshold') {
+	}
+	else {
+	    var el = document.getElementById(k);
+	    if (el.checked == true) {
+		prefs[k] = true;
+		Cookies.set(k, 'true')
+	    } else {
+		prefs[k] = false;
+		Cookies.set(k, 'false')
+	    }
 	}
     }
 }
@@ -299,22 +322,30 @@ function clickPrefs() {
 function readCookie(pref) {
     for (var k in pref) {
 	var ck = Cookies.get(k);
-	if (ck  == undefined) {
-	    if (pref[k])
-		Cookies.set(k, 'true')
+	if (k == 'zoom_threshold') {
+	    if (ck  == undefined)
+		Cookies.set(k, '11')
 	    else
-		Cookies.set(k, 'false')
-	} else {
-	    if (ck == 'true')
-		pref[k] = true
-	    else
-		pref[k] = false
+		pref[k] = Number(ck)
 	}
-	var el = document.getElementById(k);
-	if (pref[k])
-	    el.checked = true
-	else
-	    el.checked = false;
+	else {
+	    if (ck  == undefined) {
+		if (pref[k])
+		    Cookies.set(k, 'true')
+		else
+		    Cookies.set(k, 'false')
+	    } else {
+		if (ck == 'true')
+		    pref[k] = true
+		else
+		    pref[k] = false
+	    }
+	    var el = document.getElementById(k);
+	    if (pref[k])
+		el.checked = true
+	    else
+		el.checked = false;
+	}
     }
 }
 
@@ -466,7 +497,7 @@ function popupSummitMarker(latlng) {
 function placeSummitMarkers(nw ,se, z) {
     var popup,elev,prefix,level;
 
-    if (z > 11) {
+    if (z >= prefs['zoom_threshold']) {
 	elev = 0;
 	level = 0;
     }
