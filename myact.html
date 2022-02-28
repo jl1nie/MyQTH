@@ -327,10 +327,13 @@ function readCookie(pref) {
     for (var k in pref) {
 	var ck = Cookies.get(k);
 	if (k == 'zoom_threshold') {
-	    if (ck  == undefined)
-		Cookies.set(k, '11')
+	    if (ck  == undefined) {
+		ck = '12';
+		Cookies.set(k, ck);
+	    }
 	    else
 		pref[k] = Number(ck)
+	    $('#zoom-threshold').slider('setValue',Number(ck))
 	}
 	else {
 	    if (ck  == undefined) {
@@ -354,6 +357,7 @@ function readCookie(pref) {
 }
 
 function closePrefs() {
+    Cookies.set('zoom_threshold',String(prefs['zoom_threshold']))
     redrawPopup();
     redrawMarkers();
 }
