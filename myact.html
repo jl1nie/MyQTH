@@ -314,10 +314,10 @@ function clickPrefs() {
 	    var el = document.getElementById(k);
 	    if (el.checked == true) {
 		prefs[k] = true;
-		Cookies.set(k, 'true')
+		Cookies.set(k, 'true',{expires: 180, SameSite:'Lax'})
 	    } else {
 		prefs[k] = false;
-		Cookies.set(k, 'false')
+		Cookies.set(k, 'false',{expires: 180, SameSite:'Lax'})
 	    }
 	}
     }
@@ -329,7 +329,7 @@ function readCookie(pref) {
 	if (k == 'zoom_threshold') {
 	    if (ck  == undefined) {
 		ck = '12';
-		Cookies.set(k, ck);
+		Cookies.set(k, ck,{expires: 180, SameSite:'Lax'});
 	    }
 	    else
 		pref[k] = Number(ck)
@@ -338,9 +338,9 @@ function readCookie(pref) {
 	else {
 	    if (ck  == undefined) {
 		if (pref[k])
-		    Cookies.set(k, 'true')
+		    Cookies.set(k, 'true',{expires: 180, SameSite:'Lax'})
 		else
-		    Cookies.set(k, 'false')
+		    Cookies.set(k, 'false',{expires: 180, SameSite:'Lax'})
 	    } else {
 		if (ck == 'true')
 		    pref[k] = true
@@ -357,7 +357,7 @@ function readCookie(pref) {
 }
 
 function closePrefs() {
-    Cookies.set('zoom_threshold',String(prefs['zoom_threshold']))
+    Cookies.set('zoom_threshold',String(prefs['zoom_threshold']),{expires: 180, SameSite:'Lax'})
     redrawPopup();
     redrawMarkers();
 }
