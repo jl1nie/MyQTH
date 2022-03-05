@@ -97,7 +97,7 @@ JA-0155,JAFF-0095,Koshikishima,Kagoshima,JP-KS,Nature Park,0,甑島国定公園,
 JA-0134,JAFF-0096,Kyoto Tamba Kogen,Kyoto,JP-KY,Nature Park,1,京都丹波高原国定公園,35.276535,135.588688
 JA-0032,JAFF-0097,Yambaru,Okinawa,JP-ON,National Park,0,やんばる国立公園,26.728629,128.221064
 ,JAFF-0098,Ogasawara Islands,Tokyo,JP-TK,Remote island,0,小笠原諸島,27.016314,142.219391
-JA-1001,JAFF-0099,Akkeshi-Kiritappu-Konbumori,Hokkaido,JP-HK,Provincial Park,2,厚岸霧多布昆布森国定公園,33.057805,132.007345
+JA-1001,JAFF-0099,Akkeshi-Kiritappu-Konbumori,Hokkaido,JP-HK,Provincial Park,2,厚岸霧多布昆布森国定公園,43.016454,144.965286
 JA-0009,JAFF-0101,Bandai-Asahi,Yamagata,JP-YT,National Park,78,磐梯朝日国立公園（出羽三山朝日）,38.343586,139.849606
 JA-0009,JAFF-0102,Bandai-Asahi,Niigata,JP-NI,National Park,42,磐梯朝日国立公園（飯豊）,37.90547,139.558296
 JA-0024,JAFF-0103,Daisen-Oki,Shimane,JP-SM,National Park,16,大山隠岐国立公園（隠岐）,36.146562,133.190231
@@ -107,7 +107,7 @@ JA-0016,JAFF-0106,Fuji-Hakone-Izu,Tokyo,JP-TK,National Park,12,富士箱根伊�
 JA-0001,JAFF-0107,Rishiri-Rebun-Sarobetsu,Hokkaido,JP-HK,National Park,19,利尻礼文サロベツ国立公園（サロベツ）,45.130741,141.603063
 JA-0007,JAFF-0108,Towada-Hachimantai,"Akita,Aomori,Iwate","JP-AK,JP-IW",National Park,42,十和田八幡平国立公園（八幡平）,39.83552,140.821381
 JA-0027,JAFF-0109,Unzen-Amakusa,"Kumamoto,Kagoshima","JP-KM,JP-KS",National Park,44,雲仙天草国立公園（天草）,32.602651,130.338249
-JA-0101,JAFF-0110,Shokanbetsu-Teuri-Yagishiri,Hokkaido,JP-HK,Nature Park,1,暑寒別天売焼尻国定公園（天売焼尻）,43.729167,141.541667
+JA-0101,JAFF-0110,Shokanbetsu-Teuri-Yagishiri,Hokkaido,JP-HK,Nature Park,1,暑寒別天売焼尻国定公園（天売焼尻）,44.430869,141.395416
 JA-0104,JAFF-0111,Hidaka Sanmyaku-Erimo,Hokkaido,JP-HK,Nature Park,12,日高山脈襟裳国定公園（襟裳）,41.943659,143.234253
 JA-0119,JAFF-0112,Sado-Yahiko-Yoneyama,Niigata,JP-NI,Nature Park,10,佐渡弥彦米山国定公園（弥彦米山）,38.16139,138.323775
 JA-0026,JAFF-0113,Saikai,Nagasaki,JP-NS,National Park,11,西海国立公園（五島）,33.164173,129.676615
@@ -305,7 +305,7 @@ JA-1373,JAFF-0305,Iozen,Toyama,JP-TY,Provincial Park,2,医王山県立自然公�
 JA-1369,JAFF-0306,Asahi,Toyama,JP-TY,Provincial Park,10,朝日県立自然公園,36.856111,137.675
 JA-1370,JAFF-0307,Arimine,Toyama,JP-TY,Provincial Park,11,有峰県立自然公園,36.491667,137.46
 JA-1371,JAFF-0308,Gokayama,Toyama,JP-TY,Provincial Park,3,五箇山県立自然公園,36.413333,136.88
-JA-1372,JAFF-0309,Shiraki Mizunashi,Toyama,JP-TY,Provincial Park,11,白木水無県立自然公園,36.761667,137.563611
+JA-1372,JAFF-0309,Shiraki Mizunashi,Toyama,JP-TY,Provincial Park,11,白木水無県立自然公園,36.369194,137.034817
 JA-1374,JAFF-0310,Sogatake,Toyama,JP-TY,Provincial Park,2,僧ヶ岳県立自然公園,36.761667,137.563611
 JA-1405,JAFF-0311,Okuetsu Kogen,Fukui,JP-FI,Provincial Park,25,奥越高原県立自然公園,36.003524,136.59627
 JA-1386,JAFF-0312,Hakusan Ichirino,Ishikawa,JP-IS,Provincial Park,1,白山一里野県立自然公園,36.228684,136.766233
@@ -467,8 +467,7 @@ JA-1286,,Ryonan,Tokyo,JP-TK,Provincial Park,0,陵南公園,35.648851,139.288257
 JA-1496,,Arashiyama Higashi,Kyoto,JP-KY,Provincial Park,0,嵐山東公園,35.009943,135.686442
 JA-1495,,Arashiyama,Kyoto,JP-KY,Provincial Park,0,嵐山公園,35.014618,135.671336
 JA-1499,,Rakusai Joka Center,Kyoto,JP-KY,Provincial Park,0,洛西浄化センター公園,34.907858,135.70756
-JA-0210,,Yodogawa Riverside,Kyoto,JP-KY,National Recreati,0,淀川河川公園,34.744574,135.557613
-JA-0210,,Yodogawa Riverside,Osaka,JP-OS,National Recreati,0,淀川河川公園,34.744574,135.557613
+JA-0210,,Yodogawa Riverside,"Kyoto,Osaka","JP-KY,JP-OS",National Recreati,0,淀川河川公園,34.744574,135.557613
 JA-1433,,Yoro,Gifu,JP-GF,Provincial Park,0,養老公園,35.282326,136.549454
 JA-1295,,Hayama,Kanagawa,JP-KN,Provincial Park,0,葉山公園,35.25832,139.579789
 JA-1866,,Yugaku-no-mori,Yamagata,JP-YT,Provincial Park,0,遊学の森,38.912691,140.375909
@@ -805,9 +804,7 @@ JA-1080,,Mogamigawa Furusato Sogo,Yamagata,JP-YT,Provincial Park,0,最上川ふ�
 JA-1299,,Zama Yatoyama,Kanagawa,JP-KN,Provincial Park,0,座間谷戸山公園,35.486677,139.403976
 JA-1123,,Sanuma Koiki,Ibaraki,JP-IB,Provincial Park,0,砂沼広域公園,36.189136,139.948073
 JA-1715,,Sagajo,Saga,JP-SG,Provincial Park,0,佐賀城公園,33.244954,130.302994
-JA-0209,,Kiso Sansen,Aichi,JP-AI,National Recreati,0,国営木曽三川公園,35.357814,136.813236
-JA-0209,,Kiso Sansen,Gifu,JP-GF,National Recreati,0,国営木曽三川公園,35.357814,136.813236
-JA-0209,,Kiso Sansen,Mie,JP-ME,National Recreati,0,国営木曽三川公園,35.357814,136.813236
+JA-0209,,Kiso Sansen,"Aichi,Gifu,Mie","JP-AI,JP-GF,JP-ME",National Recreati,0,国営木曽三川公園,35.357814,136.813236
 JA-0211,,Akashi Kaikyo,Hyogo,JP-HG,National Recreati,0,国営明石海峡公園,34.562818,135.011342
 JA-0212,,Nara Palace Site Historical,Nara,JP-NR,National Recreati,0,国営平城宮跡歴史公園,34.690737,135.793841
 JA-0204,,Musashi-Kyuryo,Saitama,JP-ST,National Recreati,0,国営武蔵丘陵森林公園,36.083593,139.369363
