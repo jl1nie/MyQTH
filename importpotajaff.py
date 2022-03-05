@@ -23,8 +23,8 @@ js['name'] = 'JAFFPOTA'
 for elem in js['features']:
     parkid = elem['properties']['A10_005']
     parkname = parkdict[parkid]
-    parkname = re.sub(r'\(.*\)','',parkname)
-    parkname = re.sub(r'（.*）','',parkname)
+    #parkname = re.sub(r'\(.*\)','',parkname)
+    #parkname = re.sub(r'（.*）','',parkname)
     res = cur.execute(f"select * from jaffpota where namek like '{parkname}%'")
     res = cur.fetchone()
     if res:
