@@ -153,7 +153,7 @@ i.semantic-ui-custom {
 
     <div id="search_ref"></div>
     <script>
-      $("#search_ref").searchinput({done:function(s){showReference(s)}})
+      $("#search_ref").searchinput({width:65,done:function(s){showReference(s)}})
     </script>
 
 <small><span id="clock_time" style="cursor: default;" ></span></small>
@@ -645,7 +645,6 @@ function showReference(s) {
     latlng = s['coord']
     map.setView(latlng,15);
     clearSummitMarker();
-    redrawPopup();
     redrawMarkers();
 }
 

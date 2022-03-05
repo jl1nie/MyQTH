@@ -29,7 +29,7 @@
 		var input=document.createElement("INPUT");
 		input.setAttribute('list',"__reference_list")
 		input.setAttribute('oninput',"station_input();")
-		input.setAttribute('placeholder',"Reference")
+		input.setAttribute('placeholder',"Search")
 		input.style.width=options.width+"px";
 		input.style.height="20px";
 		input.style.margin="0px 0px 0px 5px";
