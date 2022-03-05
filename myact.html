@@ -644,6 +644,7 @@ function placeParkMarker(coords, z,  mesg) {
 function showReference(s) {
     latlng = s['coord']
     map.setView(latlng,15);
+    clearSummitMarker();
     redrawPopup();
     redrawMarkers();
 }
