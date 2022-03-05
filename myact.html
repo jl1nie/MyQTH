@@ -143,12 +143,18 @@ i.semantic-ui-custom {
 <script src="js/regionfill.js"></script>
 <script src="js/getDEM.js"></script>
 <script src="js/actzone.js"></script>
+<script src="js/search-ref.js"></script>
 <!-- plugin -->
 
   <nav class="navbar navbar-expand-md navbar-dark bg-dark text-light">
     <span class="navbar-brand" style="cursor: hand;cursor: pointer;"><h4>MyACT.ga</h4></span>
     <button type="button" class="btn btn-amber" onClick="clickQTHButton()"><i class="fas fa-map-marked-alt">QTH</i></button>
     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-prefs"><i class="fas fa-cog"></i></button>
+
+    <div id="search_ref"></div>
+    <script>
+      $("#search_ref").searchinput({done:function(s){showReference(s)}})
+    </script>
 
 <small><span id="clock_time" style="cursor: default;" ></span></small>
   </nav>
@@ -465,7 +471,7 @@ function clock() {
     var now = new Date();
     var tm = now.toString();
     tm  = tm.replace(/:\d{2} GMT\+.+/,'');
-    document.getElementById("clock_time").innerHTML=tm;
+    document.getElementById("clock_time").innerHTML='&nbsp'+tm;
 }
 
 function escapeStr(str) {
@@ -633,6 +639,13 @@ function placeParkMarker(coords, z,  mesg) {
 		       {permanent: prefs['popup_permanent'], direction: 'center',offset:[0,20]})
     var m = marker.addTo(map);
     return m;
+}
+
+function showReference(s) {
+    latlng = s['coord']
+    map.setView(latlng,15);
+    redrawPopup();
+    redrawMarkers();
 }
 
 L.TopoJSON = L.GeoJSON.extend({
