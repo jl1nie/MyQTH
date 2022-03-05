@@ -254,7 +254,14 @@
    <xsd:enumeration value="001">
     <xsd:annotation>
      <xsd:appinfo>
-      <gml:description>利尻礼文サロベツ</gml:description>
+      <gml:description>利尻礼文サロベツ国立公園（利尻礼文）</gml:description>
+     </xsd:appinfo>
+    </xsd:annotation>
+   </xsd:enumeration>
+   <xsd:enumeration value="1001">
+    <xsd:annotation>
+     <xsd:appinfo>
+      <gml:description>利尻礼文サロベツ国立公園（サロベツ）</gml:description>
      </xsd:appinfo>
     </xsd:annotation>
    </xsd:enumeration>
@@ -583,7 +590,7 @@
    <xsd:enumeration value="119">
     <xsd:annotation>
      <xsd:appinfo>
-      <gml:description>丹沢大山(国定公園)</gml:description>
+      <gml:description>丹沢大山国定公園</gml:description>
      </xsd:appinfo>
     </xsd:annotation>
    </xsd:enumeration>
@@ -814,7 +821,7 @@
    <xsd:enumeration value="152">
     <xsd:annotation>
      <xsd:appinfo>
-      <gml:description>祖母傾（国定公園）</gml:description>
+      <gml:description>祖母傾国定公園</gml:description>
      </xsd:appinfo>
     </xsd:annotation>
    </xsd:enumeration>
@@ -1122,7 +1129,7 @@
    <xsd:enumeration value="240">
     <xsd:annotation>
      <xsd:appinfo>
-      <gml:description>太平山(秋田県)</gml:description>
+      <gml:description>太平山県立自然公園</gml:description>
      </xsd:appinfo>
     </xsd:annotation>
    </xsd:enumeration>
@@ -1213,7 +1220,7 @@
    <xsd:enumeration value="253">
     <xsd:annotation>
      <xsd:appinfo>
-      <gml:description>奥久慈(福島県)</gml:description>
+      <gml:description>奥久慈県立自然公園（福島県）</gml:description>
      </xsd:appinfo>
     </xsd:annotation>
    </xsd:enumeration>
@@ -1297,7 +1304,7 @@
    <xsd:enumeration value="265">
     <xsd:annotation>
      <xsd:appinfo>
-      <gml:description>奥久慈(茨城県)</gml:description>
+      <gml:description>奥久慈県立自然公園（茨城県）</gml:description>
      </xsd:appinfo>
     </xsd:annotation>
    </xsd:enumeration>
@@ -1339,7 +1346,7 @@
    <xsd:enumeration value="271">
     <xsd:annotation>
      <xsd:appinfo>
-      <gml:description>太平山(栃木県)</gml:description>
+      <gml:description>太平山県立自然公園（栃木県）</gml:description>
      </xsd:appinfo>
     </xsd:annotation>
    </xsd:enumeration>
@@ -1388,7 +1395,7 @@
    <xsd:enumeration value="278">
     <xsd:annotation>
      <xsd:appinfo>
-      <gml:description>狭山(埼玉県)</gml:description>
+      <gml:description>狭山県立自然公園（埼玉県）</gml:description>
      </xsd:appinfo>
     </xsd:annotation>
    </xsd:enumeration>
@@ -1535,7 +1542,7 @@
    <xsd:enumeration value="299">
     <xsd:annotation>
      <xsd:appinfo>
-      <gml:description>狭山(東京都)</gml:description>
+      <gml:description>狭山都立自然公園（東京都）</gml:description>
      </xsd:appinfo>
     </xsd:annotation>
    </xsd:enumeration>
@@ -1556,7 +1563,7 @@
    <xsd:enumeration value="302">
     <xsd:annotation>
      <xsd:appinfo>
-      <gml:description>丹沢大山(神奈川県)</gml:description>
+      <gml:description>丹沢大山県立自然公園</gml:description>
      </xsd:appinfo>
     </xsd:annotation>
    </xsd:enumeration>
@@ -1703,7 +1710,7 @@
    <xsd:enumeration value="323">
     <xsd:annotation>
      <xsd:appinfo>
-      <gml:description>医王山(富山県)</gml:description>
+      <gml:description>医王山県立自然公園（富山県）</gml:description>
      </xsd:appinfo>
     </xsd:annotation>
    </xsd:enumeration>
@@ -1738,7 +1745,7 @@
    <xsd:enumeration value="328">
     <xsd:annotation>
      <xsd:appinfo>
-      <gml:description>医王山(石川県)</gml:description>
+      <gml:description>医王山県立自然公園（石川県）</gml:description>
      </xsd:appinfo>
     </xsd:annotation>
    </xsd:enumeration>
@@ -2557,7 +2564,7 @@
    <xsd:enumeration value="445">
     <xsd:annotation>
      <xsd:appinfo>
-      <gml:description>四国カルスト(愛媛県)</gml:description>
+      <gml:description>四国カルスト県立自然公園（愛媛県）</gml:description>
      </xsd:appinfo>
     </xsd:annotation>
    </xsd:enumeration>
@@ -2662,7 +2669,7 @@
    <xsd:enumeration value="460">
     <xsd:annotation>
      <xsd:appinfo>
-      <gml:description>四国カルスト(高知県)</gml:description>
+      <gml:description>四国カルスト県立自然公園（高知県）</gml:description>
      </xsd:appinfo>
     </xsd:annotation>
    </xsd:enumeration>
@@ -2746,7 +2753,7 @@
    <xsd:enumeration value="472">
     <xsd:annotation>
      <xsd:appinfo>
-      <gml:description>多良岳(佐賀県)</gml:description>
+      <gml:description>多良岳県立自然公園（佐賀県）</gml:description>
      </xsd:appinfo>
     </xsd:annotation>
    </xsd:enumeration>
@@ -2781,7 +2788,7 @@
    <xsd:enumeration value="477">
     <xsd:annotation>
      <xsd:appinfo>
-      <gml:description>多良岳(長崎県)</gml:description>
+      <gml:description>多良岳県立公園（長崎県）</gml:description>
      </xsd:appinfo>
     </xsd:annotation>
    </xsd:enumeration>
@@ -2900,14 +2907,14 @@
    <xsd:enumeration value="494">
     <xsd:annotation>
      <xsd:appinfo>
-      <gml:description>祖母傾(大分県)</gml:description>
+      <gml:description>祖母傾県立自然公園（大分県）</gml:description>
      </xsd:appinfo>
     </xsd:annotation>
    </xsd:enumeration>
    <xsd:enumeration value="495">
     <xsd:annotation>
      <xsd:appinfo>
-      <gml:description>祖母傾(宮崎県)</gml:description>
+      <gml:description>祖母傾県立自然公園（宮崎県）</gml:description>
      </xsd:appinfo>
     </xsd:annotation>
    </xsd:enumeration>

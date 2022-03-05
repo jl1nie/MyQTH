@@ -2,32 +2,32 @@ pota,jaff,name,location,locid,type,level,namek,lat,lng
 JA-0003,JAFF-0001,Akan-Mashu,Hokkaido,JP-HK,National Park,104,阿寒摩周国立公園,43.436221,144.102501
 JA-0025,JAFF-0002,Ashizuri-Uwakai,"Ehime,Kochi","JP-EH,JP-KC",National Park,16,足摺宇和海国立公園,32.779142,132.979137
 JA-0028,JAFF-0003,Aso-Kuju,"Kumamoto,Oita","JP-KM,JP-OT",National Park,67,阿蘇くじゅう国立公園,32.949937,131.086471
-JA-0009,JAFF-0004,Bandai-Asahi,Fukushima,JP-FS,National Park,78,磐梯朝日国立公園（磐梯）,37.691065,140.126724
+JA-0009,JAFF-0004,Bandai-Asahi,Fukushima,JP-FS,National Park,60,磐梯朝日国立公園（磐梯）,37.691065,140.126724
 JA-0014,JAFF-0005,Chichibu-Tama-Kai,"Nagano,Saitama,Tokyo,Yamanashi","JP-NN,JP-ST,JP-TK,JP-YN",National Park,125,秩父多摩甲斐国立公園,35.859261,138.863468
 JA-0017,JAFF-0006,Chubusangaku,"Gifu,Niigata,Nagano,Toyama","JP-GF,JP-NI,JP-NN,JP-TY",National Park,174,中部山岳国立公園,36.448973,137.622264
 JA-0024,JAFF-0007,Daisen-Oki,"Okayama,Shimane,Tottori","JP-OY,JP-SM,JP-TT",National Park,21,大山隠岐国立公園（大山ほか本州）,35.407228,133.543038
-JA-0005,JAFF-0008,Daisetsuzan,Hokkaido,JP-HK,National Park,251,大雪山国立公園,43.519375,142.974701
+JA-0005,JAFF-0008,Daisetsuzan,Hokkaido,JP-HK,National Park,251,大雪山国立公園,43.671707,142.907132
 JA-0016,JAFF-0009,Fuji-Hakone-Izu,Yamanashi,JP-YN,National Park,60,富士箱根伊豆国立公園（富士）,35.372908,138.673897
 JA-0018,JAFF-0010,Hakusan,"Fukui,Gifu,Ishikawa,Toyama","JP-FI,JP-GF,JP-IS,JP-TY",National Park,47,白山国立公園,36.157856,136.765418
-JA-0034,JAFF-0011,Iriomote-Ishigaki,Okinawa,JP-ON,National Park,35,西表石垣国立公園,24.481851,124.237711
+JA-0034,JAFF-0011,Iriomote-Ishigaki,Okinawa,JP-ON,National Park,35,西表石垣国立公園,24.351461,123.923759
 JA-0020,JAFF-0012,Ise-Shima,Mie,JP-ME,National Park,73,伊勢志摩国立公園,34.426027,136.801594
 JA-0012,JAFF-0013,Joshinetsu Kogen,"Gumma,Nagano,Niigata","JP-GM,JP-NN,JP-NI",National Park,149,上信越高原国立公園,36.691899,138.518845
-JA-0029,JAFF-0014,Kirishima-Kinkowan,"Kagoshima,Miyazaki","JP-KS,JP-MZ",National Park,22,霧島錦江湾国立公園,31.921053,130.876712
+JA-0029,JAFF-0014,Kirishima-Kinkowan,"Kagoshima,Miyazaki","JP-KS,JP-MZ",National Park,19,霧島錦江湾国立公園,31.921053,130.876712
 JA-0004,JAFF-0015,Kushiroshitsugen,Hokkaido,JP-HK,National Park,29,釧路湿原国立公園,43.138287,144.445417
 JA-0019,JAFF-0016,Minami Alps,"Nagano,Shizuoka,Yamanashi","JP-NN,JP-SZ,JP-YN",National Park,35,南アルプス国立公園,35.642147,138.217122
 JA-0010,JAFF-0017,Nikko,"Fukushima,Gunma,Tochigi","JP-FS,JP-GM,JP-TC",National Park,98,日光国立公園,36.876297,139.46405
 JA-0010,JAFF-0017,Nikko,"Fukushima,Gunma,Tochigi","JP-FS,JP-GM,JP-TC",National Park,98,日光国立公園,37.085327,139.969025
 JA-0015,JAFF-0018,Ogasawara,Tokyo,JP-TK,National Park,41,小笠原国立公園,27.067126,142.211206
 JA-0011,JAFF-0019,Oze,"Fukushima,Gunma,Niigata,Tochigi","JP-FS,JP-GM,JP-NI,JP-TC",National Park,37,尾瀬国立公園,36.938186,139.286898
-JA-0001,JAFF-0021,Rishiri-Rebun-Sarobetsu,Hokkaido,JP-HK,National Park,19,利尻礼文サロベツ国立公園,45.194166,141.238826
+JA-0001,JAFF-0021,Rishiri-Rebun-Sarobetsu,Hokkaido,JP-HK,National Park,9,利尻礼文サロベツ国立公園（利尻礼文）,45.194166,141.238826
 JA-0026,JAFF-0022,Saikai,Nagasaki,JP-NS,National Park,11,西海国立公園（平戸九十九島）,33.274287,129.411392
 JA-0022,JAFF-0023,San'inkaigan,"Hyogo,Kyoto,Tottori","JP-HG,JP-KY,JP-TT",National Park,21,山陰海岸国立公園,35.648461,134.64968
 JA-0023,JAFF-0024,Setonaikai,"Oita,Fukuoka,Hyogo,Hiroshima,Osaka,Okayama,Tokushima,Wakayama,Yamaguchi","JP-OT,JP-FO,JP-HG,JP-HS,JP-OS,JP-OY,JP-TS,JP-WK,JP-YC",National Park,818,瀬戸内海国立公園（本州九州）,34.231485,134.822388
 JA-0006,JAFF-0025,Shikotsu-Toya,Hokkaido,JP-HK,National Park,89,支笏洞爺国立公園,42.795918,141.221062
 JA-0002,JAFF-0026,Shiretoko,Hokkaido,JP-HK,National Park,68,知床国立公園,44.16499,145.205445
 JA-0007,JAFF-0027,Towada-Hachimantai,"Akita,Aomori,Iwate","JP-AO,JP-AK",National Park,48,十和田八幡平国立公園（十和田）,40.557999,140.90538
-JA-0027,JAFF-0028,Unzen-Amakusa,Nagasaki,JP-NS,National Park,44,雲仙天草国立公園（雲仙）,32.743502,130.26063
-JA-0021,JAFF-0029,Yoshino-Kumano,"Mie,Nara,Wakayama","JP-ME,JP-NR,JP-WK",National Park,50,吉野熊野国立公園,34.187296,135.950089
+JA-0027,JAFF-0028,Unzen-Amakusa,Nagasaki,JP-NS,National Park,12,雲仙天草国立公園（雲仙）,32.710456,130.272641
+JA-0021,JAFF-0029,Yoshino-Kumano,"Mie,Nara,Wakayama","JP-ME,JP-NR,JP-WK",National Park,50,吉野熊野国立公園,33.654184,135.659072
 ,JAFF-0030,Asuka Station,Antarctic,,Antarctic Station,0,あすか基地,0,0
 ,JAFF-0031,Dome Fuji Station,Antarctic,,Antarctic Station,0,ドームふじ基地,0,0
 ,JAFF-0032,Mizuho Station,Antarctic,,Antarctic Station,0,みずほ基地,0,0
@@ -35,7 +35,7 @@ JA-0021,JAFF-0029,Yoshino-Kumano,"Mie,Nara,Wakayama","JP-ME,JP-NR,JP-WK",Nationa
 JA-0101,JAFF-0034,Shokanbetsu-Teuri-Yagishiri,Hokkaido,JP-HK,Nature Park,48,暑寒別天売焼尻国定公園（暑寒別）,43.729167,141.541667
 JA-0102,JAFF-0035,Abashiri,Hokkaido,JP-HK,Nature Park,24,網走国定公園,44.189224,143.747567
 JA-0103,JAFF-0036,Niseko-Shakotan-Otaru Kaiga,Hokkaido,JP-HK,Nature Park,17,ニセコ積丹小樽海岸国定公園,42.897255,140.569858
-JA-0104,JAFF-0037,Hidaka Sanmyaku-Erimo,Hokkaido,JP-HK,Nature Park,101,日高山脈襟裳国定公園（日高山脈）,42.582779,142.853393
+JA-0104,JAFF-0037,Hidaka Sanmyaku-Erimo,Hokkaido,JP-HK,Nature Park,101,日高山脈襟裳国定公園（日高山脈）,42.406653,142.918413
 JA-0105,JAFF-0038,Onuma,Hokkaido,JP-HK,Nature Park,10,大沼国定公園,41.985827,140.669247
 JA-0106,JAFF-0039,Shimokita Hanto,Aomori,JP-AO,Nature Park,24,下北半島国定公園,41.328551,141.060467
 JA-0107,JAFF-0040,Tsugaru,Aomori,JP-AO,Nature Park,18,津軽国定公園,41.253563,140.344893
@@ -45,17 +45,16 @@ JA-0110,JAFF-0044,Zao,"Miyagi,Yamagata","JP-MG,JP-YT",Nature Park,40,蔵王国�
 JA-0111,JAFF-0045,Oga,Akita,JP-AK,Nature Park,11,男鹿国定公園,39.887298,139.777355
 JA-0112,JAFF-0046,Chokai,"Akita,Yamagata","JP-AK,JP-YT",Nature Park,31,鳥海国定公園,39.078134,140.040941
 JA-0114,JAFF-0047,Suigo-Tsukuba,"Chiba,Ibaraki","JP-CH,JP-IB",Nature Park,23,水郷筑波国定公園,35.990002,140.473562
-JA-0114,JAFF-0047,Suigo-Tsukuba,"Chiba,Ibaraki","JP-CH,JP-IB",Nature Park,23,水郷筑波国定公園,36.268099,140.140228
 JA-0116,JAFF-0048,Minami-Boso,Chiba,JP-CH,Nature Park,16,南房総国定公園,35.081644,140.089298
 JA-0117,JAFF-0049,Meiji no Mori Takao,Tokyo,JP-TK,Nature Park,0,明治の森高尾国定公園,35.633371,139.265815
 JA-0118,JAFF-0050,Tanzawa-Oyama,Kanagawa,JP-KN,Nature Park,27,丹沢大山国定公園,35.410512,139.209838
-JA-0113,JAFF-0051,Echigo sanzan-Tadami,"Niigata,Fukushima","JP-NI,JP-FS",Nature Park,89,越後三山只見国定公園,37.176201,139.271622
+JA-0113,JAFF-0051,Echigo sanzan-Tadami,"Niigata,Fukushima","JP-NI,JP-FS",Nature Park,89,越後三山只見国定公園,37.268768,139.051219
 JA-0115,JAFF-0052,Myogi-Arafune-Saku Kogen,"Gumma,Nagano","JP-GM,JP-NN",Nature Park,14,妙義荒船佐久高原国定公園,36.257018,138.611385
 JA-0119,JAFF-0053,Sado-Yahiko-Yoneyama,Niigata,JP-NI,Nature Park,27,佐渡弥彦米山国定公園（佐渡）,37.808247,138.225403
 JA-0120,JAFF-0054,Noto Hanto,"Ishikawa,Toyama","JP-IS,JP-TY",Nature Park,10,能登半島国定公園,37.525613,137.257421
-JA-0121,JAFF-0055,Echizen-Kaga Kaigan,"Fukui,Ishikawa","JP-FI,JP-IS",Nature Park,12,越前加賀海岸国定公園,36.246216,136.130276
+JA-0121,JAFF-0055,Echizen-Kaga Kaigan,"Fukui,Ishikawa","JP-FI,JP-IS",Nature Park,12,越前加賀海岸国定公園,36.249011,136.198936
 JA-0123,JAFF-0056,Yatsugatake-Chushin Kogen,"Nagano,Yamanashi","JP-NN,JP-YN",Nature Park,39,八ヶ岳中信高原国定公園,35.99805,138.358272
-JA-0125,JAFF-0057,Tenryu-Okumikawa,"Aichi,Nagano,Shizuoka","JP-AI,JP-NN,JP-SZ",Nature Park,10,天竜奥三河国定公園,35.172133,137.81971
+JA-0125,JAFF-0057,Tenryu-Okumikawa,"Aichi,Nagano,Shizuoka","JP-AI,JP-NN,JP-SZ",Nature Park,10,天竜奥三河国定公園,35.187173,137.757356
 JA-0126,JAFF-0058,Ibi-Sekigahara-Yoro,Gifu,JP-GF,Nature Park,52,揖斐関ケ原養老国定公園,35.294186,136.509024
 JA-0127,JAFF-0059,Hida-Kisogawa,"Aichi,Gifu","JP-AI,JP-GF",Nature Park,15,飛騨木曽川国定公園,35.733439,137.202852
 JA-0128,JAFF-0060,Aichi Kogen,Aichi,JP-AI,Nature Park,18,愛知高原国定公園,35.033073,137.40967
@@ -79,15 +78,15 @@ JA-0145,JAFF-0077,Muroto-Anan Kaigan,"Kochi,Tokushima","JP-KC,JP-TS",Nature Park
 JA-0146,JAFF-0078,Ishizuchi,"Ehime,Kochi","JP-EH,JP-KC",Nature Park,10,石鎚国定公園,33.76668,133.114295
 JA-0147,JAFF-0079,Kitakyushu,Fukuoka,JP-FO,Nature Park,5,北九州国定公園,33.846078,130.794248
 JA-0148,JAFF-0080,Genkai,"Fukuoka,Nagasaki,Saga","JP-FO,JP-NS,JP-SG",Nature Park,19,玄海国定公園,33.579972,130.09672
-JA-0149,JAFF-0081,Yaba-Hita-Hikosan,"Oita,Fukuoka,Kumamoto","JP-OT,JP-FO,JP-KM",Nature Park,64,耶馬日田英彦山国定公園,33.40238,131.053891
+JA-0149,JAFF-0081,Yaba-Hita-Hikosan,"Oita,Fukuoka,Kumamoto","JP-OT,JP-FO,JP-KM",Nature Park,64,耶馬日田英彦山国定公園,33.514412,131.004883
 JA-0150,JAFF-0082,Iki-Tsushima,Nagasaki,JP-NS,Nature Park,22,壱岐対馬国定公園,33.741209,129.708078
 JA-0151,JAFF-0083,Kyushu Chuo Sanchi,"Kumamoto,Miyazaki","JP-KM,JP-MZ",Nature Park,19,九州中央山地国定公園,32.531882,131.022999
 JA-0151,JAFF-0083,Kyushu Chuo Sanchi,"Kumamoto,Miyazaki","JP-KM,JP-MZ",Nature Park,19,九州中央山地国定公園,32.044575,131.176758
-JA-0152,JAFF-0084,Nippo Kaigan,"Miyazaki,Oita","JP-MZ,JP-OT",Nature Park,20,日豊海岸国定公園,32.934378,132.041159
+JA-0152,JAFF-0084,Nippo Kaigan,"Miyazaki,Oita","JP-MZ,JP-OT",Nature Park,20,日豊海岸国定公園,33.057805,132.007345
 JA-0153,JAFF-0085,Sobo-Katamuki,"Miyazaki,Oita","JP-MZ,JP-OT",Nature Park,23,祖母傾国定公園,32.835852,131.431175
 JA-0154,JAFF-0086,Nichinan Kaigan,"Kagoshima,Miyazaki","JP-KS,JP-MZ",Nature Park,13,日南海岸国定公園,31.80336,131.468612
-JA-0031,JAFF-0087,Amamigunto,Kagoshima,JP-KS,National Park,13,奄美群島国立公園,28.166342,129.289341
-JA-0156,JAFF-0088,Okinawa Kaigan,Okinawa,JP-ON,Nature Park,12,沖縄海岸国定公園,26.777966,128.212674
+JA-0031,JAFF-0087,Amamigunto,Kagoshima,JP-KS,National Park,13,奄美群島国立公園,28.242636,129.309499
+JA-0156,JAFF-0088,Okinawa Kaigan,Okinawa,JP-ON,Nature Park,9,沖縄海岸国定公園,26.777966,128.212674
 JA-0157,JAFF-0089,Okinawa Senseki,Okinawa,JP-ON,Nature Park,4,沖縄戦跡国定公園,26.087988,127.699193
 JA-0030,JAFF-0090,Yakushima （Island） ,Kagoshima,JP-KS,National Park,22,屋久島国立公園,30.326121,130.530023
 ,JAFF-0091,Minami Torishima,Tokyo,JP-TK,Remote island,0,南鳥島,24.289169,153.980591
@@ -98,16 +97,16 @@ JA-0155,JAFF-0095,Koshikishima,Kagoshima,JP-KS,Nature Park,0,甑島国定公園,
 JA-0134,JAFF-0096,Kyoto Tamba Kogen,Kyoto,JP-KY,Nature Park,1,京都丹波高原国定公園,35.276535,135.588688
 JA-0032,JAFF-0097,Yambaru,Okinawa,JP-ON,National Park,0,やんばる国立公園,26.728629,128.221064
 ,JAFF-0098,Ogasawara Islands,Tokyo,JP-TK,Remote island,0,小笠原諸島,27.016314,142.219391
-JA-1001,JAFF-0099,Akkeshi-Kiritappu-Konbumori,Hokkaido,JP-HK,Provincial Park,22,厚岸霧多布昆布森国定公園,43.042829,144.974213
+JA-1001,JAFF-0099,Akkeshi-Kiritappu-Konbumori,Hokkaido,JP-HK,Provincial Park,2,厚岸霧多布昆布森国定公園,33.057805,132.007345
 JA-0009,JAFF-0101,Bandai-Asahi,Yamagata,JP-YT,National Park,78,磐梯朝日国立公園（出羽三山朝日）,38.343586,139.849606
 JA-0009,JAFF-0102,Bandai-Asahi,Niigata,JP-NI,National Park,42,磐梯朝日国立公園（飯豊）,37.90547,139.558296
 JA-0024,JAFF-0103,Daisen-Oki,Shimane,JP-SM,National Park,16,大山隠岐国立公園（隠岐）,36.146562,133.190231
 JA-0016,JAFF-0104,Fuji-Hakone-Izu,Kanagawa,JP-KN,National Park,50,富士箱根伊豆国立公園（箱根）,35.225429,139.016876
 JA-0016,JAFF-0105,Fuji-Hakone-Izu,Shizuoka,JP-SZ,National Park,0,富士箱根伊豆国立公園（伊豆半島）,34.875228,139.114609
 JA-0016,JAFF-0106,Fuji-Hakone-Izu,Tokyo,JP-TK,National Park,12,富士箱根伊豆国立公園（伊豆諸島）,34.083375,139.499817
-JA-0001,JAFF-0107,Rishiri-Rebun-Sarobetsu,Hokkaido,JP-HK,National Park,19,利尻礼文サロベツ国立公園,45.194166,141.238826
+JA-0001,JAFF-0107,Rishiri-Rebun-Sarobetsu,Hokkaido,JP-HK,National Park,19,利尻礼文サロベツ国立公園（サロベツ）,45.194166,141.238826
 JA-0007,JAFF-0108,Towada-Hachimantai,"Akita,Aomori,Iwate","JP-AK,JP-IW",National Park,42,十和田八幡平国立公園（八幡平）,39.83552,140.821381
-JA-0027,JAFF-0109,Unzen-Amakusa,"Kumamoto,Kagoshima","JP-KM,JP-KS",National Park,44,雲仙天草国立公園（天草）,32.400738,130.352054
+JA-0027,JAFF-0109,Unzen-Amakusa,"Kumamoto,Kagoshima","JP-KM,JP-KS",National Park,44,雲仙天草国立公園（天草）,32.602651,130.338249
 JA-0101,JAFF-0110,Shokanbetsu-Teuri-Yagishiri,Hokkaido,JP-HK,Nature Park,1,暑寒別天売焼尻国定公園（天売焼尻）,43.729167,141.541667
 JA-0104,JAFF-0111,Hidaka Sanmyaku-Erimo,Hokkaido,JP-HK,Nature Park,12,日高山脈襟裳国定公園（襟裳）,41.943659,143.234253
 JA-0119,JAFF-0112,Sado-Yahiko-Yoneyama,Niigata,JP-NI,Nature Park,10,佐渡弥彦米山国定公園（弥彦米山）,38.16139,138.323775
@@ -127,14 +126,14 @@ JA-1011,JAFF-0126,Teshiodake,Hokkaido,JP-HK,Provincial Park,7,天塩岳道立自
 JA-1012,JAFF-0127,Sharidake,Hokkaido,JP-HK,Provincial Park,3,斜里岳道立自然公園,43.761667,144.7225
 JA-1024,JAFF-0128,Asamushi-Natsudomari,Aomori,JP-AO,Provincial Park,5,浅虫夏泊県立自然公園,40.998147,140.892798
 JA-1027,JAFF-0129,Ashinonumagun,Aomori,JP-AO,Provincial Park,0,芦野池沼群県立自然公園,40.913637,140.451602
-JA-1025,JAFF-0130,Owani Ikarigaseki Onsenkyo,Aomori,JP-AO,Provincial Park,3,大鰐碇ヶ関温泉郷県立自然公園,40.457239,140.660019
+JA-1025,JAFF-0130,Owani Ikarigaseki Onsenkyo,Aomori,JP-AO,Provincial Park,3,大鰐碇ヶ関温泉郷県立自然公園,40.409167,140.644167
 JA-1029,JAFF-0131,Iwaki Kogen,Aomori,JP-AO,Provincial Park,2,岩木高原県立自然公園,40.655833,140.303056
 JA-1026,JAFF-0132,Nakuidake,Aomori,JP-AO,Provincial Park,1,名久井岳県立自然公園,40.387944,141.308333
 JA-1028,JAFF-0133,Kuroishi Onsenkyo,Aomori,JP-AO,Provincial Park,5,黒石温泉郷県立自然公園,40.595367,140.706024
 JA-1030,JAFF-0134,Tsugaru Shirakami,Aomori,JP-AO,Provincial Park,5,津軽白神県立自然公園,40.629444,140.110556
-JA-1034,JAFF-0135,Kuji-Hiraniwa,Iwate,JP-IW,Provincial Park,1,久慈平庭県立自然公園,40.084743,141.531372
+JA-1034,JAFF-0135,Kuji-Hiraniwa,Iwate,JP-IW,Provincial Park,1,久慈平庭県立自然公園,40.083889,141.507778
 JA-1035,JAFF-0136,Sotoyama-Hayasaka Heights,Iwate,JP-IW,Provincial Park,7,外山早坂高原県立自然公園,39.822345,141.305695
-JA-1033,JAFF-0137,Hanamaki Onsenkyo,Iwate,JP-IW,Provincial Park,1,花巻温泉郷県立自然公園,39.458294,141.057358
+JA-1033,JAFF-0137,Hanamaki Onsenkyo,Iwate,JP-IW,Provincial Park,1,花巻温泉郷県立自然公園,39.448889,141.072778
 JA-1036,JAFF-0138,Yuda Onsenkyo,Iwate,JP-IW,Provincial Park,1,湯田温泉峡県立自然公園,39.340556,140.789722
 JA-1037,JAFF-0139,Orizume-Basenkyo,Iwate,JP-IW,Provincial Park,0,折爪馬仙峡県立自然公園,40.250998,141.275703
 JA-1038,JAFF-0140,Goyozan,Iwate,JP-IW,Provincial Park,5,五葉山県立自然公園,39.203038,141.728896
@@ -142,12 +141,12 @@ JA-1039,JAFF-0141,Murone Kogen,Iwate,JP-IW,Provincial Park,1,室根高原県立�
 JA-1065,JAFF-0142,Tazawako Dakigaeri,Akita,JP-AK,Provincial Park,5,田沢湖抱返り県立自然公園,39.73,140.66
 JA-1059,JAFF-0143,Hachimori Iwadate,Akita,JP-AK,Provincial Park,1,八森岩館県立自然公園,40.37,140.01
 JA-1062,JAFF-0144,Kimimachi-zaka,Akita,JP-AK,Provincial Park,0,きみまち阪県立自然公園,40.221401,140.256283
-JA-1060,JAFF-0145,Akita Shirakami,Akita,JP-AK,Provincial Park,4,秋田白神県立自然公園,40.44226,140.060349
+JA-1060,JAFF-0145,Akita Shirakami,Akita,JP-AK,Provincial Park,4,秋田白神県立自然公園,40.42,140.12
 JA-1063,JAFF-0146,Moriyoshizan,Akita,JP-AK,Provincial Park,16,森吉山県立自然公園,39.971875,140.622253
 JA-1064,JAFF-0147,Taiheizan,Akita,JP-AK,Provincial Park,9,太平山県立自然公園,39.79,140.31
-JA-1061,JAFF-0148,Tashirodake,Akita,JP-AK,Provincial Park,1,田代岳県立自然公園,40.436848,140.392914
+JA-1061,JAFF-0148,Tashirodake,Akita,JP-AK,Provincial Park,1,田代岳県立自然公園,40.43,140.41
 JA-1066,JAFF-0149,Magi Mahiru,Akita,JP-AK,Provincial Park,6,真木真昼県立自然公園,39.5375,140.69
-JA-1070,JAFF-0150,Shonai Kaihin,Yamagata,JP-YT,Provincial Park,2,庄内海浜県立自然公園,38.777292,139.755707
+JA-1070,JAFF-0150,Shonai Kaihin,Yamagata,JP-YT,Provincial Park,2,庄内海浜県立自然公園,38.851258,139.787081
 JA-1071,JAFF-0151,Goshozan,Yamagata,JP-YT,Provincial Park,12,御所山県立自然公園,38.49876,140.535049
 JA-1072,JAFF-0152,Kennan,Yamagata,JP-YT,Provincial Park,9,県南県立自然公園,37.972908,140.244598
 JA-1073,JAFF-0153,Kabusan,Yamagata,JP-YT,Provincial Park,7,加無山県立自然公園,38.990531,140.389072
@@ -159,26 +158,26 @@ JA-1044,JAFF-0158,Zao Kogen,Miyagi,JP-MG,Provincial Park,21,蔵王高原県立�
 JA-1046,JAFF-0159,Futakuchi Kyokoku,Miyagi,JP-MG,Provincial Park,8,二口峡谷県立自然公園,38.278333,140.521667
 JA-1051,JAFF-0160,Kesennuma,Miyagi,JP-MG,Provincial Park,20,気仙沼県立自然公園,38.860833,141.498889
 JA-1047,JAFF-0161,Funagatarenpo,Miyagi,JP-MG,Provincial Park,36,船形連峰県立自然公園,38.425639,140.660019
-JA-1050,JAFF-0162,Kenjosan Mangokuura,Miyagi,JP-MG,Provincial Park,11,硯上山万石浦県立自然公園,38.464897,141.411667
+JA-1050,JAFF-0162,Kenjosan Mangokuura,Miyagi,JP-MG,Provincial Park,11,硯上山万石浦県立自然公園,38.405833,141.401111
 JA-1045,JAFF-0163,Abukuma Keikoku,Miyagi,JP-MG,Provincial Park,2,阿武隈渓谷県立自然公園,37.833309,140.715268
 JA-1088,JAFF-0164,Ryozen,Fukushima,JP-FS,Provincial Park,2,霊山県立自然公園,37.776457,140.67705
 JA-1089,JAFF-0165,Kasumigajo,Fukushima,JP-FS,Provincial Park,0,霞ヶ城県立自然公園,37.599089,140.428982
 JA-1090,JAFF-0166,Nanko,Fukushima,JP-FS,Provincial Park,0,南湖県立自然公園,37.109722,140.219722
-JA-1091,JAFF-0167,Okukuji,Fukushima,JP-FS,Provincial Park,9,奥久慈県立自然公園（福島県）,36.937881,140.279957
+JA-1091,JAFF-0167,Okukuji,Fukushima,JP-FS,Provincial Park,2,奥久慈県立自然公園（福島県）,36.937881,140.279957
 JA-1092,JAFF-0168,Iwaki Kaigan,Fukushima,JP-FS,Provincial Park,2,磐城海岸県立自然公園,37.136412,140.998146
 JA-1094,JAFF-0169,Nakoso,Fukushima,JP-FS,Provincial Park,1,勿来県立自然公園,36.867832,140.781588
 JA-1098,JAFF-0170,Natsuigawa Keikoku,Fukushima,JP-FS,Provincial Park,2,夏井川渓谷県立自然公園,37.101642,140.797559
 JA-1093,JAFF-0171,Matsukawaura,Fukushima,JP-FS,Provincial Park,1,松川浦県立自然公園,37.798056,140.975556
 JA-1095,JAFF-0172,Tadami Yanaizu,Fukushima,JP-FS,Provincial Park,15,只見柳津県立自然公園,37.533056,139.724722
-JA-1096,JAFF-0173,Okawa Hatori,Fukushima,JP-FS,Provincial Park,16,大川羽鳥県立自然公園,37.24655,140.006104
+JA-1096,JAFF-0173,Okawa Hatori,Fukushima,JP-FS,Provincial Park,16,大川羽鳥県立自然公園,37.261461,140.070468
 JA-1097,JAFF-0174,Abukuma Kogen Chubu,Fukushima,JP-FS,Provincial Park,3,阿武隈高原中部県立自然公園,37.354942,140.697898
 JA-1348,JAFF-0175,Senami Sasagawanagare Awa,Niigata,JP-NI,Provincial Park,6,瀬波笹川流れ粟島県立自然公園,38.422994,139.47586
 JA-1349,JAFF-0176,Tainai Ninoji,Niigata,JP-NI,Provincial Park,11,胎内二王子県立自然公園,37.96945,139.513781
-JA-1350,JAFF-0177,Aganogawa Line,Niigata,JP-NI,Provincial Park,2,阿賀野川ライン県立自然公園,37.707006,139.449577
-JA-1351,JAFF-0178,Gozu Renpo,Niigata,JP-NI,Provincial Park,5,五頭連峰県立自然公園,37.81128,139.322433
+JA-1350,JAFF-0177,Aganogawa Line,Niigata,JP-NI,Provincial Park,2,阿賀野川ライン県立自然公園,37.686179,139.457332
+JA-1351,JAFF-0178,Gozu Renpo,Niigata,JP-NI,Provincial Park,5,五頭連峰県立自然公園,37.814273,139.35816
 JA-1353,JAFF-0179,Okuhayade Awa Sumon,Niigata,JP-NI,Provincial Park,35,奥早出粟守門県立自然公園,37.579264,139.14738
 JA-1355,JAFF-0180,Yoneyama Fukuurahakkei,Niigata,JP-NI,Provincial Park,6,米山福浦八景県立自然公園,37.352018,138.489636
-JA-1354,JAFF-0181,Uonuma Renpo,Niigata,JP-NI,Provincial Park,14,魚沼連峰県立自然公園,37.025597,139.034729
+JA-1354,JAFF-0181,Uonuma Renpo,Niigata,JP-NI,Provincial Park,14,魚沼連峰県立自然公園,37.014301,138.964746
 JA-1357,JAFF-0182,Kubiki,Niigata,JP-NI,Provincial Park,5,久比岐県立自然公園,37.17161,138.096499
 JA-1358,JAFF-0183,Hakuba Sanroku,Niigata,JP-NI,Provincial Park,3,白馬山麓県立自然公園,36.955901,137.96143
 JA-1360,JAFF-0184,Kosado,Niigata,JP-NI,Provincial Park,36,小佐渡県立自然公園,38.065971,138.549716
@@ -196,7 +195,7 @@ JA-1205,JAFF-0195,Takao Jinba,Tokyo,JP-TK,Provincial Park,4,高尾陣場都立�
 JA-1206,JAFF-0196,Tama Kyuryo,Tokyo,JP-TK,Provincial Park,2,多摩丘陵都立自然公園,35.660094,139.410166
 JA-1208,JAFF-0197,Hamura Kusabana Kyuryo,Tokyo,JP-TK,Provincial Park,0,羽村草花丘陵都立自然公園,35.755422,139.308885
 JA-1209,JAFF-0198,Akigawa Kyuryo,Tokyo,JP-TK,Provincial Park,1,秋川丘陵都立自然公園,35.713759,139.272908
-JA-1207,JAFF-0199,Sayama Nature,Tokyo,JP-TK,Provincial Park,1,狭山都立自然公園（東京都）,35.760691,139.437644
+JA-1207,JAFF-0199,Sayama Nature,Tokyo,JP-TK,Provincial Park,0,狭山都立自然公園（東京都）,35.760691,139.437644
 JA-1292,JAFF-0200,Manazuru Hanto,Kanagawa,JP-KN,Provincial Park,0,真鶴半島県立自然公園,35.146125,139.148433
 JA-1291,JAFF-0201,Oku Yugawara,Kanagawa,JP-KN,Provincial Park,1,奥湯河原県立自然公園,35.152301,139.094875
 JA-1289,JAFF-0202,Tanzawa Oyama,Kanagawa,JP-KN,Provincial Park,5,丹沢大山県立自然公園,35.511976,139.259806
@@ -207,7 +206,7 @@ JA-1186,JAFF-0206,Mineoka Sankei,Chiba,JP-CH,Provincial Park,1,嶺岡山系県�
 JA-1182,JAFF-0207,Yoro Keikoku Okukiyosumi,Chiba,JP-CH,Provincial Park,2,養老渓谷奥清澄県立自然公園,35.251745,140.16282
 JA-1185,JAFF-0208,Takagoyama,Chiba,JP-CH,Provincial Park,1,高宕山県立自然公園,35.197954,139.992784
 JA-1183,JAFF-0209,Kujukuri,Chiba,JP-CH,Provincial Park,0,九十九里県立自然公園,35.447346,140.404084
-JA-1184,JAFF-0210,Inba Tega,Chiba,JP-CH,Provincial Park,6,印旛手賀県立自然公園,35.811233,140.23098
+JA-1184,JAFF-0210,Inba Tega,Chiba,JP-CH,Provincial Park,6,印旛手賀県立自然公園,35.756622,140.189473
 JA-1189,JAFF-0211,Kasamori Tsurumai,Chiba,JP-CH,Provincial Park,2,笠森鶴舞県立自然公園,35.399525,140.200815
 JA-1145,JAFF-0212,Sayama,Saitama,JP-ST,Provincial Park,1,狭山県立自然公園（埼玉県）,35.777658,139.416087
 JA-1146,JAFF-0213,Okumusashi,Saitama,JP-ST,Provincial Park,21,奥武蔵県立自然公園,35.906093,139.189621
@@ -220,13 +219,13 @@ JA-1152,JAFF-0219,Angyo Bunan,Saitama,JP-ST,Provincial Park,0,安行武南県立
 JA-1153,JAFF-0220,Ryogami,Saitama,JP-ST,Provincial Park,5,両神県立自然公園,36.02036,138.857779
 JA-1154,JAFF-0221,Nishichichibu,Saitama,JP-ST,Provincial Park,9,西秩父県立自然公園,36.0615,138.962768
 JA-1109,JAFF-0222,Okukuji,Ibaraki,JP-IB,Provincial Park,9,奥久慈県立自然公園（茨城県）,36.92687,140.263219
-JA-1106,JAFF-0223,Hanazono Hananuki,Ibaraki,JP-IB,Provincial Park,23,花園花貫県立自然公園,36.800689,140.549011
+JA-1106,JAFF-0223,Hanazono Hananuki,Ibaraki,JP-IB,Provincial Park,23,花園花貫県立自然公園,36.834778,140.702804
 JA-1108,JAFF-0224,Ota,Ibaraki,JP-IB,Provincial Park,2,太田県立自然公園,36.541825,140.514178
 JA-1112,JAFF-0225,Gozenyama,Ibaraki,JP-IB,Provincial Park,7,御前山県立自然公園,36.544846,140.323605
-JA-1110,JAFF-0226,Oarai Prefectural,Ibaraki,JP-IB,Provincial Park,1,大洗県立自然公園,36.368442,140.623541
+JA-1110,JAFF-0226,Oarai Prefectural,Ibaraki,JP-IB,Provincial Park,1,大洗県立自然公園,36.359106,140.614367
 JA-1114,JAFF-0227,Kasama,Ibaraki,JP-IB,Provincial Park,1,笠間県立自然公園,36.383738,140.267558
 JA-1111,JAFF-0228,Mito,Ibaraki,JP-IB,Provincial Park,0,水戸県立自然公園,36.372358,140.459868
-JA-1113,JAFF-0229,Wagakuni Atago,Ibaraki,JP-IB,Provincial Park,4,吾国愛宕県立自然公園,36.335552,140.220737
+JA-1113,JAFF-0229,Wagakuni Atago,Ibaraki,JP-IB,Provincial Park,4,吾国愛宕県立自然公園,36.304689,140.224665
 JA-1107,JAFF-0230,Takasuzu,Ibaraki,JP-IB,Provincial Park,3,高鈴県立自然公園,36.614272,140.589136
 JA-1131,JAFF-0231,Mashiko,Tochigi,JP-TC,Provincial Park,2,益子県立自然公園,36.466149,140.118716
 JA-1132,JAFF-0232,Ohirasan,Tochigi,JP-TC,Provincial Park,1,太平山県立自然公園（栃木県）,36.359912,139.697713
@@ -235,7 +234,7 @@ JA-1128,JAFF-0234,Mae Nikko,Tochigi,JP-TC,Provincial Park,9,前日光県立自�
 JA-1134,JAFF-0235,Ashikaga,Tochigi,JP-TC,Provincial Park,1,足利県立自然公園,36.379753,139.442304
 JA-1135,JAFF-0236,Utsunomiya,Tochigi,JP-TC,Provincial Park,1,宇都宮県立自然公園,36.605942,139.80951
 JA-1130,JAFF-0237,Nakagawa,Tochigi,JP-TC,Provincial Park,2,那珂川県立自然公園,36.5978,140.18794
-JA-1129,JAFF-0238,Yamizo,Tochigi,JP-TC,Provincial Park,7,八溝県立自然公園,36.81993,140.12352
+JA-1129,JAFF-0238,Yamizo,Tochigi,JP-TC,Provincial Park,7,八溝県立自然公園,36.783751,140.143532
 JA-1326,JAFF-0239,Shibireko,Yamanashi,JP-YN,Provincial Park,0,四尾連湖県立自然公園,35.529143,138.517308
 JA-1327,JAFF-0240,Minami Alps Koma,Yamanashi,JP-YN,Provincial Park,13,南アルプス巨摩県立自然公園,35.594053,138.356714
 JA-1443,JAFF-0241,Hamanako,Shizuoka,JP-SZ,Provincial Park,16,浜名湖県立自然公園,34.695148,137.595475
@@ -278,7 +277,7 @@ JA-1485,JAFF-0277,Koto,Shiga,JP-SH,Provincial Park,3,湖東県立自然公園,35
 JA-1555,JAFF-0278,Tsukigase Konosan,Nara,JP-NR,Provincial Park,0,月ヶ瀬神野山県立自然公園,34.669647,135.998262
 JA-1554,JAFF-0279,Yata,Nara,JP-NR,Provincial Park,0,矢田県立自然公園,34.662661,135.736746
 JA-1556,JAFF-0280,Yoshinogawa Tsuburo,Nara,JP-NR,Provincial Park,2,吉野川津風呂県立自然公園,34.399373,135.891022
-JA-1507,JAFF-0281,Hokusetsu,Osaka,JP-OS,Provincial Park,0,北摂府立自然公園,34.9326,135.624183
+JA-1507,JAFF-0281,Hokusetsu,Osaka,JP-OS,Provincial Park,2,北摂府立自然公園,34.9326,135.624183
 JA-1508,JAFF-0282,Hannan Misaki,Osaka,JP-OS,Provincial Park,2,阪南・岬府立自然公園,34.306761,135.223224
 JA-1567,JAFF-0283,Koyasan Choishimichi Tamag,Wakayama,JP-WK,Provincial Park,0,高野山町石道玉川峡県立自然公園,34.257447,135.651429
 JA-1568,JAFF-0284,Ryumonzan,Wakayama,JP-WK,Provincial Park,0,龍門山県立自然公園,34.248221,135.412587
@@ -298,15 +297,15 @@ JA-1531,JAFF-0297,Asago Gunzan,Hyogo,JP-HG,Provincial Park,14,朝来群山県立
 JA-1534,JAFF-0298,Seiban Kyuryo,Hyogo,JP-HG,Provincial Park,3,西播丘陵県立自然公園,34.89196,134.656569
 JA-1535,JAFF-0299,Izushi Itoi,Hyogo,JP-HG,Provincial Park,7,出石糸井県立自然公園,35.398611,134.910083
 JA-1536,JAFF-0300,Harima Chubu Kyuryo,Hyogo,JP-HG,Provincial Park,5,播磨中部丘陵県立自然公園,34.840278,134.896472
-JA-1537,JAFF-0301,Seppiko Mineyama,Hyogo,JP-HG,Provincial Park,9,雪彦峰山県立自然公園,35.15318,134.690309
+JA-1537,JAFF-0301,Seppiko Mineyama,Hyogo,JP-HG,Provincial Park,9,雪彦峰山県立自然公園,35.063306,134.665694
 JA-1538,JAFF-0302,Kasagatayama Sengamine,Hyogo,JP-HG,Provincial Park,6,笠形山千ヶ峰県立自然公園,35.063601,134.835368
 JA-1533,JAFF-0303,Tajima Sangaku,Hyogo,JP-HG,Provincial Park,22,但馬山岳県立自然公園,35.536667,134.628611
 JA-1532,JAFF-0304,Onzui Chikusa,Hyogo,JP-HG,Provincial Park,3,音水ちくさ県立自然公園,35.239727,134.517385
-JA-1373,JAFF-0305,Iozen,Toyama,JP-TY,Provincial Park,3,医王山県立自然公園（富山県）,36.536389,136.814444
+JA-1373,JAFF-0305,Iozen,Toyama,JP-TY,Provincial Park,2,医王山県立自然公園（富山県）,36.536389,136.814444
 JA-1369,JAFF-0306,Asahi,Toyama,JP-TY,Provincial Park,10,朝日県立自然公園,36.856111,137.675
 JA-1370,JAFF-0307,Arimine,Toyama,JP-TY,Provincial Park,11,有峰県立自然公園,36.491667,137.46
 JA-1371,JAFF-0308,Gokayama,Toyama,JP-TY,Provincial Park,3,五箇山県立自然公園,36.413333,136.88
-JA-1372,JAFF-0309,Shiraki Mizunashi,Toyama,JP-TY,Provincial Park,11,白木水無県立自然公園,36.335611,137.003632
+JA-1372,JAFF-0309,Shiraki Mizunashi,Toyama,JP-TY,Provincial Park,11,白木水無県立自然公園,36.761667,137.563611
 JA-1374,JAFF-0310,Sogatake,Toyama,JP-TY,Provincial Park,2,僧ヶ岳県立自然公園,36.761667,137.563611
 JA-1405,JAFF-0311,Okuetsu Kogen,Fukui,JP-FI,Provincial Park,25,奥越高原県立自然公園,36.003524,136.59627
 JA-1386,JAFF-0312,Hakusan Ichirino,Ishikawa,JP-IS,Provincial Park,1,白山一里野県立自然公園,36.228684,136.766233
@@ -355,7 +354,7 @@ JA-1640,JAFF-0354,Chubusankei,Tokushima,JP-TS,Provincial Park,2,中部山渓県�
 JA-1658,JAFF-0355,Hijikawa,Ehime,JP-EH,Provincial Park,0,肱川県立自然公園,33.453026,132.685638
 JA-1654,JAFF-0356,Kinshako,Ehime,JP-EH,Provincial Park,0,金砂湖県立自然公園,33.934186,133.53028
 JA-1655,JAFF-0357,Okudogo Tamagawa,Ehime,JP-EH,Provincial Park,5,奥道後玉川県立自然公園,33.933262,132.923103
-JA-1657,JAFF-0358,Shikoku Karst,Ehime,JP-EH,Provincial Park,2,四国カルスト県立自然公園（愛媛県）,33.481997,132.967987
+JA-1657,JAFF-0358,Shikoku Karst,Ehime,JP-EH,Provincial Park,1,四国カルスト県立自然公園（愛媛県）,33.481997,132.967987
 JA-1660,JAFF-0359,Sasayama,Ehime,JP-EH,Provincial Park,0,篠山県立自然公園,33.055615,132.658193
 JA-1659,JAFF-0360,Sadamisakihanto Uwakai,Ehime,JP-EH,Provincial Park,6,佐田岬半島宇和海県立自然公園,33.389104,132.084053
 JA-1656,JAFF-0361,Saragamine Renpo,Ehime,JP-EH,Provincial Park,1,皿ヶ嶺連峰県立自然公園,33.717102,132.894721
@@ -384,15 +383,15 @@ JA-1697,JAFF-0383,Yabegawa,Fukuoka,JP-FO,Provincial Park,17,矢部川県立自�
 JA-1698,JAFF-0384,Sefuriraizan,Fukuoka,JP-FO,Provincial Park,7,脊振雷山県立自然公園,33.434379,130.388936
 JA-1713,JAFF-0385,Kawakami Kinryu,Saga,JP-SG,Provincial Park,3,川上・金立県立自然公園,33.349783,130.298808
 JA-1708,JAFF-0386,Kurokamiyama,Saga,JP-SG,Provincial Park,1,黒髪山県立自然公園,33.222228,129.908606
-JA-1709,JAFF-0387,Taradake,Saga,JP-SG,Provincial Park,7,多良岳県立自然公園（佐賀県）,32.998346,130.091915
+JA-1709,JAFF-0387,Taradake,Saga,JP-SG,Provincial Park,5,多良岳県立自然公園（佐賀県）,32.998346,130.091915
 JA-1712,JAFF-0388,Sefuri Hokusan,Saga,JP-SG,Provincial Park,7,脊振・北山県立自然公園,33.432061,130.250942
 JA-1710,JAFF-0389,Tenzan,Saga,JP-SG,Provincial Park,4,天山県立自然公園,33.345954,130.134982
 JA-1711,JAFF-0390,Hachimandake,Saga,JP-SG,Provincial Park,0,八幡岳県立自然公園,33.282284,130.027261
 JA-1717,JAFF-0391,Taradake,Nagasaki,JP-NS,Provincial Park,7,多良岳県立公園（長崎県）,32.948128,130.087791
-JA-1718,JAFF-0392,Nomo Hanto,Nagasaki,JP-NS,Provincial Park,3,野母半島県立公園,32.567938,129.786401
+JA-1718,JAFF-0392,Nomo Hanto,Nagasaki,JP-NS,Provincial Park,3,野母半島県立公園,32.558878,129.780107
 JA-1719,JAFF-0393,Hokusho,Nagasaki,JP-NS,Provincial Park,0,北松県立自然公園,33.306656,129.66397
 JA-1720,JAFF-0394,Omurawan,Nagasaki,JP-NS,Provincial Park,0,大村湾県立自然公園,33.049828,129.831963
-JA-1721,JAFF-0395,Nishisonogi Hanto,Nagasaki,JP-NS,Provincial Park,0,西彼杵半島県立自然公園,32.884093,129.710784
+JA-1721,JAFF-0395,Nishisonogi Hanto,Nagasaki,JP-NS,Provincial Park,0,西彼杵半島県立自然公園,32.809892,129.73708
 JA-1722,JAFF-0396,Shimabara Hanto,Nagasaki,JP-NS,Provincial Park,0,島原半島県立自然公園,32.685321,130.131116
 JA-1729,JAFF-0397,Shotaizan,Kumamoto,JP-KM,Provincial Park,4,小岱山県立自然公園,32.978761,130.514488
 JA-1728,JAFF-0398,Kinbozan,Kumamoto,JP-KM,Provincial Park,6,金峰山県立自然公園,32.816668,130.64264
@@ -410,7 +409,7 @@ JA-1754,JAFF-0409,Yatake Kogen,Miyazaki,JP-MZ,Provincial Park,0,矢岳高原県�
 JA-1750,JAFF-0410,Osuzu,Miyazaki,JP-MZ,Provincial Park,12,尾鈴県立自然公園,32.28778,131.46456
 JA-1751,JAFF-0411,Saitobaru Sugiyasukyo,Miyazaki,JP-MZ,Provincial Park,0,西都原杉安峡県立自然公園,32.153423,131.364938
 JA-1752,JAFF-0412,Mochio Sekinoo,Miyazaki,JP-MZ,Provincial Park,0,母智丘・関之尾県立自然公園,31.762019,130.987481
-JA-1753,JAFF-0413,Wanitsuka,Miyazaki,JP-MZ,Provincial Park,2,わにつか県立自然公園,31.769058,131.38092
+JA-1753,JAFF-0413,Wanitsuka,Miyazaki,JP-MZ,Provincial Park,2,わにつか県立自然公園,31.722081,131.265859
 JA-1749,JAFF-0414,Sobo Katamuki,Miyazaki,JP-MZ,Provincial Park,17,祖母傾県立自然公園（宮崎県）,32.744499,131.429729
 JA-1760,JAFF-0415,Akune,Kagoshima,JP-KS,Provincial Park,0,阿久根県立自然公園,32.105418,130.175717
 JA-1762,JAFF-0416,Imutaike,Kagoshima,JP-KS,Provincial Park,3,藺牟田池県立自然公園,31.817374,130.473639
@@ -424,7 +423,7 @@ JA-1777,JAFF-0423,Kumejima,Okinawa,JP-ON,Provincial Park,10,久米島県立自�
 JA-1778,JAFF-0424,Irabu,Okinawa,JP-ON,Provincial Park,5,伊良部県立自然公園,24.834407,125.185447
 JA-1779,JAFF-0425,Tonaki,Okinawa,JP-ON,Provincial Park,1,渡名喜県立自然公園,26.362805,127.149559
 JA-1780,JAFF-0426,Tarama,Okinawa,JP-ON,Provincial Park,2,多良間県立自然公園,24.663701,124.695638
-JA-1575,JAFF-0427,Hikigawa,Wakayama,JP-WK,Provincial Park,3,日置川県立自然公園,33.736124,135.573209
+JA-1575,JAFF-0427,Hikigawa,Wakayama,JP-WK,Provincial Park,2,日置川県立自然公園,33.736124,135.573209
 JA-1648,,Mannoike,Kagawa,JP-KG,Provincial Park,0,満濃池森林公園,34.156512,133.866252
 JA-1509,,Hattori Ryokuchi,Osaka,JP-OS,Provincial Park,0,服部緑地,34.776272,135.486788
 JA-1506,,Tamba,Kyoto,JP-KY,Provincial Park,0,京都府立丹波自然運動公園,35.165375,135.416032
