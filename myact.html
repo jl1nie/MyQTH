@@ -672,12 +672,12 @@ L.topoJson = function (data, options) {
 var geojson = L.topoJson(null, {
     style: function(feature){
         return {
-            color: "#000",
-            opacity: 1,
-            weight: 1,
-            fillColor: '#9fa8da',
-            fillOpacity: 0.3
-        }
+	    color: "#000",
+	    opacity: 1,
+	    weight: 1,
+	    fillColor: '#9fa8da',
+	    fillOpacity: 0.3
+        };
     },
     onEachFeature: function(feature, layer) {
 	layer.on('click', function(e) {
@@ -690,7 +690,7 @@ var geojson = L.topoJson(null, {
 	layer.on('contextmenu', function(e) {
 	    displayPopup({'name':feature.properties.NAME,
 			  'pota':feature.properties.POTA,
-			  'jaff':feature.properties.JAFF},
+			  'jaff':feature.properties.JAFF+'('+feature.properties.UID+')'},
 			 e.latlng, false, false);
 	    L.DomEvent.stop(e);
 	});
@@ -705,7 +705,7 @@ async function getGeoData(url) {
     return data;
 }
 
-getGeoData('json/jaffpota-annotated2.json').then(data => geojson.addData(data));
+getGeoData('json/jaffpota-annotated3.json').then(data => geojson.addData(data));
 
 userChange = true;
 

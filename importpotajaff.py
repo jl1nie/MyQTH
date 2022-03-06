@@ -19,7 +19,7 @@ cur = con.cursor()
 jf = open('A10-10.geojson', mode = 'r', encoding='utf8')
 js = json.load(jf)
 js['name'] = 'JAFFPOTA'
-
+uid = 0
 for elem in js['features']:
     parkid = elem['properties']['A10_005']
     parkname = parkdict[parkid]
@@ -28,8 +28,11 @@ for elem in js['features']:
     res = cur.execute(f"select * from jaffpota where namek like '{parkname}%'")
     res = cur.fetchone()
     if res:
-       (pota, jaff, name, location, locid, type, level, namek, lat, lng) = res
-       elem['properties'] = { 'JAFF': jaff , 'POTA': pota}
+        (pota, jaff, name, location, locid, ptype, level, namek, lat, lng) = res
+        uid += 1
+        if jaff == 'JAFF-0024':
+            print(f'UID={uid}')
+        elem['properties'] = { 'JAFF': jaff, 'POTA': pota, 'UID': str(uid)}
     else:
         elem['properties'] = { 'JAFF': parkid , 'POTA': parkid}
         print(f'Error: {parkid} {parkname}')
