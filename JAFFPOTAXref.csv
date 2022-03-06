@@ -22,7 +22,7 @@ JA-0011,JAFF-0019,Oze,"Fukushima,Gunma,Niigata,Tochigi","JP-FS,JP-GM,JP-NI,JP-TC
 JA-0001,JAFF-0021,Rishiri-Rebun-Sarobetsu,Hokkaido,JP-HK,National Park,9,利尻礼文サロベツ国立公園（利尻礼文）,45.194166,141.238826
 JA-0026,JAFF-0022,Saikai,Nagasaki,JP-NS,National Park,11,西海国立公園（平戸九十九島）,33.274287,129.411392
 JA-0022,JAFF-0023,San'inkaigan,"Hyogo,Kyoto,Tottori","JP-HG,JP-KY,JP-TT",National Park,21,山陰海岸国立公園,35.648461,134.64968
-JA-0023,JAFF-0024,Setonaikai,"Oita,Fukuoka,Hyogo,Hiroshima,Osaka,Okayama,Tokushima,Wakayama,Yamaguchi","JP-OT,JP-FO,JP-HG,JP-HS,JP-OS,JP-OY,JP-TS,JP-WK,JP-YC",National Park,818,瀬戸内海国立公園（本州九州）,34.231485,134.822388
+JA-0023,JAFF-0024,Setonaikai,"Oita,Fukuoka,Hyogo,Hiroshima,Osaka,Okayama,Tokushima,Wakayama,Yamaguchi","JP-OT,JP-FO,JP-HG,JP-HS,JP-OS,JP-OY,JP-TS,JP-WK,JP-YC",National Park,818,瀬戸内海国立公園（本州九州）,34.755564,135.237113
 JA-0006,JAFF-0025,Shikotsu-Toya,Hokkaido,JP-HK,National Park,89,支笏洞爺国立公園,42.795918,141.221062
 JA-0002,JAFF-0026,Shiretoko,Hokkaido,JP-HK,National Park,68,知床国立公園,44.16499,145.205445
 JA-0007,JAFF-0027,Towada-Hachimantai,"Akita,Aomori,Iwate","JP-AO,JP-AK",National Park,48,十和田八幡平国立公園（十和田）,40.557999,140.90538
@@ -111,8 +111,8 @@ JA-0101,JAFF-0110,Shokanbetsu-Teuri-Yagishiri,Hokkaido,JP-HK,Nature Park,1,暑�
 JA-0104,JAFF-0111,Hidaka Sanmyaku-Erimo,Hokkaido,JP-HK,Nature Park,12,日高山脈襟裳国定公園（襟裳）,41.943659,143.234253
 JA-0119,JAFF-0112,Sado-Yahiko-Yoneyama,Niigata,JP-NI,Nature Park,10,佐渡弥彦米山国定公園（弥彦米山）,38.16139,138.323775
 JA-0026,JAFF-0113,Saikai,Nagasaki,JP-NS,National Park,11,西海国立公園（五島）,33.164173,129.676615
-JA-0023,JAFF-0114,Setonaikai,"Ehime,Kagawa","JP-EH,JP-KG",National Park,31,瀬戸内海国立公園（四国）,33.992334,133.056793
-JA-0023,JAFF-0115,Setonaikai,Hiroshima,JP-HS,National Park,2,瀬戸内海国立公園（その他島嶼）,34.279563,133.229355
+JA-0023,JAFF-0114,Setonaikai,"Ehime,Kagawa","JP-EH,JP-KG",National Park,31,瀬戸内海国立公園（四国）,33.986927,133.039104
+JA-0023,JAFF-0115,Setonaikai,Hiroshima,JP-HS,National Park,2,瀬戸内海国立公園（その他島嶼）,34.270467,133.091101
 JA-1002,JAFF-0116,Furano-Ashibetsu,Hokkaido,JP-HK,Provincial Park,29,富良野芦別道立自然公園,43.213333,142.284167
 JA-1003,JAFF-0118,Hiyama,Hokkaido,JP-HK,Provincial Park,15,檜山道立自然公園,41.868889,140.114444
 JA-1004,JAFF-0119,Esan,Hokkaido,JP-HK,Provincial Park,1,恵山道立自然公園,41.815,141.173333
