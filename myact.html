@@ -645,8 +645,10 @@ function showReference(s) {
     latlng = s['coord']
     map.setView(latlng,15);
     clearSummitMarker();
-    if (s['code'].match(/JA\d*\/.+/)) 
+    if (s['code'].match(/JA\d*\/.+/)) {
 	popupSummitMarker(s['coord'])
+	displayActivationZone({'lat':s['coord'][0],'lng':s['coord'][1]}, -0.8);
+    }
     redrawMarkers();
 }
 
