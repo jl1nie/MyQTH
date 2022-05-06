@@ -219,7 +219,7 @@ window.addEventListener('resize',()=> {
 let vh = window.innerHeight * 0.01;
   document.documentElement.style.setProperty('--vh', `${vh}px`);
 });
-
+var sotalive = 'https://myqth.ga/'
 var osm = L.tileLayer('https://tile.thunderforest.com/outdoors/{z}/{x}/{y}.png?apikey=767750c193e54ceeb3aee08d880bdb90',{
     attribution: "<a href='https://www.thunderforest.com/'>Thunderforest</a>"});
 var gsi = L.tileLayer('https://cyberjapandata.gsi.go.jp/xyz/std/{z}/{x}/{y}.png', {
@@ -294,7 +294,7 @@ function displayPopup(area, latlng, isMarker, isGPS) {
 	    last_mesg = mesg;
 	}
     }
-    $.getJSON('https://www.sotalive.tk/api/reverse-geocoder/LonLatToAddressElev?','lat='+latlng.lat+'&lon='+latlng.lng,resfun);
+    $.getJSON(sotalive+'api/reverse-geocoder/LonLatToAddressElev?','lat='+latlng.lat+'&lon='+latlng.lng,resfun);
 }
 
 var prefs =
@@ -534,7 +534,7 @@ function placeSummitMarkers(nw ,se, z) {
     
     prefix = 'ja?'
     
-    $.getJSON('https://www.sotalive.tk/api/sotasummits/'+prefix,'lat='+nw[0]+'&lon='+nw[1]+'&lat2='+se[0]+'&lon2='+se[1]+'&elevation='+elev+'&park='+level +'&flag=0',function(res) {
+    $.getJSON(sotalive+'api/sotasummits/'+prefix,'lat='+nw[0]+'&lon='+nw[1]+'&lat2='+se[0]+'&lon2='+se[1]+'&elevation='+elev+'&park='+level +'&flag=0',function(res) {
 	if (res['errors'] != 'OK') {
 	    return;
 	}
@@ -709,7 +709,7 @@ async function getGeoData(url) {
     return data;
 }
 
-getGeoData('json/jaffpota-annotated301.json').then(data => geojson.addData(data));
+getGeoData('json/jaffpota-annotated302.json').then(data => geojson.addData(data));
 
 userChange = true;
 

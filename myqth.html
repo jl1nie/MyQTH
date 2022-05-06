@@ -166,6 +166,7 @@ window.addEventListener('resize',()=> {
   document.documentElement.style.setProperty('--vh', `${vh}px`);
 });
 
+var sotalive = 'https://myqth.ga/'
 var osm = L.tileLayer('https://tile.thunderforest.com/outdoors/{z}/{x}/{y}.png?apikey=767750c193e54ceeb3aee08d880bdb90',{
     attribution: "<a href='https://www.thunderforest.com/'>Thunderforest</a>"});
    
@@ -184,7 +185,7 @@ var map = L.map('map',{
 L.control.scale().addTo(map);
 L.control.zoomLabel().addTo(map);
 var popup = L.popup();
-  
+ 
 function displayPopup(latlng, isMarker, isGPS) {
     var lat = Math.round(latlng.lat * 1000000,4)/1000000,
 	lng = Math.round(latlng.lng * 1000000,4)/1000000,
@@ -229,7 +230,7 @@ function displayPopup(latlng, isMarker, isGPS) {
 	}
     }
 
-    $.getJSON('https://www.sotalive.tk/api/reverse-geocoder/LonLatToAddressElev?','lat='+latlng.lat+'&lon='+latlng.lng,resfun);
+    $.getJSON(sotalive+'api/reverse-geocoder/LonLatToAddressElev?','lat='+latlng.lat+'&lon='+latlng.lng,resfun);
 }
 
 map.on('click', function(e) {

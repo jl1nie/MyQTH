@@ -26,7 +26,16 @@ for elem in js['features']:
     #parkname = re.sub(r'\(.*\)','',parkname)
     #parkname = re.sub(r'（.*）','',parkname)
     res = cur.execute(f"select * from jaffpota where namek like '{parkname}%'")
-    res = cur.fetchone()
+    res = cur.fetchall()
+    # Each elements must have JAFF ref and 'Park' in thier name.
+    res = [ e for e in res if e[1] != '' and 'Park' in e[5]]
+    # Sort by park name length.
+    res.sort(key = lambda x: -1 if x[7] == parkname else len(x[2]))
+    if len(res) > 1:
+        if res[1][1] != '' and res[0][0] != res[1][0]:
+            print(f'Ambiguous Park: {parkname} {res}')
+            print(f'Choose {res[0]}.')
+    res = res[0]
     if res:
         (pota, jaff, name, location, locid, ptype, level, namek, lat, lng) = res
         uid += 1
