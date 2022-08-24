@@ -124,7 +124,7 @@ function displayActivationZone(latlng, uplmt) {
     var zoom = map.getZoom();
 
     _azone_laststate = [ latlng, uplmt ]
-    $.getJSON('https://www.sotalive.tk/api/reverse-geocoder/LonLatToAddressElev?','lat='+lat+'&lon='+lng,function(res) {
+    $.getJSON('https://www.sotalive.net/api/reverse-geocoder/LonLatToAddressElev?','lat='+lat+'&lon='+lng,function(res) {
 	if (res['errors'] != 'OK') {
 	    console.log('DEM error',res);
 	    return;

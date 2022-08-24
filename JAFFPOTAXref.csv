@@ -106,7 +106,7 @@ JA-0016,JAFF-0105,Fuji-Hakone-Izu,Shizuoka,JP-SZ,National Park,0,富士箱根伊
 JA-0016,JAFF-0106,Fuji-Hakone-Izu,Tokyo,JP-TK,National Park,12,富士箱根伊豆国立公園（伊豆諸島）,34.083375,139.499817
 JA-0001,JAFF-0107,Rishiri-Rebun-Sarobetsu,Hokkaido,JP-HK,National Park,19,利尻礼文サロベツ国立公園（サロベツ）,45.130741,141.603063
 JA-0007,JAFF-0108,Towada-Hachimantai,"Akita,Aomori,Iwate","JP-AK,JP-IW",National Park,42,十和田八幡平国立公園（八幡平）,39.83552,140.821381
-JA-0027,JAFF-0109,Unzen-Amakusa,"Kumamoto,Kagoshima","JP-KM,JP-KS",National Park,44,雲仙天草国立公園（天草）,32.602651,130.338249
+JA-0027,JAFF-0109,Unzen-Amakusa,"Kumamoto,Kagoshima","JP-KM,JP-KS",National Park,44,雲仙天草国立公園（天草）,32.318482,130.279427
 JA-0101,JAFF-0110,Shokanbetsu-Teuri-Yagishiri,Hokkaido,JP-HK,Nature Park,1,暑寒別天売焼尻国定公園（天売焼尻）,44.430869,141.395416
 JA-0104,JAFF-0111,Hidaka Sanmyaku-Erimo,Hokkaido,JP-HK,Nature Park,12,日高山脈襟裳国定公園（襟裳）,41.943659,143.234253
 JA-0119,JAFF-0112,Sado-Yahiko-Yoneyama,Niigata,JP-NI,Nature Park,10,佐渡弥彦米山国定公園（弥彦米山）,37.740873,138.80596
@@ -781,7 +781,7 @@ JA-1233,,Shioiri,Tokyo,JP-TK,Provincial Park,0,汐入公園,35.736347,139.809663
 JA-1364,,Shiunji Kinen,Niigata,JP-NI,Provincial Park,0,紫雲寺記念公園,38.035887,139.297392
 JA-1875,,YotsukuraBosai Ryokuchi,Fukushima,JP-FS,Provincial Park,0,四倉防災緑地,37.099095,140.987236
 JA-1307,,Shikinomori,Kanagawa,JP-KN,Provincial Park,0,四季の森公園,35.502549,139.536143
-JA-1329,,Atagoyama Kodomo no Kuni,Yamanashi,JP-YN,Provincial Park,0,山梨県立愛宕山こどもの国,35.672424,138.582347
+JA-1329,,Atagoyama Kodomo no Kuni,Yamanashi,JP-YN,Provincial Park,0,愛宕山広域公園,35.672424,138.582347
 JA-1332,,Flower Center Heidi's Village,Yamanashi,JP-YN,Provincial Park,0,山梨県立フラワーセンター ハイジの村,35.780885,138.463565
 JA-1334,,Fujihokuroku,Yamanashi,JP-YN,Provincial Park,0,山梨県富士北麓公園,35.453977,138.768154
 JA-1791,,Yamakita Tsuburano,Kanagawa,JP-KN,Provincial Park,0,山北つぶらの公園,35.3696599,139.0518487
@@ -944,7 +944,7 @@ JA-1782,,Okinawa Comprehensive Athl,Okinawa,JP-ON,Provincial Park,0,沖縄県総
 JA-1781,,Onoyama,Okinawa,JP-ON,Provincial Park,0,沖縄県営奥武山公園（那覇市）,26.203674,127.674527
 JA-1610,,Okayama Prefectural Multipur,Okayama,JP-OY,Provincial Park,0,岡山県総合グラウンド,34.678737,133.916893
 JA-1254,,Yokoamicho,Tokyo,JP-TK,Provincial Park,0,横網町公園,35.699178,139.795945
-JA-1367,,Okutadami Recreation,Niigata,JP-NI,Provincial Park,0,奥只見レクリエーション都市公園,37.257962,138.924438
+JA-1367,,Okutadami Recreation,Niigata,JP-NI,Provincial Park,0,八色の森公園(奥只見レクリエーション都市公園),37.257962,138.924438
 JA-1828,,Lake Okutama Hotori Park,Tokyo,JP-TK,Provincial Park,0,奥多摩湖畔公園,35.76628389,139.0223888
 JA-1412,,Okuetsu Fureai,Fukui,JP-FI,Provincial Park,0,奥越ふれあい公園,35.96526,136.496576
 JA-1394,,Okuutatsuyama Kenmin,Ishikawa,JP-IS,Provincial Park,0,奥卯辰山健民公園,36.560227,136.696921
@@ -1017,3 +1017,46 @@ JA-1099,,Azuma Sports,Fukushima,JP-FS,Provincial Park,0,あづま総合運動公
 JA-1466,,Aichi Health Village,Aichi,JP-AI,Provincial Park,0,あいち健康の森公園,34.998708,136.947731
 JA-1847,,Akagi Community Forest Park,Gumma,JP-GM,Provincial Park,0,ＳＵＢＡＲＵふれあいの森　赤城（赤城ふれあいの森）,36.52277,139.14524
 JA-1851,,21st Century Prefectural Fores,Gumma,JP-GM,Provincial Park,0,２１世紀の森,36.73901,139.08406
+JA-1887,,Kenmin-no-mori,Iwate,JP-IW,Provincial Park,0,県民の森,39.895712556354,140.965125085527
+JA-1888,,Senganishi Forest,Iwate,JP-IW,Provincial Park,0,千貫石森林公園,39.2216830785084,140.999998194189
+JA-1889,,Ohokuboyama Forest,Iwate,JP-IW,Provincial Park,0,大窪山森林公園,39.1701560285894,141.756761246929
+JA-1890,,Orizumedake Forest,Iwate,JP-IW,Provincial Park,0,折爪岳森林公園,40.2684092006127,141.372646157977
+JA-1891,,Takatamatsubara Memorial,Iwate,JP-IW,Provincial Park,0,高田松原津波復興祈念公園,39.0068782974699,141.627080032493
+JA-1892,,Ishinomakiminamihama Memorial,Miyagi,JP-MG,Provincial Park,0,"石巻南浜津波復興祈念公園",38.4183522058891,141.303381282017
+JA-1893,,Fukushima Memorial,Fukushima,JP-FS,Provincial Park,0,福島県復興祈念公園,37.4648974532092,141.031269196608
+JA-1894,,Hibiki-no mori,Niigata,JP-NI,Provincial Park,0,響きの森公園(奥只見レクリエーション都市公園),37.2144138564997,138.978439770157
+JA-1895,,Negoya,Niigata,JP-NI,Provincial Park,0,根小屋 花と緑と雪の里 (奥只見レクリエーション都市公園),37.258,138.924
+JA-1896,,Ooyu,Niigata,JP-NI,Provincial Park,0,大湯公園  (奥只見レクリエーション都市公園),37.1972779645058,139.07647449105
+JA-1897,,Suhara,Niigata,JP-NI,Provincial Park,0,須原公園  (奥只見レクリエーション都市公園),37.3220203750806,139.013096750585
+JA-1898,,Asakusadake,Niigata,JP-NI,Provincial Park,0,浅草岳公園  (奥只見レクリエーション都市公園),37.3523167726783,139.176244510752
+JA-1899,,Kasukabe Yumeno-mori,Saitama,JP-ST,Provincial Park,0,春日部夢の森公園,35.9540229255368,139.737729970008
+JA-1900,,Chiba Prefectural Funabashi Forest,Chiba,JP-CH,Provincial Park,0,船橋県民の森,35.7685446853892,140.058414700932
+JA-1901,,Chiba Prefectural Tonosho Forest,Chiba,JP-CH,Provincial Park,0,東庄県民の森,35.7808010044034,140.675556968402
+JA-1902,,Chiba Prefectural Uchiurayama Forest,Chiba,JP-CH,Provincial Park,0,内浦山県民の森,35.1595539951257,140.198587320536
+JA-1903,,Tateyama Wild Bird Sanctuary,Chiba,JP-CH,Provincial Park,0,館山野鳥の森,34.9238367763859,139.836271003033
+JA-1904,,Chiba Prefectural Seiwa Forest,Chiba,JP-CH,Provincial Park,0,清和県民の森,35.1786172968403,140.019524883666
+JA-1905,,Chiba Prefectural Otaki Forest,Chiba,JP-CH,Provincial Park,0,大多喜県民の森,35.2824037050345,140.234699791732
+JA-1906,,Fuefukigawa Fruit,Yamanashi,JP-YN,Provincial Park,0,笛吹川フルーツ公園,35.7024625939238,138.664926029795
+JA-1907,,Midorigaoka Sports,Yamanashi,JP-YN,Provincial Park,0,緑が丘スポーツ公園,35.6849090047572,138.557200273588
+JA-1908,,Kamanashigawa Sports,Yamanashi,JP-YN,Provincial Park,0,釜無川スポーツ公園,35.6513013707222,138.506935153549
+JA-1909,,Yamanashi Prefectural Museum of Art,Yamanashi,JP-YN,Provincial Park,0,芸術の森公園,35.6604337768599,138.538490167399
+JA-1910,,Maizuru Castle,Yamanashi,JP-YN,Provincial Park,0,舞鶴城公園,35.6647262565829,138.571491437434
+JA-1911,,Kofu Chu-ou,Yamanashi,JP-YN,Provincial Park,0,中央公園,35.6600153832432,138.567786864362
+JA-1912,,Kofu Marunouchi,Yamanashi,JP-YN,Provincial Park,0,丸の内公園,35.6633114429985,138.566691578305
+JA-1913,,Midai,Yamanashi,JP-YN,Provincial Park,0,御勅使公園,35.6684973400548,138.439946521673
+JA-1914,,Kanegawano mori Provincial Forest,Yamanashi,JP-YN,Provincial Park,0,森林公園金川の森,35.6398754148809,138.676269364983
+JA-1915,,Katsuragawa Wellness,Yamanashi,JP-YN,Provincial Park,0,桂川ウェルネスパーク,35.6221422323437,138.996449648492
+JA-1916,,Yamanashi Prefectural Makiba,Yamanashi,JP-YN,Provincial Park,0,まきば公園,35.9257362041857,138.408238397242
+JA-1917,,Kiyosato Okanokouen,Yamanashi,JP-YN,Provincial Park,0,丘の公園,35.9013044865801,138.429108812473
+JA-1918,,Aichiken ryokka center ,Aichi,JP-AI,Provincial Park,0,愛知県緑化センター・昭和の森,35.1692948082004,137.199661133808
+JA-1919,,Kainan Kodomonokuni,Aichi,JP-AI,Provincial Park,0,海南こどもの国,35.0955638394908,136.757388863143
+JA-1920,,AichiYatomi Yachouen,Aichi,JP-AI,Provincial Park,0,愛知県弥富野鳥園,35.0488329775987,136.784269547353
+JA-1921,,Aichi KenminnoMori,Aichi,JP-AI,Provincial Park,0,愛知県民の森,35.0069922246176,137.622781443543
+JA-1922,,Aichiken Forest,Aichi,JP-AI,Provincial Park,0,愛知県森林公園,35.2338605648318,137.052025604207
+JA-1923,,Korogi Athletic,Aichi,JP-AI,Provincial Park,0,愛知県口論義運動公園,35.1653668634534,137.048834371781
+JA-1924,,LAGUNA BEACH,Aichi,JP-AI,Provincial Park,0,大塚海浜緑地（ラグーナビーチ）,34.8061215767655,137.27211146069
+JA-1925,,Kaisho Forest,Aichi,JP-AI,Provincial Park,0,あいち海上の森,35.1888359050336,137.111355542055
+JA-1926,,Aichi Education and Sports Foundation,Aichi,JP-AI,Provincial Park,0,愛知県一宮総合運動場(いちい信金スポーツセンター),35.301959643669,136.845887274511
+JA-1927,,Jindai Botanical Garden,Tokyo,JP-TK,Provincial Park,0,神代植物公園,35.67148,139.548279
+JA-1928,,Nakato,Tokyo,JP-TK,Provincial Park,0,中藤公園,35.761636,139.393745
+JA-1929,,Takaido,Tokyo,JP-TK,Provincial Park,0,高井戸公園,35.68449,139.601275

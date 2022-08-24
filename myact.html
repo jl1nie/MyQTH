@@ -30,7 +30,7 @@
 <!------------------------------------------------------------------>
 
 <link href="font/css/open-iconic-bootstrap.css" rel="stylesheet">
-<title>MyAct.ga</title>
+<title>MyAct</title>
 <style>
 .progress { height: 2px;}
 
@@ -147,7 +147,7 @@ i.semantic-ui-custom {
 <!-- plugin -->
 
   <nav class="navbar navbar-expand-md navbar-dark bg-dark text-light">
-    <span class="navbar-brand" style="cursor: hand;cursor: pointer;"><h4>MyACT.ga</h4></span>
+    <span class="navbar-brand" style="cursor: hand;cursor: pointer;"><h4>MyACT</h4></span>
     <button type="button" class="btn btn-amber" onClick="clickQTHButton()"><i class="fas fa-map-marked-alt">QTH</i></button>
     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-prefs"><i class="fas fa-cog"></i></button>
 
@@ -219,7 +219,8 @@ window.addEventListener('resize',()=> {
 let vh = window.innerHeight * 0.01;
   document.documentElement.style.setProperty('--vh', `${vh}px`);
 });
-var sotalive = 'https://myqth.ga/'
+
+var sotalive = 'https://www.sotalive.net/';
 var gsi = L.tileLayer('https://cyberjapandata.gsi.go.jp/xyz/std/{z}/{x}/{y}.png', {attribution: "<a href='https://maps.gsi.go.jp/development/ichiran.html' target='_blank'>地理院タイル</a>|<a href='https://nlftp.mlit.go.jp/ksj/gml/datalist/KsjTmplt-A10-v4_1.html' target='_blank'>国土数値情報自然公園地域データ</a>"
 });
 
@@ -232,6 +233,7 @@ var popup = L.popup();
 
 var last_area = null;
 var last_mesg = '';
+var geomagindex = '';
   
 function redrawPopup() {
     if (last_area != null) {
@@ -250,8 +252,14 @@ function displayPopup(area, latlng, isMarker, isGPS) {
 	Cookies.set('my_qth_lat',lat)
 	Cookies.set('my_qth_lng',lng)
     }
-    
+  
     var resfun = function(res) {
+	if ('alt' in latlng) {
+	    altitude = res['elevation'] + 'm (GPS測位値:'+latlng.alt+'m)';
+	} else {
+	    altitude = res['elevation'] + 'm';	    
+	}
+	
 	if (res['errors'] == 'OUTSIDE_JA') {
 	    mesg = 'Pos: ' + lat +','+ lng + '<br>GL: '+res['maidenhead'];
         }
@@ -267,12 +275,12 @@ function displayPopup(area, latlng, isMarker, isGPS) {
 	    
 	    if (res['type'] == 'JCC') {
 			if (res['ward'] != undefined)
-			    mesg = 'JCC'+res['jcc']+ ' 区番号:' + res['ward'] + '<br>' + res['pref'] + res['addr2'] + res['addr1'] + '<br>GL:' + res['maidenhead'] + pos + '<br> 標高:' + res['elevation'] + 'm';
+			    mesg = 'JCC'+res['jcc']+ ' 区番号:' + res['ward'] + '<br>' + res['pref'] + res['addr2'] + res['addr1'] + '<br>GL:' + res['maidenhead'] + pos + '<br> 標高:' + altitude;
 			else
-			    mesg = 'JCC'+res['jcc']+ '<br>' + res['pref'] + res['addr2'] + res['addr1'] + '<br>GL:' + res['maidenhead'] + pos + '<br> 標高:' + res['elevation'] + 'm';
+			    mesg = 'JCC'+res['jcc']+ '<br>' + res['pref'] + res['addr2'] + res['addr1'] + '<br>GL:' + res['maidenhead'] + pos + '<br> 標高:' + altitude;
 		}
 		else
-		    mesg = 'JCG'+res['jcg']+ res['hamlog']+ '<br>' + res['pref'] + res['addr2'] + res['addr1']+ '<br>GL:' + res['maidenhead'] + pos + '<br> 標高:' + res['elevation'] + 'm';
+		    mesg = 'JCG'+res['jcg']+ res['hamlog']+ '<br>' + res['pref'] + res['addr2'] + res['addr1']+ '<br>GL:' + res['maidenhead'] + pos + '<br> 標高:' + altitude;
 	}
 
 	if (isMarker) {
@@ -400,7 +408,8 @@ function QTHdragend(e) {
 }
 
 function callbkQTHOk(arg) {
-    var latlng = [arg.coords.latitude, arg.coords.longitude],
+    var crd = arg.coords,
+        latlng = [crd.latitude, crd.longitude],
 	options = {
         prefix: 'icon'
         ,icon: 'user'
@@ -408,7 +417,14 @@ function callbkQTHOk(arg) {
         ,markerColor: 'yellow'
         ,extraClasses: 'semantic-ui-custom'
 	};
-
+ 
+    if (false && crd.altitude != null) {
+	r_alt = Math.round(crd.altitude*100)/100;
+	gps_pos = {lat:crd.latitude, lng:crd.longitude, alt:r_alt };
+    }
+    else
+	gps_pos = {lat:crd.latitude, lng:crd.longitude};
+    
     map.setView(latlng, 15);
 
     if (qth_marker != null)
@@ -418,7 +434,7 @@ function callbkQTHOk(arg) {
 			  {draggable:true, icon: L.ExtraMarkers.icon(options)});
 
     qth_marker.addTo(map);
-    displayPopup({}, {lat:latlng[0], lng:latlng[1]}, true, true);
+    displayPopup({}, gps_pos , true, true);
     qth_marker.on('dragend', QTHdragend);
 };
 
@@ -464,11 +480,19 @@ function clickQTHButton () {
     navigator.geolocation.getCurrentPosition(callbkQTHOk, callbkQTHNG, options);
 };
 
+function kp_index() {
+    $.getJSON(sotalive + "api/geomag",function(geomag) {
+	kp = geomag.Kp[0];
+	ap = geomag.Ap;
+	geomagindex = 'Ap:'+ap +' Kp:' +kp;
+    });
+}
+
 function clock() {
     var now = new Date();
     var tm = now.toString();
     tm  = tm.replace(/:\d{2} GMT\+.+/,'');
-    document.getElementById("clock_time").innerHTML='&nbsp'+tm;
+    document.getElementById("clock_time").innerHTML='&nbsp'+ tm + '&nbsp&nbsp' + geomagindex;
 }
 
 function escapeStr(str) {
@@ -706,7 +730,7 @@ async function getGeoData(url) {
     return data;
 }
 
-getGeoData('json/jaffpota-annotated302.json').then(data => geojson.addData(data));
+getGeoData('json/jaffpota-annotated309.json').then(data => geojson.addData(data));
 
 userChange = true;
 
@@ -722,6 +746,20 @@ map.on('zoomend',function(e) {
     userChange = true
 })
 
+function placeHamFairMarker(coord) {
+    var options = {
+        prefix: 'icon'
+        ,icon: 'star'
+        ,shape: 'square'
+        ,markerColor: 'pink'
+	,riseOnHover: true
+        ,extraClasses: 'semantic-ui-custom'
+    };
+    var marker = L.marker(coord,{icon:L.ExtraMarkers.icon(options)});
+    marker.bindTooltip('<b><a href="https://www.jarl.org/Japanese/1_Tanoshimo/1-3_Ham-Fair/2023/" target="_blank">Ham Fair 2023</a></b>',{permanent: prefs['popup_permanent'], direction: 'center',offset:[0,20],interactive:true})
+    marker.addTo(map);
+}
+
 function redrawMarkers() {
     redoActivationZone();
     deleteSummitMarker()
@@ -729,6 +767,7 @@ function redrawMarkers() {
     var b = map.getBounds();
     placeSummitMarkers([b['_northEast']['lat'], b['_southWest']['lng']],
 		       [b['_southWest']['lat'], b['_northEast']['lng']],z);
+    //placeHamFairMarker([35.627288040687716, 139.79562967407333]);
 }
        
 map.on('moveend',function(e) {
@@ -739,6 +778,8 @@ map.on('moveend',function(e) {
 });
 
 clickQTHButton();
+//kp_index();
+//setInterval(kp_index,1000*1800);
 clock();
 setInterval(clock,5000);
 </script>

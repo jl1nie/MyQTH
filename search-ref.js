@@ -20,7 +20,7 @@
 	var initiated = false
 	var target={
 	    init:function(){
-		query = 'https://www.sotalive.tk/api/sota-jaff-pota?'
+		query = 'https://www.sotalive.net/api/sota-jaff-pota?'
 		list_param='refid='
 		done = options['done']
 		initiated = false

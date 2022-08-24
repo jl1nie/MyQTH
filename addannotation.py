@@ -47,7 +47,7 @@ for elem in src['objects']['jaffpota']['geometries']:
        if jaff_replaced == 'JAFF-0094':
            namek = '妙高戸隠連山国立公園'
            pota = 'JA-0013'
-       elem['properties'] = { 'JAFF': setotable(jaff, uid) , 'POTA': pota ,'UID':uid ,'NAME': namek}
+       elem['properties'] = { 'JAFF': jaff_replaced, 'POTA': pota ,'UID':uid ,'NAME': namek}
     else:
         print(f'Fatal error: {jaff}')
 
