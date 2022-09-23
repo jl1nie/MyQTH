@@ -246,7 +246,15 @@ function redrawPopup() {
 function displayPopup(area, latlng, isMarker, isGPS) {
     var lat = Math.round(latlng.lat * 1000000,4)/1000000,
 	lng = Math.round(latlng.lng * 1000000,4)/1000000,
+	z = map.getZoom(),
 	gsiuri= 'https://maps.gsi.go.jp/#15/';
+
+    if ( z > 11)
+	wz = 11
+    else
+	wz = z;
+    
+    var windyuri = 'https://www.windy.com/?'+ latlng.lat + ',' + latlng.lng + ',' + wz + ',d:picker';
 
     if (isGPS) {
 	Cookies.set('my_qth_lat',lat)
@@ -282,17 +290,19 @@ function displayPopup(area, latlng, isMarker, isGPS) {
 		else
 		    mesg = 'JCG'+res['jcg']+ res['hamlog']+ '<br>' + res['pref'] + res['addr2'] + res['addr1']+ '<br>GL:' + res['maidenhead'] + pos + '<br> 標高:' + altitude;
 	}
+	
+	weather= '&nbsp&nbsp<a href="' + windyuri +'" target="_blank"><img src="svg/sun.svg"><img src="svg/cloud.svg"><img src="svg/rain.svg"></a>'
 
 	if (isMarker) {
-	    mesg = '<h4>' + mesg + '</h4>';
+	    mesg = '<h4>' + mesg + weather + '</h4>';
 	    if (qth_marker != null)
 		qth_marker.bindPopup(mesg).openPopup();
 	} else {
 	    cnt = selectRef(area);
 	    if (cnt != '')
-		cnt = '<b>' + cnt + '</b>' + mesg;
+		cnt = '<b>' + cnt + '</b>' + mesg + weather;
 	    else
-		cnt = mesg;
+		cnt = mesg + weather;
 	    popup.setContent(cnt);
 	    popup.setLatLng(latlng).openOn(map);
 	    last_area = area;
@@ -559,11 +569,17 @@ function placeSummitMarkers(nw ,se, z) {
 	if (res['errors'] != 'OK') {
 	    return;
 	}
+	if (z > 11)
+	    wz = 11
+	else
+	    wz = z;
+	
 	if (prefs['sota_ref'])
 	    for(const s of res['summits']) {
-		var sname;
+		var sname,
+		windyuri = '<a href="https://www.windy.com/?'+ s['lat'] + ',' + s['lon'] + ',' + wz + ',d:picker" target="_blank"><img src="svg/sun.svg"><img src="svg/cloud.svg"><img src="svg/rain.svg"></a>';   
 		sname = s['name_k']
-		var mesg = '<b>'+s['code']+' '+s['name']+'</b><br>'+sname+'&nbsp'+s['elev']+'m,'+s['pts']+'pts (+' + s['bonus'] +')<br>GL:' + s['maidenhead'] + '<br>' +escapeStr(s['desc'])
+		var mesg = '<b>'+s['code']+' '+s['name']+'</b><br>'+sname+'&nbsp'+s['elev']+'m,'+s['pts']+'pts (+' + s['bonus'] +')&nbsp'+ windyuri + '<br>GL:' + s['maidenhead'] + '<br>' +escapeStr(s['desc'])
 		mesg += '<br>Activations: ' + s['actcnt']
 		if (s['actcnt']!= 0)
 		    mesg += '<br>Last Activation: ' + s['lastact'] + '(' + s['lastcall'] + ')'
