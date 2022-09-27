@@ -494,7 +494,7 @@ function kp_index() {
     $.getJSON(sotalive + "api/geomag",function(geomag) {
 	kp = geomag.Kp[0];
 	ap = geomag.Ap;
-	geomagindex = 'Ap:'+ap +' Kp:' +kp;
+	geomagindex = 'A:'+ap +' K:' +kp;
     });
 }
 
@@ -502,7 +502,10 @@ function clock() {
     var now = new Date();
     var tm = now.toString();
     tm  = tm.replace(/:\d{2} GMT\+.+/,'');
-    document.getElementById("clock_time").innerHTML='&nbsp'+ tm + '&nbsp&nbsp' + geomagindex;
+    var tm2 =`
+${now.getFullYear()}/${("00"+(now.getMonth()+1).toString()).slice(-2)}/${("00"+now.getDay().toString()).slice(-2)} ${("00"+now.getHours().toString()).slice(-2)}:${("00"+now.getMinutes().toString()).slice(-2)}`; 
+
+    document.getElementById("clock_time").innerHTML='&nbsp'+ tm2 + '&nbsp' + geomagindex;
 }
 
 function escapeStr(str) {
@@ -794,8 +797,8 @@ map.on('moveend',function(e) {
 });
 
 clickQTHButton();
-//kp_index();
-//setInterval(kp_index,1000*1800);
+kp_index();
+setInterval(kp_index,1000*1800);
 clock();
 setInterval(clock,5000);
 </script>
