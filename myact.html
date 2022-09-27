@@ -233,7 +233,7 @@ var popup = L.popup();
 
 var last_area = null;
 var last_mesg = '';
-var geomagindex = '';
+var geomagindex = 'A:-- K:-';
   
 function redrawPopup() {
     if (last_area != null) {
@@ -503,7 +503,7 @@ function clock() {
     var tm = now.toString();
     tm  = tm.replace(/:\d{2} GMT\+.+/,'');
     var tm2 =`
-${now.getFullYear()}/${("00"+(now.getMonth()+1).toString()).slice(-2)}/${("00"+now.getDay().toString()).slice(-2)} ${("00"+now.getHours().toString()).slice(-2)}:${("00"+now.getMinutes().toString()).slice(-2)}`; 
+${now.getFullYear()}/${("00"+(now.getMonth()+1).toString()).slice(-2)}/${("00"+now.getDate().toString()).slice(-2)} ${("00"+now.getHours().toString()).slice(-2)}:${("00"+now.getMinutes().toString()).slice(-2)}`; 
 
     document.getElementById("clock_time").innerHTML='&nbsp'+ tm2 + '&nbsp' + geomagindex;
 }
