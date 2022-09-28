@@ -30,7 +30,7 @@
 <!------------------------------------------------------------------>
 
 <link href="font/css/open-iconic-bootstrap.css" rel="stylesheet">
-<title>MyAct</title>
+<title>MyACT</title>
 <style>
 .progress { height: 2px;}
 
@@ -148,8 +148,8 @@ i.semantic-ui-custom {
 
   <nav class="navbar navbar-expand-md navbar-dark bg-dark text-light">
     <span class="navbar-brand" style="cursor: hand;cursor: pointer;"><h4>MyACT</h4></span>
-    <button type="button" class="btn btn-amber" onClick="clickQTHButton()"><i class="fas fa-map-marked-alt">QTH</i></button>
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-prefs"><i class="fas fa-cog"></i></button>
+    <button type="button" class="btn btn-amber" onClick="clickQTHButton()"><span class="fas fa-map-marked-alt">QTH</span></button>
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-prefs"><span class="fas fa-cog"></span></button>
 
     <div id="search_ref"></div>
     <script>
@@ -503,7 +503,7 @@ function clock() {
     var tm = now.toString();
     tm  = tm.replace(/:\d{2} GMT\+.+/,'');
     var tm2 =`
-${now.getFullYear()}/${("00"+(now.getMonth()+1).toString()).slice(-2)}/${("00"+now.getDate().toString()).slice(-2)} ${("00"+now.getHours().toString()).slice(-2)}:${("00"+now.getMinutes().toString()).slice(-2)}`; 
+${now.getFullYear().toString().slice(-2)}/${("00"+(now.getMonth()+1).toString()).slice(-2)}/${("00"+now.getDate().toString()).slice(-2)} ${("00"+now.getHours().toString()).slice(-2)}:${("00"+now.getMinutes().toString()).slice(-2)}`; 
 
     document.getElementById("clock_time").innerHTML='&nbsp'+ tm2 + '&nbsp' + geomagindex;
 }
