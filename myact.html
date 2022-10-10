@@ -237,7 +237,7 @@ var geomagindex = 'A:-- K:-';
   
 function redrawPopup() {
     if (last_area != null) {
-	var ctnt = '<b>' + selectRef(last_area) + '</b>' + last_mesg;
+	var ctnt = '<b>' + selectRef(last_area, true) + '</b>' + last_mesg;
 	popup.setContent(ctnt);
 	popup.update();
     }
@@ -298,7 +298,7 @@ function displayPopup(area, latlng, isMarker, isGPS) {
 	    if (qth_marker != null)
 		qth_marker.bindPopup(mesg).openPopup();
 	} else {
-	    cnt = selectRef(area);
+	    cnt = selectRef(area, true);
 	    if (cnt != '')
 		cnt = '<b>' + cnt + '</b>' + mesg + weather;
 	    else
@@ -385,14 +385,18 @@ function closePrefs() {
 
 readCookie(prefs);
 
-function selectRef(area) {
+  function selectRef(area, addhref) {
   var pname = '';
 
   if (area['pota'] == undefined || area['jaff'] == undefined)
 	return '';
 
   if (area['pota'] != '' && prefs['pota_ref']) {
-      pname = area['pota']
+      if (addhref) 
+	  pname = '<a target="_blank" href="https://pota.app/#/park/'+ area['pota'] + '">' + area['pota'] + '</a> '
+      else
+	  pname = area['pota'];
+      
       if (area['jaff'] != '' && prefs['jaff_ref'])
 	  pname += '/' + area['jaff']
   } else if (prefs['jaff_ref'])
@@ -568,7 +572,7 @@ function placeSummitMarkers(nw ,se, z) {
     
     prefix = 'ja?'
     
-    $.getJSON(sotalive+'api/sotasummits/'+prefix,'lat='+nw[0]+'&lon='+nw[1]+'&lat2='+se[0]+'&lon2='+se[1]+'&elevation='+elev+'&park='+level +'&flag=0',function(res) {
+    $.getJSON(sotalive+'api/sotasummits/'+prefix,'lat='+nw[0]+'&lon='+nw[1]+'&lat2='+se[0]+'&lon2='+se[1]+'&elevation='+elev+'&park='+level +'&flag=0'+'&potadb=1',function(res) {
 	if (res['errors'] != 'OK') {
 	    return;
 	}
@@ -598,12 +602,13 @@ function placeSummitMarkers(nw ,se, z) {
 		
 	    }
 	for(const s of res['parks']) {
-	    var pname =selectRef({'pota':s['pota'],
-				  'jaff':s['jaff'],
-				  'name':s['name_k']});
+
+	    var pname = selectRef({'pota':s['pota'],
+				 'jaff':s['jaff'],
+				 'name':s['name_k']}, false);
 	    if (pname != '')
 		show_summit_marker.push(
-		    placeParkMarker([s['lat'],s['lon']], z, pname))
+		    placeParkMarker([s['lat'],s['lon']], z, s))
 	}
     })
 }
@@ -665,7 +670,7 @@ function placeSummitMarker(coords, z, elev, actcnt, mesg, popupfl) {
 
 }
 
-function placeParkMarker(coords, z,  mesg) {
+function placeParkMarker(coords, z,  parks) {
 
     var options = {
         prefix: 'icon'
@@ -673,11 +678,22 @@ function placeParkMarker(coords, z,  mesg) {
         ,shape: 'square'
         ,markerColor: 'green-light'
         ,extraClasses: 'semantic-ui-custom'
+    }, area = {
+	pota : parks['pota'],
+	jaff : parks['jaff'],
+	name : parks['name_k']
     };
-    var marker = L.marker(coords,{icon:L.ExtraMarkers.icon(options)})
-    marker.bindTooltip(mesg,
+	
+    var marker = L.marker(coords,{icon:L.ExtraMarkers.icon(options)}),
+	mesg1 = selectRef(area, false),
+	mesg2 = selectRef(area, true);
+    
+    marker.bindTooltip(mesg1,
 		       {permanent: prefs['popup_permanent'], direction: 'center',offset:[0,20]})
     var m = marker.addTo(map);
+    m.on('click',function(e) {
+	displayPopup(area, e.latlng, false, false)
+    });
     return m;
 }
 
