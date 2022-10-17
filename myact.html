@@ -397,10 +397,18 @@ readCookie(prefs);
       else
 	  pname = area['pota'];
       
-      if (area['jaff'] != '' && prefs['jaff_ref'])
-	  pname += '/' + area['jaff']
-  } else if (prefs['jaff_ref'])
-      pname = area['jaff'];
+      if (area['jaff'] != '' && prefs['jaff_ref']) {
+	  if (addhref)
+	      pname += '/' + '<a target="_blank" href="https://wwff.co/directory/?showRef='+ area['jaff'] + '">' + area['jaff'] + '</a> '
+	  else 
+	      pname += '/' + area['jaff'];
+      }
+  } else if (prefs['jaff_ref']) {
+	  if (addhref)
+	      pname = '<a target="_blank" href="https://wwff.co/directory/?showRef='+ area['jaff'] + '">' + area['jaff'] + '</a> '
+	  else 
+	      pname = area['jaff']
+  }
   
   if (pname != '' && area['name'] != '') {
       pname += '<br>'
@@ -586,7 +594,8 @@ function placeSummitMarkers(nw ,se, z) {
 		var sname,
 		windyuri = '<a href="https://www.windy.com/?'+ s['lat'] + ',' + s['lon'] + ',' + wz + ',d:picker" target="_blank"><img src="svg/sun.svg"><img src="svg/cloud.svg"><img src="svg/rain.svg"></a>';   
 		sname = s['name_k']
-		var mesg = '<b>'+s['code']+' '+s['name']+'</b><br>'+sname+'&nbsp'+s['elev']+'m,'+s['pts']+'pts (+' + s['bonus'] +')&nbsp'+ windyuri + '<br>GL:' + s['maidenhead'] + '<br>' +escapeStr(s['desc'])
+		scode = '<a target="_blank" href="https://summits.sota.org.uk/summit/' + s['code'] + '">' + s['code'] + ' ' + s['name'] + '</a>'
+		var mesg = '<b>'+scode+'</b><br>'+sname+'&nbsp'+s['elev']+'m,'+s['pts']+'pts (+' + s['bonus'] +')&nbsp'+ windyuri + '<br>GL:' + s['maidenhead'] + '<br>' +escapeStr(s['desc'])
 		mesg += '<br>Activations: ' + s['actcnt']
 		if (s['actcnt']!= 0)
 		    mesg += '<br>Last Activation: ' + s['lastact'] + '(' + s['lastcall'] + ')'
