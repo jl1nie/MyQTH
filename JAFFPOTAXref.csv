@@ -48,7 +48,7 @@
 "JA-0116","JAFF-0048","Minami-Boso","Chiba","JP-CH","Nature Park",16,"南房総国定公園",35.11609,140.121642
 "JA-0117","JAFF-0049","Meiji no Mori Takao","Tokyo","JP-TK","Nature Park",0,"明治の森高尾国定公園",35.633371,139.265815
 "JA-0118","JAFF-0050","Tanzawa-Oyama","Kanagawa","JP-KN","Nature Park",27,"丹沢大山国定公園",35.410512,139.209838
-"JA-0113","JAFF-0051","Echigo sanzan-Tadami","Niigata,Fukushima","JP-NI,JP-FS","Nature Park",89,"越後三山只見国定公園",37.268768,139.051219
+"JA-0113","JAFF-0051","Echigo sanzan-Tadami","Niigata,Fukushima","JP-NI,JP-FS","Nature Park",89,"越後三山只見国定公園",37.16224,139.230541
 "JA-0115","JAFF-0052","Myogi-Arafune-Saku Kogen","Gumma,Nagano","JP-GM,JP-NN","Nature Park",14,"妙義荒船佐久高原国定公園",36.257018,138.611385
 "JA-0119","JAFF-0053","Sado-Yahiko-Yoneyama","Niigata","JP-NI","Nature Park",27,"佐渡弥彦米山国定公園（佐渡）",37.808247,138.225403
 "JA-0120","JAFF-0054","Noto Hanto","Ishikawa,Toyama","JP-IS,JP-TY","Nature Park",10,"能登半島国定公園",37.525613,137.257421
@@ -1069,8 +1069,8 @@
 "JA-1941",,"Wakayama Koutsuu Park","Wakayama","JP-WK","Provincial Park",0,"和歌山交通公園",34.2034783,135.2183927
 "JA-1942",,"Ken-ei Fukushi Park","Nara","JP-NR","Provincial Park",0,"県営福祉パーク",34.53501869,135.7844869
 "JA-1943",,"Gifu World Fresh Water Aquarium","Gifu","JP-GF","Provincial Park",0,"世界淡水魚園",35.37183271,136.8104589
-"JA-1944",,"Satsunankaigan Provincial Park","Kagoshima","JP-KS","Provincial Park",0,"薩南海岸県立自然公園",30.25638,130.51728
-"JA-1945",,"Mishima Provincial Park","Kagoshima","JP-KS","Provincial Park",0,"みしま県立自然公園",30.7913,130.30321
+"JA-1944","JAFF-0429","Satsunankaigan Provincial Park","Kagoshima","JP-KS","Provincial Park",0,"薩南海岸県立自然公園",30.25638,130.51728
+"JA-1945","JAFF-0428","Mishima Provincial Park","Kagoshima","JP-KS","Provincial Park",0,"みしま県立自然公園",30.7913,130.30321
 "JA-1946",,"Tama Zoological Park","Tokyo","JP-TK","Provincial Park",0,"多摩動物公園",35.6496,139.4032
 "JA-1947",,"Hinohara Tokyo Citizens' Forest","Tokyo","JP-TK","Provincial Park",0,"檜原都民の森",35.7393,139.0294
 "JA-1948",,"Okutama Tokyo Citizens' Forest","Tokyo","JP-TK","Provincial Park",0,"奥多摩都民の森",35.7768,139.0816
