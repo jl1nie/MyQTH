@@ -309,7 +309,18 @@ function displayPopup(area, latlng, isMarker, isGPS) {
 	    last_mesg = mesg;
 	}
     }
+    
+    var resfun2 = function(res) {
+	if (res['errors'] == 'OK') {
+	    s = res['summits'][0]
+	    l = {'lat':s['lat'],'lng':s['lon']}
+	    displayActivationZone(l, -0.8);
+	} 
+    }
+    
     $.getJSON(sotalive+'api/reverse-geocoder/LonLatToAddressElev?','lat='+latlng.lat+'&lon='+latlng.lng,resfun);
+
+    $.getJSON(sotalive+'api/sotasummits/JA?','&lat='+latlng.lat+'&lon='+latlng.lng+"&srange=300", resfun2);
 }
 
 var prefs =
