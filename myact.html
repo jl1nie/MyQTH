@@ -196,6 +196,10 @@ i.semantic-ui-custom {
 		  <input class="custom-control-input" type="checkbox" value="" id="popup_permanent" onclick="clickPrefs()">
 		  <label class="custom-control-label" for="popup_permanent"> 公園名を常に表示</label>
 		</div>
+		<div class="custom-control custom-checkbox">
+		  <input class="custom-control-input" type="checkbox" value="" id="display_mapcode" onclick="clickPrefs()">
+		  <label class="custom-control-label" for="display_mapcode"> MAPCODEを表示<br><small>(MAPCODEは㈱デンソーの登録商標です)</small></label>
+		</div>
 	      </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-default" data-dismiss="modal" onClick="closePrefs()">Close</button>
@@ -291,8 +295,13 @@ function displayPopup(area, latlng, isMarker, isGPS) {
 		    mesg = 'JCG'+res['jcg']+ res['hamlog']+ '<br>' + res['pref'] + res['addr2'] + res['addr1']+ '<br>GL:' + res['maidenhead'] + pos + '<br> 標高:' + altitude;
 	}
 	
-	weather= '&nbsp&nbsp<a href="' + windyuri +'" target="_blank"><img src="svg/sun.svg"><img src="svg/cloud.svg"><img src="svg/rain.svg"></a>'
+	if (prefs['display_mapcode']) 
+	    mapcode = '<br><img src="img/mc_long.jpg" height=14px> &nbsp' + res['mapcode'];
+	else
+	    mapcode = '';
 
+	weather= '&nbsp&nbsp<a href="' + windyuri +'" target="_blank"><img src="svg/sun.svg"><img src="svg/cloud.svg"><img src="svg/rain.svg"></a>' + mapcode;
+	
 	if (isMarker) {
 	    mesg = '<h4>' + mesg + weather + '</h4>';
 	    if (qth_marker != null)
@@ -318,18 +327,19 @@ function displayPopup(area, latlng, isMarker, isGPS) {
 	} 
     }
     
-    $.getJSON(sotalive+'api/reverse-geocoder/LonLatToAddressElev?','lat='+latlng.lat+'&lon='+latlng.lng,resfun);
+    $.getJSON(sotalive+'api/reverse-geocoder/LonLatToAddressElevMapCode?','lat='+latlng.lat+'&lon='+latlng.lng,resfun);
 
     $.getJSON(sotalive+'api/sotasummits/JA?','&lat='+latlng.lat+'&lon='+latlng.lng+"&srange=300", resfun2);
 }
 
 var prefs =
-       { 'popup_permanent': true,
-	 'zoom_threshold': 12,
-	 'sota_ref': true,
-	 'pota_ref': true,
-	 'jaff_ref': true
-       }
+    { 'popup_permanent': true,
+      'display_mapcode': false,
+      'zoom_threshold': 12,
+      'sota_ref': true,
+      'pota_ref': true,
+      'jaff_ref': true
+    }
 
 $('#zoom-threshold').slider({
     formatter: function(value) {
