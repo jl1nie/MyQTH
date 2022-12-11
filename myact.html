@@ -198,7 +198,7 @@ i.semantic-ui-custom {
 		</div>
 		<div class="custom-control custom-checkbox">
 		  <input class="custom-control-input" type="checkbox" value="" id="display_mapcode" onclick="clickPrefs()">
-		  <label class="custom-control-label" for="display_mapcode"> MAPCODEを表示<br><small>(MAPCODEは㈱デンソーの登録商標です)</small></label>
+		  <label class="custom-control-label" for="display_mapcode"> MAPCODEを表示<br><small>(「マップコード」および「MAPCODE」は㈱デンソーの登録商標です)</small></label>
 		</div>
 	      </div>
             <div class="modal-footer">
@@ -795,7 +795,7 @@ async function getGeoData(url) {
     return data;
 }
 
-getGeoData('json/jaffpota-annotated309.json').then(data => geojson.addData(data));
+getGeoData('json/jaffpota-annotated310.json').then(data => geojson.addData(data));
 
 userChange = true;
 

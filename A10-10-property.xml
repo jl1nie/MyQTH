@@ -1248,7 +1248,7 @@
    <xsd:enumeration value="257">
     <xsd:annotation>
      <xsd:appinfo>
-      <gml:description>只見柳津</gml:description>
+      <gml:description>越後三山只見</gml:description>
      </xsd:appinfo>
     </xsd:annotation>
    </xsd:enumeration>
@@ -1521,42 +1521,42 @@
    <xsd:enumeration value="296">
     <xsd:annotation>
      <xsd:appinfo>
-      <gml:description>滝山</gml:description>
+      <gml:description>都立滝山</gml:description>
      </xsd:appinfo>
     </xsd:annotation>
    </xsd:enumeration>
    <xsd:enumeration value="297">
     <xsd:annotation>
      <xsd:appinfo>
-      <gml:description>高尾陣場</gml:description>
+      <gml:description>都立高尾陣場</gml:description>
      </xsd:appinfo>
     </xsd:annotation>
    </xsd:enumeration>
    <xsd:enumeration value="298">
     <xsd:annotation>
      <xsd:appinfo>
-      <gml:description>多摩丘陵</gml:description>
+      <gml:description>都立多摩丘陵</gml:description>
      </xsd:appinfo>
     </xsd:annotation>
    </xsd:enumeration>
    <xsd:enumeration value="299">
     <xsd:annotation>
      <xsd:appinfo>
-      <gml:description>狭山都立自然公園（東京都）</gml:description>
+      <gml:description>都立狭山自然公園（東京都）</gml:description>
      </xsd:appinfo>
     </xsd:annotation>
    </xsd:enumeration>
    <xsd:enumeration value="300">
     <xsd:annotation>
      <xsd:appinfo>
-      <gml:description>羽村草花丘陵</gml:description>
+      <gml:description>都立羽村草花丘陵</gml:description>
      </xsd:appinfo>
     </xsd:annotation>
    </xsd:enumeration>
    <xsd:enumeration value="301">
     <xsd:annotation>
      <xsd:appinfo>
-      <gml:description>秋川丘陵</gml:description>
+      <gml:description>都立秋川丘陵</gml:description>
      </xsd:appinfo>
     </xsd:annotation>
    </xsd:enumeration>
