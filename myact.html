@@ -168,6 +168,10 @@ i.semantic-ui-custom {
       <div class="modal-content">
 	<div class="modal-header">
 	  <b>SOTA/POTA 最新JA スポット</b>
+	  <div class="custom-control custom-checkbox">
+	    <input class="custom-control-input" type="checkbox" value="" id="by_call" onclick="clickPrefs();refresh_spots()">
+	    <label class="custom-control-label" for="by_call"> アクティベータ別</label>
+	  </div>
 	  <small><span id="clock_time2" style="cursor: default;" ></span></small>
 	</div>
 	<div class="modal-body">
@@ -363,6 +367,7 @@ var prefs =
       'display_mapcode': false,
       'zoom_threshold': 12,
       'spot_period': 3,
+      'by_call': false,
       'sota_ref': true,
       'pota_ref': true,
       'jaff_ref': true
@@ -910,8 +915,11 @@ const plugin = {
   var chart = null;
   
 function refresh_spots() {
-    let url = 'https://www.sotalive.net/api/sota-pota-spots?region=JA&period=';
-    url += String(prefs['spot_period']);
+    let url = 'https://www.sotalive.net/api/sota-pota-spots?region=JA';
+    if (prefs['by_call']) {
+	url += '&bycall=1';
+    }
+    url += '&period=' + String(prefs['spot_period']);
     fetch(url)
 	.then(res => res.json())
 	.then(data => {
