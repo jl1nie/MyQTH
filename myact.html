@@ -131,6 +131,9 @@ i.semantic-ui-custom {
 <!-- MDB core JavaScript -->
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/js/mdb.min.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/11.0.2/bootstrap-slider.min.js"></script>
+<!-- Chart JS plugins -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.2.1/chart.umd.min.js" integrity="sha512-GCiwmzA0bNGVsp1otzTJ4LWQT2jjGJENLGyLlerlzckNI30moi2EQT0AfRI7fLYYYDKR+7hnuh35r3y1uJzugw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns/dist/chartjs-adapter-date-fns.bundle.min.js"></script>
 
 <!------------------------------------------------------------------------>
 <!-- plugin -->
@@ -148,16 +151,35 @@ i.semantic-ui-custom {
 
   <nav class="navbar navbar-expand-md navbar-dark bg-dark text-light">
     <span class="navbar-brand" style="cursor: hand;cursor: pointer;"><h4>MyACT</h4></span>
-    <button type="button" class="btn btn-amber" onClick="clickQTHButton()"><span class="fas fa-map-marked-alt">QTH</span></button>
+    <button type="button" class="btn btn-amber" onClick="clickQTHButton()"><span class="fas fa-map-marked-alt"></span></button>
+    <button type="button" class="btn btn-info" data-toggle="modal" data-target="#spots-data"><span class="fas fa-satellite-dish"></span></button>
     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-prefs"><span class="fas fa-cog"></span></button>
-
+    
     <div id="search_ref"></div>
     <script>
       $("#search_ref").searchinput({width:65,done:function(s){showReference(s)}})
     </script>
 
-<small><span id="clock_time" style="cursor: default;" ></span></small>
+    <small><span id="clock_time" style="cursor: default;" ></span></small>
   </nav>
+  
+  <div class = "modal fade" id="spots-data">
+    <div class="modal-dialog">
+      <div class="modal-content">
+	<div class="modal-header">
+	  <b>SOTA/POTA 最新JA スポット</b>
+	  <small><span id="clock_time2" style="cursor: default;" ></span></small>
+	</div>
+	<div class="modal-body">
+	  <canvas id="myChart"></canvas>
+	</div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" onClick="closePrefs()">Close</button>
+      </div>
+    </div>
+  </div>
+  
   <div class="container-fluid">
     <div class="row">
       <div class="col-md-12">
@@ -166,48 +188,52 @@ i.semantic-ui-custom {
     </div>
   </div>
   <div class="modal" id="modal-prefs" tabindex="-1" role="dialog" aria-labelledby="staticModalLabel" aria-hidden="true" data-show="true" data-keyboard="false" data-backdrop="static">
-	<div class="modal-dialog">
-	  <div class="modal-content">
-            <div class="modal-header">
-              <h4 class="modal-title"><b>Preferences</b></h4>
-            </div><!-- /modal-header -->
-            <div class="modal-body">
-	      <div class ="form-group">
-		<label class="control-label"><u>表示対象</u></label>
-		<div class="custom-control custom-checkbox">
-		  <input class="custom-control-input" type="checkbox" value="" id="sota_ref" onclick="clickPrefs()">
-		  <label class="custom-control-label" for="sota_ref">SOTA</label>
-		</div>
-		<div class="custom-control custom-checkbox">
-		  <input class="custom-control-input" type="checkbox" value="" id="pota_ref" onclick="clickPrefs()">
-		  <label class="custom-control-label" for="pota_ref">POTA</label>
-		</div>
-		<div class="custom-control custom-checkbox">
-		  <input class="custom-control-input" type="checkbox" value="" id="jaff_ref" onclick="clickPrefs()">
-		  <label class="custom-control-label" for="jaff_ref">JAFF</label>
-		</div>
-	      </div>
-	      <div class ="form-group">
-		<label class="control-label"><u>マーカ</u></label>
-		<p>表示する数:&nbsp&nbsp<b>多</b>&nbsp&nbsp&nbsp
-		  <input id="zoom-threshold" data-slider-id='ex1Slider' type="text" data-slider-min="9" data-slider-max="12" data-slider-step="1" data-slider-value="12"/>&nbsp&nbsp&nbsp&nbsp<b>少</b>
-		</p>
-		<div class="custom-control custom-checkbox">
-		  <input class="custom-control-input" type="checkbox" value="" id="popup_permanent" onclick="clickPrefs()">
-		  <label class="custom-control-label" for="popup_permanent"> 公園名を常に表示</label>
-		</div>
-		<div class="custom-control custom-checkbox">
-		  <input class="custom-control-input" type="checkbox" value="" id="display_mapcode" onclick="clickPrefs()">
-		  <label class="custom-control-label" for="display_mapcode"> MAPCODEを表示<br><small>(「マップコード」および「MAPCODE」は㈱デンソーの登録商標です)</small></label>
-		</div>
-	      </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-default" data-dismiss="modal" onClick="closePrefs()">Close</button>
-            </div>
-	  </div> <!-- /.modal-content -->
-	</div> <!-- /.modal-dialog -->
-  </div> <!-- /.modal -->
-  
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title"><b>Preferences</b></h4>
+        </div><!-- /modal-header -->
+        <div class="modal-body">
+	  <div class ="form-group">
+	    <label class="control-label"><u>表示対象</u></label>
+	    <div class="custom-control custom-checkbox">
+	      <input class="custom-control-input" type="checkbox" value="" id="sota_ref" onclick="clickPrefs()">
+	      <label class="custom-control-label" for="sota_ref">SOTA</label>
+	    </div>
+	    <div class="custom-control custom-checkbox">
+	      <input class="custom-control-input" type="checkbox" value="" id="pota_ref" onclick="clickPrefs()">
+	      <label class="custom-control-label" for="pota_ref">POTA</label>
+	    </div>
+	    <div class="custom-control custom-checkbox">
+	      <input class="custom-control-input" type="checkbox" value="" id="jaff_ref" onclick="clickPrefs()">
+	      <label class="custom-control-label" for="jaff_ref">JAFF</label>
+	    </div>
+	  </div>
+	  <div class ="form-group">
+	    <label class="control-label"><u>マーカ</u></label>
+	    <p>表示する数:&nbsp&nbsp<b>多</b>&nbsp&nbsp&nbsp
+	      <input id="zoom-threshold" data-slider-id='ex1Slider' type="text" data-slider-min="9" data-slider-max="12" data-slider-step="1" data-slider-value="12"/>&nbsp&nbsp&nbsp&nbsp<b>少</b>
+	    </p>
+	    <div class="custom-control custom-checkbox">
+	      <input class="custom-control-input" type="checkbox" value="" id="popup_permanent" onclick="clickPrefs()">
+	      <label class="custom-control-label" for="popup_permanent"> 公園名を常に表示</label>
+	    </div>
+	    <div class="custom-control custom-checkbox">
+	      <input class="custom-control-input" type="checkbox" value="" id="display_mapcode" onclick="clickPrefs()">
+	      <label class="custom-control-label" for="display_mapcode"> MAPCODEを表示<br><small>(「マップコード」および「MAPCODE」は㈱デンソーの登録商標です)</small></label>
+	    </div>
+	    <label class="control-label"><u>スポット表示期間</u></label>
+	    <p><b>短</b>&nbsp&nbsp&nbsp
+	      <input id="spot-period" data-slider-id='ex2Slider' type="text" data-slider-min="1" data-slider-max="24" data-slider-step="1" data-slider-value="3"/>&nbsp&nbsp&nbsp&nbsp<b>長</b>
+	    </p>
+	  </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal" onClick="closePrefs()">Close</button>
+          </div>
+	</div> <!-- /.modal-content -->
+      </div> <!-- /.modal-dialog -->
+    </div> <!-- /.modal -->
+  </div>
 </body>
 <!-- Optional JavaScript -->
 <style type="text/css">
@@ -336,6 +362,7 @@ var prefs =
     { 'popup_permanent': true,
       'display_mapcode': false,
       'zoom_threshold': 12,
+      'spot_period': 3,
       'sota_ref': true,
       'pota_ref': true,
       'jaff_ref': true
@@ -347,10 +374,17 @@ $('#zoom-threshold').slider({
 	return '全ての公園を表示するズームレベル ' + value;
     }
 });
+
+$('#spot-period').slider({
+    formatter: function(value) {
+	prefs['spot_period'] = Number(value);
+	return '最新' + value + "時間を表示";
+    }
+});
    
 function clickPrefs() {
     for(var k in prefs) {
-	if (k == 'zoom_threshold') {
+	if (k == 'zoom_threshold' || k == 'spot_period') {
 	}
 	else {
 	    var el = document.getElementById(k);
@@ -377,6 +411,15 @@ function readCookie(pref) {
 		pref[k] = Number(ck)
 	    $('#zoom-threshold').slider('setValue',Number(ck))
 	}
+	else if (k == 'spot_period') {
+	    if (ck  == undefined) {
+		ck = '3';
+		Cookies.set(k, ck,{expires: 180, SameSite:'Lax'});
+	    }
+	    else
+		pref[k] = Number(ck)
+	    $('#spot-period').slider('setValue',Number(ck))
+	}
 	else {
 	    if (ck  == undefined) {
 		if (pref[k])
@@ -400,8 +443,10 @@ function readCookie(pref) {
 
 function closePrefs() {
     Cookies.set('zoom_threshold',String(prefs['zoom_threshold']),{expires: 180, SameSite:'Lax'})
+    Cookies.set('spot_period',String(prefs['spot_period']),{expires: 180, SameSite:'Lax'})
     redrawPopup();
     redrawMarkers();
+    refresh_spots();
 }
 
 readCookie(prefs);
@@ -539,6 +584,7 @@ function clock() {
 ${now.getFullYear().toString().slice(-2)}/${("00"+(now.getMonth()+1).toString()).slice(-2)}/${("00"+now.getDate().toString()).slice(-2)} ${("00"+now.getHours().toString()).slice(-2)}:${("00"+now.getMinutes().toString()).slice(-2)}`; 
 
     document.getElementById("clock_time").innerHTML='&nbsp'+ tm2 + '&nbsp' + geomagindex;
+    document.getElementById("clock_time2").innerHTML='&nbsp'+ tm2 + '&nbsp' + geomagindex;
 }
 
 function escapeStr(str) {
@@ -847,6 +893,117 @@ kp_index();
 setInterval(kp_index,1000*1800);
 clock();
 setInterval(clock,5000);
-</script>
+
+  //Latest Spot Chart
+const plugin = {
+    id: 'customCanvasBackgroundColor',
+    beforeDraw: (chart, args, options) => {
+	const {ctx} = chart;
+	ctx.save();
+	ctx.globalCompositeOperation = 'destination-over';
+	ctx.fillStyle = options.color || '#99ffff';
+	ctx.fillRect(0, 0, chart.width, chart.height);
+	ctx.restore();
+    }
+};
+
+  var chart = null;
+  
+function refresh_spots() {
+    let url = 'https://www.sotalive.net/api/sota-pota-spots?region=JA&period=';
+    url += String(prefs['spot_period']);
+    fetch(url)
+	.then(res => res.json())
+	.then(data => {
+	    let datasets = [];
+	    let rc = 0;
+	    Object.keys(data).forEach(function(prog) {
+		Object.keys(data[prog]).forEach(function(ref) {
+		    sp =[]
+		    for (const p of data[prog][ref]) {
+			sp.push(
+			    { x : new Date(p[0]),
+			      y: rc,
+			      z: ref+" "+p[1]+" "+p[2]+" "+p[3]+" "+ p[4]
+			    })
+		    }
+		    datasets.push(
+			{label: ref,
+			 data:sp});
+		    rc += 1;
+		});
+	    });
+
+	    let mychart = document.getElementById('myChart');
+
+	    if (rc < 6)
+		min_height = 100;
+	    else
+		min_height = 200;
+
+	    mychart.height= rc * 10 + min_height;
+	    
+	    let ctx = mychart.getContext('2d');
+	    if (chart) {
+		chart.destroy();
+	    }
+	    chart = new Chart(ctx, {
+		type: 'line',
+
+		data: {
+		    datasets: datasets
+		},
+		options: {
+		    responsive: true,
+		    layout: {
+			padding: {
+			    left:20,
+			    right:20,
+			}
+		    },
+		    plugins: {
+			legend: {
+			    position: 'top',
+			},
+			tooltip: {
+			    backgroundColor :"rgba(19, 58, 95, 09)",
+			    xPading:10,
+			    yPadding:10,
+			    callbacks: {
+				label: function(item, data) {
+				    return item.raw['z'];
+				}
+			    }
+			},
+			customCanvasBackgroundColor:{
+			    color: 'white',
+			}
+		    },
+		    scales: {
+			x: {
+			    type: 'time',
+			    time: {
+				unit: 'hour',
+				displayFormats:{
+				    'hour': 'MM/dd HH:mm',
+				}
+			    }
+			},
+			y: {
+			    display: false,
+			},
+			
+		    }
+		},
+		plugins:[plugin],
+	    });
+	    chart.update();
+	});
+}
+
+refresh_spots();
+setInterval(refresh_spots,60000);
+
+  </script>
 </body>
 </html>
