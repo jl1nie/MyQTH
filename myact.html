@@ -151,9 +151,9 @@ i.semantic-ui-custom {
 
   <nav class="navbar navbar-expand-md navbar-dark bg-dark text-light">
     <span class="navbar-brand" style="cursor: hand;cursor: pointer;"><h4>MyACT</h4></span>
-    <button type="button" class="btn btn-amber" onClick="clickQTHButton()"><span class="fas fa-map-marked-alt"></span></button>
-    <button type="button" class="btn btn-info" data-toggle="modal" data-target="#spots-data"><span class="fas fa-satellite-dish"></span></button>
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-prefs"><span class="fas fa-cog"></span></button>
+    <button type="button" class="btn btn-amber" onClick="clickQTHButton()" title="現在位置を調べる"><span class="fas fa-map-marked-alt" ></span></button>
+    <button type="button" class="btn btn-info" data-toggle="modal" data-target="#spots-data" title="最新スポットを表示"><span class="fas fa-satellite-dish"></span></button>
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-prefs" title="設定"><span class="fas fa-cog"></span></button>
     
     <div id="search_ref"></div>
     <script>
@@ -164,7 +164,7 @@ i.semantic-ui-custom {
   </nav>
   
   <div class = "modal fade" id="spots-data">
-    <div class="modal-dialog">
+    <div class="modal-dialog" style="max-width: 90%;margin:1rem auto;">
       <div class="modal-content">
 	<div class="modal-header">
 	  <b>最新JA スポット</b>
@@ -174,7 +174,7 @@ i.semantic-ui-custom {
 	  </div>
 	  <small><span id="clock_time2" style="cursor: default;" ></span></small>
 	</div>
-	<div class="modal-body">
+	<div id="chart-container" class="modal-body">
 	  <canvas id="myChart"></canvas>
 	</div>
       </div>
@@ -228,7 +228,7 @@ i.semantic-ui-custom {
 	    </div>
 	    <label class="control-label"><u>スポット表示期間</u></label>
 	    <p><b>短</b>&nbsp&nbsp&nbsp
-	      <input id="spot-period" data-slider-id='ex2Slider' type="text" data-slider-min="1" data-slider-max="24" data-slider-step="1" data-slider-value="3"/>&nbsp&nbsp&nbsp&nbsp<b>長</b>
+	      <input id="spot-period" data-slider-id='ex2Slider' type="text" data-slider-min="3" data-slider-max="24" data-slider-step="1" data-slider-value="3"/>&nbsp&nbsp&nbsp&nbsp<b>長</b>
 	    </p>
 	  </div>
           <div class="modal-footer">
@@ -366,7 +366,7 @@ var prefs =
     { 'popup_permanent': true,
       'display_mapcode': false,
       'zoom_threshold': 12,
-      'spot_period': 3,
+      'spot_period': 6,
       'by_call': false,
       'sota_ref': true,
       'pota_ref': true,
@@ -912,7 +912,30 @@ const plugin = {
     }
 };
 
-  var chart = null;
+var chart = null;
+
+  var prevloc = null;
+function locate_ref(loc) {
+    if (loc != prevloc) {
+	let url = 'https://www.sotalive.net/api/sota-jaff-pota?refid='+loc;
+	fetch(url)
+	    .then(res => res.json())
+	    .then(data=> {
+		let r = data['reference'][0];
+		showReference({
+		    coord:[r['lat'], r['lon']],
+		    name: r['name'],
+		    code: r['code'],
+		})
+	    });
+	prevloc = loc;
+    }
+}
+  
+function label_callback(item, data){
+    locate_ref(item.raw['ref']);
+    return item.raw['z'];
+}
   
 function refresh_spots() {
     let url = 'https://www.sotalive.net/api/sota-pota-spots?region=JA';
@@ -929,10 +952,16 @@ function refresh_spots() {
 		Object.keys(data[prog]).forEach(function(ref) {
 		    sp =[]
 		    for (const p of data[prog][ref]) {
+			if (prefs['by_call'])
+			    r = p[1];
+			else
+			    r = ref;
+			
 			sp.push(
 			    { x : new Date(p[0]),
 			      y: rc,
-			      z: ref+" "+p[1]+" "+p[2]+" "+p[3]+" "+ p[4]
+			      z: ref+" "+p[1]+" "+p[2]+" "+p[3]+" "+ p[4],
+			      ref: r,
 			    })
 		    }
 		    datasets.push(
@@ -942,19 +971,19 @@ function refresh_spots() {
 		});
 	    });
 
-	    let mychart = document.getElementById('myChart');
+	    let ctx = document.getElementById('myChart').getContext('2d');
+	    let cnt = document.getElementById('chart-container');
 
-	    if (rc < 6)
-		min_height = 100;
-	    else
-		min_height = 200;
-
-	    mychart.height= rc * 10 + min_height;
+	    ctx.canvas.height= rc * 20 + (rc/3 + 1) * 20 ;
+	    cnt.style.height = ctx.canvas.height + 40;
 	    
-	    let ctx = mychart.getContext('2d');
 	    if (chart) {
 		chart.destroy();
 	    }
+	    let now = new Date();
+	    let spot_from = new Date(now.getTime()- prefs['spot_period'] * 1000 * 3600);
+	    let spot_to = new Date(now.getTime()+ 300 * 1000);
+
 	    chart = new Chart(ctx, {
 		type: 'line',
 
@@ -963,6 +992,12 @@ function refresh_spots() {
 		},
 		options: {
 		    responsive: true,
+		    maintainAspectRatio: false,
+		    elements:{
+			point: {
+			    pointRadius:5,
+			},
+		    },
 		    layout: {
 			padding: {
 			    left:20,
@@ -978,10 +1013,8 @@ function refresh_spots() {
 			    xPading:10,
 			    yPadding:10,
 			    callbacks: {
-				label: function(item, data) {
-				    return item.raw['z'];
-				}
-			    }
+				label: label_callback,
+			    },
 			},
 			customCanvasBackgroundColor:{
 			    color: 'white',
@@ -994,8 +1027,10 @@ function refresh_spots() {
 				unit: 'hour',
 				displayFormats:{
 				    'hour': 'MM/dd HH:mm',
-				}
-			    }
+				},
+			    },
+			    max : spot_to,
+			    min: spot_from,
 			},
 			y: {
 			    display: false,
