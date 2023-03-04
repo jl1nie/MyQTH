@@ -64,7 +64,7 @@
 }
 .modal-header {
     padding-top: 2px;
-    height: 24px;
+    height: 34px;
     padding-bottom: 2px;
 }
 .modal-footer {
@@ -167,10 +167,34 @@ i.semantic-ui-custom {
     <div class="modal-dialog" style="max-width: 90%;margin:1rem auto;">
       <div class="modal-content">
 	<div class="modal-header">
-	  <b>最新JA スポット</b>
-	  <div class="custom-control custom-checkbox">
+	  <div class="dropdown">
+	    <button class="btn btn-default btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false" id="program_dropdown">
+	      SOTA/POTA
+	    </button>
+	    <div class="dropdown-menu">
+	      <a class="dropdown-item" href="javascript:onProgChange(0);"><small>SOTA/POTA</small></a>
+	      <a class="dropdown-item" href="javascript:onProgChange(1);"><small>SOTA</small></a>
+	      <a class="dropdown-item" href="javascript:onProgChange(2);"><small>POTA</small></a>
+	    </div>
+	  </div>
+	  <div class="dropdown">
+	  <button class="btn btn-default btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false" id="period_dropdown">
+	    Last 6H
+	  </button>
+	  <div class="dropdown-menu">
+	    <a class="dropdown-item" href="javascript:onPeriodChange(3);"><small>3</small></a>
+	    <a class="dropdown-item" href="javascript:onPeriodChange(6);"><small>6</small></a>
+	    <a class="dropdown-item" href="javascript:onPeriodChange(9);"><small>9</small></a>
+	    <a class="dropdown-item" href="javascript:onPeriodChange(12);"><small>12</small></a>
+	    <a class="dropdown-item" href="javascript:onPeriodChange(15);"><small>15</small></a>
+	    <a class="dropdown-item" href="javascript:onPeriodChange(18);"><small>18</small></a>
+	    <a class="dropdown-item" href="javascript:onPeriodChange(21);"><small>21</small></a>
+	    <a class="dropdown-item" href="javascript:onPeriodChange(24);"><small>24</small></a>
+	  </div>
+	</div>
+	<div class="custom-control custom-checkbox">
 	    <input class="custom-control-input" type="checkbox" value="" id="by_call" onclick="clickPrefs();refresh_spots()">
-	    <label class="custom-control-label" for="by_call">コール別</label>
+	    <label class="custom-control-label" for="by_call"><small>By Callsign</small></label>
 	  </div>
 	  <small><span id="clock_time2" style="cursor: default;" ></span></small>
 	</div>
@@ -226,10 +250,12 @@ i.semantic-ui-custom {
 	      <input class="custom-control-input" type="checkbox" value="" id="display_mapcode" onclick="clickPrefs()">
 	      <label class="custom-control-label" for="display_mapcode"> MAPCODEを表示<br><small>(「マップコード」および「MAPCODE」は㈱デンソーの登録商標です)</small></label>
 	    </div>
+	    <!--
 	    <label class="control-label"><u>スポット表示期間</u></label>
 	    <p><b>短</b>&nbsp&nbsp&nbsp
 	      <input id="spot-period" data-slider-id='ex2Slider' type="text" data-slider-min="3" data-slider-max="24" data-slider-step="1" data-slider-value="3"/>&nbsp&nbsp&nbsp&nbsp<b>長</b>
 	    </p>
+	    -->
 	  </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal" onClick="closePrefs()">Close</button>
@@ -418,7 +444,7 @@ function readCookie(pref) {
 	}
 	else if (k == 'spot_period') {
 	    if (ck  == undefined) {
-		ck = '3';
+		ck = '6';
 		Cookies.set(k, ck,{expires: 180, SameSite:'Lax'});
 	    }
 	    else
@@ -585,11 +611,11 @@ function clock() {
     var now = new Date();
     var tm = now.toString();
     tm  = tm.replace(/:\d{2} GMT\+.+/,'');
-    var tm2 =`
-${now.getFullYear().toString().slice(-2)}/${("00"+(now.getMonth()+1).toString()).slice(-2)}/${("00"+now.getDate().toString()).slice(-2)} ${("00"+now.getHours().toString()).slice(-2)}:${("00"+now.getMinutes().toString()).slice(-2)}`; 
+    var tm2 =`${now.getFullYear().toString().slice(-2)}/${("00"+(now.getMonth()+1).toString()).slice(-2)}/${("00"+now.getDate().toString()).slice(-2)} ${("00"+now.getHours().toString()).slice(-2)}:${("00"+now.getMinutes().toString()).slice(-2)}`;
+    var tm3 =`${("00"+(now.getMonth()+1).toString()).slice(-2)}/${("00"+now.getDate().toString()).slice(-2)} ${("00"+now.getHours().toString()).slice(-2)}:${("00"+now.getMinutes().toString()).slice(-2)}`; 
 
     document.getElementById("clock_time").innerHTML='&nbsp'+ tm2 + '&nbsp' + geomagindex;
-    document.getElementById("clock_time2").innerHTML='&nbsp'+ tm2 + '&nbsp' + geomagindex;
+    document.getElementById("clock_time2").innerHTML='&nbsp'+ tm3;
 }
 
 function escapeStr(str) {
@@ -913,8 +939,9 @@ const plugin = {
 };
 
 var chart = null;
-
-  var prevloc = null;
+var prevloc = null;
+var target_prog = ['sota', 'pota'];
+  
 function locate_ref(loc) {
     if (loc != prevloc) {
 	let url = 'https://www.sotalive.net/api/sota-jaff-pota?refid='+loc;
@@ -931,12 +958,43 @@ function locate_ref(loc) {
 	prevloc = loc;
     }
 }
-  
+
 function label_callback(item, data){
     locate_ref(item.raw['ref']);
     return item.raw['z'];
 }
-  
+
+function onProgChange(prog) {
+    let drop = document.getElementById('program_dropdown');
+    let prev_prog = target_prog;
+    
+    if (prog == 0) {
+	drop.textContent = 'SOTA/POTA';
+	target_prog = ['pota','sota'];
+	
+    } else if (prog == 1) {
+	drop.textContent = 'SOTA';
+	target_prog = ['sota'];
+
+    } else if (prog == 2) {
+	drop.textContent = 'POTA';
+	target_prog = ['pota'];
+    }
+    if (prev_prog != target_prog) {
+	refresh_spots();
+    } 
+
+}
+
+function onPeriodChange(p) {
+    let drop = document.getElementById('period_dropdown');
+    drop.textContent = 'Last '+String(p) + 'H';
+    if (prefs['spot_period'] != p) {
+	prefs['spot_period'] = p;
+        closePrefs();
+    }
+}
+
 function refresh_spots() {
     let url = 'https://www.sotalive.net/api/sota-pota-spots?region=JA';
     if (prefs['by_call']) {
@@ -949,26 +1007,28 @@ function refresh_spots() {
 	    let datasets = [];
 	    let rc = 0;
 	    Object.keys(data).forEach(function(prog) {
-		Object.keys(data[prog]).forEach(function(ref) {
-		    sp =[]
-		    for (const p of data[prog][ref]) {
-			if (prefs['by_call'])
-			    r = p[1];
-			else
-			    r = ref;
-			
-			sp.push(
-			    { x : new Date(p[0]),
-			      y: rc,
+		if (target_prog.includes(prog)) {
+		    Object.keys(data[prog]).forEach(function(ref) {
+			sp =[]
+			for (const p of data[prog][ref]) {
+			    if (prefs['by_call'])
+				r = p[1];
+			    else
+				r = ref;
+			    
+			    sp.push(
+				{ x : new Date(p[0]),
+				  y: rc,
 			      z: ref+" "+p[1]+" "+p[2]+" "+p[3]+" "+ p[4],
-			      ref: r,
-			    })
-		    }
-		    datasets.push(
-			{label: ref,
-			 data:sp});
-		    rc += 1;
-		});
+				  ref: r,
+				})
+			}
+			datasets.push(
+			    {label: ref,
+			     data:sp});
+			rc += 1;
+		    });
+		};
 	    });
 
 	    let ctx = document.getElementById('myChart').getContext('2d');
@@ -1007,6 +1067,7 @@ function refresh_spots() {
 		    plugins: {
 			legend: {
 			    position: 'top',
+			    reverse: true,
 			},
 			tooltip: {
 			    backgroundColor :"rgba(19, 58, 95, 09)",
@@ -1043,10 +1104,9 @@ function refresh_spots() {
 	    chart.update();
 	});
 }
-
-refresh_spots();
-setInterval(refresh_spots,60000);
-
-  </script>
+  onPeriodChange(prefs['spot_period']);
+  refresh_spots();
+  setInterval(refresh_spots,60000);
+</script>
 </body>
 </html>
