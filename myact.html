@@ -1104,9 +1104,21 @@ function refresh_spots() {
 	    chart.update();
 	});
 }
+
   onPeriodChange(prefs['spot_period']);
-  refresh_spots();
-  setInterval(refresh_spots,60000);
+
+  var spot_timer_id = null;
+  
+  $('#spots-data').on('show.bs.modal', function(e) {
+      refresh_spots();
+      spot_timer_id = setInterval(refresh_spots,60000);
+  });
+  
+  $('#spots-data').on('hide.bs.modal', function(e) {
+      if (spot_timer_id)
+	  clearInterval(spot_timer_id);
+  });
+  
 </script>
 </body>
 </html>
