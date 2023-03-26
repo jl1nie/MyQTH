@@ -248,6 +248,10 @@ i.semantic-ui-custom {
 	      <label class="custom-control-label" for="popup_permanent"> 公園名を常に表示</label>
 	    </div>
 	    <div class="custom-control custom-checkbox">
+	      <input class="custom-control-input" type="checkbox" value="" id="link_googlemap" onclick="clickPrefs()">
+	      <label class="custom-control-label" for="link_googlemap"> Google Mapにリンク</label>
+	    </div>
+	    <div class="custom-control custom-checkbox">
 	      <input class="custom-control-input" type="checkbox" value="" id="display_mapcode" onclick="clickPrefs()">
 	      <label class="custom-control-label" for="display_mapcode"> MAPCODEを表示<br><small>(「マップコード」および「MAPCODE」は㈱デンソーの登録商標です)</small></label>
 	    </div>
@@ -304,11 +308,21 @@ function redrawPopup() {
     }
 }
 
+function locURI(lat, lng, zoom) {
+    var gsiuri= 'https://maps.gsi.go.jp/',
+	googleuri = 'https://www.google.com/maps/@?api=1&map_action=map&';
+    
+    if (prefs['link_googlemap']) {
+	return googleuri + 'center=' + lat + ',' + lng + '&zoom=' + zoom + '&basemap=satellite';
+    } else {
+	return gsiuri + '#' + zoom + '/' + lat + '/' + lng;
+    }
+}
+
 function displayPopup(area, latlng, isMarker, isGPS) {
     var lat = Math.round(latlng.lat * 1000000,4)/1000000,
 	lng = Math.round(latlng.lng * 1000000,4)/1000000,
-	z = map.getZoom(),
-	gsiuri= 'https://maps.gsi.go.jp/#15/';
+	z = map.getZoom();
 
     if ( z > 11)
 	wz = 11
@@ -337,10 +351,10 @@ function displayPopup(area, latlng, isMarker, isGPS) {
 	} else {
 	    accu = '<small>[' + res['hsrc'].replace('（','').replace('）','') + ']</small>'
 
-	    if (isGPS) 
-		pos = '<br>位置:<a href="'+ gsiuri + latlng.lat + '/' + latlng.lng + '" target="_blank">' + lat + ',' + lng +'</a>';
+	    if (isGPS)
+		pos = '<br>位置:<a href="' + locURI(lat, lng, z) + '" target="_blank">' + lat + ',' + lng +'</a>';
 	    else
-		pos = '<i><br>位置:<a href="'+ gsiuri + latlng.lat + '/' + latlng.lng + '" target="_blank">' + lat + ',' + lng +'</a></i>';
+		pos = '<i><br>位置:<a href="' + locURI(lat, lng, z) + '" target="_blank">'  + lat + ',' + lng +'</a></i>';
 	    
 	    if (res['type'] == 'JCC') {
 			if (res['ward'] != undefined)
@@ -392,6 +406,7 @@ function displayPopup(area, latlng, isMarker, isGPS) {
 var prefs =
     { 'popup_permanent': true,
       'display_mapcode': false,
+      'link_googlemap': false, 
       'zoom_threshold': 12,
       'spot_period': 6,
       'by_call': false,
