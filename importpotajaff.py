@@ -41,7 +41,7 @@ for elem in js['features']:
         uid += 1
         if jaff == 'JAFF-0024':
             print(f'UID={uid}')
-        elem['properties'] = { 'JAFF': jaff, 'POTA': pota, 'UID': str(uid)}
+        elem['properties'] = { 'JAFF': jaff, 'POTA': pota, 'PID': str(parkid), 'UID': str(uid)}
     else:
         elem['properties'] = { 'JAFF': parkid , 'POTA': parkid}
         print(f'Error: {parkid} {parkname}')

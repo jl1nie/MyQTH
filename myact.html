@@ -310,10 +310,14 @@ function redrawPopup() {
 
 function locURI(lat, lng, zoom) {
     var gsiuri= 'https://maps.gsi.go.jp/',
-	googleuri = 'https://www.google.com/maps/@?api=1&map_action=map&';
+	googleuri = 'https://www.google.com/maps/@?api=1&map_action=map&',
+    	googleuri2 = 'https://www.google.com/maps/search/?api=1&query=';
     
     if (prefs['link_googlemap']) {
-	return googleuri + 'center=' + lat + ',' + lng + '&zoom=' + zoom + '&basemap=satellite';
+	var res =googleuri + 'center=' + lat + ',' + lng + '&zoom=' + zoom + '&basemap=satellite',
+	    res2 =googleuri2 + lat + '%2C' + lng;
+
+	return res2;
     } else {
 	return gsiuri + '#' + zoom + '/' + lat + '/' + lng;
     }
@@ -873,12 +877,13 @@ var geojson = L.topoJson(null, {
 	layer.on('contextmenu', function(e) {
 	    displayPopup({'name':feature.properties.NAME,
 			  'pota':feature.properties.POTA,
-			  'jaff':feature.properties.JAFF+'('+feature.properties.UID+')'},
+			  'jaff':feature.properties.JAFF+'('+feature.properties.PID+','+feature.properties.UID+')'},
 			 e.latlng, false, false);
 	    L.DomEvent.stop(e);
 	});
     }
 });
+
 
 geojson.addTo(map);
 
@@ -888,7 +893,7 @@ async function getGeoData(url) {
     return data;
 }
 
-getGeoData('json/jaffpota-annotated310.json').then(data => geojson.addData(data));
+getGeoData('json/jaffpota-annotated-v2.json').then(data => geojson.addData(data));
 
 userChange = true;
 
