@@ -660,6 +660,12 @@ function readCookie(pref) {
 		el.checked = false;
 	}
     }
+    
+    if (pref['show_potaactlog'])
+	potaLog('show-act')
+    else
+	potaLog('show-hunt')
+    
     potaLog('check');
 }
 
