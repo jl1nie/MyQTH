@@ -1267,7 +1267,7 @@ async function refresh_spots() {
 		    })
 	    }
 	    
-	    if (cond) {
+	    if (cond||prefs['by_call']) {
 		d = {label: ref,
 		     pointRadius: 5,
 		     data:sp};
@@ -1275,7 +1275,7 @@ async function refresh_spots() {
 	    else { 
 		d = {label: ref,
 		     pointRadius: 8,
-		     pointBoderWodth:2,
+		     pointBoderWidth:2,
 		     data:sp};
 	    }
 	    datasets.push(d)
