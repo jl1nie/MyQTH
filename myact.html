@@ -153,7 +153,7 @@ i.semantic-ui-custom {
     <span class="navbar-brand" style="cursor: hand;cursor: pointer;"><h4>MyACT</h4></span>
     <button type="button" class="btn btn-amber" onClick="clickQTHButton()" title="現在位置を調べる"><span class="fas fa-map-marked-alt" ></span></button>
     <button type="button" class="btn btn-info" data-toggle="modal" data-target="#spots-data" title="最新スポットを表示"><span class="fas fa-satellite-dish"></span></button>
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-prefs" title="設定"><span class="fas fa-cog"></span></button>
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-prefs" onclick="clickPrefs()" title="設定"><span class="fas fa-cog"></span></button>
     
     <div id="search_ref"></div>
     <script>
@@ -255,12 +255,34 @@ i.semantic-ui-custom {
 	      <input class="custom-control-input" type="checkbox" value="" id="display_mapcode" onclick="clickPrefs()">
 	      <label class="custom-control-label" for="display_mapcode"> MAPCODEを表示<br><small>(「マップコード」および「MAPCODE」は㈱デンソーの登録商標です)</small></label>
 	    </div>
-	    <!--
-	    <label class="control-label"><u>スポット表示期間</u></label>
-	    <p><b>短</b>&nbsp&nbsp&nbsp
-	      <input id="spot-period" data-slider-id='ex2Slider' type="text" data-slider-min="3" data-slider-max="24" data-slider-step="1" data-slider-value="3"/>&nbsp&nbsp&nbsp&nbsp<b>長</b>
-	    </p>
-	    -->
+	    <div class ="form-group">
+	      <label class="control-label"><u>POTAログ表示</u></label>
+	      <div class="custom-control custom-checkbox">
+		<input class="custom-control-input" type="checkbox" value="" id="show_potalog" onclick="clickPrefs()">
+		<label class="custom-control-label" for="show_potalog"> POTAログを表示</label>
+ 		<div class="custom-file">
+		  <input type="file" accept=".csv" style="width:10em"
+			 class="custom-file-input" id="file_input" name="filename" required>
+		  <label class="custom-file-label" for="filename">POTA Logファイルを選択</label>
+		  <div class="invalid-feedback">ファイルを指定してください</div>
+		</div>
+		<button type="button" class="btn btn-default" onClick="potaLog('upload')">Upload</button>
+	      </div>
+	      <div class="custom-control custom-checkbox">
+		<input class="form-check-input" type="radio" name="potalog_type" id="show_potaactlog" onclick="potaLog('show-act')">
+		<label class="form-check-label" for="show_potaactlog">
+		  <div id="pota_activator_uuid">-</div>
+		</label>
+		<button type="button" id="activator-log" class="btn btn-warning" onClick="potaLog('del-act')">DEL </button>
+	      </div>
+	      <div class="custom-control custom-checkbox">
+		<input class="form-check-input" type="radio" name="potalog_type" id="show_potaactlog2" onclick="potaLog('show-hunt')">
+		<label class="form-check-label" for="show_potaactlog2">
+		  <div id="pota_hunter_uuid">-</div>
+		</label>
+		<button type="button" id="hunter-log" class="btn btn-warning" onClick="potaLog('del-hunt')">DEL</button>
+	      </div>
+	    </div>
 	  </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal" onClick="closePrefs()">Close</button>
@@ -323,6 +345,118 @@ function locURI(lat, lng, zoom) {
     }
 }
 
+async function potaLog(command){
+    let keys = ['pota_activator_uuid','pota_hunter_uuid'];
+    let res = null;
+    
+    switch(command) {
+    case 'check':
+	for(var k of keys) {
+	    var el,mesg;
+	    let res = await fetch(sotalive+
+				  'api/myact/potalog?&command=CHECK'
+				  +'&logid='+prefs[k]);
+	    res = await res.json();
+	    if (res['errors'] == 'OK') {
+		prefs[k] = res['uuid'];
+		el = document.getElementById(k);
+		if (k.includes('hunter')) {
+		    mesg = '(Hunter)';
+		} else {
+		    mesg = '(Activator)';
+		}
+		el.innerText = res['create'] + mesg;
+	    } else {
+		el = document.getElementById(k);
+		el.innerText = '----';
+	    }
+	}
+	break;
+
+    case 'del-act':
+	k = 0;
+    case 'del-hunt':
+	if (command.includes('hunt'))
+	k = 1;
+
+	if (prefs[keys[k]] == null)
+	    break;
+	
+	res = await fetch(sotalive+
+			  'api/myact/potalog?&command=DELETE'
+			  +'&logid='+prefs[keys[k]]);
+	res = await res.json();
+	if (res['errors'] == 'OK') {
+	    prefs[keys[k]] = null
+	    el = document.getElementById(keys[k]);
+	    el.innerText = '----';
+	    if (k == 0)
+		potaLog('show-hunt');
+	    else
+		potaLog('show-act');
+	}
+	potaLog('check');
+	break;
+
+    case 'show-act':
+	prefs['show_potalog'] = true;
+	prefs['show_potaactlog'] = true;
+	el = document.getElementById('show_potaactlog');
+	el.checked = true;
+	el = document.getElementById('show_potalog');
+	el.checked = true;
+	break;
+
+    case 'show-hunt':
+	prefs['show_potalog'] = true;
+	prefs['show_potaactlog'] = false;
+	el = document.getElementById('show_potaactlog2');
+	el.checked = true;
+	el = document.getElementById('show_potalog');
+	el.checked = true;
+	break;
+
+    case 'upload':
+	const file_input = document.getElementById('file_input');
+	const fd = new FormData();
+	fd.append('uploadfile',file_input.files[0]);
+	res = await fetch(sotalive+
+			  'api/myact/potalog?&command=UPLOAD'+
+			  '&logid_act='+prefs[keys[0]]+
+			  '&logid_hunt='+prefs[keys[1]],{
+			      method: 'POST',
+			      body: fd
+			  });
+	res = await res.json();
+
+	if (res['errors'] == 'OK') {
+	    if (res['logtype'] == 'ACT') {
+		prefs[keys[0]] = res['uuid'];
+		potaLog('show-act');
+	    }
+	    else {
+		prefs[keys[1]] = res['uuid'];
+		potaLog('show-hunt');
+	    }
+	    potaLog('check');
+	}
+	
+	break;
+
+    default:
+	console.log("Unknown command" + command);
+	break;
+    }
+ }
+ 
+  
+function getLogID() {
+    if (prefs['show_potaactlog'])
+	return prefs['pota_activator_uuid'];
+    else
+	return prefs['pota_hunter_uuid']
+}
+  
 function displayPopup(area, latlng, isMarker, isGPS) {
     var lat = Math.round(latlng.lat * 1000000,4)/1000000,
 	lng = Math.round(latlng.lng * 1000000,4)/1000000,
@@ -339,84 +473,115 @@ function displayPopup(area, latlng, isMarker, isGPS) {
 	Cookies.set('my_qth_lat',lat)
 	Cookies.set('my_qth_lng',lng)
     }
-  
-    var resfun = function(res) {
-	if ('alt' in latlng) {
-	    altitude = res['elevation'] + 'm (GPS測位値:'+latlng.alt+'m)';
-	} else {
-	    altitude = res['elevation'] + 'm';	    
-	}
-	
-	if (res['errors'] == 'OUTSIDE_JA') {
-	    mesg = 'Pos: ' + lat +','+ lng + '<br>GL: '+res['maidenhead'];
-        }
-	else if (res['errors'] != 'OK') {
- 	    mesg = 'Parameter out of range.';
-	} else {
-	    accu = '<small>[' + res['hsrc'].replace('（','').replace('）','') + ']</small>'
+    
+    var query;
 
-	    if (isGPS)
-		pos = '<br>位置:<a href="' + locURI(lat, lng, z) + '" target="_blank">' + lat + ',' + lng +'</a>';
-	    else
-		pos = '<i><br>位置:<a href="' + locURI(lat, lng, z) + '" target="_blank">'  + lat + ',' + lng +'</a></i>';
-	    
-	    if (res['type'] == 'JCC') {
-			if (res['ward'] != undefined)
-			    mesg = 'JCC'+res['jcc']+ ' 区番号:' + res['ward'] + '<br>' + res['pref'] + res['addr2'] + res['addr1'] + '<br>GL:' + res['maidenhead'] + pos + '<br> 標高:' + altitude;
-			else
-			    mesg = 'JCC'+res['jcc']+ '<br>' + res['pref'] + res['addr2'] + res['addr1'] + '<br>GL:' + res['maidenhead'] + pos + '<br> 標高:' + altitude;
+    if (area['pota'] && prefs['show_potalog'])
+	query = '&programs=SOTAPOTA'+'&lat='+latlng.lat+'&lon='+latlng.lng+"&srange=300"+
+	"&parkid="+area['pota']+"&logid="+getLogID();
+    else
+	query = '&programs=SOTA'+'&lat='+latlng.lat+'&lon='+latlng.lng+"&srange=300";
+    
+    fetch(sotalive+'api/myact/search?'+query)
+	.then(res => res.json())
+	.then(res => {
+	    var potamesg = ''
+	    if (res['errors'] == 'OK') {
+		if (res['summits'].length >0) {
+		    s = res['summits'][0]
+		    l = {'lat':s['lat'],'lng':s['lon']}
+		    displayActivationZone(l, -0.8);
 		}
-		else
-		    mesg = 'JCG'+res['jcg']+ res['hamlog']+ '<br>' + res['pref'] + res['addr2'] + res['addr1']+ '<br>GL:' + res['maidenhead'] + pos + '<br> 標高:' + altitude;
-	}
-	
-	if (prefs['display_mapcode']) 
-	    mapcode = '<br><img src="img/mc_long.jpg" height=14px> &nbsp' + res['mapcode'];
-	else
-	    mapcode = '';
+		if (res['parks'].length>0) {
+		    p = res['parks'][0];
+		    if (p['attempt']>0) {
+			potamesg = "<br>Activate/Attempt: "+p['activate'] + "/" + p['attempt']
 
-	weather= '&nbsp&nbsp<a href="' + windyuri +'" target="_blank"><img src="svg/sun.svg"><img src="svg/cloud.svg"><img src="svg/rain.svg"></a>' + mapcode;
-	
-	if (isMarker) {
-	    mesg = '<h4>' + mesg + weather + '</h4>';
-	    if (qth_marker != null)
-		qth_marker.bindPopup(mesg).openPopup();
-	} else {
-	    cnt = selectRef(area, true);
-	    if (cnt != '')
-		cnt = '<b>' + cnt + '</b>' + mesg + weather;
-	    else
-		cnt = mesg + weather;
-	    popup.setContent(cnt);
-	    popup.setLatLng(latlng).openOn(map);
-	    last_area = area;
-	    last_mesg = mesg;
-	}
-    }
-    
-    var resfun2 = function(res) {
-	if (res['errors'] == 'OK') {
-	    s = res['summits'][0]
-	    l = {'lat':s['lat'],'lng':s['lon']}
-	    displayActivationZone(l, -0.8);
-	} 
-    }
-    
-    $.getJSON(sotalive+'api/reverse-geocoder/LonLatToAddressElevMapCode?','lat='+latlng.lat+'&lon='+latlng.lng,resfun);
-
-    $.getJSON(sotalive+'api/sotasummits/JA?','&lat='+latlng.lat+'&lon='+latlng.lng+"&srange=300", resfun2);
+		    }
+		    potamesg += "<br>QSOs: " + p['QSOs'] + "<br>";
+		}
+	    };
+	    fetch(sotalive+
+		  'api/reverse-geocoder/LonLatToAddressElevMapCode?'
+		  +'lat='+latlng.lat+'&lon='+latlng.lng)
+		.then(res => res.json())
+		.then(res => {
+		    if ('alt' in latlng) {
+			altitude = res['elevation'] + 'm (GPS測位値:'+latlng.alt+'m)';
+		    } else {
+			altitude = res['elevation'] + 'm';	    
+		    }
+	    	    if (res['errors'] == 'OUTSIDE_JA') {
+			mesg = 'Pos: ' + lat +','+ lng + '<br>GL: '+res['maidenhead'];
+		    }
+		    else if (res['errors'] != 'OK') {
+ 			mesg = 'Parameter out of range.';
+		    } else {
+			accu = '<small>[' + res['hsrc'].replace('（','').replace('）','') + ']</small>'
+			
+			if (isGPS)
+			    pos = '<br>位置:<a href="' + locURI(lat, lng, z) +
+			    '" target="_blank">' + lat + ',' + lng +'</a>';
+			else
+			    pos = '<i><br>位置:<a href="' + locURI(lat, lng, z) +
+			    '" target="_blank">'  + lat + ',' + lng +'</a></i>';
+			
+			if (res['type'] == 'JCC') {
+			    if (res['ward'] != undefined)
+				mesg = 'JCC'+res['jcc']+ ' 区番号:' + res['ward'] + '<br>' +
+				res['pref'] + res['addr2'] + res['addr1'] + '<br>GL:' + res['maidenhead'] +
+				pos + '<br> 標高:' + altitude;
+			    else
+				mesg = 'JCC'+res['jcc']+ '<br>' + res['pref'] + res['addr2'] + res['addr1'] +
+				'<br>GL:' + res['maidenhead'] + pos + '<br> 標高:' + altitude;
+			}
+			else
+			    mesg = 'JCG'+res['jcg']+ res['hamlog']+ '<br>' + res['pref'] + res['addr2'] +
+			    res['addr1']+ '<br>GL:' + res['maidenhead'] + pos + '<br> 標高:' + altitude;
+		    }
+		    
+		    if (prefs['display_mapcode']) 
+			mapcode = '<br><img src="img/mc_long.jpg" height=14px> &nbsp' + res['mapcode'];
+		    else
+			mapcode = '';
+		    
+		    weather= '&nbsp&nbsp<a href="' + windyuri +
+			'" target="_blank"><img src="svg/sun.svg"><img src="svg/cloud.svg"><img src="svg/rain.svg"></a>' +
+			mapcode;
+		    
+		    if (isMarker) {
+			mesg = '<h4>' + mesg + weather + '</h4>';
+			if (qth_marker != null)
+			    qth_marker.bindPopup(mesg).openPopup();
+		    } else {
+			cnt = selectRef(area, true);
+			if (cnt != '')
+			    cnt = '<b>' + cnt + '</b>' + mesg + weather;
+			else
+			    cnt = mesg + weather;
+			popup.setContent(cnt + potamesg);
+			popup.setLatLng(latlng).openOn(map);
+			last_area = area;
+			last_mesg = mesg;
+		    }
+		});
+	});
 }
 
 var prefs =
     { 'popup_permanent': true,
       'display_mapcode': false,
       'link_googlemap': false, 
-      'zoom_threshold': 12,
-      'spot_period': 6,
       'by_call': false,
       'sota_ref': true,
       'pota_ref': true,
-      'jaff_ref': true
+      'jaff_ref': true,
+      'show_potalog': false,
+      'show_potaactlog': true,
+      'zoom_threshold': 12,
+      'spot_period': 6,
+      'pota_hunter_uuid': null,
+      'pota_activator_uuid': null,
     }
 
 $('#zoom-threshold').slider({
@@ -436,6 +601,8 @@ $('#spot-period').slider({
 function clickPrefs() {
     for(var k in prefs) {
 	if (k == 'zoom_threshold' || k == 'spot_period') {
+	}
+	else if (k == 'pota_activator_uuid' || k == 'pota_hunter_uuid') {
 	}
 	else {
 	    var el = document.getElementById(k);
@@ -471,6 +638,9 @@ function readCookie(pref) {
 		pref[k] = Number(ck)
 	    $('#spot-period').slider('setValue',Number(ck))
 	}
+	else if (k == 'pota_activator_uuid' || k == 'pota_hunter_uuid') {
+	    pref[k] = ck;
+	}
 	else {
 	    if (ck  == undefined) {
 		if (pref[k])
@@ -490,11 +660,15 @@ function readCookie(pref) {
 		el.checked = false;
 	}
     }
+    potaLog('check');
 }
 
 function closePrefs() {
     Cookies.set('zoom_threshold',String(prefs['zoom_threshold']),{expires: 180, SameSite:'Lax'})
     Cookies.set('spot_period',String(prefs['spot_period']),{expires: 180, SameSite:'Lax'})
+    Cookies.set('pota_activator_uuid',prefs['pota_activator_uuid'],{expires: 180, SameSite:'Lax'})
+    Cookies.set('pota_hunter_uuid',prefs['pota_hunter_uuid'],{expires: 180, SameSite:'Lax'})
+    clickPrefs();
     redrawPopup();
     redrawMarkers();
     refresh_spots();
@@ -502,7 +676,7 @@ function closePrefs() {
 
 readCookie(prefs);
 
-  function selectRef(area, addhref) {
+function selectRef(area, addhref) {
   var pname = '';
 
   if (area['pota'] == undefined || area['jaff'] == undefined)
@@ -620,11 +794,13 @@ function clickQTHButton () {
 };
 
 function kp_index() {
-    $.getJSON(sotalive + "api/geomag",function(geomag) {
-	kp = geomag.Kp[0];
-	ap = geomag.Ap;
-	geomagindex = 'A:'+ap +' K:' +kp;
-    });
+    fetch(sotalive + "api/geomag")
+	.then(res => res.json())
+	.then(geomag=> {
+	    kp = geomag.Kp[0];
+	    ap = geomag.Ap;
+	    geomagindex = 'A:'+ap +' K:' +kp;
+	});
 }
 
 function clock() {
@@ -673,7 +849,7 @@ function popupSummitMarker(latlng) {
 }
 
 function placeSummitMarkers(nw ,se, z) {
-    var popup,elev,prefix,level;
+    var popup,elev,prefix,level,query,programs,uuid;
 
     if (z >= prefs['zoom_threshold']) {
 	elev = 0;
@@ -695,49 +871,63 @@ function placeSummitMarkers(nw ,se, z) {
 	elev = 4000;
 	level = 30;
     }
-    
-    prefix = 'ja?'
-    
-    $.getJSON(sotalive+'api/sotasummits/'+prefix,'lat='+nw[0]+'&lon='+nw[1]+'&lat2='+se[0]+'&lon2='+se[1]+'&elevation='+elev+'&park='+level +'&flag=0',function(res) {
-	if (res['errors'] != 'OK') {
-	    return;
-	}
-	if (z > 11)
-	    wz = 11
-	else
-	    wz = z;
-	
-	if (prefs['sota_ref'])
-	    for(const s of res['summits']) {
-		var sname,
-		windyuri = '<a href="https://www.windy.com/?'+ s['lat'] + ',' + s['lon'] + ',' + wz + ',d:picker" target="_blank"><img src="svg/sun.svg"><img src="svg/cloud.svg"><img src="svg/rain.svg"></a>';   
-		sname = s['name_k']
-		scode = '<a target="_blank" href="https://summits.sota.org.uk/summit/' + s['code'] + '">' + s['code'] + ' ' + s['name'] + '</a>'
-		var mesg = '<b>'+scode+'</b><br>'+sname+'&nbsp'+s['elev']+'m,'+s['pts']+'pts (+' + s['bonus'] +')&nbsp'+ windyuri + '<br>GL:' + s['maidenhead'] + '<br>' +escapeStr(s['desc'])
-		mesg += '<br>Activations: ' + s['actcnt']
-		if (s['actcnt']!= 0)
-		    mesg += '<br>Last Activation: ' + s['lastact'] + '(' + s['lastcall'] + ')'
-		popup = false
-		if (_popupMarker &&
-		    s['lat'] == _popupMarker[0] &&
-		    s['lon'] == _popupMarker[1]) {
-		    popup = true
-		    _popupMarker = null
-		}
-		show_summit_marker.push(
-		    placeSummitMarker([s['lat'],s['lon']], z, s['elev'], s['actcnt'], mesg, popup))
-		
-	    }
-	for(const s of res['parks']) {
 
-	    var pname = selectRef({'pota':s['pota'],
-				 'jaff':s['jaff'],
-				 'name':s['name_k']}, false);
-	    if (pname != '')
-		show_summit_marker.push(
-		    placeParkMarker([s['lat'],s['lon']], z, s))
-	}
-    })
+    programs = 'JAFFPOTA';
+    if (prefs['sota_ref'])
+	programs += 'SOTA';
+
+    if (prefs['show_potalog']) {
+	uuid = getLogID();
+	query = '&programs='+programs+'&lat='+nw[0]+
+	    '&lon='+nw[1]+'&lat2='+se[0]+'&lon2='+se[1]+
+	    '&elevation='+elev+'&parkarea='+level+'&logid='+uuid;
+    } else
+	query = '&programs='+programs+'&lat='+nw[0]+
+	'&lon='+nw[1]+'&lat2='+se[0]+'&lon2='+se[1]+
+	'&elevation='+elev+'&parkarea='+level;
+    
+    
+    fetch(sotalive+'api/myact/search?'+query)
+	.then(res => res.json())
+	.then(res => {
+	    if (res['errors'] != 'OK') {
+		return;
+	    }
+	    if (z > 11)
+		wz = 11
+	    else
+		wz = z;
+	    if (prefs['sota_ref'])
+		for(const s of res['summits']) {
+		    var sname,
+			windyuri = '<a href="https://www.windy.com/?'+ s['lat'] + ',' + s['lon'] + ',' + wz + ',d:picker" target="_blank"><img src="svg/sun.svg"><img src="svg/cloud.svg"><img src="svg/rain.svg"></a>';   
+		    sname = s['name_k']
+		    scode = '<a target="_blank" href="https://summits.sota.org.uk/summit/' + s['code'] + '">' + s['code'] + ' ' + s['name'] + '</a>'
+		    var mesg = '<b>'+scode+'</b><br>'+sname+'&nbsp'+s['elev']+'m,'+s['pts']+'pts (+' + s['bonus'] +')&nbsp'+ windyuri + '<br>GL:' + s['maidenhead'] + '<br>' +escapeStr(s['desc'])
+		    mesg += '<br>Activations: ' + s['actcnt']
+		    if (s['actcnt']!= 0)
+			mesg += '<br>Last Activation: ' + s['lastact'] + '(' + s['lastcall'] + ')'
+		    popup = false
+		    if (_popupMarker &&
+			s['lat'] == _popupMarker[0] &&
+			s['lon'] == _popupMarker[1]) {
+			popup = true
+			_popupMarker = null
+		    }
+		    show_summit_marker.push(
+			placeSummitMarker([s['lat'],s['lon']], z, s['elev'], s['actcnt'], mesg, popup))
+		
+		}
+	    for(const s of res['parks']) {
+		
+		var pname = selectRef({'pota':s['pota'],
+				       'jaff':s['jaff'],
+				       'name':s['name_k']}, false);
+		if (pname != '')
+		    show_summit_marker.push(
+			placeParkMarker([s['lat'],s['lon']], z, s))
+	    }
+	});
 }
 
 function placeSummitMarker(coords, z, elev, actcnt, mesg, popupfl) {
@@ -799,11 +989,17 @@ function placeSummitMarker(coords, z, elev, actcnt, mesg, popupfl) {
 
 function placeParkMarker(coords, z,  parks) {
 
+    if (parks['date']!=null) {
+	markerColor = 'red';
+    } else {
+	markerColor = 'green-light';
+    }
+    
     var options = {
         prefix: 'icon'
         ,icon: 'tree'
         ,shape: 'square'
-        ,markerColor: 'green-light'
+        ,markerColor: markerColor
         ,extraClasses: 'semantic-ui-custom'
     }, area = {
 	pota : parks['pota'],
@@ -961,7 +1157,26 @@ const plugin = {
 
 var chart = null;
 var prevloc = null;
-var target_prog = ['sota', 'pota'];
+var target_prog = ['pota', 'sota'];
+
+async function searchLog(prog, refid) {
+
+    if (prog != 'pota')
+	return true;
+    
+    if (prefs['pota_hunter_uuid'] != null) {
+	let res = await fetch(sotalive+
+			      'api/myact/potalog?&command=SEARCH'+
+			      '&logid='+prefs['pota_hunter_uuid']+
+			      '&refid='+refid);
+	res = await res.json();
+	if (res['errors'] == 'OK')
+	    return true
+	else
+	    return false;
+    } else
+	return true;
+}
   
 function locate_ref(loc) {
     if (loc != prevloc) {
@@ -1016,114 +1231,122 @@ function onPeriodChange(p) {
     }
 }
 
-function refresh_spots() {
+async function refresh_spots() {
     let url = 'https://www.sotalive.net/api/sota-pota-spots?region=JA';
     if (prefs['by_call']) {
 	url += '&bycall=1';
     }
     url += '&period=' + String(prefs['spot_period']);
-    fetch(url)
-	.then(res => res.json())
-	.then(data => {
-	    let datasets = [];
-	    let rc = 0;
-	    Object.keys(data).forEach(function(prog) {
-		if (target_prog.includes(prog)) {
-		    Object.keys(data[prog]).forEach(function(ref) {
-			sp =[]
-			for (const p of data[prog][ref]) {
-			    if (prefs['by_call'])
-				r = p[1];
-			    else
-				r = ref;
-			    
-			    sp.push(
-				{ x : new Date(p[0]),
-				  y: rc,
-			      z: ref+" "+p[1]+" "+p[2]+" "+p[3]+" "+ p[4],
-				  ref: r,
-				})
-			}
-			datasets.push(
-			    {label: ref,
-			     data:sp});
-			rc += 1;
-		    });
-		};
-	    });
+    let res = await fetch(url);
+    let sdata = await res.json();
+    let datasets = [];
+    let radius = 0;
+    let rc = 0;
 
-	    let ctx = document.getElementById('myChart').getContext('2d');
-	    let cnt = document.getElementById('chart-container');
+    for(let prog of target_prog) {
+	data = sdata[prog]
+	let refs = Object.keys(data);
+	let rspots = Object.values(data);
 
-	    ctx.canvas.height= rc * 20 + (rc/3 + 1) * 20 ;
-	    cnt.style.height = ctx.canvas.height + 40;
+	for(var i = 0; i < refs.length; i++) {
+	    let ref = refs[i];
+	    let spots = rspots[i];
+	    let sp =[];
+	    let cond = await searchLog(prog, ref);
 	    
-	    if (chart) {
-		chart.destroy();
+	    for (const p of spots) {
+		if (prefs['by_call'])
+		    r = p[1];
+		else
+		    r = ref;
+		sp.push(
+		    { x : new Date(p[0]),
+		      y: rc,
+		      z: ref+" "+p[1]+" "+p[2]+" "+p[3]+" "+ p[4],
+		      ref: r,
+		    })
 	    }
-	    let now = new Date();
-	    let spot_from = new Date(now.getTime()- prefs['spot_period'] * 1000 * 3600);
-	    let spot_to = new Date(now.getTime()+ 300 * 1000);
-
-	    chart = new Chart(ctx, {
-		type: 'line',
-
-		data: {
-		    datasets: datasets
+	    
+	    if (cond) {
+		d = {label: ref,
+		     pointRadius: 5,
+		     data:sp};
+	    }
+	    else { 
+		d = {label: ref,
+		     pointRadius: 8,
+		     pointBoderWodth:2,
+		     data:sp};
+	    }
+	    datasets.push(d)
+	    rc += 1;
+	}
+    }
+    let ctx = document.getElementById('myChart').getContext('2d');
+    let cnt = document.getElementById('chart-container');
+    
+    ctx.canvas.height= rc * 20;
+    cnt.style.height = ctx.canvas.height + 30;
+    
+    if (chart) {
+	chart.destroy();
+    }
+    let now = new Date();
+    let spot_from = new Date(now.getTime()- prefs['spot_period'] * 1000 * 3600);
+    let spot_to = new Date(now.getTime()+ 300 * 1000);
+    
+    chart = new Chart(ctx, {
+	type: 'line',
+	
+	data: {
+	    datasets: datasets
+	},
+	options: {
+	    responsive: true,
+	    maintainAspectRatio: false,
+	    layout: {
+		padding: {
+		    left:20,
+		    right:20,
+		}
+	    },
+	    plugins: {
+		legend: {
+		    position: 'top',
+		    reverse: true,
 		},
-		options: {
-		    responsive: true,
-		    maintainAspectRatio: false,
-		    elements:{
-			point: {
-			    pointRadius:5,
-			},
-		    },
-		    layout: {
-			padding: {
-			    left:20,
-			    right:20,
-			}
-		    },
-		    plugins: {
-			legend: {
-			    position: 'top',
-			    reverse: true,
-			},
-			tooltip: {
-			    backgroundColor :"rgba(19, 58, 95, 09)",
-			    xPading:10,
-			    yPadding:10,
-			    callbacks: {
-				label: label_callback,
+		tooltip: {
+		    backgroundColor :"rgba(19, 58, 95, 09)",
+		    xPading:10,
+		    yPadding:10,
+		    callbacks: {
+			label: label_callback,
 			    },
-			},
-			customCanvasBackgroundColor:{
-			    color: 'white',
-			}
-		    },
-		    scales: {
-			x: {
-			    type: 'time',
-			    time: {
-				unit: 'hour',
-				displayFormats:{
-				    'hour': 'MM/dd HH:mm',
-				},
-			    },
-			    max : spot_to,
-			    min: spot_from,
-			},
-			y: {
-			    display: false,
-			},
-			
-		    }
 		},
-		plugins:[plugin],
-	    });
-	    chart.update();
-	});
+		customCanvasBackgroundColor:{
+		    color: 'white',
+		}
+	    },
+	    scales: {
+		x: {
+		    type: 'time',
+		    time: {
+			unit: 'hour',
+			displayFormats:{
+			    'hour': 'MM/dd HH:mm',
+			},
+		    },
+		    max : spot_to,
+		    min: spot_from,
+		},
+		y: {
+		    display: false,
+		},
+	    }
+	},
+	plugins:[plugin],
+    });
+    chart.update();
 }
 
   onPeriodChange(prefs['spot_period']);
