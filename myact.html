@@ -439,6 +439,11 @@ async function potaLog(command){
 		potaLog('show-hunt');
 	    }
 	    potaLog('check');
+	} else {
+	    mesg =
+		"不正なログファイルの形式です\n" +
+		"POTA.appからダウンロードしたCSVファイルをアップロードして下さい";
+	    window.alert(mesg);
 	}
 	
 	break;
@@ -1251,6 +1256,10 @@ async function refresh_spots() {
 
     for(let prog of target_prog) {
 	data = sdata[prog]
+
+	if (data == null)
+	    continue;
+	
 	let refs = Object.keys(data);
 	let rspots = Object.values(data);
 
@@ -1273,7 +1282,7 @@ async function refresh_spots() {
 		    })
 	    }
 	    
-	    if (cond||prefs['by_call']) {
+	    if (cond||prefs['by_call']||!prefs['show_potalog']) {
 		d = {label: ref,
 		     pointRadius: 5,
 		     data:sp};
@@ -1281,7 +1290,7 @@ async function refresh_spots() {
 	    else { 
 		d = {label: ref,
 		     pointRadius: 8,
-		     pointBoderWidth:2,
+		     pointBoderWidth:4,
 		     data:sp};
 	    }
 	    datasets.push(d)
@@ -1291,8 +1300,8 @@ async function refresh_spots() {
     let ctx = document.getElementById('myChart').getContext('2d');
     let cnt = document.getElementById('chart-container');
     
-    ctx.canvas.height= rc * 20;
-    cnt.style.height = ctx.canvas.height + 30;
+    ctx.canvas.height= rc * 20 + 20;
+    cnt.style.height = ctx.canvas.height + 40;
     
     if (chart) {
 	chart.destroy();
