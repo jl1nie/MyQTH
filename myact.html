@@ -508,7 +508,7 @@ function displayPopup(area, latlng, isMarker, isGPS) {
 			    potamesg = "<br>Activate/Attempt: "+p['activate'] + "/" + p['attempt']
 			    potamesg += "<br>QSOs: " + p['QSOs'] + "<br>";
 			}
-		    } else
+		    } else if (p['QSOs'] > 0)
 			potamesg = "<br>QSOs: " + p['QSOs'] + "<br>";
 		}
 	    };
