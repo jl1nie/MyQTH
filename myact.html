@@ -263,7 +263,7 @@ i.semantic-ui-custom {
  		<div class="custom-file">
 		  <input type="file" accept=".csv" style="width:10em"
 			 class="custom-file-input" id="file_input" name="filename" required>
-		  <label class="custom-file-label" for="filename">POTA Logファイルを選択</label>
+		  <label class="custom-file-label" id="file_input_text" for="filename">POTA Logファイルを選択</label>
 		  <div class="invalid-feedback">ファイルを指定してください</div>
 		</div>
 		<button type="button" class="btn btn-default" onClick="potaLog('upload')">Upload</button>
@@ -348,14 +348,14 @@ function locURI(lat, lng, zoom) {
 async function potaLog(command){
     let keys = ['pota_activator_uuid','pota_hunter_uuid'];
     let res = null;
+    let api = sotalive + 'api/myact/potalog?';
     
     switch(command) {
     case 'check':
 	for(var k of keys) {
 	    var el,mesg;
-	    let res = await fetch(sotalive+
-				  'api/myact/potalog?&command=CHECK'
-				  +'&logid='+prefs[k]);
+	    let res = await fetch(api + 'command=CHECK' +
+				  '&logid='+prefs[k]);
 	    res = await res.json();
 	    if (res['errors'] == 'OK') {
 		prefs[k] = res['uuid'];
@@ -367,6 +367,7 @@ async function potaLog(command){
 		}
 		el.innerText = res['create'] + mesg;
 	    } else {
+		prefs[k] = null;
 		el = document.getElementById(k);
 		el.innerText = '----';
 	    }
@@ -377,14 +378,13 @@ async function potaLog(command){
 	k = 0;
     case 'del-hunt':
 	if (command.includes('hunt'))
-	k = 1;
+	    k = 1;
 
 	if (prefs[keys[k]] == null)
 	    break;
 	
-	res = await fetch(sotalive+
-			  'api/myact/potalog?&command=DELETE'
-			  +'&logid='+prefs[keys[k]]);
+	res = await fetch(api +'command=DELETE' +
+			  '&logid='+prefs[keys[k]]);
 	res = await res.json();
 	if (res['errors'] == 'OK') {
 	    prefs[keys[k]] = null
@@ -418,10 +418,15 @@ async function potaLog(command){
 
     case 'upload':
 	const file_input = document.getElementById('file_input');
+
+	if (file_input.files.length == 0) {
+	    window.alert("ファイルを指定してください");
+	    return
+	}
+    
 	const fd = new FormData();
 	fd.append('uploadfile',file_input.files[0]);
-	res = await fetch(sotalive+
-			  'api/myact/potalog?&command=UPLOAD'+
+	res = await fetch(api +'command=UPLOAD'+
 			  '&logid_act='+prefs[keys[0]]+
 			  '&logid_hunt='+prefs[keys[1]],{
 			      method: 'POST',
@@ -445,7 +450,6 @@ async function potaLog(command){
 		"POTA.appからダウンロードしたCSVファイルをアップロードして下さい";
 	    window.alert(mesg);
 	}
-	
 	break;
 
     default:
@@ -497,13 +501,15 @@ function displayPopup(area, latlng, isMarker, isGPS) {
 		    l = {'lat':s['lat'],'lng':s['lon']}
 		    displayActivationZone(l, -0.8);
 		}
-		if (res['parks'].length>0) {
+		if (prefs['show_potalog'] && (res['parks'].length>0)) {
 		    p = res['parks'][0];
-		    if (p['attempt']>0) {
-			potamesg = "<br>Activate/Attempt: "+p['activate'] + "/" + p['attempt']
-
-		    }
-		    potamesg += "<br>QSOs: " + p['QSOs'] + "<br>";
+		    if (prefs['show_potaactlog']) {
+			if (p['attempt'] > 0) { 
+			    potamesg = "<br>Activate/Attempt: "+p['activate'] + "/" + p['attempt']
+			    potamesg += "<br>QSOs: " + p['QSOs'] + "<br>";
+			}
+		    } else
+			potamesg = "<br>QSOs: " + p['QSOs'] + "<br>";
 		}
 	    };
 	    fetch(sotalive+
@@ -1172,12 +1178,12 @@ var target_prog = ['pota', 'sota'];
 
 async function searchLog(prog, refid) {
 
+    let api = sotalive + 'api/myact/potalog?'
     if (prog != 'pota')
 	return true;
     
     if (prefs['pota_hunter_uuid'] != null) {
-	let res = await fetch(sotalive+
-			      'api/myact/potalog?&command=SEARCH'+
+	let res = await fetch(api + 'command=SEARCH'+
 			      '&logid='+prefs['pota_hunter_uuid']+
 			      '&refid='+refid);
 	res = await res.json();
