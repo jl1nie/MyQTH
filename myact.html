@@ -1056,7 +1056,10 @@ function placeSummitMarker(coords, z, elev, actcnt, mesg, popupfl) {
 function placeParkMarker(coords, z,  parks) {
 
     if (parks['date']!=null) {
-	markerColor = 'red';
+	if (parks['locid'].length == 1)
+	    markerColor = 'red';
+	else
+	    markerColor = 'orange';
     } else {
 	markerColor = 'green-light';
     }
