@@ -223,50 +223,62 @@ i.semantic-ui-custom {
           <h4 class="modal-title"><b>Preferences</b></h4>
         </div><!-- /modal-header -->
         <div class="modal-body">
-	  <div class ="form-group">
-	    <label class="control-label"><u>表示対象</u></label>
-	    <div class="custom-control custom-checkbox">
-	      <input class="custom-control-input" type="checkbox" value="" id="sota_ref" onclick="clickPrefs()">
-	      <label class="custom-control-label" for="sota_ref">SOTA</label>
-	    </div>
-	    <div class="custom-control custom-checkbox">
-	      <input class="custom-control-input" type="checkbox" value="" id="pota_ref" onclick="clickPrefs()">
-	      <label class="custom-control-label" for="pota_ref">POTA</label>
-	    </div>
-	    <div class="custom-control custom-checkbox">
-	      <input class="custom-control-input" type="checkbox" value="" id="jaff_ref" onclick="clickPrefs()">
-	      <label class="custom-control-label" for="jaff_ref">JAFF</label>
-	    </div>
-	  </div>
-	  <div class ="form-group">
-	    <label class="control-label"><u>マーカ</u></label>
-	    <p>表示する数:&nbsp&nbsp<b>多</b>&nbsp&nbsp&nbsp
-	      <input id="zoom-threshold" data-slider-id='ex1Slider' type="text" data-slider-min="9" data-slider-max="12" data-slider-step="1" data-slider-value="12"/>&nbsp&nbsp&nbsp&nbsp<b>少</b>
-	    </p>
-	    <div class="custom-control custom-checkbox">
-	      <input class="custom-control-input" type="checkbox" value="" id="popup_permanent" onclick="clickPrefs()">
-	      <label class="custom-control-label" for="popup_permanent"> 公園名を常に表示</label>
-	    </div>
-	    <div class="custom-control custom-checkbox">
-	      <input class="custom-control-input" type="checkbox" value="" id="link_googlemap" onclick="clickPrefs()">
-	      <label class="custom-control-label" for="link_googlemap"> Google Mapにリンク</label>
-	    </div>
-	    <div class="custom-control custom-checkbox">
-	      <input class="custom-control-input" type="checkbox" value="" id="display_mapcode" onclick="clickPrefs()">
-	      <label class="custom-control-label" for="display_mapcode"> MAPCODEを表示<br><small>(「マップコード」および「MAPCODE」は㈱デンソーの登録商標です)</small></label>
+	  <form>
+	    <div class ="form-group">
+	      <label class="control-label"><u>表示対象</u></label>
+	      <div class="custom-control custom-checkbox">
+		<input class="custom-control-input" type="checkbox" value="" id="sota_ref" onclick="clickPrefs()">
+		<label class="custom-control-label" for="sota_ref">SOTA</label>
+	      </div>
+	      <div class="custom-control custom-checkbox">
+		<input class="custom-control-input" type="checkbox" value="" id="pota_ref" onclick="clickPrefs()">
+		<label class="custom-control-label" for="pota_ref">POTA</label>
+	      </div>
+	      <div class="custom-control custom-checkbox">
+		<input class="custom-control-input" type="checkbox" value="" id="jaff_ref" onclick="clickPrefs()">
+		<label class="custom-control-label" for="jaff_ref">JAFF</label>
+	      </div>
 	    </div>
 	    <div class ="form-group">
-	      <label class="control-label"><u>POTAログ表示</u></label>
+	      <label class="control-label"><u>マーカ</u></label>
+	      <p>表示する数:&nbsp&nbsp<b>多</b>&nbsp&nbsp&nbsp
+		<input id="zoom-threshold" data-slider-id='ex1Slider' type="text" data-slider-min="9" data-slider-max="12" data-slider-step="1" data-slider-value="12"/>&nbsp&nbsp&nbsp&nbsp<b>少</b>
+	      </p>
 	      <div class="custom-control custom-checkbox">
-		<input class="custom-control-input" type="checkbox" value="" id="show_potalog" onclick="clickPrefs()">
-		<label class="custom-control-label" for="show_potalog"> POTAログを表示</label>
- 		<div class="custom-file">
-		  <input type="file" accept=".csv" style="width:10em"
-			 class="custom-file-input" id="file_input" name="filename" required>
-		  <label class="custom-file-label" id="file_input_text" for="filename">POTA Logファイルを選択</label>
-		  <div class="invalid-feedback">ファイルを指定してください</div>
+		<input class="custom-control-input" type="checkbox" value="" id="popup_permanent" onclick="clickPrefs()">
+		<label class="custom-control-label" for="popup_permanent"> 公園名を常に表示</label>
+	      </div>
+	      <div class="custom-control custom-checkbox">
+		<input class="custom-control-input" type="checkbox" value="" id="link_googlemap" onclick="clickPrefs()">
+		<label class="custom-control-label" for="link_googlemap"> Google Mapにリンク</label>
+	      </div>
+	      <div class="custom-control custom-checkbox">
+		<input class="custom-control-input" type="checkbox" value="" id="display_mapcode" onclick="clickPrefs()">
+		<label class="custom-control-label" for="display_mapcode"> MAPCODEを表示<br><small>(「マップコード」および「MAPCODE」は㈱デンソーの登録商標です)</small></label>
+	      </div>
+	      <div class="form-group">
+		<label class="control-label"><u>POTAログ表示</u></label>
+		<div class="custom-control custom-checkbox">
+		  <input type="checkbox" class="custom-control-input" value="" id="show_potalog" onclick="clickPrefs()">
+		  <label class="custom-control-label" for="show_potalog"> POTAログを表示</label>
 		</div>
-		<button type="button" class="btn btn-default" onClick="potaLog('upload')">Upload</button>
+	      </div>
+	      <div class="custom-file">
+		<input type="file" accept=".csv" style="width:10em"
+		       class="custom-file-input" id="file_input" name="filename" required>
+		<label class="custom-file-label" id="file_input_text" for="filename">POTA Logファイルを選択</label>
+		<div class="invalid-feedback">ファイルを指定してください</div>
+	      </div>
+	      <div class="input-group">	      
+	      <button type="button" class="btn btn-default" onClick="potaLog('upload')">Upload</button>
+	      <button type="button" class="btn btn-default" onClick="potaLog('import')">IMPORT</button>
+	      <div class="input-group:append">
+		<input type="text" class="form-control-sm" style="width:6em" id="import_uuid">
+		<button type="button" id="export_uuid" class="btn btn-default" onClick="potaLog('export')">EXPORT</button>
+		<label class="form-check-label" for="export_uuid">
+		  <div id="pota_export_key">XXXXXX</div>
+		</label>
+		</div>
 	      </div>
 	      <div class="custom-control custom-checkbox">
 		<input class="form-check-input" type="radio" name="potalog_type" id="show_potaactlog" onclick="potaLog('show-act')">
@@ -283,7 +295,7 @@ i.semantic-ui-custom {
 		<button type="button" id="hunter-log" class="btn btn-warning" onClick="potaLog('del-hunt')">DEL</button>
 	      </div>
 	    </div>
-	  </div>
+	  </form>
           <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal" onClick="closePrefs()">Close</button>
           </div>
@@ -372,6 +384,7 @@ async function potaLog(command){
 		el.innerText = '----';
 	    }
 	}
+	closePrefs();
 	break;
 
     case 'del-act':
@@ -452,6 +465,42 @@ async function potaLog(command){
 	}
 	break;
 
+    case 'export':
+	res = await fetch(api +'command=EXPORT' +
+			  '&logid_act='+prefs[keys[0]]+
+			  '&logid_hunt='+prefs[keys[1]]);
+	res = await res.json();
+
+	if (res['errors'] == 'OK') {
+	    el = document.getElementById('pota_export_key');
+	    el.innerHTML = '<b>' + res['sharekey'] + '</b>';
+	} else {
+	    window.alert("Exportに失敗しました")
+	}
+	break;
+
+    case 'import':
+	const sharekey = document.getElementById('import_uuid');
+	res = await fetch(api +'command=IMPORT' +
+			  '&sharekey='+ sharekey.value);
+	res = await res.json();
+
+	if (res['errors'] == 'OK') {
+	    prefs[keys[0]] = res['uuid_act'];
+	    prefs[keys[1]] = res['uuid_hunt'];
+	    potaLog('check');
+
+	    if (res['uuid_act'] != "null")
+		potaLog('show-act')
+
+	    if (res['uuid_hunt'] != "null")
+		potaLog('show-hunt')
+
+	} else {
+	    window.alert("キーコードが見つかりません")
+	}
+	break;
+	    
     default:
 	console.log("Unknown command" + command);
 	break;
