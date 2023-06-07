@@ -1239,7 +1239,7 @@ async function searchLog(prog, refid) {
 			      '&logid='+prefs['pota_hunter_uuid']+
 			      '&refid='+refid);
 	res = await res.json();
-	if (res['errors'] == 'OK')
+	if (res['errors'] == 'OK' && res['locid'].length == 1) 
 	    return true
 	else
 	    return false;
