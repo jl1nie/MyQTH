@@ -208,6 +208,7 @@ i.semantic-ui-custom {
       </div>
     </div>
   </div>
+
   
   <div class="container-fluid">
     <div class="row">
@@ -216,6 +217,7 @@ i.semantic-ui-custom {
       </div>
     </div>
   </div>
+
   <div class="modal" id="modal-prefs" tabindex="-1" role="dialog" aria-labelledby="staticModalLabel" aria-hidden="true" data-show="true" data-keyboard="false" data-backdrop="static">
     <div class="modal-dialog">
       <div class="modal-content">
@@ -258,6 +260,7 @@ i.semantic-ui-custom {
 	      </div>
 	      <div class="form-group">
 		<label class="control-label"><u>POTAログ表示</u></label>
+		<button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#logs-data" title="登録ログ数"><span class="fas fa-chart-bar"></span></button>
 		<div class="custom-control custom-checkbox">
 		  <input type="checkbox" class="custom-control-input" value="" id="show_potalog" onclick="clickPrefs()">
 		  <label class="custom-control-label" for="show_potalog"> POTAログを表示</label>
@@ -302,6 +305,19 @@ i.semantic-ui-custom {
 	</div> <!-- /.modal-content -->
       </div> <!-- /.modal-dialog -->
     </div> <!-- /.modal -->
+
+    <div class = "modal fade" id="logs-data">
+      <div class="modal-dialog">
+	<div class="modal-content">
+	  <div id="stat-container" class="modal-body">
+	    <canvas id="myLogStat"></canvas>
+	  </div>
+	</div>
+	<div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+	</div>
+      </div>
+    </div>
   </div>
 </body>
 <!-- Optional JavaScript -->
@@ -1304,6 +1320,80 @@ function onPeriodChange(p) {
     }
 }
 
+async function stat_db() {
+    let url = 'https://www.sotalive.net/api/myact/potalog?command=STAT';
+    let res = await fetch(url);
+    let hist = await res.json();
+
+    let ctx = document.getElementById('myLogStat').getContext('2d');
+    let cnt = document.getElementById('stat-container');
+
+    ctx.canvas.height= 320;
+    cnt.style.height = ctx.canvas.height + 40;
+
+    let labels = []
+    let users = []
+    let logsizes = []
+    
+    for (const l of hist['log_history']) {
+	labels.push(new Date(l['time']));
+	users.push(l['users']);
+	logsizes.push(l['logs']);
+    };
+
+    let chart = new Chart(ctx, {
+	data: {
+	    labels : labels,
+	    datasets:[
+		{
+		    type: 'bar',
+		    label: 'Uploaded logs',
+		    data: users,
+		    borderColor : "rgba(254,97,132,0.8)",
+		    backgroundColor : "rgba(254,97,132,0.5)",
+		    yAxisID: "y",},
+		{
+		    type: 'bar',
+		    label: 'Total log entries',
+		    data: logsizes,
+		    borderColor : "rgba(54,164,235,0.8)",
+		    backgroundColor : "rgba(54,164,235,0.5)",
+		    yAxisID: "y1",}
+		]
+	},
+	options: {
+	    responsive: true,
+	    scales: {
+		x: {
+		    type: 'time',
+		    time: {
+			unit: 'day',
+			displayFormats:{
+			    'day': 'MM/dd',
+			},
+		    },
+		},
+
+		y:{
+		    display: true,
+		    position: 'left',
+		    stepSize: 10,
+		},
+		y1:{
+		    display: true,
+		    position: 'right',
+		    stepSize: 1000,
+		     grid: {
+			 drawOnChartArea: false,
+		     },
+		},
+	    }
+	},
+    });
+    chart.update();
+}
+
+  
 async function refresh_spots() {
     let url = 'https://www.sotalive.net/api/sota-pota-spots?region=JA';
     if (prefs['by_call']) {
@@ -1438,6 +1528,13 @@ async function refresh_spots() {
   $('#spots-data').on('hide.bs.modal', function(e) {
       if (spot_timer_id)
 	  clearInterval(spot_timer_id);
+  });
+
+  $('#logs-data').on('show.bs.modal', function(e) {
+      stat_db();
+  });
+  
+  $('#logs-data').on('hide.bs.modal', function(e) {
   });
   
 </script>
