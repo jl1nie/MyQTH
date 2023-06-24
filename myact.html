@@ -312,6 +312,7 @@ i.semantic-ui-custom {
 	  <div id="stat-container" class="modal-body">
 	    <canvas id="myLogStat"></canvas>
 	  </div>
+	  <small><span id="perf_mon" style="cursor: default;" ></span></small>
 	</div>
 	<div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -1245,6 +1246,7 @@ const plugin = {
 };
 
 var chart = null;
+var chart2 = null;
 var prevloc = null;
 var target_prog = ['pota', 'sota'];
 
@@ -1330,6 +1332,8 @@ async function stat_db() {
 
     ctx.canvas.height= 320;
     cnt.style.height = ctx.canvas.height + 40;
+    ctx.canvas.width= 320;
+    cnt.style.width = ctx.canvas.width + 40;
 
     let labels = []
     let users = []
@@ -1341,7 +1345,11 @@ async function stat_db() {
 	logsizes.push(l['logs']);
     };
 
-    let chart = new Chart(ctx, {
+    if (chart2) {
+	chart2.destroy();
+    }
+    
+    chart2 = new Chart(ctx, {
 	data: {
 	    labels : labels,
 	    datasets:[
@@ -1368,6 +1376,7 @@ async function stat_db() {
 		    type: 'time',
 		    time: {
 			unit: 'day',
+			stepsize: 1,
 			displayFormats:{
 			    'day': 'MM/dd',
 			},
@@ -1390,7 +1399,9 @@ async function stat_db() {
 	    }
 	},
     });
-    chart.update();
+    chart2.update();
+    let etime = "Query with "+ hist['longest_entry'] + "entries took "+hist['query_elapsed_ms'] + "ms. (degraded " + hist['query_perf_degrade_ms'] + "ms)"; 
+    document.getElementById("perf_mon").innerHTML= etime;
 }
 
   
@@ -1452,7 +1463,7 @@ async function refresh_spots() {
     let ctx = document.getElementById('myChart').getContext('2d');
     let cnt = document.getElementById('chart-container');
     
-    ctx.canvas.height= rc * 20 + 20;
+    ctx.canvas.height= rc * 20 + (rc/3 + 1) * 30;
     cnt.style.height = ctx.canvas.height + 40;
     
     if (chart) {
