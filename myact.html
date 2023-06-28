@@ -1250,25 +1250,6 @@ var chart2 = null;
 var prevloc = null;
 var target_prog = ['pota', 'sota'];
 
-async function searchLog(prog, refid) {
-
-    let api = sotalive + 'api/myact/potalog?'
-    if (prog != 'pota')
-	return true;
-    
-    if (prefs['pota_hunter_uuid'] != null) {
-	let res = await fetch(api + 'command=SEARCH'+
-			      '&logid='+prefs['pota_hunter_uuid']+
-			      '&refid='+refid);
-	res = await res.json();
-	if (res['errors'] == 'OK' && res['locid'].length == 1) 
-	    return true
-	else
-	    return false;
-    } else
-	return true;
-}
-  
 function locate_ref(loc) {
     if (loc != prevloc) {
 	let url = 'https://www.sotalive.net/api/sota-jaff-pota?refid='+loc;
@@ -1406,32 +1387,37 @@ async function stat_db() {
 
   
 async function refresh_spots() {
-    let url = 'https://www.sotalive.net/api/sota-pota-spots?region=JA';
-    if (prefs['by_call']) {
-	url += '&bycall=1';
+    let api = sotalive + 'api/myact/potalog?command=SPOTS&region=JA';
+    if (prefs['pota_hunter_uuid'] != null) {
+	api += '&logid=' + prefs['pota_hunter_uuid'];
     }
-    url += '&period=' + String(prefs['spot_period']);
-    let res = await fetch(url);
-    let sdata = await res.json();
+    if (prefs['by_call']) {
+	api += '&bycall=1';
+    }
+    api += '&period=' + String(prefs['spot_period']);
+
+    let res = await fetch(api);
+    res = await res.json();
+    let sdata = res['spots'];
+    let logs = res['logs'];
     let datasets = [];
     let radius = 0;
     let rc = 0;
 
     for(let prog of target_prog) {
-	data = sdata[prog]
+	let data = sdata[prog]
 
 	if (data == null)
 	    continue;
 	
 	let refs = Object.keys(data);
 	let rspots = Object.values(data);
-
+	
 	for(var i = 0; i < refs.length; i++) {
 	    let ref = refs[i];
 	    let spots = rspots[i];
 	    let sp =[];
-	    let cond = await searchLog(prog, ref);
-	    
+		    
 	    for (const p of spots) {
 		if (prefs['by_call'])
 		    r = p[1];
@@ -1445,7 +1431,8 @@ async function refresh_spots() {
 		    })
 	    }
 	    
-	    if (cond||prefs['by_call']||!prefs['show_potalog']) {
+	    if (prefs['by_call']||!prefs['show_potalog']
+		||(ref in logs && logs[ref].length == 1)) {
 		d = {label: ref,
 		     pointRadius: 5,
 		     data:sp};
