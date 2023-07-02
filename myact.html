@@ -1431,8 +1431,9 @@ async function refresh_spots() {
 		    })
 	    }
 	    
-	    if (prefs['by_call']||!prefs['show_potalog']
-		||(ref in logs && logs[ref].length == 1)) {
+	    if (prefs['by_call']||prog == 'sota'||
+		!prefs['show_potalog']||
+		(ref in logs && logs[ref].length == 1)) {
 		d = {label: ref,
 		     pointRadius: 5,
 		     data:sp};
