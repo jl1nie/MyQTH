@@ -151,7 +151,7 @@ i.semantic-ui-custom {
 
   <nav class="navbar navbar-expand-md navbar-dark bg-dark text-light">
     <span class="navbar-brand" style="cursor: hand;cursor: pointer;"><h4>MyACT</h4></span>
-    <button type="button" class="btn btn-amber" onClick="clickQTHButton()" title="現在位置を調べる"><span class="fas fa-map-marked-alt" ></span></button>
+    <button type="button" class="btn btn-amber" onclick="clickQTHButton()" title="現在位置を調べる"><span class="fas fa-map-marked-alt" ></span></button>
     <button type="button" class="btn btn-info" data-toggle="modal" data-target="#spots-data" title="最新スポットを表示"><span class="fas fa-satellite-dish"></span></button>
     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-prefs" onclick="clickPrefs()" title="設定"><span class="fas fa-cog"></span></button>
     
@@ -204,7 +204,7 @@ i.semantic-ui-custom {
 	</div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal" onClick="closePrefs()">Close</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal" onclick="closePrefs()">Close</button>
       </div>
     </div>
   </div>
@@ -265,6 +265,10 @@ i.semantic-ui-custom {
 		  <input type="checkbox" class="custom-control-input" value="" id="show_potalog" onclick="clickPrefs()">
 		  <label class="custom-control-label" for="show_potalog"> POTAログを表示</label>
 		</div>
+		<div class="custom-control custom-checkbox">
+		  <input type="checkbox" class="custom-control-input" value="" id="enable_mqtt" onclick="clickPrefs(); potaLog('check');">
+		  <label class="custom-control-label" for="enable_mqtt"> MQTT連携</label>
+		</div>
 	      </div>
 	      <div class="custom-file">
 		<input type="file" accept=".csv" style="width:10em"
@@ -273,11 +277,11 @@ i.semantic-ui-custom {
 		<div class="invalid-feedback">ファイルを指定してください</div>
 	      </div>
 	      <div class="input-group">	      
-	      <button type="button" class="btn btn-default" onClick="potaLog('upload')">Upload</button>
-	      <button type="button" class="btn btn-default" onClick="potaLog('import')">IMPORT</button>
+	      <button type="button" class="btn btn-default" onclick="potaLog('upload')">Upload</button>
+	      <button type="button" class="btn btn-default" onclick="potaLog('import')">IMPORT</button>
 	      <div class="input-group:append">
 		<input type="text" class="form-control-sm" style="width:6em" id="import_uuid">
-		<button type="button" id="export_uuid" class="btn btn-default" onClick="potaLog('export')">EXPORT</button>
+		<button type="button" id="export_uuid" class="btn btn-default" onclick="potaLog('export')">EXPORT</button>
 		<label class="form-check-label" for="export_uuid">
 		  <div id="pota_export_key">XXXXXX</div>
 		</label>
@@ -288,19 +292,19 @@ i.semantic-ui-custom {
 		<label class="form-check-label" for="show_potaactlog">
 		  <div id="pota_activator_uuid">-</div>
 		</label>
-		<button type="button" id="activator-log" class="btn btn-warning" onClick="potaLog('del-act')">DEL </button>
+		<button type="button" id="activator-log" class="btn btn-warning" onclick="potaLog('del-act')">DEL </button>
 	      </div>
 	      <div class="custom-control custom-checkbox">
 		<input class="form-check-input" type="radio" name="potalog_type" id="show_potaactlog2" onclick="potaLog('show-hunt')">
 		<label class="form-check-label" for="show_potaactlog2">
 		  <div id="pota_hunter_uuid">-</div>
 		</label>
-		<button type="button" id="hunter-log" class="btn btn-warning" onClick="potaLog('del-hunt')">DEL</button>
+		<button type="button" id="hunter-log" class="btn btn-warning" onclick="potaLog('del-hunt')">DEL</button>
 	      </div>
 	    </div>
 	  </form>
           <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal" onClick="closePrefs()">Close</button>
+            <button type="button" class="btn btn-default" data-dismiss="modal" onclick="closePrefs()">Close</button>
           </div>
 	</div> <!-- /.modal-content -->
       </div> <!-- /.modal-dialog -->
@@ -383,7 +387,12 @@ async function potaLog(command){
     case 'check':
 	for(var k of keys) {
 	    var el,mesg;
-	    let res = await fetch(api + 'command=CHECK' +
+	    if (k == 'pota_hunter_uuid' && prefs['enable_mqtt']) 
+		res = await fetch(api + 'command=CHECK' +
+				  '&logid='+prefs[k]+
+				  '&mqtt=1');
+	    else
+		res = await fetch(api + 'command=CHECK' +
 				  '&logid='+prefs[k]);
 	    res = await res.json();
 	    if (res['errors'] == 'OK') {
@@ -659,6 +668,7 @@ var prefs =
       'spot_period': 6,
       'pota_hunter_uuid': null,
       'pota_activator_uuid': null,
+      'enable_mqtt': false,
     }
 
 $('#zoom-threshold').slider({
@@ -685,10 +695,10 @@ function clickPrefs() {
 	    var el = document.getElementById(k);
 	    if (el.checked == true) {
 		prefs[k] = true;
-		Cookies.set(k, 'true',{expires: 180, SameSite:'Lax'})
+		Cookies.set(k, 'true',{expires: 1800, SameSite:'Lax'})
 	    } else {
 		prefs[k] = false;
-		Cookies.set(k, 'false',{expires: 180, SameSite:'Lax'})
+		Cookies.set(k, 'false',{expires: 1800, SameSite:'Lax'})
 	    }
 	}
     }
@@ -700,7 +710,7 @@ function readCookie(pref) {
 	if (k == 'zoom_threshold') {
 	    if (ck  == undefined) {
 		ck = '12';
-		Cookies.set(k, ck,{expires: 180, SameSite:'Lax'});
+		Cookies.set(k, ck,{expires: 1800, SameSite:'Lax'});
 	    }
 	    else
 		pref[k] = Number(ck)
@@ -709,7 +719,7 @@ function readCookie(pref) {
 	else if (k == 'spot_period') {
 	    if (ck  == undefined) {
 		ck = '6';
-		Cookies.set(k, ck,{expires: 180, SameSite:'Lax'});
+		Cookies.set(k, ck,{expires: 1800, SameSite:'Lax'});
 	    }
 	    else
 		pref[k] = Number(ck)
@@ -721,9 +731,9 @@ function readCookie(pref) {
 	else {
 	    if (ck  == undefined) {
 		if (pref[k])
-		    Cookies.set(k, 'true',{expires: 180, SameSite:'Lax'})
+		    Cookies.set(k, 'true',{expires: 1800, SameSite:'Lax'})
 		else
-		    Cookies.set(k, 'false',{expires: 180, SameSite:'Lax'})
+		    Cookies.set(k, 'false',{expires: 1800, SameSite:'Lax'})
 	    } else {
 		if (ck == 'true')
 		    pref[k] = true
@@ -747,10 +757,10 @@ function readCookie(pref) {
 }
 
 function closePrefs() {
-    Cookies.set('zoom_threshold',String(prefs['zoom_threshold']),{expires: 180, SameSite:'Lax'})
-    Cookies.set('spot_period',String(prefs['spot_period']),{expires: 180, SameSite:'Lax'})
-    Cookies.set('pota_activator_uuid',prefs['pota_activator_uuid'],{expires: 180, SameSite:'Lax'})
-    Cookies.set('pota_hunter_uuid',prefs['pota_hunter_uuid'],{expires: 180, SameSite:'Lax'})
+    Cookies.set('zoom_threshold',String(prefs['zoom_threshold']),{expires: 1800, SameSite:'Lax'})
+    Cookies.set('spot_period',String(prefs['spot_period']),{expires: 1800, SameSite:'Lax'})
+    Cookies.set('pota_activator_uuid',prefs['pota_activator_uuid'],{expires: 1800, SameSite:'Lax'})
+    Cookies.set('pota_hunter_uuid',prefs['pota_hunter_uuid'],{expires: 1800, SameSite:'Lax'})
     clickPrefs();
     redrawPopup();
     redrawMarkers();
