@@ -236,9 +236,13 @@ i.semantic-ui-custom {
 		<input class="custom-control-input" type="checkbox" value="" id="pota_ref" onclick="clickPrefs()">
 		<label class="custom-control-label" for="pota_ref">POTA</label>
 	      </div>
-	      <div class="custom-control custom-checkbox">
+  	      <div class="custom-control custom-checkbox">
 		<input class="custom-control-input" type="checkbox" value="" id="jaff_ref" onclick="clickPrefs()">
 		<label class="custom-control-label" for="jaff_ref">JAFF</label>
+	      </div>
+  	      <div class="custom-control custom-checkbox" id="check-pilgrim" stype="diplay:none">
+		<input class="custom-control-input" type="checkbox" value="" id="pilgrim" onclick="clickPrefs()">
+		<label class="custom-control-label" for="pilgrim">観音霊場</label>
 	      </div>
 	    </div>
 	    <div class ="form-group">
@@ -333,20 +337,29 @@ i.semantic-ui-custom {
 </style>
 
 <script>
+var enable_pilgrim = false;
+if (location.host != 'mypilgrim.sotalive.net') 
+    document.getElementById('check-pilgrim').style.display = 'none';
+  else {
+      enable_pilgrim = true;
+      document.getElementById('check-pilgrim').style.display = 'block';
+  }
+  
 let vh = window.innerHeight * 0.01;
 document.documentElement.style.setProperty('--vh', `${vh}px`);
 window.addEventListener('resize',()=> {
 let vh = window.innerHeight * 0.01;
   document.documentElement.style.setProperty('--vh', `${vh}px`);
 });
-
 var sotalive = 'https://www.sotalive.net/';
 var gsi = L.tileLayer('https://cyberjapandata.gsi.go.jp/xyz/std/{z}/{x}/{y}.png', {attribution: "<a href='https://maps.gsi.go.jp/development/ichiran.html' target='_blank'>地理院タイル</a>|<a href='https://nlftp.mlit.go.jp/ksj/gml/datalist/KsjTmplt-A10-v4_1.html' target='_blank'>国土数値情報自然公園地域データ</a>"
 });
 
 var map = L.map('map',{
+      renderer: L.canvas({ tolerance: 30}),
     layers: [ gsi ]
 });
+ 
 L.control.scale().addTo(map);
 L.control.zoomLabel().addTo(map);
 var popup = L.popup();
@@ -662,6 +675,7 @@ var prefs =
       'sota_ref': true,
       'pota_ref': true,
       'jaff_ref': true,
+      'pilgrim': false,
       'show_potalog': false,
       'show_potaactlog': true,
       'zoom_threshold': 12,
@@ -770,39 +784,39 @@ function closePrefs() {
 readCookie(prefs);
 
 function selectRef(area, addhref) {
-  var pname = '';
-
-  if (area['pota'] == undefined || area['jaff'] == undefined)
-	return '';
-
-  if (area['pota'] != '' && prefs['pota_ref']) {
-      if (addhref) 
-	  pname = '<a target="_blank" href="https://pota.app/#/park/'+ area['pota'] + '">' + area['pota'] + '</a> '
-      else
-	  pname = area['pota'];
-      
-      if (area['jaff'] != '' && prefs['jaff_ref']) {
-	  if (addhref)
-	      pname += '/' + '<a target="_blank" href="https://wwff.co/directory/?showRef='+ area['jaff'] + '">' + area['jaff'] + '</a> '
-	  else 
-	      pname += '/' + area['jaff'];
-      }
-  } else if (prefs['jaff_ref']) {
-	  if (addhref)
-	      pname = '<a target="_blank" href="https://wwff.co/directory/?showRef='+ area['jaff'] + '">' + area['jaff'] + '</a> '
-	  else 
-	      pname = area['jaff']
-  }
-  
-  if (pname != '' && area['name'] != '') {
-      pname += '<br>'
-      pname += area['name']
-  }
+    var pname = '';
+        
+    if (area['pota'] != undefined && area['jaff'] != undefined) { 
+	if (area['pota'] != '' && prefs['pota_ref']) {
+	    if (addhref && area['pota'].includes('-')) 
+		pname = '<a target="_blank" href="https://pota.app/#/park/'+ area['pota'] + '">' + area['pota'] + '</a> '
+	    else
+		pname = area['pota'];
+	    if (area['jaff'] != '' && prefs['jaff_ref']) {
+		if (addhref && area['jaff'].includes('-'))
+		    pname += '/' + '<a target="_blank" href="https://wwff.co/directory/?showRef='+ area['jaff'] + '">' + area['jaff'] + '</a> '
+		else 
+		    pname += '/' + area['jaff'];
+	    }
+	} else if (prefs['jaff_ref']) {
+	    if (addhref)
+		pname = '<a target="_blank" href="https://wwff.co/directory/?showRef='+ area['jaff'] + '">' + area['jaff'] + '</a> '
+	    else 
+		pname = area['jaff']
+	}
+    } else if (area['temple'] != undefined && prefs['pilgrim']) {
+	pname = area['temple']
+    }
     
-  if (pname != '')
-      pname = '<div style="text-align:center">' + pname + '</div>';
+    if (pname != '' && area['name'] != '') {
+	pname += '<br>'
+	pname += area['name']
+    }
+    
+    if (pname != '')
+	pname = '<div style="text-align:center">' + pname + '</div>';
 
-  return pname;
+    return pname;
 }
    
 qth_marker = null
@@ -969,6 +983,9 @@ function placeSummitMarkers(nw ,se, z) {
     if (prefs['sota_ref'])
 	programs += 'SOTA';
 
+    if (enable_pilgrim && prefs['pilgrim'])
+	programs += 'PILGRIM';
+
     if (prefs['show_potalog']) {
 	uuid = getLogID();
 	query = '&programs='+programs+'&lat='+nw[0]+
@@ -1019,6 +1036,10 @@ function placeSummitMarkers(nw ,se, z) {
 		if (pname != '')
 		    show_summit_marker.push(
 			placeParkMarker([s['lat'],s['lon']], z, s))
+	    }
+	    for(const t of res['temples']) {
+		show_summit_marker.push(
+		    placeTempleMarker([t['lat'],t['lon']], z, t))
 	    }
 	});
 }
@@ -1120,6 +1141,30 @@ function placeParkMarker(coords, z,  parks) {
     return m;
 }
 
+function placeTempleMarker(coords, z,  temple) {
+    markerColor = 'orange';
+    var options = {
+        prefix: 'icon'
+        ,icon: 'leaf'
+        ,shape: 'square'
+        ,markerColor: markerColor
+        ,extraClasses: 'semantic-ui-custom'
+    }, area = {
+	temple: temple['site_no'] + ' ' + temple['sacredplace'],
+	name : temple['name']
+    };
+	
+    var marker = L.marker(coords,{icon:L.ExtraMarkers.icon(options)});
+    
+    marker.bindTooltip(temple['site_no'] + ' ' + temple['name'],
+		       {permanent: prefs['popup_permanent'], direction: 'center',offset:[0,20]})
+    var m = marker.addTo(map);
+    m.on('click',function(e) {
+	displayPopup(area, e.latlng, false, false)
+    });
+    return m;
+}
+
 function showReference(s) {
     latlng = s['coord']
     map.setView(latlng,15);
@@ -1213,10 +1258,19 @@ function placeHamFairMarker(coord) {
         ,markerColor: 'pink'
 	,riseOnHover: true
         ,extraClasses: 'semantic-ui-custom'
+    },
+	area = {
+	pota : 'Ham Fair 2023',
+	jaff : '',
+	name : 'ハムフェア2023'
     };
+
     var marker = L.marker(coord,{icon:L.ExtraMarkers.icon(options)});
-    marker.bindTooltip('<b><a href="https://www.jarl.org/Japanese/1_Tanoshimo/1-3_Ham-Fair/2023/" target="_blank">Ham Fair 2023</a></b>',{permanent: prefs['popup_permanent'], direction: 'center',offset:[0,20],interactive:true})
-    marker.addTo(map);
+    marker.bindTooltip('<b><a href="https://www.jarl.org/Japanese/1_Tanoshimo/1-3_Ham-Fair/2023/Ham-Fair-yoko.htm" target="_blank">Ham Fair 2023</a></b>',{permanent: prefs['popup_permanent'], direction: 'center',offset:[0,20],interactive:true})
+    var m = marker.addTo(map);
+    m.on('click',function(e) {
+	displayPopup(area, coord, false, false)
+    });
 }
 
 function redrawMarkers() {
@@ -1226,7 +1280,7 @@ function redrawMarkers() {
     var b = map.getBounds();
     placeSummitMarkers([b['_northEast']['lat'], b['_southWest']['lng']],
 		       [b['_southWest']['lat'], b['_northEast']['lng']],z);
-    //placeHamFairMarker([35.627288040687716, 139.79562967407333]);
+    placeHamFairMarker({'lat':35.627288040687716, 'lng':139.79562967407333});
 }
        
 map.on('moveend',function(e) {
