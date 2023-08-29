@@ -355,11 +355,23 @@ var sotalive = 'https://www.sotalive.net/';
 var gsi = L.tileLayer('https://cyberjapandata.gsi.go.jp/xyz/std/{z}/{x}/{y}.png', {attribution: "<a href='https://maps.gsi.go.jp/development/ichiran.html' target='_blank'>地理院タイル</a>|<a href='https://nlftp.mlit.go.jp/ksj/gml/datalist/KsjTmplt-A10-v4_1.html' target='_blank'>国土数値情報自然公園地域データ</a>"
 });
 
+var yamareco = L.tileLayer('https://www.yamareco.com/modules/yamareco/include/get_tileimg.php?type=dot_summer&z={z}&y={y}&x={x}', {attribution: "<a href='https://www.yamareco.com/' target='_blank'>ヤマレコ</a>"
+});
+
 var map = L.map('map',{
       renderer: L.canvas({ tolerance: 30}),
     layers: [ gsi ]
 });
- 
+
+if (enable_pilgrim) {
+    var overlayLayerControls = {
+    'ヤマレコみんなの足跡': yamareco
+    };
+    L.control.layers(null, overlayLayerControls, {
+	collapsed: true,
+    }).addTo(map);
+}
+  
 L.control.scale().addTo(map);
 L.control.zoomLabel().addTo(map);
 var popup = L.popup();
@@ -1234,7 +1246,7 @@ async function getGeoData(url) {
     return data;
 }
 
-getGeoData('json/jaffpota-annotated-v2.json').then(data => geojson.addData(data));
+getGeoData('json/jaffpota-annotated-v21.json').then(data => geojson.addData(data));
 
 userChange = true;
 
@@ -1280,7 +1292,7 @@ function redrawMarkers() {
     var b = map.getBounds();
     placeSummitMarkers([b['_northEast']['lat'], b['_southWest']['lng']],
 		       [b['_southWest']['lat'], b['_northEast']['lng']],z);
-    placeHamFairMarker({'lat':35.627288040687716, 'lng':139.79562967407333});
+    //placeHamFairMarker({'lat':35.627288040687716, 'lng':139.79562967407333});
 }
        
 map.on('moveend',function(e) {
