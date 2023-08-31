@@ -114,10 +114,8 @@ i.semantic-ui-custom {
     box-shadow: none;
     font-size: 8px;
 }
-
 </style>
-</head>
-<body>
+
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
 <script src="https://unpkg.com/topojson@3.0.2/dist/topojson.min.js"></script> 
@@ -149,6 +147,14 @@ i.semantic-ui-custom {
 <script src="js/search-ref.js"></script>
 <!-- plugin -->
 
+<style type="text/css">
+  i.semantic-ui-custom {
+  margin-top: 9px;
+  }
+</style>
+</head>
+
+<body>
   <nav class="navbar navbar-expand-md navbar-dark bg-dark text-light">
     <span class="navbar-brand" style="cursor: hand;cursor: pointer;"><h4>MyACT</h4></span>
     <button type="button" class="btn btn-amber" onclick="clickQTHButton()" title="現在位置を調べる"><span class="fas fa-map-marked-alt" ></span></button>
@@ -159,10 +165,10 @@ i.semantic-ui-custom {
     <script>
       $("#search_ref").searchinput({width:65,done:function(s){showReference(s)}})
     </script>
-
+    
     <small><span id="clock_time" style="cursor: default;" ></span></small>
   </nav>
-  
+
   <div class = "modal fade" id="spots-data">
     <div class="modal-dialog" style="max-width: 90%;margin:1rem auto;">
       <div class="modal-content">
@@ -178,22 +184,22 @@ i.semantic-ui-custom {
 	    </div>
 	  </div>
 	  <div class="dropdown">
-	  <button class="btn btn-default btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false" id="period_dropdown">
-	    Last 6H
-	  </button>
-	  <div class="dropdown-menu">
-	    <a class="dropdown-item" href="javascript:onPeriodChange(1);"><small>1</small></a>
-	    <a class="dropdown-item" href="javascript:onPeriodChange(3);"><small>3</small></a>
-	    <a class="dropdown-item" href="javascript:onPeriodChange(6);"><small>6</small></a>
-	    <a class="dropdown-item" href="javascript:onPeriodChange(9);"><small>9</small></a>
-	    <a class="dropdown-item" href="javascript:onPeriodChange(12);"><small>12</small></a>
-	    <a class="dropdown-item" href="javascript:onPeriodChange(15);"><small>15</small></a>
-	    <a class="dropdown-item" href="javascript:onPeriodChange(18);"><small>18</small></a>
-	    <a class="dropdown-item" href="javascript:onPeriodChange(21);"><small>21</small></a>
-	    <a class="dropdown-item" href="javascript:onPeriodChange(24);"><small>24</small></a>
+	    <button class="btn btn-default btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false" id="period_dropdown">
+	      Last 6H
+	    </button>
+	    <div class="dropdown-menu">
+	      <a class="dropdown-item" href="javascript:onPeriodChange(1);"><small>1</small></a>
+	      <a class="dropdown-item" href="javascript:onPeriodChange(3);"><small>3</small></a>
+	      <a class="dropdown-item" href="javascript:onPeriodChange(6);"><small>6</small></a>
+	      <a class="dropdown-item" href="javascript:onPeriodChange(9);"><small>9</small></a>
+	      <a class="dropdown-item" href="javascript:onPeriodChange(12);"><small>12</small></a>
+	      <a class="dropdown-item" href="javascript:onPeriodChange(15);"><small>15</small></a>
+	      <a class="dropdown-item" href="javascript:onPeriodChange(18);"><small>18</small></a>
+	      <a class="dropdown-item" href="javascript:onPeriodChange(21);"><small>21</small></a>
+	      <a class="dropdown-item" href="javascript:onPeriodChange(24);"><small>24</small></a>
+	    </div>
 	  </div>
-	</div>
-	<div class="custom-control custom-checkbox">
+	  <div class="custom-control custom-checkbox">
 	    <input class="custom-control-input" type="checkbox" value="" id="by_call" onclick="clickPrefs();refresh_spots()">
 	    <label class="custom-control-label" for="by_call"><small>By Callsign</small></label>
 	  </div>
@@ -204,11 +210,10 @@ i.semantic-ui-custom {
 	</div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal" onclick="closePrefs()">Close</button>
+	<button type="button" class="btn btn-default" data-dismiss="modal" onclick="closePrefs()">Close</button>
       </div>
     </div>
   </div>
-
   
   <div class="container-fluid">
     <div class="row">
@@ -221,10 +226,10 @@ i.semantic-ui-custom {
   <div class="modal" id="modal-prefs" tabindex="-1" role="dialog" aria-labelledby="staticModalLabel" aria-hidden="true" data-show="true" data-keyboard="false" data-backdrop="static">
     <div class="modal-dialog">
       <div class="modal-content">
-        <div class="modal-header">
+	<div class="modal-header">
           <h4 class="modal-title"><b>Preferences</b></h4>
-        </div><!-- /modal-header -->
-        <div class="modal-body">
+	</div><!-- /modal-header -->
+	<div class="modal-body">
 	  <form>
 	    <div class ="form-group">
 	      <label class="control-label"><u>表示対象</u></label>
@@ -240,7 +245,7 @@ i.semantic-ui-custom {
 		<input class="custom-control-input" type="checkbox" value="" id="jaff_ref" onclick="clickPrefs()">
 		<label class="custom-control-label" for="jaff_ref">JAFF</label>
 	      </div>
-  	      <div class="custom-control custom-checkbox" id="check-pilgrim" stype="diplay:none">
+  	      <div class="custom-control custom-checkbox" id="check-pilgrim" style="diplay:none">
 		<input class="custom-control-input" type="checkbox" value="" id="pilgrim" onclick="clickPrefs()">
 		<label class="custom-control-label" for="pilgrim">観音霊場</label>
 	      </div>
@@ -281,14 +286,14 @@ i.semantic-ui-custom {
 		<div class="invalid-feedback">ファイルを指定してください</div>
 	      </div>
 	      <div class="input-group">	      
-	      <button type="button" class="btn btn-default" onclick="potaLog('upload')">Upload</button>
-	      <button type="button" class="btn btn-default" onclick="potaLog('import')">IMPORT</button>
-	      <div class="input-group:append">
-		<input type="text" class="form-control-sm" style="width:6em" id="import_uuid">
-		<button type="button" id="export_uuid" class="btn btn-default" onclick="potaLog('export')">EXPORT</button>
-		<label class="form-check-label" for="export_uuid">
-		  <div id="pota_export_key">XXXXXX</div>
-		</label>
+		<button type="button" class="btn btn-default" onclick="potaLog('upload')">Upload</button>
+		<button type="button" class="btn btn-default" onclick="potaLog('import')">IMPORT</button>
+		<div class="input-group:append">
+		  <input type="text" class="form-control-sm" style="width:6em" id="import_uuid">
+		  <button type="button" id="export_uuid" class="btn btn-default" onclick="potaLog('export')">EXPORT</button>
+		  <label class="form-check-label" for="export_uuid">
+		    <div id="pota_export_key">XXXXXX</div>
+		  </label>
 		</div>
 	      </div>
 	      <div class="custom-control custom-checkbox">
@@ -308,42 +313,99 @@ i.semantic-ui-custom {
 	    </div>
 	  </form>
           <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal" onclick="closePrefs()">Close</button>
+            <button type="button" class="btn btn-default" data-dismiss="modal" onClick="closePrefs()">Close</button>
           </div>
-	</div> <!-- /.modal-content -->
-      </div> <!-- /.modal-dialog -->
-    </div> <!-- /.modal -->
+	</div> <!-- /.modal-body -->
+      </div> <!-- /.modal-content -->
+    </div> <!-- /.modal-dialog -->
+  </div>
 
-    <div class = "modal fade" id="logs-data">
-      <div class="modal-dialog">
-	<div class="modal-content">
-	  <div id="stat-container" class="modal-body">
-	    <canvas id="myLogStat"></canvas>
-	  </div>
-	  <small><span id="perf_mon" style="cursor: default;" ></span></small>
+  <div class = "modal fade" id="logs-data">
+    <div class="modal-dialog">
+      <div class="modal-content">
+	<div id="stat-container" class="modal-body">
+	  <canvas id="myLogStat"></canvas>
 	</div>
-	<div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-	</div>
+	<small><span id="perf_mon" style="cursor: default;" ></span></small>
+      </div>
+      <div class="modal-footer">
+	<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
       </div>
     </div>
   </div>
-</body>
-<!-- Optional JavaScript -->
-<style type="text/css">
-    i.semantic-ui-custom {
-        margin-top: 9px;
-    }
-</style>
 
+  <div class = "modal fade" id="pemuact">
+    <div class="modal-dialog">
+      <div class="modal-content">
+	<div class="modal-header">
+	  <h4 class="modal-title"><b>Paddle Emulator for Activation</b></h4>
+	</div><!-- /modal-header -->
+	<div id="keyer-container" class="modal-body">
+	  <h4><bf><div id="pemu_name"></div></bf></h4>
+	  <table>
+	    <tr>
+	      <td> CALL:</td>
+	      <td><input type=text id="pemu_call" size="6"></td>
+	      <td> SOTA:</td>
+	      <td><input type=text id="pemu_sota" size="6"></td>
+	      <td>POTA:</td>
+	      <td><input type=text id="pemu_pota" size="6"></td>
+	    </tr>
+	  </table>
+	  <table>
+	    <tr>
+	      <td> 1. </td>
+	      <td><input type=text id="pemu_mesg1" size="50"></td>
+	      <td><button class="btn btn-primary" onClick="pemuPressed(1)">SEND</button></td>
+	    </tr>
+	    <tr>
+	      <td> 2. </td>
+	      <td><input type=text id="pemu_mesg2" size="50"></td>
+	      <td><button class="btn btn-primary" onClick="pemuPressed(2)">SEND</button></td>
+	    </tr>
+	    <tr>
+	      <td> 3. </td>
+	      <td><input type=text id="pemu_mesg3"  size="50"></td>
+	      <td><button class="btn btn-primary" onClick="pemuPressed(3)">SEND</button></td>
+	    </tr>
+	    <tr>
+	      <td> 4. </td>
+	      <td><input type=text id="pemu_mesg4" size="50"></td>
+	      <td><button class="btn btn-primary" onClick="pemuPressed(4)">SEND</button></td>
+	    </tr>
+	  </table>
+	  <table>
+	    <tr>
+	      <td><input type=text id="pemu_wpm" size="1"></td>
+	      <td>wpm</td>
+	      <td> VID:</td>
+	      <td><input type=text id="pemu_vid" size="5"></td>
+	      <td> PID:</td>
+	      <td><input type=text id="pemu_pid" size="5"></td>
+	    </tr>
+	  </table>
+	  
+	</div>
+      </div>
+      <div class="modal-footer">
+	<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+<!-- Optional JavaScript -->
 <script>
 var enable_pilgrim = false;
-if (location.host != 'mypilgrim.sotalive.net') 
+var enable_pemuact = false;
+
+if (location.host != 'mypilgrim.sotalive.net') {
     document.getElementById('check-pilgrim').style.display = 'none';
-  else {
-      enable_pilgrim = true;
-      document.getElementById('check-pilgrim').style.display = 'block';
-  }
+    enable_pemuact = true;
+}
+else {
+    enable_pilgrim = true;
+    document.getElementById('check-pilgrim').style.display = 'block';
+    enable_pemuact = true;
+}
   
 let vh = window.innerHeight * 0.01;
 document.documentElement.style.setProperty('--vh', `${vh}px`);
@@ -355,7 +417,13 @@ var sotalive = 'https://www.sotalive.net/';
 var gsi = L.tileLayer('https://cyberjapandata.gsi.go.jp/xyz/std/{z}/{x}/{y}.png', {attribution: "<a href='https://maps.gsi.go.jp/development/ichiran.html' target='_blank'>地理院タイル</a>|<a href='https://nlftp.mlit.go.jp/ksj/gml/datalist/KsjTmplt-A10-v4_1.html' target='_blank'>国土数値情報自然公園地域データ</a>"
 });
 
-var yamareco = L.tileLayer('https://www.yamareco.com/modules/yamareco/include/get_tileimg.php?type=dot_summer&z={z}&y={y}&x={x}', {attribution: "<a href='https://www.yamareco.com/' target='_blank'>ヤマレコ</a>"
+var gsi_photo = L.tileLayer('https://cyberjapandata.gsi.go.jp/xyz/seamlessphoto/{z}/{x}/{y}.jpg', {attribution: "<a href='https://maps.gsi.go.jp/development/ichiran.html' target='_blank'>地理院タイル</a>|<a href='https://nlftp.mlit.go.jp/ksj/gml/datalist/KsjTmplt-A10-v4_1.html' target='_blank'>国土数値情報自然公園地域データ</a>"
+});
+
+var yamareco_summer = L.tileLayer('https://www.yamareco.com/modules/yamareco/include/get_tileimg.php?type=dot_summer&z={z}&y={y}&x={x}', {attribution: "<a href='https://www.yamareco.com/' target='_blank'>ヤマレコ</a>"
+});
+
+var yamareco_winter = L.tileLayer('https://www.yamareco.com/modules/yamareco/include/get_tileimg.php?type=dot_winter&z={z}&y={y}&x={x}', {attribution: "<a href='https://www.yamareco.com/' target='_blank'>ヤマレコ</a>"
 });
 
 var map = L.map('map',{
@@ -364,10 +432,15 @@ var map = L.map('map',{
 });
 
 if (enable_pilgrim) {
-    var overlayLayerControls = {
-    'ヤマレコみんなの足跡': yamareco
+    var baseLayerControls = {
+	'地理院地形図': gsi,
+	'全国最新写真': gsi_photo,
     };
-    L.control.layers(null, overlayLayerControls, {
+    var overlayLayerControls = {
+	'ヤマレコみんなの足跡(登山道)': yamareco_summer,
+	'ヤマレコみんなの足跡(雪山)': yamareco_winter,
+    };
+    L.control.layers(baseLayerControls, overlayLayerControls, {
 	collapsed: true,
     }).addTo(map);
 }
@@ -379,7 +452,8 @@ var popup = L.popup();
 var last_area = null;
 var last_mesg = '';
 var geomagindex = 'A:-- K:-';
-  
+
+
 function redrawPopup() {
     if (last_area != null) {
 	var ctnt = '<b>' + selectRef(last_area, true) + '</b>' + last_mesg;
@@ -565,7 +639,73 @@ function getLogID() {
     else
 	return prefs['pota_hunter_uuid']
 }
+
+function keyerButton(area) {
+    let arg = '{';
+    for (var k in area) 
+	arg +=  k  + ':' + "'" + area[k] + "',";
+    arg += '}'
+    let bstr = '<center><button type="button" class="btn-outline-primary btn-sm" data-toggle="modal" data-target="#pemuact" onclick="clickPemuAct(' + arg + ')"><img src="svg/triangle-down.svg"></button></center>';
+    return bstr;
+}
+
+
+function clickPemuAct(area) {
+    document.getElementById("pemu_name").innerText = area['name'];
+
+    if (area['sota'])
+	document.getElementById("pemu_sota").value = area['sota'];
+    else
+	document.getElementById("pemu_sota").value = '';
+
+    if (area['pota'])
+	document.getElementById("pemu_pota").value = area['pota'];
+    else
+	document.getElementById("pemu_pota").value = '';
+    
+}
+
+var serial_port = undefined;
+var serial_writer = undefined;
+var serial_reader = undefined;
   
+async function pemuPressed(num) {
+    let msg = document.getElementById("pemu_mesg"+String(num)).value.toUpperCase();
+    let call = document.getElementById("pemu_call").value;
+    let sota = document.getElementById("pemu_sota").value;
+    let pota = document.getElementById("pemu_pota").value;
+    let wpm = parseInt(document.getElementById("pemu_wpm").value, 10);
+    let vid = parseInt(document.getElementById("pemu_vid").value, 16);
+    let pid = parseInt(document.getElementById("pemu_pid").value, 16);
+    const filters = [
+	{ usbVendorId: vid, usbProductId: pid }
+    ];
+
+    if (! "serial" in navigator) {
+	window.alert("お使いのブラウザはシリアル通信が出来ません");
+	return;
+    }
+    if (serial_port == undefined) {
+	serial_port = await navigator.serial.requestPort({ filters });
+	await serial_port.open({ baudRate: 9600 });
+	const textEncoder = new TextEncoderStream();
+	const writableStreamClosed = textEncoder.readable.pipeTo(serial_port.writable);
+	serial_writer = textEncoder.writable.getWriter();
+	serial_reader = serial_port.readable.getReader();
+    }
+    
+    let replaced = msg.replace('$CALL', call).replace('$SOTA', sota).replace('$POTA', pota).replace('-','');
+
+    let jsonmsg = {"wpm": wpm, "to_paddle": replaced };
+    let jsonstr = JSON.stringify(jsonmsg) + '\r';
+    
+    await serial_writer.write(jsonstr);
+    console.log(jsonstr);
+    let {value, done} = await serial_reader.read();
+    const v = new TextDecoder().decode(value);
+    console.log(v);
+}
+
 function displayPopup(area, latlng, isMarker, isGPS) {
     var lat = Math.round(latlng.lat * 1000000,4)/1000000,
 	lng = Math.round(latlng.lng * 1000000,4)/1000000,
@@ -666,11 +806,14 @@ function displayPopup(area, latlng, isMarker, isGPS) {
 			    qth_marker.bindPopup(mesg).openPopup();
 		    } else {
 			cnt = selectRef(area, true);
-			if (cnt != '')
-			    cnt = '<b>' + cnt + '</b>' + mesg + weather;
+			if (cnt != '') {
+			    cnt = '<b>' + cnt + '</b>' + mesg + weather + potamesg;
+			    if (enable_pemuact)
+				cnt += keyerButton(area);
+			}
 			else
 			    cnt = mesg + weather;
-			popup.setContent(cnt + potamesg);
+			popup.setContent(cnt);
 			popup.setLatLng(latlng).openOn(map);
 			last_area = area;
 			last_mesg = mesg;
@@ -695,6 +838,14 @@ var prefs =
       'pota_hunter_uuid': null,
       'pota_activator_uuid': null,
       'enable_mqtt': false,
+      'pemu_call' : '',
+      'pemu_mesg1': 'CQ CQ CQ DE $CALL SOTA $SOTA +',
+      'pemu_mesg2': 'CQ CQ CQ DE $CALL POTA $POTA +',
+      'pemu_mesg3': 'CQ CQ CQ DE $CALL SOTA $SOTA ES POTA $POTA +',
+      'pemu_mesg4': '',
+      'pemu_wpm': '40',
+      'pemu_vid': '0x303a',
+      'pemu_pid': '0x1001',
     }
 
 $('#zoom-threshold').slider({
@@ -713,11 +864,15 @@ $('#spot-period').slider({
    
 function clickPrefs() {
     for(var k in prefs) {
-	if (k == 'zoom_threshold' || k == 'spot_period') {
-	}
-	else if (k == 'pota_activator_uuid' || k == 'pota_hunter_uuid') {
-	}
-	else {
+	if (k == 'zoom_threshold' || k == 'spot_period'||k.includes('uuid')) {
+	    Cookies.set(k ,String(prefs[k]),
+			{expires: 1800, SameSite:'Lax'});
+	} else if (k.includes('pemu')) {
+	    prefs[k] = document.getElementById(k).value;
+	    console.log(k);
+	    console.log(prefs[k]);
+	    Cookies.set(k ,prefs[k],{expires: 1800, SameSite:'Lax'});
+	} else {
 	    var el = document.getElementById(k);
 	    if (el.checked == true) {
 		prefs[k] = true;
@@ -751,8 +906,12 @@ function readCookie(pref) {
 		pref[k] = Number(ck)
 	    $('#spot-period').slider('setValue',Number(ck))
 	}
-	else if (k == 'pota_activator_uuid' || k == 'pota_hunter_uuid') {
+	else if (k.includes('uuid')) {
 	    pref[k] = ck;
+	} else if (k.includes('pemu')) {
+	    if (ck)
+		pref[k] = ck;
+	    document.getElementById(k).value = pref[k];
 	}
 	else {
 	    if (ck  == undefined) {
@@ -783,10 +942,6 @@ function readCookie(pref) {
 }
 
 function closePrefs() {
-    Cookies.set('zoom_threshold',String(prefs['zoom_threshold']),{expires: 1800, SameSite:'Lax'})
-    Cookies.set('spot_period',String(prefs['spot_period']),{expires: 1800, SameSite:'Lax'})
-    Cookies.set('pota_activator_uuid',prefs['pota_activator_uuid'],{expires: 1800, SameSite:'Lax'})
-    Cookies.set('pota_hunter_uuid',prefs['pota_hunter_uuid'],{expires: 1800, SameSite:'Lax'})
     clickPrefs();
     redrawPopup();
     redrawMarkers();
@@ -1030,6 +1185,10 @@ function placeSummitMarkers(nw ,se, z) {
 		    if (s['actcnt']!= 0)
 			mesg += '<br>Last Activation: ' + s['lastact'] + '(' + s['lastcall'] + ')'
 		    popup = false
+
+		    if (enable_pemuact)
+			mesg += keyerButton({sota: s['code'], name:sname});
+		    
 		    if (_popupMarker &&
 			s['lat'] == _popupMarker[0] &&
 			s['lon'] == _popupMarker[1]) {
@@ -1221,16 +1380,18 @@ var geojson = L.topoJson(null, {
     },
     onEachFeature: function(feature, layer) {
 	layer.on('click', function(e) {
-	    displayPopup({'name':feature.properties.NAME,
-			  'pota':feature.properties.POTA,
-			  'jaff':feature.properties.JAFF},
+	    displayPopup({'pota':feature.properties.POTA,
+			  'jaff':feature.properties.JAFF,
+			  'name':feature.properties.NAME,
+			 },
 			 e.latlng, false, false);
 	    L.DomEvent.stop(e);
 	});
 	layer.on('contextmenu', function(e) {
-	    displayPopup({'name':feature.properties.NAME,
-			  'pota':feature.properties.POTA,
-			  'jaff':feature.properties.JAFF+'('+feature.properties.PID+','+feature.properties.UID+')'},
+	    displayPopup({'pota':feature.properties.POTA,
+			  'jaff':feature.properties.JAFF+'('+feature.properties.PID+','+feature.properties.UID+')',
+			  'name':feature.properties.NAME,
+			 },
 			 e.latlng, false, false);
 	    L.DomEvent.stop(e);
 	});
@@ -1608,10 +1769,10 @@ async function refresh_spots() {
   $('#logs-data').on('show.bs.modal', function(e) {
       stat_db();
   });
-  
-  $('#logs-data').on('hide.bs.modal', function(e) {
+
+  $('#pemuact').on('hide.bs.modal', function(e) {
+      clickPrefs();
   });
-  
 </script>
 </body>
 </html>
