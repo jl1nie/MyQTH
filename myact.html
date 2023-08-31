@@ -342,49 +342,61 @@ i.semantic-ui-custom {
 	</div><!-- /modal-header -->
 	<div id="keyer-container" class="modal-body">
 	  <h4><bf><div id="pemu_name"></div></bf></h4>
-	  <table>
+ 	  <table>
 	    <tr>
 	      <td> CALL:</td>
-	      <td><input type=text id="pemu_call" size="6"></td>
-	      <td> SOTA:</td>
+	      <td><input type=text id="pemu_call" size="5"></td>
+	    </tr>
+	  </table>
+	  <table>
+	    <tr>
+	      <td>SOTA:</td>
 	      <td><input type=text id="pemu_sota" size="6"></td>
 	      <td>POTA:</td>
-	      <td><input type=text id="pemu_pota" size="6"></td>
+	      <td><input type=text id="pemu_pota" size="5"></td>
+	      <td>JAFF:</td>
+	      <td><input type=text id="pemu_jaff" size="5"></td>
 	    </tr>
 	  </table>
 	  <table>
 	    <tr>
 	      <td> 1. </td>
-	      <td><input type=text id="pemu_mesg1" size="50"></td>
+	      <td><input type=text id="pemu_mesg1" size="40"></td>
 	      <td><button class="btn btn-primary" onClick="pemuPressed(1)">SEND</button></td>
 	    </tr>
 	    <tr>
 	      <td> 2. </td>
-	      <td><input type=text id="pemu_mesg2" size="50"></td>
+	      <td><input type=text id="pemu_mesg2" size="40"></td>
 	      <td><button class="btn btn-primary" onClick="pemuPressed(2)">SEND</button></td>
 	    </tr>
 	    <tr>
 	      <td> 3. </td>
-	      <td><input type=text id="pemu_mesg3"  size="50"></td>
+	      <td><input type=text id="pemu_mesg3"  size="40"></td>
 	      <td><button class="btn btn-primary" onClick="pemuPressed(3)">SEND</button></td>
 	    </tr>
 	    <tr>
 	      <td> 4. </td>
-	      <td><input type=text id="pemu_mesg4" size="50"></td>
+	      <td><input type=text id="pemu_mesg4" size="40"></td>
 	      <td><button class="btn btn-primary" onClick="pemuPressed(4)">SEND</button></td>
 	    </tr>
 	  </table>
 	  <table>
 	    <tr>
-	      <td><input type=text id="pemu_wpm" size="1"></td>
-	      <td>wpm</td>
+	      <td>Speed:</td>
+	      <td><input type=text id="pemu_wpm" size="1">wpm</td>
+	    </tr>
+	    <tr>
+	    <tr>
+	      <td> Host:</td>
+	      <td><input type=text id="pemu_host" size="10"></td>
+	    </tr>
+	    <tr>
 	      <td> VID:</td>
-	      <td><input type=text id="pemu_vid" size="5"></td>
+	      <td><input type=text id="pemu_vid" size="4"></td>
 	      <td> PID:</td>
-	      <td><input type=text id="pemu_pid" size="5"></td>
+	      <td><input type=text id="pemu_pid" size="4"></td>
 	    </tr>
 	  </table>
-	  
 	</div>
       </div>
       <div class="modal-footer">
@@ -662,6 +674,11 @@ function clickPemuAct(area) {
 	document.getElementById("pemu_pota").value = area['pota'];
     else
 	document.getElementById("pemu_pota").value = '';
+
+    if (area['jaff'])
+	document.getElementById("pemu_jaff").value = area['jaff'];
+    else
+	document.getElementById("pemu_jaff").value = '';
     
 }
 
@@ -674,12 +691,19 @@ async function pemuPressed(num) {
     let call = document.getElementById("pemu_call").value;
     let sota = document.getElementById("pemu_sota").value;
     let pota = document.getElementById("pemu_pota").value;
+    let jaff = document.getElementById("pemu_jaff").value;
     let wpm = parseInt(document.getElementById("pemu_wpm").value, 10);
     let vid = parseInt(document.getElementById("pemu_vid").value, 16);
     let pid = parseInt(document.getElementById("pemu_pid").value, 16);
+    let host = document.getElementById("pemu_host").value;
+
     const filters = [
 	{ usbVendorId: vid, usbProductId: pid }
     ];
+    
+    let replaced = msg.replace('$CALL', call).replace('$SOTA', sota).replace('$POTA', pota).replace('$JAFF', jaff).replace('-','');
+    let jsonmsg = {"wpm": wpm, "to_paddle": replaced };
+    let jsonstr = JSON.stringify(jsonmsg) + '\r';
 
     if (! "serial" in navigator) {
 	window.alert("お使いのブラウザはシリアル通信が出来ません");
@@ -694,10 +718,6 @@ async function pemuPressed(num) {
 	serial_reader = serial_port.readable.getReader();
     }
     
-    let replaced = msg.replace('$CALL', call).replace('$SOTA', sota).replace('$POTA', pota).replace('-','');
-
-    let jsonmsg = {"wpm": wpm, "to_paddle": replaced };
-    let jsonstr = JSON.stringify(jsonmsg) + '\r';
     
     await serial_writer.write(jsonstr);
     console.log(jsonstr);
@@ -841,11 +861,12 @@ var prefs =
       'pemu_call' : '',
       'pemu_mesg1': 'CQ CQ CQ DE $CALL SOTA $SOTA +',
       'pemu_mesg2': 'CQ CQ CQ DE $CALL POTA $POTA +',
-      'pemu_mesg3': 'CQ CQ CQ DE $CALL SOTA $SOTA ES POTA $POTA +',
-      'pemu_mesg4': '',
+      'pemu_mesg3': 'CQ CQ CQ DE $CALL JAFF $JAFF +',
+      'pemu_mesg4': 'CQ CQ CQ DE $CALL SOTA $SOTA ES POTA $POTA +',
       'pemu_wpm': '40',
       'pemu_vid': '0x303a',
       'pemu_pid': '0x1001',
+      'pemu_host': 'pemuact.local',
     }
 
 $('#zoom-threshold').slider({
