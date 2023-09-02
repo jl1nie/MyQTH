@@ -267,17 +267,47 @@ i.semantic-ui-custom {
 		<input class="custom-control-input" type="checkbox" value="" id="display_mapcode" onclick="clickPrefs()">
 		<label class="custom-control-label" for="display_mapcode"> MAPCODEを表示<br><small>(「マップコード」および「MAPCODE」は㈱デンソーの登録商標です)</small></label>
 	      </div>
-	      <div class="form-group">
-		<label class="control-label"><u>POTAログ表示</u></label>
-		<button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#logs-data" title="登録ログ数"><span class="fas fa-chart-bar"></span></button>
-		<div class="custom-control custom-checkbox">
-		  <input type="checkbox" class="custom-control-input" value="" id="show_potalog" onclick="clickPrefs()">
-		  <label class="custom-control-label" for="show_potalog"> POTAログを表示</label>
-		</div>
-		<div class="custom-control custom-checkbox">
-		  <input type="checkbox" class="custom-control-input" value="" id="enable_mqtt" onclick="clickPrefs(); potaLog('check');">
-		  <label class="custom-control-label" for="enable_mqtt"> MQTT連携</label>
-		</div>
+	    </div>
+	    <div class="form-group" id="check-pemuact" style="display:none">
+	      <label class="control-label"><u>パドルエミュレータ</u></label>
+	      <div class="custom-control custom-checkbox" id="check">
+		<input class="custom-control-input" type="checkbox" value="" id="enable_emulation">
+		<label class="custom-control-label" for="enable_emulation">使用する</label>
+	      </div>
+	      <table>
+		<tr>
+		  <td>
+		    <div class="custom-control custom-checkbox">
+		      <input class="form-check-input" type="radio" name="enable_wifi" id="enable_wifi">
+		      <label class="form-check-label" for="enable_wifi">
+			Host:
+		      </label>
+		    </div>
+		  </td>
+		  <td><input type=text id="pemu_host" size="10"></td>
+		</tr>
+		<tr>
+		  <td>
+		    <div class="custom-control custom-checkbox">
+		      <input class="form-check-input" type="radio" name="enable_wifi" id="enable_serial">
+		      <label class="form-check-label" for="enable_serial">
+			シリアル
+		      </label>
+		    </div>
+		  </td>
+		</tr>
+	      </table>
+	    </div>
+	    <div class="form-group">
+	      <label class="control-label"><u>POTAログ表示</u></label>
+	      <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#logs-data" title="登録ログ数"><span class="fas fa-chart-bar"></span></button>
+	      <div class="custom-control custom-checkbox">
+		<input type="checkbox" class="custom-control-input" value="" id="show_potalog" onclick="clickPrefs()">
+		<label class="custom-control-label" for="show_potalog"> POTAログを表示</label>
+	      </div>
+	      <div class="custom-control custom-checkbox">
+		<input type="checkbox" class="custom-control-input" value="" id="enable_mqtt" onclick="clickPrefs(); potaLog('check');">
+		<label class="custom-control-label" for="enable_mqtt"> MQTT連携</label>
 	      </div>
 	      <div class="custom-file">
 		<input type="file" accept=".csv" style="width:10em"
@@ -384,17 +414,30 @@ i.semantic-ui-custom {
 	    <tr>
 	      <td>Speed:</td>
 	      <td><input type=text id="pemu_wpm" size="1">wpm</td>
-	    </tr>
-	    <tr>
-	    <tr>
-	      <td> Host:</td>
-	      <td><input type=text id="pemu_host" size="10"></td>
-	    </tr>
-	    <tr>
-	      <td> VID:</td>
-	      <td><input type=text id="pemu_vid" size="4"></td>
-	      <td> PID:</td>
-	      <td><input type=text id="pemu_pid" size="4"></td>
+	      <td>
+		<div class="custom-control custom-checkbox">
+		  <input class="form-check-input" type="radio" name="to_paddle" id="to_paddle" checked>
+		  <label class="form-check-label" for="to_paddle">
+		    Paddle
+		  </label>
+		</div>
+	      </td>
+	      <td>
+		<div class="custom-control custom-checkbox">
+		  <input class="form-check-input" type="radio" name="to_paddle" id="to_key">
+		  <label class="form-check-label" for="to_key">
+		    Straight
+		  </label>
+		</div>
+	      </td>
+ 	      <td>
+		<div class="custom-control custom-checkbox">
+		  <input class="form-check-input" type="checkbox" name="paddle_reverse" id="paddle_reverse">
+		  <label class="form-check-label" for="paddle_reverse">
+		    Reverse Paddle
+		  </label>
+		</div>
+	      </td>
 	    </tr>
 	  </table>
 	</div>
@@ -406,17 +449,50 @@ i.semantic-ui-custom {
   </div>
 <!-- Optional JavaScript -->
 <script>
-var enable_pilgrim = false;
-var enable_pemuact = false;
+var prefs =
+    { 'popup_permanent': true,
+      'display_mapcode': false,
+      'link_googlemap': false, 
+      'by_call': false,
+      'sota_ref': true,
+      'pota_ref': true,
+      'jaff_ref': true,
+      'pilgrim': false,
+      'show_potalog': false,
+      'show_potaactlog': true,
+      'zoom_threshold': 12,
+      'spot_period': 6,
+      'pota_hunter_uuid': null,
+      'pota_activator_uuid': null,
+      'enable_mqtt': false,
+      'enable_emulation': false,
+      'pemu_call' : '',
+      'pemu_sota' : '',
+      'pemu_pota' : '',
+      'pemu_jaff' : '',
+      'pemu_mesg1': 'CQ CQ CQ DE $CALL SOTA $SOTA +',
+      'pemu_mesg2': 'CQ CQ CQ DE $CALL POTA $POTA +',
+      'pemu_mesg3': 'CQ CQ CQ DE $CALL JAFF $JAFF +',
+      'pemu_mesg4': 'CQ CQ CQ DE $CALL SOTA $SOTA ES POTA $POTA +',
+      'pemu_wpm': '40',
+      'pemu_host': 'pemuact.local',
+      'paddle_reverse': false,
+      'to_paddle' : true,
+      'to_key' : false,
+      'enable_wifi': false,
+      'enable_serial': true,
+    };
+
+var enable_experimental = false;
 
 if (location.host != 'mypilgrim.sotalive.net') {
     document.getElementById('check-pilgrim').style.display = 'none';
-    enable_pemuact = true;
+    document.getElementById('check-pemuact').style.display = 'none';
 }
 else {
-    enable_pilgrim = true;
+    enable_experimental = true;
     document.getElementById('check-pilgrim').style.display = 'block';
-    enable_pemuact = true;
+    document.getElementById('check-pemuact').style.display = 'block';
 }
   
 let vh = window.innerHeight * 0.01;
@@ -443,7 +519,7 @@ var map = L.map('map',{
     layers: [ gsi ]
 });
 
-if (enable_pilgrim) {
+if (enable_experimental) {
     var baseLayerControls = {
 	'地理院地形図': gsi,
 	'全国最新写真': gsi_photo,
@@ -459,6 +535,7 @@ if (enable_pilgrim) {
   
 L.control.scale().addTo(map);
 L.control.zoomLabel().addTo(map);
+
 var popup = L.popup();
 
 var last_area = null;
@@ -678,52 +755,91 @@ function clickPemuAct(area) {
     if (area['jaff'])
 	document.getElementById("pemu_jaff").value = area['jaff'];
     else
-	document.getElementById("pemu_jaff").value = '';
-    
+	document.getElementById("pemu_jaff").value = '';    
 }
 
 var serial_port = undefined;
 var serial_writer = undefined;
 var serial_reader = undefined;
-  
-async function pemuPressed(num) {
-    let msg = document.getElementById("pemu_mesg"+String(num)).value.toUpperCase();
-    let call = document.getElementById("pemu_call").value;
-    let sota = document.getElementById("pemu_sota").value;
-    let pota = document.getElementById("pemu_pota").value;
-    let jaff = document.getElementById("pemu_jaff").value;
-    let wpm = parseInt(document.getElementById("pemu_wpm").value, 10);
-    let vid = parseInt(document.getElementById("pemu_vid").value, 16);
-    let pid = parseInt(document.getElementById("pemu_pid").value, 16);
-    let host = document.getElementById("pemu_host").value;
 
+async function pemuPressed(num) {
+    clickPrefs();
+    let msg = prefs["pemu_mesg"+String(num)].toUpperCase();
+    let call = prefs["pemu_call"];
+    let sota = prefs["pemu_sota"].replace('-','');
+    let pota = prefs["pemu_pota"].replace('-','');
+    let jaff = prefs["pemu_jaff"].replace('-','');
+    let wpm = parseInt(prefs["pemu_wpm"], 10);
+    let enable_wifi = prefs["enable_wifi"];
+    let pemuuri = 'https://' + prefs["pemu_host"] + '/play';
+    let jsonmsg = {};
     const filters = [
-	{ usbVendorId: vid, usbProductId: pid }
+	{ usbVendorId: 0x303a, usbProductId: 0x1001 },
+	{ usbVendorId: 0x0403, usbProductId: 0x6001 },
+	{ usbVendorId: 0x1a86, usbProductId: 0x55d4 },
+	{ usbVendorId: 0x10c4, usbProductId: 0xea60 },
     ];
     
-    let replaced = msg.replace('$CALL', call).replace('$SOTA', sota).replace('$POTA', pota).replace('$JAFF', jaff).replace('-','');
-    let jsonmsg = {"wpm": wpm, "to_paddle": replaced };
+    let replaced_msg =
+	msg.toUpperCase()
+	.replace('$CALL', call)
+	.replace('$SOTA', sota)
+	.replace('$POTA', pota)
+	.replace('$JAFF', jaff)
+
+    jsonmsg["wpm"] = wpm;
+
+    if (prefs["to_paddle"])
+	jsonmsg["to_paddle"] = replaced_msg;
+    else
+	jsonmsg["to_straight"] = replaced_msg;
+
+    if(prefs["paddle_reverse"])
+	jsonmsg["reverse"] = true;
+    else
+	jsonmsg["reverse"] = false;
+
     let jsonstr = JSON.stringify(jsonmsg) + '\r';
 
-    if (! "serial" in navigator) {
-	window.alert("お使いのブラウザはシリアル通信が出来ません");
-	return;
-    }
-    if (serial_port == undefined) {
-	serial_port = await navigator.serial.requestPort({ filters });
-	await serial_port.open({ baudRate: 9600 });
-	const textEncoder = new TextEncoderStream();
-	const writableStreamClosed = textEncoder.readable.pipeTo(serial_port.writable);
-	serial_writer = textEncoder.writable.getWriter();
-	serial_reader = serial_port.readable.getReader();
-    }
+    if (enable_wifi) {
+	console.log(pemuuri);
+	await fetch(pemuuri, {
+		method: 'POST',
+		headers : {
+		    'Content-Type': 'applicatoin/json'
+		},
+		body: jsonstr
+	})
+	    .then((res) => {
+		if (!res.ok) {
+		    throw new Error(res.statusText);
+		}
+		res.json()
+	    })
+	    .then((res) => console.log(res))
+	    .catch((err) => {
+		window.alert('接続エラー: '+pemuuri+' ('+err+')');});
+    } else {
+	if (! "serial" in navigator) {
+	    window.alert("お使いのブラウザはシリアル通信が出来ません");
+	    return;
+	}
+	if (serial_port == undefined) {
+	    serial_port = await navigator.serial.requestPort({ filters });
+	    await serial_port.open({ baudRate: 9600 });
+	    const textEncoder = new TextEncoderStream();
+	    const writableStreamClosed = textEncoder.readable.pipeTo(serial_port.writable);
+	    serial_writer = textEncoder.writable.getWriter();
+	    serial_reader = serial_port.readable.getReader();
+	}
     
     
-    await serial_writer.write(jsonstr);
-    console.log(jsonstr);
-    let {value, done} = await serial_reader.read();
-    const v = new TextDecoder().decode(value);
-    console.log(v);
+	await serial_writer.write(jsonstr);
+	console.log(jsonstr);
+	let {value, done} = await serial_reader.read();
+	const v = new TextDecoder().decode(value);
+	console.log(v);
+    }
 }
 
 function displayPopup(area, latlng, isMarker, isGPS) {
@@ -828,7 +944,7 @@ function displayPopup(area, latlng, isMarker, isGPS) {
 			cnt = selectRef(area, true);
 			if (cnt != '') {
 			    cnt = '<b>' + cnt + '</b>' + mesg + weather + potamesg;
-			    if (enable_pemuact)
+			    if (prefs["enable_emulation"])
 				cnt += keyerButton(area);
 			}
 			else
@@ -842,32 +958,6 @@ function displayPopup(area, latlng, isMarker, isGPS) {
 	});
 }
 
-var prefs =
-    { 'popup_permanent': true,
-      'display_mapcode': false,
-      'link_googlemap': false, 
-      'by_call': false,
-      'sota_ref': true,
-      'pota_ref': true,
-      'jaff_ref': true,
-      'pilgrim': false,
-      'show_potalog': false,
-      'show_potaactlog': true,
-      'zoom_threshold': 12,
-      'spot_period': 6,
-      'pota_hunter_uuid': null,
-      'pota_activator_uuid': null,
-      'enable_mqtt': false,
-      'pemu_call' : '',
-      'pemu_mesg1': 'CQ CQ CQ DE $CALL SOTA $SOTA +',
-      'pemu_mesg2': 'CQ CQ CQ DE $CALL POTA $POTA +',
-      'pemu_mesg3': 'CQ CQ CQ DE $CALL JAFF $JAFF +',
-      'pemu_mesg4': 'CQ CQ CQ DE $CALL SOTA $SOTA ES POTA $POTA +',
-      'pemu_wpm': '40',
-      'pemu_vid': '0x303a',
-      'pemu_pid': '0x1001',
-      'pemu_host': 'pemuact.local',
-    }
 
 $('#zoom-threshold').slider({
     formatter: function(value) {
@@ -890,8 +980,6 @@ function clickPrefs() {
 			{expires: 1800, SameSite:'Lax'});
 	} else if (k.includes('pemu')) {
 	    prefs[k] = document.getElementById(k).value;
-	    console.log(k);
-	    console.log(prefs[k]);
 	    Cookies.set(k ,prefs[k],{expires: 1800, SameSite:'Lax'});
 	} else {
 	    var el = document.getElementById(k);
@@ -1171,7 +1259,7 @@ function placeSummitMarkers(nw ,se, z) {
     if (prefs['sota_ref'])
 	programs += 'SOTA';
 
-    if (enable_pilgrim && prefs['pilgrim'])
+    if (enable_experimental && prefs['pilgrim'])
 	programs += 'PILGRIM';
 
     if (prefs['show_potalog']) {
@@ -1207,7 +1295,7 @@ function placeSummitMarkers(nw ,se, z) {
 			mesg += '<br>Last Activation: ' + s['lastact'] + '(' + s['lastcall'] + ')'
 		    popup = false
 
-		    if (enable_pemuact)
+		    if (prefs["enable_emulation"])
 			mesg += keyerButton({sota: s['code'], name:sname});
 		    
 		    if (_popupMarker &&
