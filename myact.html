@@ -814,9 +814,7 @@ async function pemuPressed(num) {
 		if (!res.ok) {
 		    throw new Error(res.statusText);
 		}
-		res.json()
 	    })
-	    .then((res) => console.log(res))
 	    .catch((err) => {
 		window.alert('接続エラー: '+pemuuri+' ('+err+')');});
     } else {
