@@ -368,7 +368,7 @@ i.semantic-ui-custom {
     <div class="modal-dialog">
       <div class="modal-content">
 	<div class="modal-header">
-	  <h4 class="modal-title"><b>Paddle Emulator for Activation</b></h4>
+	  <h4 class="modal-title"><b>myActKey</b></h4>
 	</div><!-- /modal-header -->
 	<div id="keyer-container" class="modal-body">
 	  <h4><bf><div id="pemu_name"></div></bf></h4>
@@ -741,7 +741,15 @@ function keyerButton(area) {
 
 function clickPemuAct(area) {
     document.getElementById("pemu_name").innerText = area['name'];
-
+    for(k in prefs) {
+	if (k.includes('pemu')) {
+	    let el = document.getElementById(k); 
+	    if (prefs[k])
+		el.value = prefs[k];
+	    else
+		el.value = "";
+	}
+    }
     if (area['sota'])
 	document.getElementById("pemu_sota").value = area['sota'];
     else
@@ -755,7 +763,7 @@ function clickPemuAct(area) {
     if (area['jaff'])
 	document.getElementById("pemu_jaff").value = area['jaff'];
     else
-	document.getElementById("pemu_jaff").value = '';    
+	document.getElementById("pemu_jaff").value = '';
 }
 
 var serial_port = undefined;
@@ -1450,7 +1458,7 @@ function showReference(s) {
     if (s['code'].match(/JA\d*\/.+/)) {
 	popupSummitMarker(s['coord'])
 	displayActivationZone({'lat':s['coord'][0],'lng':s['coord'][1]}, -0.8);
-    }
+   }
     redrawMarkers();
 }
 
@@ -1554,9 +1562,8 @@ function placeHamFairMarker(coord) {
 }
 
 function redrawMarkers() {
-    redoActivationZone();
-    deleteSummitMarker()
-    var z = map.getZoom()
+    deleteSummitMarker();
+    var z = map.getZoom();
     var b = map.getBounds();
     placeSummitMarkers([b['_northEast']['lat'], b['_southWest']['lng']],
 		       [b['_southWest']['lat'], b['_northEast']['lng']],z);
