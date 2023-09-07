@@ -368,7 +368,7 @@ i.semantic-ui-custom {
     <div class="modal-dialog">
       <div class="modal-content">
 	<div class="modal-header">
-	  <h4 class="modal-title"><b>myActKey</b></h4>
+	  <h4 class="modal-title"><b>ACTPaddle</b></h4>
 	</div><!-- /modal-header -->
 	<div id="keyer-container" class="modal-body">
 	  <h4><bf><div id="pemu_name"></div></bf></h4>
@@ -502,16 +502,16 @@ let vh = window.innerHeight * 0.01;
   document.documentElement.style.setProperty('--vh', `${vh}px`);
 });
 var sotalive = 'https://www.sotalive.net/';
-var gsi = L.tileLayer('https://cyberjapandata.gsi.go.jp/xyz/std/{z}/{x}/{y}.png', {attribution: "<a href='https://maps.gsi.go.jp/development/ichiran.html' target='_blank'>地理院タイル</a>|<a href='https://nlftp.mlit.go.jp/ksj/gml/datalist/KsjTmplt-A10-v4_1.html' target='_blank'>国土数値情報自然公園地域データ</a>"
+  var gsi = L.tileLayer('https://cyberjapandata.gsi.go.jp/xyz/std/{z}/{x}/{y}.png', {maxZoom:18, maxNativeZoom:18, attribution: "<a href='https://maps.gsi.go.jp/development/ichiran.html' target='_blank'>地理院タイル</a>|<a href='https://nlftp.mlit.go.jp/ksj/gml/datalist/KsjTmplt-A10-v4_1.html' target='_blank'>国土数値情報自然公園地域データ</a>"
 });
 
-var gsi_photo = L.tileLayer('https://cyberjapandata.gsi.go.jp/xyz/seamlessphoto/{z}/{x}/{y}.jpg', {attribution: "<a href='https://maps.gsi.go.jp/development/ichiran.html' target='_blank'>地理院タイル</a>|<a href='https://nlftp.mlit.go.jp/ksj/gml/datalist/KsjTmplt-A10-v4_1.html' target='_blank'>国土数値情報自然公園地域データ</a>"
+var gsi_photo = L.tileLayer('https://cyberjapandata.gsi.go.jp/xyz/seamlessphoto/{z}/{x}/{y}.jpg', {maxZoom:18, maxNativeZoom:18, attribution: "<a href='https://maps.gsi.go.jp/development/ichiran.html' target='_blank'>地理院タイル</a>|<a href='https://nlftp.mlit.go.jp/ksj/gml/datalist/KsjTmplt-A10-v4_1.html' target='_blank'>国土数値情報自然公園地域データ</a>"
 });
 
-var yamareco_summer = L.tileLayer('https://www.yamareco.com/modules/yamareco/include/get_tileimg.php?type=dot_summer&z={z}&y={y}&x={x}', {attribution: "<a href='https://www.yamareco.com/' target='_blank'>ヤマレコ</a>"
+var yamareco_summer = L.tileLayer('https://www.yamareco.com/modules/yamareco/include/get_tileimg.php?type=dot_summer&z={z}&y={y}&x={x}', {maxZoom:18, maxNativeZoom:16, attribution: "<a href='https://www.yamareco.com/' target='_blank'>ヤマレコ</a>"
 });
 
-var yamareco_winter = L.tileLayer('https://www.yamareco.com/modules/yamareco/include/get_tileimg.php?type=dot_winter&z={z}&y={y}&x={x}', {attribution: "<a href='https://www.yamareco.com/' target='_blank'>ヤマレコ</a>"
+var yamareco_winter = L.tileLayer('https://www.yamareco.com/modules/yamareco/include/get_tileimg.php?type=dot_winter&z={z}&y={y}&x={x}', {maxZoom:18, maxNativeZoom:16, attribution: "<a href='https://www.yamareco.com/' target='_blank'>ヤマレコ</a>"
 });
 
 var map = L.map('map',{
@@ -734,7 +734,7 @@ function keyerButton(area) {
     for (var k in area) 
 	arg +=  k  + ':' + "'" + area[k] + "',";
     arg += '}'
-    let bstr = '<center><button type="button" class="btn-outline-primary btn-sm" data-toggle="modal" data-target="#pemuact" onclick="clickPemuAct(' + arg + ')"><img src="svg/triangle-down.svg"></button></center>';
+    let bstr = '<center><button type="button" class="btn-outline-primary btn-sm" data-toggle="modal" data-target="#pemuact" onclick="clickPemuAct(' + arg + ')"><img src="svg/clipboard.svg"></button></center>';
     return bstr;
 }
 
