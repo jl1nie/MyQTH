@@ -518,11 +518,12 @@ var map = L.map('map',{
     layers: [ gsi ]
 });
 
-if (enable_experimental) {
-    var baseLayerControls = {
-	'地理院地形図': gsi,
-	'全国最新写真': gsi_photo,
-    };
+
+var baseLayerControls = {
+    '地理院地形図': gsi,
+    '全国最新写真': gsi_photo,
+};
+if (enable_experimental) {  
     var overlayLayerControls = {
 	'ヤマレコみんなの足跡(登山道)': yamareco_summer,
 	'ヤマレコみんなの足跡(雪山)': yamareco_winter,
@@ -530,7 +531,11 @@ if (enable_experimental) {
     L.control.layers(baseLayerControls, overlayLayerControls, {
 	collapsed: true,
     }).addTo(map);
-}
+} else {
+    L.control.layers(baseLayerControls, null, {
+	collapsed: true,
+    }).addTo(map);
+};
   
 L.control.scale().addTo(map);
 L.control.zoomLabel().addTo(map);
