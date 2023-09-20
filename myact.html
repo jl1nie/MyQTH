@@ -368,7 +368,7 @@ i.semantic-ui-custom {
     <div class="modal-dialog">
       <div class="modal-content">
 	<div class="modal-header">
-	  <h4 class="modal-title"><b>ACTPaddle</b></h4>
+	  <h4 class="modal-title"><b>ActPaddle</b></h4>
 	</div><!-- /modal-header -->
 	<div id="keyer-container" class="modal-body">
 	  <h4><bf><div id="pemu_name"></div></bf></h4>
@@ -774,6 +774,28 @@ var serial_port = undefined;
 var serial_writer = undefined;
 var serial_reader = undefined;
 
+async function open_serial() {
+    const filters = [
+	{ usbVendorId: 0x303a, usbProductId: 0x1001 },
+	{ usbVendorId: 0x0403, usbProductId: 0x6001 },
+	{ usbVendorId: 0x1a86, usbProductId: 0x55d4 },
+	{ usbVendorId: 0x10c4, usbProductId: 0xea60 },
+    ];
+
+    if (! "serial" in navigator) {
+	window.alert("お使いのブラウザはシリアル通信が出来ません");
+	return;
+    }
+    if (serial_port == undefined) {
+	serial_port = await navigator.serial.requestPort({ filters });
+	await serial_port.open({ baudRate: 115200 });
+	const textEncoder = new TextEncoderStream();
+	const writableStreamClosed = textEncoder.readable.pipeTo(serial_port.writable);
+	serial_writer = textEncoder.writable.getWriter();
+	serial_reader = serial_port.readable.getReader();
+    }
+}
+
 async function pemuPressed(num) {
     clickPrefs();
     let msg = prefs["pemu_mesg"+String(num)].toUpperCase();
@@ -785,12 +807,6 @@ async function pemuPressed(num) {
     let enable_wifi = prefs["enable_wifi"];
     let pemuuri = 'https://' + prefs["pemu_host"] + '/play';
     let jsonmsg = {};
-    const filters = [
-	{ usbVendorId: 0x303a, usbProductId: 0x1001 },
-	{ usbVendorId: 0x0403, usbProductId: 0x6001 },
-	{ usbVendorId: 0x1a86, usbProductId: 0x55d4 },
-	{ usbVendorId: 0x10c4, usbProductId: 0xea60 },
-    ];
     
     let replaced_msg =
 	msg.toUpperCase()
@@ -830,21 +846,14 @@ async function pemuPressed(num) {
 	    .catch((err) => {
 		window.alert('接続エラー: '+pemuuri+' ('+err+')');});
     } else {
-	if (! "serial" in navigator) {
-	    window.alert("お使いのブラウザはシリアル通信が出来ません");
-	    return;
-	}
-	if (serial_port == undefined) {
-	    serial_port = await navigator.serial.requestPort({ filters });
-	    await serial_port.open({ baudRate: 9600 });
-	    const textEncoder = new TextEncoderStream();
-	    const writableStreamClosed = textEncoder.readable.pipeTo(serial_port.writable);
-	    serial_writer = textEncoder.writable.getWriter();
-	    serial_reader = serial_port.readable.getReader();
-	}
-    
-    
-	await serial_writer.write(jsonstr);
+	await open_serial();
+	try {
+	    await serial_writer.write(jsonstr);
+
+	} catch (err) {
+	    window.alert('接続エラー: ブラウザをリロードしてください');
+	};
+        serial_writer.releaseLock();
 	console.log(jsonstr);
 	let {value, done} = await serial_reader.read();
 	const v = new TextDecoder().decode(value);
