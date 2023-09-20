@@ -849,11 +849,9 @@ async function pemuPressed(num) {
 	await open_serial();
 	try {
 	    await serial_writer.write(jsonstr);
-
 	} catch (err) {
 	    window.alert('接続エラー: ブラウザをリロードしてください');
 	};
-        serial_writer.releaseLock();
 	console.log(jsonstr);
 	let {value, done} = await serial_reader.read();
 	const v = new TextDecoder().decode(value);
