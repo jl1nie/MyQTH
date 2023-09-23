@@ -891,6 +891,7 @@ function displayPopup(area, latlng, isMarker, isGPS) {
 	    if (res['errors'] == 'OK') {
 		if (res['summits'].length >0) {
 		    s = res['summits'][0]
+		    area['sota'] = s['code'];
 		    l = {'lat':s['lat'],'lng':s['lon']}
 		    displayActivationZone(l, -0.8);
 		}
