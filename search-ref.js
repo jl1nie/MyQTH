@@ -60,7 +60,7 @@
 	    $(ele).find("span").each(function(index, s) { s.innerHTML = '';});
 	    if (text.length > 0){
 		if (text.length > 14) {
-		    latlng = text.replace(',',' ').split(' ')
+		    latlng = text.replace(' ','').split(',');
 		    if (latlng[0].match(/\d+\.\d+/) != null &&
 			latlng[1].match(/\d+\.\d+/) != null) {
 			if (done) {
