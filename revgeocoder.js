@@ -29,5 +29,5 @@ async function local_reverse_geocoder(lat, lng, elev) {
 		    res2['errors'] = 'OUTSIDE_JA';
 		return res2;})
     } else
-	return res2;
+	return new Promise((resolve, reject) => { resolve(res2);});
 }
