@@ -124,7 +124,8 @@ function displayActivationZone(latlng, uplmt) {
     var zoom = map.getZoom();
 
     _azone_laststate = [ latlng, uplmt ]
-    $.getJSON('https://www.sotalive.net/api/reverse-geocoder/LonLatToAddressElev?','lat='+lat+'&lon='+lng,function(res) {
+    local_reverse_geocoder(lat, lng, true)
+	.then(res => {
 	if (res['errors'] != 'OK') {
 	    console.log('DEM error',res);
 	    return;
@@ -142,7 +143,7 @@ function displayActivationZone(latlng, uplmt) {
 		l.addTo(map)
 	    })
 	}
-    })
+	});
 }
 
 function redoActivationZone() {
