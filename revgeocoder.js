@@ -8,7 +8,7 @@ async function local_reverse_geocoder(lat, lng, elev) {
     let pos = '?lat=' + String(lat) + '&lon=' + String(lng)
     let rev_uri = endpoint['revgeocode'] + pos
     let elev_uri = endpoint['elevation'] + pos + '&outtype=JSON'
-
+    let res_elev = null;
     if (elev) 
 	res_elev = fetch(elev_uri);
     res = await fetch(rev_uri);
@@ -16,18 +16,18 @@ async function local_reverse_geocoder(lat, lng, elev) {
     let muni_uri =
 	endpoint['muni'] + pos + '&muni=' + res['results']['muniCd'];
     res2 = await fetch(muni_uri);
-    res2 = await res2.json()
-    res2['addr1'] = res['results']['lv01Nm']
-    res2['errors'] = 'OK'
+    let result = await res2.json()
+    result['addr1'] = res['results']['lv01Nm']
+    result['errors'] = 'OK'
     if (elev) {
 	return res_elev
-	    .then(res3 => res3.json())
-	    .then(res3 => {
-		res2['elevation'] = res3['elevation']
-		res2['hsrc'] = res3['hsrc']
-		if (res3['elevation'] == '-----')
-		    res2['errors'] = 'OUTSIDE_JA';
-		return res2;})
+	    .then(res => res.json())
+	    .then(res => {
+		result['elevation'] = res['elevation']
+		result['hsrc'] = res['hsrc']
+		if (res['elevation'] == '-----')
+		    result['errors'] = 'OUTSIDE_JA';
+		return result;})
     } else
-	return new Promise((resolve, reject) => { resolve(res2);});
+	return new Promise((resolve, reject) => { resolve(result);});
 }
