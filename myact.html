@@ -494,15 +494,25 @@ else {
     enable_experimental = true;
     document.getElementById('check-pilgrim').style.display = 'block';
 }
+
+var tolerance;
+if (navigator.userAgent.match(/iPhone|Android.+Mobile/)) {
+    tolerance = 30;
+} else {
+    tolerance = 5;
+}
   
+
 let vh = window.innerHeight * 0.01;
 document.documentElement.style.setProperty('--vh', `${vh}px`);
 window.addEventListener('resize',()=> {
 let vh = window.innerHeight * 0.01;
   document.documentElement.style.setProperty('--vh', `${vh}px`);
 });
+
 var sotalive = 'https://www.sotalive.net/';
-  var gsi = L.tileLayer('https://cyberjapandata.gsi.go.jp/xyz/std/{z}/{x}/{y}.png', {maxZoom:18, maxNativeZoom:18, attribution: "<a href='https://maps.gsi.go.jp/development/ichiran.html' target='_blank'>地理院タイル</a>|<a href='https://nlftp.mlit.go.jp/ksj/gml/datalist/KsjTmplt-A10-v4_1.html' target='_blank'>国土数値情報自然公園地域データ</a>"
+
+var gsi = L.tileLayer('https://cyberjapandata.gsi.go.jp/xyz/std/{z}/{x}/{y}.png', {maxZoom:18, maxNativeZoom:18, attribution: "<a href='https://maps.gsi.go.jp/development/ichiran.html' target='_blank'>地理院タイル</a>|<a href='https://nlftp.mlit.go.jp/ksj/gml/datalist/KsjTmplt-A10-v4_1.html' target='_blank'>国土数値情報自然公園地域データ</a>"
 });
 
 var gsi_photo = L.tileLayer('https://cyberjapandata.gsi.go.jp/xyz/seamlessphoto/{z}/{x}/{y}.jpg', {maxZoom:18, maxNativeZoom:18, attribution: "<a href='https://maps.gsi.go.jp/development/ichiran.html' target='_blank'>地理院タイル</a>|<a href='https://nlftp.mlit.go.jp/ksj/gml/datalist/KsjTmplt-A10-v4_1.html' target='_blank'>国土数値情報自然公園地域データ</a>"
@@ -515,7 +525,7 @@ var yamareco_winter = L.tileLayer('https://www.yamareco.com/modules/yamareco/inc
 });
 
 var map = L.map('map',{
-      renderer: L.canvas({ tolerance: 30}),
+      renderer: L.canvas({ tolerance: tolerance}),
     layers: [ gsi ]
 });
 
