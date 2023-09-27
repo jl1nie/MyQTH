@@ -135,6 +135,7 @@ i.semantic-ui-custom {
 <script src="js/leaflet-arc.min.js"></script>
 <link rel="stylesheet" href="js/L.Control.ZoomLabel.css">
 <script src="js/L.Control.ZoomLabel.js"></script>
+<script src="js/revgeocoder.js"></script>
 <!-- plugin -->
 
   <nav class="navbar navbar-expand-md navbar-dark bg-dark text-light">
@@ -186,7 +187,7 @@ L.control.scale().addTo(map);
 L.control.zoomLabel().addTo(map);
 var popup = L.popup();
  
-function displayPopup(latlng, isMarker, isGPS) {
+async function displayPopup(latlng, isMarker, isGPS) {
     var lat = Math.round(latlng.lat * 1000000,4)/1000000,
 	lng = Math.round(latlng.lng * 1000000,4)/1000000,
 	gsiuri= 'https://maps.gsi.go.jp/#15/';
@@ -230,7 +231,8 @@ function displayPopup(latlng, isMarker, isGPS) {
 	}
     }
 
-    $.getJSON(sotalive+'api/reverse-geocoder/LonLatToAddressElev?','lat='+latlng.lat+'&lon='+latlng.lng,resfun);
+    let res = await local_reverse_geocoder(lat, lng, true);
+    resfun(res);
 }
 
 map.on('click', function(e) {

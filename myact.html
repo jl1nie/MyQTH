@@ -145,6 +145,7 @@ i.semantic-ui-custom {
 <script src="js/getDEM.js"></script>
 <script src="js/actzone.js"></script>
 <script src="js/search-ref.js"></script>
+<script src="js/revgeocoder.js"></script>
 <!-- plugin -->
 
 <style type="text/css">
@@ -908,10 +909,7 @@ function displayPopup(area, latlng, isMarker, isGPS) {
 			potamesg = "<br>QSOs: " + p['QSOs'] + "<br>";
 		}
 	    };
-	    fetch(sotalive+
-		  'api/reverse-geocoder/LonLatToAddressElevMapCode?'
-		  +'lat='+latlng.lat+'&lon='+latlng.lng)
-		.then(res => res.json())
+	    local_reverse_geocoder(latlng.lat, latlng.lng, true)
 		.then(res => {
 		    if ('alt' in latlng) {
 			altitude = res['elevation'] + 'm (GPS測位値:'+latlng.alt+'m)';
