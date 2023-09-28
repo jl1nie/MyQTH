@@ -377,6 +377,14 @@ i.semantic-ui-custom {
 	    <tr>
 	      <td> CALL:</td>
 	      <td><input type=text id="pemu_call" size="10"></td>
+	      <td>/<input type=text id="pemu_areacode" size="1"></td>
+	      <td>
+		<div class="custom-control custom-checkbox">
+		  <input class="form-check-input" type="checkbox" name="include_areacode" id="include_areacode">
+		</div>
+	      </td>
+	      <td>JCC/JCG:</td>
+	      <td><input type=text id="pemu_century" size="8"></td>
 	    </tr>
 	  </table>
 	  <table>
@@ -468,6 +476,8 @@ var prefs =
       'enable_mqtt': false,
       'enable_emulation': false,
       'pemu_call' : '',
+      'pemu_areacode': '',
+      'pemu_century': '',
       'pemu_sota' : '',
       'pemu_pota' : '',
       'pemu_jaff' : '',
@@ -477,6 +487,7 @@ var prefs =
       'pemu_mesg4': 'p 1#CQ CQ CQ DE $CALL SOTA $SOTA+',
       'pemu_wpm': '40',
       'pemu_host': 'actpaddle.local',
+      'include_areacode': true,
       'paddle_reverse': false,
       'to_paddle' : true,
       'to_key' : false,
@@ -779,6 +790,16 @@ function clickPemuAct(area) {
 	document.getElementById("pemu_jaff").value = area['jaff'];
     else
 	document.getElementById("pemu_jaff").value = '';
+
+    if (area['areacode'])
+	document.getElementById("pemu_areacode").value = area['areacode'];
+    else
+	document.getElementById("pemu_areacode").value = '';
+
+    if (area['century'])
+	document.getElementById("pemu_century").value = area['century'];
+    else
+	document.getElementById("pemu_century").value = '';
 }
 
 var serial_port = undefined;
@@ -810,14 +831,21 @@ async function open_serial() {
 async function pemuPressed(num) {
     clickPrefs();
     let msg = prefs["pemu_mesg"+String(num)].toUpperCase();
-    let call = prefs["pemu_call"];
     let sota = prefs["pemu_sota"].replace('-','');
     let pota = prefs["pemu_pota"].replace('-','');
     let jaff = prefs["pemu_jaff"].replace('-','');
+    let areacode = prefs["pemu_areacode"];
+    let century = prefs["pemu_century"];
     let wpm = parseInt(prefs["pemu_wpm"], 10);
     let enable_wifi = prefs["enable_wifi"];
     let pemuuri = 'https://' + prefs["pemu_host"] + '/play';
     let jsonmsg = {};
+
+    let call = prefs["pemu_call"];
+
+    if (prefs["include_areacode"]&& areacode != "") 
+	call += '/' + areacode;
+    
     
     let replaced_msg =
 	msg.toUpperCase()
@@ -825,7 +853,9 @@ async function pemuPressed(num) {
 	.replace('$SOTA', sota)
 	.replace('$POTA', pota)
 	.replace('$JAFF', jaff)
-
+        .replace('$JCC', century)
+	.replace('$JCG', century)
+    
     jsonmsg["wpm"] = wpm;
 
     if (prefs["to_paddle"])
@@ -942,17 +972,23 @@ function displayPopup(area, latlng, isMarker, isGPS) {
 			    '" target="_blank">'  + lat + ',' + lng +'</a></i>';
 			
 			if (res['type'] == 'JCC') {
-			    if (res['ward'] != undefined)
+		
+			    if (res['ward'] != undefined) {
+				area['century'] = 'JCC ' + res['jcc'] + res['ward'];
 				mesg = 'JCC'+res['jcc']+ ' 区番号:' + res['ward'] + '<br>' +
 				res['pref'] + res['addr2'] + res['addr1'] + '<br>GL:' + res['maidenhead'] +
-				pos + '<br> 標高:' + altitude;
-			    else
+				    pos + '<br> 標高:' + altitude;
+			    }
+			    else {
+				area['century'] = 'JCC ' + res['jcc']
 				mesg = 'JCC'+res['jcc']+ '<br>' + res['pref'] + res['addr2'] + res['addr1'] +
-				'<br>GL:' + res['maidenhead'] + pos + '<br> 標高:' + altitude;
+				    '<br>GL:' + res['maidenhead'] + pos + '<br> 標高:' + altitude;}
 			}
-			else
+			else {
+			    area['century'] = 'JCG ' + res['jcg'] + res['hamlog'];
 			    mesg = 'JCG'+res['jcg']+ res['hamlog']+ '<br>' + res['pref'] + res['addr2'] +
-			    res['addr1']+ '<br>GL:' + res['maidenhead'] + pos + '<br> 標高:' + altitude;
+				res['addr1']+ '<br>GL:' + res['maidenhead'] + pos + '<br> 標高:' + altitude;
+			}
 		    }
 		    
 		    if (prefs['display_mapcode']) 
@@ -963,6 +999,9 @@ function displayPopup(area, latlng, isMarker, isGPS) {
 		    weather= '&nbsp&nbsp<a href="' + windyuri +
 			'" target="_blank"><img src="svg/sun.svg"><img src="svg/cloud.svg"><img src="svg/rain.svg"></a>' +
 			mapcode;
+
+		    if ('areacode' in res && res['areacode'])
+			area['areacode'] = res['areacode'][0];
 		    
 		    if (isMarker) {
 			mesg = '<h4>' + mesg + weather + '</h4>';
