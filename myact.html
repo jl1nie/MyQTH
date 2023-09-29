@@ -1027,8 +1027,9 @@ function displayPopup(area, latlng, isMarker, isGPS) {
 			}
 			else
 			    cnt = mesg + weather;
-			popup.setContent(cnt);
-			popup.setLatLng(latlng).openOn(map);
+			popup.setLatLng(latlng)
+			    .setContent(cnt)
+			    .openOn(map);
 			last_area = area;
 			last_mesg = mesg;
 		    }
@@ -1509,12 +1510,12 @@ function placeTempleMarker(coords, z,  temple) {
 
 function showReference(s) {
     latlng = s['coord']
+    
+    //clearSummitMarker();
     map.setView(latlng,15);
-    clearSummitMarker();
     if (s['code'].match(/JA\d*\/.+/)) {
-	popupSummitMarker(s['coord'])
-	displayActivationZone({'lat':s['coord'][0],'lng':s['coord'][1]}, -0.8);
-   }
+	displayPopup({},{'lat':s['coord'][0],'lng':s['coord'][1]},false, false);
+    }
     redrawMarkers();
 }
 
