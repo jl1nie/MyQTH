@@ -988,7 +988,7 @@ function displayPopup(area, latlng, isMarker, isGPS) {
 			if (res['type'] == 'JCC') {
 			    
 			    if (res['ward'] != undefined) {
-				area['century'] = 'JCC ' + res['jcc'] + res['ward'];
+				area['century'] = 'JCC ' + res['ward'];
 				mesg = 'JCC'+res['jcc']+ ' 区番号:' + res['ward'] + '<br>' +
 				    res['pref'] + res['addr2'] + res['addr1'] + '<br>GL:' + res['maidenhead'] +
 				    pos + '<br> 標高:' + altitude;
