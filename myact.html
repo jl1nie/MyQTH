@@ -928,15 +928,22 @@ function displayPopup(area, latlng, isMarker, isGPS) {
     fetch(sotalive+'api/myact/search?'+query)
 	.then(res => res.json())
 	.then(res => {
-	    var potamesg = ''
+	    var sotamesg = '';
+	    var potamesg = '';
 	    if (res['errors'] == 'OK') {
 		if (res['summits'].length >0) {
 		    s = res['summits'][0]
 		    area['sota'] = s['code'];
 		    if (area['name'])
 			area['name'] += ' / ' + s['name_k'];
+		    else
+			area['name'] = s['name_k'];
 		    l = {'lat':s['lat'],'lng':s['lon']}
 		    displayActivationZone(l, -0.8);
+		    sotamesg = escapeStr(s['desc'])+ '<br>GL:' + s['maidenhead'] +'<br>標高:'+ s['elev']+'m,'+s['pts']+'pts (+' + s['bonus'] +')';
+		    potamesg += '<br>Activations: ' + s['actcnt']
+		    if (s['actcnt']!= 0)
+			potamesg += '<br>Last Activation: ' + s['lastact'] + '(' + s['lastcall'] + ')';
 		}
 		if (prefs['show_potalog'] && (res['parks'].length>0)) {
 		    p = res['parks'][0];
@@ -951,6 +958,7 @@ function displayPopup(area, latlng, isMarker, isGPS) {
 	    };
 	    local_reverse_geocoder(latlng.lat, latlng.lng, true)
 		.then(res => {
+		    
 		    if ('alt' in latlng) {
 			altitude = res['elevation'] + 'm (GPS測位値:'+latlng.alt+'m)';
 		    } else {
@@ -972,11 +980,11 @@ function displayPopup(area, latlng, isMarker, isGPS) {
 			    '" target="_blank">'  + lat + ',' + lng +'</a></i>';
 			
 			if (res['type'] == 'JCC') {
-		
+			    
 			    if (res['ward'] != undefined) {
 				area['century'] = 'JCC ' + res['jcc'] + res['ward'];
 				mesg = 'JCC'+res['jcc']+ ' 区番号:' + res['ward'] + '<br>' +
-				res['pref'] + res['addr2'] + res['addr1'] + '<br>GL:' + res['maidenhead'] +
+				    res['pref'] + res['addr2'] + res['addr1'] + '<br>GL:' + res['maidenhead'] +
 				    pos + '<br> 標高:' + altitude;
 			    }
 			    else {
@@ -990,7 +998,7 @@ function displayPopup(area, latlng, isMarker, isGPS) {
 				res['addr1']+ '<br>GL:' + res['maidenhead'] + pos + '<br> 標高:' + altitude;
 			}
 		    }
-		    
+
 		    if (prefs['display_mapcode']) 
 			mapcode = '<br><img src="img/mc_long.jpg" height=14px> &nbsp' + res['mapcode'];
 		    else
@@ -1002,6 +1010,9 @@ function displayPopup(area, latlng, isMarker, isGPS) {
 
 		    if ('areacode' in res && res['areacode'])
 			area['areacode'] = res['areacode'][0];
+
+		    if (sotamesg) 
+			mesg = sotamesg;
 		    
 		    if (isMarker) {
 			mesg = '<h4>' + mesg + weather + '</h4>';
@@ -1149,6 +1160,8 @@ function selectRef(area, addhref) {
 	}
     } else if (area['temple'] != undefined && prefs['pilgrim']) {
 	pname = area['temple']
+    } else if (area['sota']) {
+	pname = '<a target="_blank" href="https://summits.sota.org.uk/summit/' + s['code'] + '">' + area['sota'] + '</a>'
     }
     
     if (pname != '' && area['name'] != '') {
@@ -1352,19 +1365,7 @@ function placeSummitMarkers(nw ,se, z) {
 		wz = z;
 	    if (prefs['sota_ref'])
 		for(const s of res['summits']) {
-		    var sname,
-			windyuri = '<a href="https://www.windy.com/?'+ s['lat'] + ',' + s['lon'] + ',' + wz + ',d:picker" target="_blank"><img src="svg/sun.svg"><img src="svg/cloud.svg"><img src="svg/rain.svg"></a>';   
-		    sname = s['name_k']
-		    scode = '<a target="_blank" href="https://summits.sota.org.uk/summit/' + s['code'] + '">' + s['code'] + ' ' + s['name'] + '</a>'
-		    var mesg = '<b>'+scode+'</b><br>'+sname+'&nbsp'+s['elev']+'m,'+s['pts']+'pts (+' + s['bonus'] +')&nbsp'+ windyuri + '<br>GL:' + s['maidenhead'] + '<br>' +escapeStr(s['desc'])
-		    mesg += '<br>Activations: ' + s['actcnt']
-		    if (s['actcnt']!= 0)
-			mesg += '<br>Last Activation: ' + s['lastact'] + '(' + s['lastcall'] + ')'
 		    popup = false
-
-		    if (prefs["enable_emulation"])
-			mesg += keyerButton({sota: s['code'], name:sname});
-		    
 		    if (_popupMarker &&
 			s['lat'] == _popupMarker[0] &&
 			s['lon'] == _popupMarker[1]) {
@@ -1372,7 +1373,7 @@ function placeSummitMarkers(nw ,se, z) {
 			_popupMarker = null
 		    }
 		    show_summit_marker.push(
-			placeSummitMarker([s['lat'],s['lon']], z, s['elev'], s['actcnt'], mesg, popup))
+			placeSummitMarker([s['lat'],s['lon']], z, s['elev'], s['actcnt'], popup))
 		
 		}
 	    for(const s of res['parks']) {
@@ -1391,7 +1392,7 @@ function placeSummitMarkers(nw ,se, z) {
 	});
 }
 
-function placeSummitMarker(coords, z, elev, actcnt, mesg, popupfl) {
+function placeSummitMarker(coords, z, elev, actcnt, popupfl) {
 
     var rad;
     if (z > 14)
@@ -1435,15 +1436,9 @@ function placeSummitMarker(coords, z, elev, actcnt, mesg, popupfl) {
     var m = marker.addTo(map);
     
     m.on('click',function(e) {
-	var l = e['target']['_latlng']
-	popupSummitMarker([l['lat'],l['lng']]);
-	displayActivationZone(l, -0.8);
+	var l = e['target']['_latlng'];
+	displayPopup({}, l , false, false)
     });
-    
-    if (popupfl)
-	marker.bindPopup(mesg).openPopup();
-    else
-	marker.bindPopup(mesg)
     return m;
 
 }
