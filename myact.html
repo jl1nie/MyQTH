@@ -940,7 +940,13 @@ function displayPopup(area, latlng, isMarker, isGPS) {
 			area['name'] = s['name_k'];
 		    l = {'lat':s['lat'],'lng':s['lon']}
 		    displayActivationZone(l, -0.8);
-		    sotamesg = escapeStr(s['desc'])+ '<br>GL:' + s['maidenhead'] +'<br>標高:'+ s['elev']+'m,'+s['pts']+'pts (+' + s['bonus'] +')';
+		    if (isGPS)
+			pos = '<br>位置:<a href="' + locURI(lat, lng, z) +
+			'" target="_blank">' + lat + ',' + lng +'</a>';
+		    else
+			pos = '<i><br>位置:<a href="' + locURI(lat, lng, z) +
+			'" target="_blank">'  + lat + ',' + lng +'</a></i>';
+		    sotamesg = escapeStr(s['desc'])+ '<br>GL:' + s['maidenhead'] + pos + '<br>標高:'+ s['elev']+'m,'+s['pts']+'pts (+' + s['bonus'] +')';
 		    potamesg += '<br>Activations: ' + s['actcnt']
 		    if (s['actcnt']!= 0)
 			potamesg += '<br>Last Activation: ' + s['lastact'] + '(' + s['lastcall'] + ')';
