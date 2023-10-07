@@ -384,7 +384,7 @@ i.semantic-ui-custom {
 		</div>
 	      </td>
 	      <td>JCC/JCG:</td>
-	      <td><input type=text id="pemu_century" size="8"></td>
+	      <td><input type=text id="pemu_century" size="10"></td>
 	    </tr>
 	  </table>
 	  <table>
@@ -512,7 +512,6 @@ if (navigator.userAgent.match(/iPhone|Android.+Mobile/)) {
 } else {
     tolerance = 5;
 }
-  
 
 let vh = window.innerHeight * 0.01;
 document.documentElement.style.setProperty('--vh', `${vh}px`);
@@ -1200,7 +1199,7 @@ function callbkQTHOk(arg) {
         ,markerColor: 'yellow'
         ,extraClasses: 'semantic-ui-custom'
 	};
- 
+
     if (false && crd.altitude != null) {
 	r_alt = Math.round(crd.altitude*100)/100;
 	gps_pos = {lat:crd.latitude, lng:crd.longitude, alt:r_alt };
@@ -1251,6 +1250,7 @@ function callbkQTHNG(arg) {
 
 function clickQTHButton () {
     if (typeof navigator.geolocation === 'undefined') {
+	console.log("navigator.gelocation unsupported");
 	window . alert('ブラウザが位置情報取得に対応していません');
 	map.setView([37.514444, 137.712222], 6);
     }
@@ -1444,7 +1444,8 @@ function placeSummitMarker(coords, z, elev, actcnt, popupfl) {
     
     m.on('click',function(e) {
 	var l = e['target']['_latlng'];
-	displayPopup({}, l , false, false)
+	L.DomEvent.stopPropagation(e);
+	displayPopup({}, l , false, false);
     });
     return m;
 
@@ -1517,7 +1518,6 @@ function placeTempleMarker(coords, z,  temple) {
 function showReference(s) {
     latlng = s['coord']
     
-    //clearSummitMarker();
     map.setView(latlng,15);
     if (s['code'].match(/JA\d*\/.+/)) {
 	displayPopup({},{'lat':s['coord'][0],'lng':s['coord'][1]},false, false);
@@ -1578,6 +1578,10 @@ var geojson = L.topoJson(null, {
 
 
 geojson.addTo(map);
+kp_index();
+setInterval(kp_index,1000*1800);
+clock();
+setInterval(clock,5000);
 
 async function getGeoData(url) {
     let response = await fetch(url);
@@ -1641,12 +1645,8 @@ map.on('moveend',function(e) {
 });
 
 clickQTHButton();
-kp_index();
-setInterval(kp_index,1000*1800);
-clock();
-setInterval(clock,5000);
 
-  //Latest Spot Chart
+//Latest Spot Chart
 const plugin = {
     id: 'customCanvasBackgroundColor',
     beforeDraw: (chart, args, options) => {
