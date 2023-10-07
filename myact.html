@@ -932,7 +932,8 @@ function displayPopup(area, latlng, isMarker, isGPS) {
 	    if (res['errors'] == 'OK') {
 		if (res['summits'].length >0) {
 		    s = res['summits'][0]
-		    area['sota'] = s['code'];
+		    area['sota_code'] = s['code'];
+		    area['sota'] = s['code'] + ' ' +s['name'];
 		    if (area['name'])
 			area['name'] += ' / ' + s['name_k'];
 		    else
@@ -1167,7 +1168,7 @@ function selectRef(area, addhref) {
     } else if (area['temple'] != undefined && prefs['pilgrim']) {
 	pname = area['temple']
     } else if (area['sota']) {
-	pname = '<a target="_blank" href="https://summits.sota.org.uk/summit/' + s['code'] + '">' + area['sota'] + '</a>'
+	pname = '<a target="_blank" href="https://summits.sota.org.uk/summit/' + area['sota_code'] + '">' + area['sota'] + '</a>'
     }
     
     if (pname != '' && area['name'] != '') {
