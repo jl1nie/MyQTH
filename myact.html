@@ -908,8 +908,8 @@ function displayPopup(area, latlng, isMarker, isGPS) {
 	wz = 11
     else
 	wz = z;
-    
-    var windyuri = 'https://www.windy.com/?'+ latlng.lat + ',' + latlng.lng + ',' + wz + ',d:picker';
+
+    var windyuri = 'https://www.windy.com/'+ latlng.lat + '/' + latlng.lng + '/meteogram?rain,' + latlng.lat + ',' + latlng.lng + ',' + wz ;
 
     if (isGPS) {
 	Cookies.set('my_qth_lat',lat)
@@ -940,12 +940,8 @@ function displayPopup(area, latlng, isMarker, isGPS) {
 			area['name'] = s['name_k'];
 		    l = {'lat':s['lat'],'lng':s['lon']}
 		    displayActivationZone(l, -0.8);
-		    if (isGPS)
-			pos = '<br>位置:<a href="' + locURI(lat, lng, z) +
-			'" target="_blank">' + lat + ',' + lng +'</a>';
-		    else
-			pos = '<i><br>位置:<a href="' + locURI(lat, lng, z) +
-			'" target="_blank">'  + lat + ',' + lng +'</a></i>';
+		    pos = '<br>位置:<a href="' + locURI(s['lat'], s['lon'], z) +
+			'" target="_blank">'  + s['lat'] + ',' + s['lon'] +'</a>';
 		    sotamesg = escapeStr(s['desc'])+ '<br>GL:' + s['maidenhead'] + pos + '<br>標高:'+ s['elev']+'m,'+s['pts']+'pts (+' + s['bonus'] +')';
 		    potamesg += '<br>Activations: ' + s['actcnt']
 		    if (s['actcnt']!= 0)
@@ -1017,9 +1013,12 @@ function displayPopup(area, latlng, isMarker, isGPS) {
 		    if ('areacode' in res && res['areacode'])
 			area['areacode'] = res['areacode'][0];
 
-		    if (sotamesg) 
-			mesg = sotamesg;
-		    
+		    if (sotamesg){
+			if (isGPS)
+			    mesg = sotamesg +'<br><b>現在地: </b>'+ mesg;
+			else
+			    mesg = sotamesg +'<br><b>指定場所: </b>'+ mesg;
+		    }
 		    cnt = selectRef(area, true);
 		    if (cnt != '') {
 			cnt = '<b>' + cnt + '</b>' + mesg + weather + potamesg;
