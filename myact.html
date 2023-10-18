@@ -1020,25 +1020,24 @@ function displayPopup(area, latlng, isMarker, isGPS) {
 		    if (sotamesg) 
 			mesg = sotamesg;
 		    
-		    if (isMarker) {
-			mesg = '<h4>' + mesg + weather + '</h4>';
-			if (qth_marker != null)
-			    qth_marker.bindPopup(mesg).openPopup();
-		    } else {
-			cnt = selectRef(area, true);
-			if (cnt != '') {
-			    cnt = '<b>' + cnt + '</b>' + mesg + weather + potamesg;
-			    if (prefs["enable_emulation"])
-				cnt += keyerButton(area);
-			}
-			else
-			    cnt = mesg + weather;
-			popup.setLatLng(latlng)
-			    .setContent(cnt)
-			    .openOn(map);
-			last_area = area;
-			last_mesg = mesg;
+		    cnt = selectRef(area, true);
+		    if (cnt != '') {
+			cnt = '<b>' + cnt + '</b>' + mesg + weather + potamesg;
+			if (prefs["enable_emulation"])
+			    cnt += keyerButton(area);
 		    }
+		    else
+			cnt = mesg + weather;
+
+		    popup.setLatLng(latlng)
+			.setContent(cnt)
+			.openOn(map);
+
+		    if (isMarker && qth_marker != null)
+			qth_marker.bindPopup(cnt).openPopup();
+
+		    last_area = area;
+		    last_mesg = mesg;
 		});
 	});
 }
@@ -1167,8 +1166,15 @@ function selectRef(area, addhref) {
 	}
     } else if (area['temple'] != undefined && prefs['pilgrim']) {
 	pname = area['temple']
-    } else if (area['sota']) {
-	pname = '<a target="_blank" href="https://summits.sota.org.uk/summit/' + area['sota_code'] + '">' + area['sota'] + '</a>'
+    };
+
+    if (area['sota']) {
+	sname = '<a target="_blank" href="https://summits.sota.org.uk/summit/' + area['sota_code'] + '">' + area['sota'] + '</a>'
+
+	if (pname == '')
+	    pname = sname;
+	else
+	    pname = pname + ' ' + sname;
     }
     
     if (pname != '' && area['name'] != '') {
@@ -1191,8 +1197,8 @@ function QTHdragend(e) {
 }
 
 function callbkQTHOk(arg) {
-    var crd = arg.coords,
-        latlng = [crd.latitude, crd.longitude],
+    var crd = arg.coords;
+    var latlng = [crd.latitude, crd.longitude],
 	options = {
         prefix: 'icon'
         ,icon: 'user'
@@ -1207,7 +1213,7 @@ function callbkQTHOk(arg) {
     }
     else
 	gps_pos = {lat:crd.latitude, lng:crd.longitude};
-    
+
     map.setView(latlng, 15);
 
     if (qth_marker != null)
