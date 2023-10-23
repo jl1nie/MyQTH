@@ -373,82 +373,86 @@ i.semantic-ui-custom {
 	</div><!-- /modal-header -->
 	<div id="keyer-container" class="modal-body">
 	  <h4><bf><div id="pemu_name"></div></bf></h4>
- 	  <table>
-	    <tr>
-	      <td> CALL:</td>
-	      <td><input type=text id="pemu_call" size="10"></td>
-	      <td>/<input type=text id="pemu_areacode" size="1"></td>
-	      <td>
-		<div class="custom-control custom-checkbox">
-		  <input class="form-check-input" type="checkbox" name="include_areacode" id="include_areacode">
-		</div>
-	      </td>
-	      <td>JCC/JCG:</td>
-	      <td><input type=text id="pemu_century" size="10"></td>
-	    </tr>
-	  </table>
-	  <table>
-	    <tr>
-	      <td>SOTA:</td>
-	      <td><input type=text id="pemu_sota" size="10"></td>
-	      <td>POTA:</td>
-	      <td><input type=text id="pemu_pota" size="8"></td>
-	      <td>JAFF:</td>
-	      <td><input type=text id="pemu_jaff" size="10"></td>
-	    </tr>
-	  </table>
-	  <table>
-	    <tr>
-	      <td> 1. </td>
-	      <td><input type=text id="pemu_mesg1" size="44"></td>
-	      <td><button class="btn btn-primary" onClick="pemuPressed(1)">SEND</button></td>
-	    </tr>
-	    <tr>
-	      <td> 2. </td>
-	      <td><input type=text id="pemu_mesg2" size="44"></td>
-	      <td><button class="btn btn-primary" onClick="pemuPressed(2)">SEND</button></td>
-	    </tr>
-	    <tr>
-	      <td> 3. </td>
-	      <td><input type=text id="pemu_mesg3"  size="44"></td>
-	      <td><button class="btn btn-primary" onClick="pemuPressed(3)">SEND</button></td>
-	    </tr>
-	    <tr>
-	      <td> 4. </td>
-	      <td><input type=text id="pemu_mesg4" size="44"></td>
-	      <td><button class="btn btn-primary" onClick="pemuPressed(4)">SEND</button></td>
-	    </tr>
-	  </table>
-	  <table>
-	    <tr>
-	      <td>Speed:</td>
-	      <td><input type=text id="pemu_wpm" size="3">wpm</td>
-	      <td>
-		<div class="custom-control custom-checkbox">
-		  <input class="form-check-input" type="radio" name="to_paddle" id="to_paddle" checked>
-		  <label class="form-check-label" for="to_paddle">
-		    Paddle
-		  </label>
-		</div>
-	      </td>
-	      <td>
-		<div class="custom-control custom-checkbox">
-		  <input class="form-check-input" type="radio" name="to_paddle" id="to_key">
-		  <label class="form-check-label" for="to_key">
-		    Straight
-		  </label>
-		</div>
-	      </td>
- 	      <td>
-		<div class="custom-control custom-checkbox">
-		  <input class="form-check-input" type="checkbox" name="paddle_reverse" id="paddle_reverse">
-		  <label class="form-check-label" for="paddle_reverse">
-		    Reverse Paddle
-		  </label>
-		</div>
-	      </td>
-	    </tr>
-	  </table>
+	  <div class="table-responsive">
+ 	    <table>
+	      <tr>
+		<td> CALL:</td>
+		<td><input type=text id="pemu_call" size="10"></td>
+		<td>/</td>
+		<td><input type=text id="pemu_areacode" size="1"></td>
+		<td>
+		  <div class="custom-control custom-checkbox">
+		    <input class="form-check-input" type="checkbox" name="include_areacode" id="include_areacode">
+		  </div>
+		</td>
+		<td>JCC/JCG:</td>
+		<td><input type=text id="pemu_century" size="10"></td>
+	      </tr>
+	    </table>
+	    <table>
+	      <tr>
+		<td>SOTA:</td>
+		<td><input type=text id="pemu_sota" size="10"></td>
+		<td>POTA:</td>
+		<td><input type=text id="pemu_pota" size="8"></td>
+		<td>JAFF:</td>
+		<td><input type=text id="pemu_jaff" size="10"></td>
+	      </tr>
+	    </table>
+	    <table>
+	      <tr>
+		<td> 1. </td>
+		<td><input type=text id="pemu_mesg1" size="44"></td>
+		<td><button class="btn btn-primary" onClick="pemuPressed(1)">SEND</button></td>
+	      </tr>
+	      <tr>
+		<td> 2. </td>
+		<td><input type=text id="pemu_mesg2" size="44"></td>
+		<td><button class="btn btn-primary" onClick="pemuPressed(2)">SEND</button></td>
+	      </tr>
+	      <tr>
+		<td> 3. </td>
+		<td><input type=text id="pemu_mesg3"  size="44"></td>
+		<td><button class="btn btn-primary" onClick="pemuPressed(3)">SEND</button></td>
+	      </tr>
+	      <tr>
+		<td> 4. </td>
+		<td><input type=text id="pemu_mesg4" size="44"></td>
+		<td><button class="btn btn-primary" onClick="pemuPressed(4)">SEND</button></td>
+	      </tr>
+	    </table>
+	    <table>
+	      <tr>
+		<td>Speed:</td>
+		<td><input type=text id="pemu_wpm" size="3"></td>
+		<td>wpm</td>
+		<td>
+		  <div class="custom-control custom-checkbox">
+		    <input class="form-check-input" type="radio" name="to_paddle" id="to_paddle" checked>
+		    <label class="form-check-label" for="to_paddle">
+		      Paddle
+		    </label>
+		  </div>
+		</td>
+		<td>
+		  <div class="custom-control custom-checkbox">
+		    <input class="form-check-input" type="radio" name="to_paddle" id="to_key">
+		    <label class="form-check-label" for="to_key">
+		      Straight
+		    </label>
+		  </div>
+		</td>
+ 		<td>
+		  <div class="custom-control custom-checkbox">
+		    <input class="form-check-input" type="checkbox" name="paddle_reverse" id="paddle_reverse">
+		    <label class="form-check-label" for="paddle_reverse">
+		      Reverse Paddle
+		    </label>
+		  </div>
+		</td>
+	      </tr>
+	    </table>
+	  </div>
 	</div>
       </div>
       <div class="modal-footer">
