@@ -124,10 +124,10 @@ function displayActivationZone(latlng, uplmt) {
     var zoom = map.getZoom();
 
     _azone_laststate = [ latlng, uplmt ]
-    local_reverse_geocoder(lat, lng, true)
+    local_get_elevation(lat, lng)
 	.then(res => {
 	if (res['errors'] != 'OK') {
-	    console.log('DEM error',res);
+	    console.log('DEM error',res['errors']);
 	    return;
 	}
 	else {

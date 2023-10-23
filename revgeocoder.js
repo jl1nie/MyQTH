@@ -4,28 +4,34 @@ const endpoint = {
     'muni' : 'https://www.sotalive.net/api/reverse-geocoder/LonLatMuniToAddress',
 };
 
-var cache_result = null;
-var prev_pos = null;
+const cache_rev = new Map();
 
 async function local_reverse_geocoder(lat, lng, elev) {
     let pos = '?lat=' + String(lat) + '&lon=' + String(lng);
 
-    if (prev_pos && prev_pos == pos && cache_result)
-	return cache_result;
+    if (cache_rev.has(pos)) {
+	return cache_rev.get(pos);
+    }
 
-    prev_pos = pos;
-	    
+    if (cache_rev.size >= 16) {
+	const oldest = cache_rev.keys().next().value;
+	cache_rev.delete(oldest);
+    }
+    
     let rev_uri = endpoint['revgeocode'] + pos
     let elev_uri = endpoint['elevation'] + pos + '&outtype=JSON'
     let res_elev = null;
+
     if (elev) 
-	res_elev = fetch(elev_uri);
+	res_elev = local_get_elevation(lat, lng);
 
     let res = await fetch(rev_uri);
     res = await res.json();
+
     if (!('results' in res)) {
-	cache_result = {'errors': 'OUTSIDE_JA'}; 
-	return cache_result; 
+	const p_err = Promise.resolve({'errors': 'OUTSIDE_JA'});
+	cache_rev.set(pos, p_err);
+	return p_err;
     }
     
     let muni_uri =
@@ -34,18 +40,52 @@ async function local_reverse_geocoder(lat, lng, elev) {
     let result = await res2.json()
     result['addr1'] = res['results']['lv01Nm']
     result['errors'] = 'OK'
-    cache_result = result;
     
     if (elev) {
-	return res_elev
-	    .then(res => res.json())
-	    .then(res => {
-		result['elevation'] = res['elevation']
-		result['hsrc'] = res['hsrc']
-		if (res['elevation'] == '-----')
-		    result['errors'] = 'OUTSIDE_JA';
-		cache_result = result;
-		return result;})
-    } else
-	return new Promise((resolve, reject) => { resolve(result);});
+	const p_elev =  res_elev
+	      .then(res => {
+		  result['elevation'] = res['elevation']
+		  result['hsrc'] = res['hsrc']
+		  if (res['elevation'] == '-----')
+		      result['errors'] = 'OUTSIDE_JA';
+		  return Promise.resolve(result);});
+	cache_rev.set(pos, p_elev);
+	return p_elev;
+    } else {
+	const p_pos = Promise.resolve(result);
+	cache_rev.set(pos, p_pos);
+	return p_pos;
+    }
 }
+
+const cache_elev = new Map();
+
+async function local_get_elevation(lat, lng) {
+    let pos = '?lat=' + String(lat) + '&lon=' + String(lng);
+    let result = {};
+    
+    if (cache_elev.has(pos)) {
+	return cache_elev.get(pos);
+    }
+
+    if (cache_elev.size >= 16) {
+	const oldest = cache_elev.keys().next().value;
+	cache_elev.delete(oldest);
+    }
+    
+    let elev_uri = endpoint['elevation'] + pos + '&outtype=JSON'
+    let res_elev = await fetch(elev_uri);
+    let res = await res_elev.json();
+
+    result['elevation'] = res['elevation']
+    result['hsrc'] = res['hsrc']
+    if (res['elevation'] == '-----')
+	result['errors'] = 'OUTSIDE_JA';
+    else
+	result['errors'] = 'OK';
+    
+    let p_elev = Promise.resolve(result); 
+    cache_elev.set(pos, p_elev);
+    return p_elev;
+}
+
