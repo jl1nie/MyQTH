@@ -73,19 +73,21 @@ async function local_get_elevation(lat, lng) {
 	cache_elev.delete(oldest);
     }
     
-    let elev_uri = endpoint['elevation'] + pos + '&outtype=JSON'
-    let res_elev = await fetch(elev_uri);
-    let res = await res_elev.json();
-
-    result['elevation'] = res['elevation']
-    result['hsrc'] = res['hsrc']
-    if (res['elevation'] == '-----')
-	result['errors'] = 'OUTSIDE_JA';
-    else
-	result['errors'] = 'OK';
+    let elev_uri = endpoint['elevation'] + pos + '&outtype=JSON';
+    let res_elev = fetch(elev_uri)
+	.then(res => res.json())
+	.then(res => {
+	    result['elevation'] = res['elevation']
+	    result['hsrc'] = res['hsrc']
+	    if (res['elevation'] == '-----')
+		result['errors'] = 'OUTSIDE_JA';
+	    else
+		result['errors'] = 'OK';
+	    return result;
+	});
     
-    let p_elev = Promise.resolve(result); 
-    cache_elev.set(pos, p_elev);
-    return p_elev;
+    cache_elev.set(pos,res_elev);
+    
+    return res_elev;
 }
 
