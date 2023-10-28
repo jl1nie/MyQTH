@@ -876,11 +876,11 @@ async function pemuPressed(num) {
     if (enable_wifi) {
 	console.log(pemuuri);
 	await fetch(pemuuri, {
-		method: 'POST',
-		headers : {
-		    'Content-Type': 'applicatoin/json'
-		},
-		body: jsonstr
+	    method: 'POST',
+	    headers : {
+		'Content-Type': 'applicatoin/json'
+	    },
+	    body: jsonstr
 	})
 	    .then((res) => {
 		if (!res.ok) {
@@ -920,19 +920,21 @@ function displayPopup(area, latlng, isMarker, isGPS) {
 	Cookies.set('my_qth_lng',lng)
     }
     
-    var query;
+    var query = '&programs=SOTAPOTA'+'&lat='+latlng.lat+'&lon='+latlng.lng+"&srange=200";
 
-    if (area['pota'] && prefs['show_potalog'])
-	query = '&programs=SOTAPOTA'+'&lat='+latlng.lat+'&lon='+latlng.lng+"&srange=300"+
-	"&parkid="+area['pota']+"&logid="+getLogID();
-    else
-	query = '&programs=SOTA'+'&lat='+latlng.lat+'&lon='+latlng.lng+"&srange=300";
-    
+    if (area['pota'])
+	query += "&parkid="+area['pota'];
+
+    if (prefs['show_potalog'])
+	query += "&logid="+getLogID();
+   
     fetch(sotalive+'api/myact/search?'+query)
 	.then(res => res.json())
 	.then(res => {
 	    var sotamesg = '';
 	    var potamesg = '';
+	    var qsomesg = '';
+
 	    if (res['errors'] == 'OK') {
 		if (res['summits'].length >0) {
 		    s = res['summits'][0]
@@ -947,19 +949,22 @@ function displayPopup(area, latlng, isMarker, isGPS) {
 		    pos = '<br>位置:<a href="' + locURI(s['lat'], s['lon'], z) +
 			'" target="_blank">'  + s['lat'] + ',' + s['lon'] +'</a>';
 		    sotamesg = escapeStr(s['desc'])+ '<br>GL:' + s['maidenhead'] + pos + '<br>標高:'+ s['elev']+'m,'+s['pts']+'pts (+' + s['bonus'] +')';
-		    potamesg += '<br>Activations: ' + s['actcnt']
+		    qsomesg += '<br>Activations: ' + s['actcnt']
 		    if (s['actcnt']!= 0)
-			potamesg += '<br>Last Activation: ' + s['lastact'] + '(' + s['lastcall'] + ')';
+			qsomesg += '<br>Last Activation: ' + s['lastact'] + '(' + s['lastcall'] + ')';
 		}
-		if (prefs['show_potalog'] && (res['parks'].length>0)) {
+		if (res['parks'].length > 0) {
 		    p = res['parks'][0];
-		    if (prefs['show_potaactlog']) {
+		    area['pota'] = p['pota'];
+		    area['jaff'] = p['jaff'];
+		    area['name'] = p['name_k'];
+		    if (prefs['show_potalog']) {
 			if (p['attempt'] > 0) { 
-			    potamesg = "<br>Activate/Attempt: "+p['activate'] + "/" + p['attempt']
-			    potamesg += "<br>QSOs: " + p['QSOs'] + "<br>";
-			}
-		    } else if (p['QSOs'] > 0)
-			potamesg = "<br>QSOs: " + p['QSOs'] + "<br>";
+			    qsomesg = "<br>Activate/Attempt: "+p['activate'] + "/" + p['attempt']
+			    qsomesg += "<br>QSOs: " + p['QSOs'] + "<br>";
+			} else if (p['QSOs'] > 0)
+			    qsomesg = "<br>QSOs: " + p['QSOs'] + "<br>";
+		    }
 		}
 	    };
 	    local_reverse_geocoder(latlng.lat, latlng.lng, true)
@@ -1025,7 +1030,7 @@ function displayPopup(area, latlng, isMarker, isGPS) {
 		    }
 		    cnt = selectRef(area, true);
 		    if (cnt != '') {
-			cnt = '<b>' + cnt + '</b>' + mesg + weather + potamesg;
+			cnt = '<b>' + cnt + '</b>' + mesg + weather + qsomesg;
 			if (prefs["enable_emulation"])
 			    cnt += keyerButton(area);
 		    }
