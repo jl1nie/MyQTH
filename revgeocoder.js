@@ -28,33 +28,37 @@ async function local_reverse_geocoder(lat, lng, elev) {
     let res = await fetch(rev_uri);
     res = await res.json();
 
-    if (!('results' in res)) {
-	const p_err = Promise.resolve({'errors': 'OUTSIDE_JA'});
-	cache_rev.set(pos, p_err);
-	return p_err;
-    }
-    
     let muni_uri =
-	endpoint['muni'] + pos + '&muni=' + res['results']['muniCd'];
+	endpoint['muni'] + pos;
+    
+    if ('results' in res) 
+	muni_uri += '&muni=' + res['results']['muniCd'];
+
     let res2 = await fetch(muni_uri);
     let result = await res2.json()
-    result['addr1'] = res['results']['lv01Nm']
-    result['errors'] = 'OK'
-    
-    if (elev) {
-	const p_elev =  res_elev
-	      .then(res => {
-		  result['elevation'] = res['elevation']
-		  result['hsrc'] = res['hsrc']
-		  if (res['elevation'] == '-----')
-		      result['errors'] = 'OUTSIDE_JA';
-		  return Promise.resolve(result);});
-	cache_rev.set(pos, p_elev);
-	return p_elev;
+
+    if (result['errors'] == 'OK') {
+	result['addr1'] = res['results']['lv01Nm'];
+	if (elev) {
+	    const p_elev =  res_elev
+		  .then(res => {
+		      result['elevation'] = res['elevation']
+		      result['hsrc'] = res['hsrc']
+		      if (res['elevation'] == '-----')
+			  result['errors'] = 'OUTSIDE_JA';
+		      return Promise.resolve(result);});
+	    cache_rev.set(pos, p_elev);
+	    return p_elev;
+	} else {
+	    const p_pos = Promise.resolve(result);
+	    cache_rev.set(pos, p_pos);
+	    return p_pos;
+	}
     } else {
-	const p_pos = Promise.resolve(result);
-	cache_rev.set(pos, p_pos);
-	return p_pos;
+	const p_err = Promise.resolve({'errors': 'OUTSIDE_JA',
+				       'maidenhead': result['maidenhead']});
+	cache_rev.set(pos, p_err);
+	return p_err;
     }
 }
 

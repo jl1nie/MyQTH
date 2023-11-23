@@ -938,9 +938,12 @@ function displayPopup(area, latlng, isMarker, isGPS) {
 		
 		if (res['parks'].length > 0) {
 		    p = res['parks'][0];
-		    area['pota'] = p['pota'];
-		    area['jaff'] = p['jaff'];
-		    area['name'] = p['name_k'];
+		    if (!('pota' in area))
+			area['pota'] = p['pota'];
+		    if (!('jaff' in area))
+			area['jaff'] = p['jaff'];
+		    if (!('name' in area))
+			area['name'] = p['name_k'];
 		    if (prefs['show_potalog']) {
 			if (p['attempt'] > 0) { 
 			    qsomesg = "<br>Activate/Attempt: "+p['activate'] + "/" + p['attempt']
@@ -972,12 +975,16 @@ function displayPopup(area, latlng, isMarker, isGPS) {
 	    };
 	    local_reverse_geocoder(latlng.lat, latlng.lng, true)
 		.then(res => {
+
+		    if ('elevation' in res) {
+			if ('alt' in latlng) {
+			    altitude = res['elevation'] + 'm (GPS測位値:'+latlng.alt+'m)';
+			} else {
+			    altitude = res['elevation'] + 'm';	    
+			}
+		    } else
+			altitude = '---';
 		    
-		    if ('alt' in latlng) {
-			altitude = res['elevation'] + 'm (GPS測位値:'+latlng.alt+'m)';
-		    } else {
-			altitude = res['elevation'] + 'm';	    
-		    }
 	    	    if (res['errors'] == 'OUTSIDE_JA') {
 			mesg = 'Pos: ' + lat +','+ lng + '<br>GL: '+res['maidenhead'];
 		    }
@@ -1013,7 +1020,7 @@ function displayPopup(area, latlng, isMarker, isGPS) {
 			}
 		    }
 
-		    if (prefs['display_mapcode']) 
+		    if (prefs['display_mapcode'] && res['mapcode']) 
 			mapcode = '<br><img src="img/mc_long.jpg" height=14px> &nbsp' + res['mapcode'];
 		    else
 			mapcode = '';
