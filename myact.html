@@ -873,6 +873,9 @@ async function pemuPressed(num) {
 
     let jsonstr = JSON.stringify(jsonmsg) + '\r';
 
+    if (navigator.clipboard) 
+	navigator.clipboard.writeText(replaced_msg);
+
     if (enable_wifi) {
 	console.log(pemuuri);
 	await fetch(pemuuri, {
