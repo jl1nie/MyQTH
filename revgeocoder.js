@@ -7,11 +7,13 @@ const endpoint = {
 
 const cache_rev = new Map();
 
+var use_yahoo_revgeocode = false;
 async function local_reverse_geocoder(lat, lng, elev) {
-    if (false)
-	return local_reverse_geocoder_gsi(lat, lng, elev)
-    else
+    if (use_yahoo_revgeocode)
 	return local_reverse_geocoder_yahoo(lat, lng, elev)
+    else
+	return local_reverse_geocoder_gsi(lat, lng, elev)
+
 }
 
 async function local_reverse_geocoder_gsi(lat, lng, elev) {
