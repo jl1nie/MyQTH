@@ -246,6 +246,10 @@ i.semantic-ui-custom {
 		<input class="custom-control-input" type="checkbox" value="" id="jaff_ref" onclick="clickPrefs()">
 		<label class="custom-control-label" for="jaff_ref">JAFF</label>
 	      </div>
+  	      <div class="custom-control custom-checkbox">
+		<input class="custom-control-input" type="checkbox" value="" id="aprs_track" onclick="clickPrefs()">
+		<label class="custom-control-label" for="aprs_track">APRS</label>
+	      </div>
   	      <div class="custom-control custom-checkbox" id="check-pilgrim" style="diplay:none">
 		<input class="custom-control-input" type="checkbox" value="" id="pilgrim" onclick="clickPrefs()">
 		<label class="custom-control-label" for="pilgrim">観音霊場</label>
@@ -470,6 +474,7 @@ var prefs =
       'sota_ref': true,
       'pota_ref': true,
       'jaff_ref': true,
+      'aprs_track': true,
       'pilgrim': false,
       'show_potalog': false,
       'show_potaactlog': true,
@@ -1842,7 +1847,7 @@ function drawAPRSTrack(prop, track) {
 	distance = prop['distance'],
 	summit = prop['summit'];
 
-    L.polyline(coords, {color:'#0d47a1', weight:6}).addTo(map);
+    L.polyline(coords, {color:'#0d47a1', opacity:0.4, weight:4}).addTo(aprs_layer);
     
     for (const latlng of coords) 
 	L.circleMarker(latlng, {color:'#ff1744', radius:2}).addTo(aprs_layer)
@@ -1884,7 +1889,7 @@ function drawAPRSTrack(prop, track) {
   
 async function refresh_aprs_track() {
 
-    if (prefs['sota_ref']) {
+    if (prefs['aprs_track']) {
 	if (aprs_layer) {
 	    map.removeLayer(aprs_layer);
 	    aprs_layer =  L.layerGroup();
@@ -1896,7 +1901,7 @@ async function refresh_aprs_track() {
 	return;
     }
     
-    let range = '96';
+    let range = '24';
     let api = sotalive + 'api/aprs-tracklog/stations?region=JA&range=' + range,
 	api2= sotalive + 'api/aprs-tracklog/tracks?range='+ range + '&';
 
