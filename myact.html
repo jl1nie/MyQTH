@@ -1164,6 +1164,7 @@ function closePrefs() {
     redrawPopup();
     redrawMarkers();
     refresh_spots();
+    refresh_aprs_track();
 }
 
 readCookie(prefs);
@@ -1831,7 +1832,91 @@ async function stat_db() {
     document.getElementById("perf_mon").innerHTML= etime;
 }
 
+
+var aprs_layer = null;
+function drawAPRSTrack(prop, track) {
+    let coords = track['coordinates'],
+	ssid = prop['ssid'],
+	callsign = prop['callsign'],
+	lastseen = new Date(prop['lastseen']),
+	distance = prop['distance'],
+	summit = prop['summit'];
+
+    L.polyline(coords, {color:'#0d47a1', weight:6}).addTo(map);
+    
+    for (const latlng of coords) 
+	L.circleMarker(latlng, {color:'#ff1744', radius:2}).addTo(aprs_layer)
+
+    if (ssid == '5' || ssid == '7') {
+	options = {
+            prefix: 'icon'
+            ,icon: 'user outline'
+            ,shape: 'star'
+            ,markerColor: 'yellow'
+            ,extraClasses: 'semantic-ui-custom'
+        };
+    }
+    else if (ssid == '9') {
+ 	options = {
+            prefix: 'icon'
+            ,icon: 'car'
+            ,shape: 'star'
+            ,markerColor: 'yellow'
+            ,extraClasses: 'semantic-ui-custom'
+        };
+    } else {
+ 	options = {
+            prefix: 'icon'
+            ,icon: 'house'
+            ,shape: 'star'
+            ,markerColor: 'yellow'
+            ,extraClasses: 'semantic-ui-custom'
+        };
+    }
+
+    let marker = L.marker(coords[coords.length-1],
+			  { icon: L.ExtraMarkers.icon(options) });
+    let message = lastseen.toLocaleString() + ' ' + callsign + ' (' + distance + 'm from ' + summit + ')';
+
+    marker.bindPopup(message).openPopup();
+    marker.addTo(aprs_layer);
+}
   
+async function refresh_aprs_track() {
+
+    if (prefs['sota_ref']) {
+	if (aprs_layer) {
+	    map.removeLayer(aprs_layer);
+	    aprs_layer =  L.layerGroup();
+	} else
+	    aprs_layer =  L.layerGroup();
+    } else {
+	if (aprs_layer)
+	    map.removeLayer(aprs_layer);
+	return;
+    }
+    
+    let range = '96';
+    let api = sotalive + 'api/aprs-tracklog/stations?region=JA&range=' + range,
+	api2= sotalive + 'api/aprs-tracklog/tracks?range='+ range + '&';
+
+    let res = await fetch(api);
+    res = await res.json();
+    let stations = res['stations']
+
+    
+    map.addLayer(aprs_layer);
+
+    for (const station of stations) {
+	let res = await fetch(api2 + 'station=' + station)
+	res = await res.json();
+	let tracks = res['tracks'];
+	for (const track of tracks) {
+	    drawAPRSTrack(track['properties'],track['geometry']);
+	}
+    }   
+}
+    
 async function refresh_spots() {
     let api = sotalive + 'api/myact/potalog?command=SPOTS&region=JA';
     if (prefs['pota_hunter_uuid'] != null) {
@@ -1961,10 +2046,11 @@ async function refresh_spots() {
     chart.update();
 }
 
-  onPeriodChange(prefs['spot_period']);
+onPeriodChange(prefs['spot_period']);
 
-  var spot_timer_id = null;
-  
+var aprs_timer_id = null;
+var spot_timer_id = null;
+
   $('#spots-data').on('show.bs.modal', function(e) {
       refresh_spots();
       spot_timer_id = setInterval(refresh_spots,60000);
@@ -1982,6 +2068,10 @@ async function refresh_spots() {
   $('#pemuact').on('hide.bs.modal', function(e) {
       clickPrefs();
   });
+
+refresh_aprs_track();
+aprs_timer_id = setInterval(refresh_aprs_track,180000);
+
 </script>
 </body>
 </html>
