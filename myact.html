@@ -1846,6 +1846,7 @@ function drawAPRSTrack(prop, track) {
 	lastseen = new Date(prop['lastseen']),
 	distance = prop['distance'],
 	summit = prop['summit'],
+	spot_summit = prop['spot_summit']
 	spot_time = prop['spot_time'],
 	spot_freq = prop['spot_freq'],
 	spot_mode = prop['spot_mode'],
@@ -1853,7 +1854,8 @@ function drawAPRSTrack(prop, track) {
 
     let actopt = {month:"numeric",day:"numeric",
 		  hour:"numeric", minute:"numeric"},
-	spotopt = {hour:"numeric", minute:"numeric"}
+	spotopt = {hour:"numeric", minute:"numeric"};
+    
     lastseen = lastseen.toLocaleString('en-us', actopt);
     
     if (spot_time) {
@@ -1899,7 +1901,7 @@ function drawAPRSTrack(prop, track) {
     let message = '<b>' + lastseen + ' ' + callsign + ' (' + distance + 'm from ' + summit + ')</b>';
 
     if (spot_time)
-	message += '<br><center>' + spot_time + ' ' + spot_freq + ' ' + spot_mode + '<br>' +  spot_comment +'</center>'
+	message += '<br><center>' + spot_time + ' ' + spot_freq + ' ' + spot_mode + ' ' + spot_summit + '<br>' +  spot_comment +'</center>'
 	
     marker.bindPopup(message).openPopup();
     marker.addTo(aprs_layer);
