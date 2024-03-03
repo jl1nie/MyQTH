@@ -552,7 +552,6 @@ var map = L.map('map',{
     layers: [ gsi ]
 });
 
-
 var baseLayerControls = {
     '地理院地形図': gsi,
     '全国最新写真': gsi_photo,
@@ -581,6 +580,10 @@ var last_mesg = '';
 var geomagindex = 'A:-- K:-';
 
 
+ function replacePOTAref(oldref) {
+     return oldref.replace('JA-','JP-');
+ }
+  
 function redrawPopup() {
     if (last_area != null) {
 	var ctnt = '<b>' + selectRef(last_area, true) + '</b>' + last_mesg;
@@ -934,9 +937,10 @@ function displayPopup(area, latlng, isMarker, isGPS) {
     
     var query = '&programs=SOTAPOTA'+'&lat='+latlng.lat+'&lon='+latlng.lng+"&srange=200";
 
-    if (area['pota'])
+    if (area['pota']) {
+	area['pota'] = replacePOTAref(area['pota']);
 	query += "&parkid="+area['pota'];
-
+    }
     if (prefs['show_potalog'])
 	query += "&logid="+getLogID();
    
@@ -1511,7 +1515,7 @@ function placeParkMarker(coords, z,  parks) {
         ,markerColor: markerColor
         ,extraClasses: 'semantic-ui-custom'
     }, area = {
-	pota : parks['pota'],
+	pota : replacePOTAref(parks['pota']),
 	jaff : parks['jaff'],
 	name : parks['name_k']
     };
@@ -1935,7 +1939,7 @@ async function refresh_aprs_track() {
 }
     
 async function refresh_spots() {
-    let api = sotalive + 'api/myact/potalog?command=SPOTS&region=JA';
+    let api = sotalive + 'api/myact/potalog?command=SPOTS&region=JA%2CJP';
     if (prefs['pota_hunter_uuid'] != null) {
 	api += '&logid=' + prefs['pota_hunter_uuid'];
     }
