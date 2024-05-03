@@ -1893,7 +1893,7 @@ function drawAPRSTrack(prop, track) {
     } else {
  	options = {
             prefix: 'icon'
-            ,icon: 'house'
+            ,icon: 'home'
             ,shape: 'star'
             ,markerColor: 'yellow'
             ,extraClasses: 'semantic-ui-custom'
@@ -1904,7 +1904,7 @@ function drawAPRSTrack(prop, track) {
 			  { icon: L.ExtraMarkers.icon(options) });
     let message = '<b>' + lastseen + ' ' + callsign + ' (' + distance + 'm from ' + summit + ')</b>';
 
-    if (spot_time && parseInt(distance) < 300)
+    if (spot_time && parseInt(distance) < 500)
 	message += '<br><center>' + spot_time + ' ' + spot_freq + ' ' + spot_mode + ' ' + spot_summit + '<br>' +  spot_comment +'</center>'
 	
     marker.bindPopup(message).openPopup();
