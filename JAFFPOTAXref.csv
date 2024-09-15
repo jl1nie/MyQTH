@@ -412,7 +412,7 @@
 "JA-1749","JAFF-0414","Sobo Katamuki","Miyazaki","JP-MZ","Provincial Park",17,"祖母傾県立自然公園（宮崎県）",32.744499,131.429729
 "JA-1760","JAFF-0415","Akune","Kagoshima","JP-KS","Provincial Park",0,"阿久根県立自然公園",32.105418,130.175717
 "JA-1762","JAFF-0416","Imutaike","Kagoshima","JP-KS","Provincial Park",3,"藺牟田池県立自然公園",31.817374,130.473639
-"JA-1761","JAFF-0417","Fukiagehama","Kagoshima","JP-KS","Provincial Park",2,"吹上浜県立自然公園",31.520987,130.325948
+"JA-1761","JAFF-0417","Fukiagehama Kinpozan","Kagoshima","JP-KS","Provincial Park",2,"吹上浜金峰山県立自然公園",31.520987,130.325948
 "JA-1763","JAFF-0418","Bounoma","Kagoshima","JP-KS","Provincial Park",9,"坊野間県立自然公園",31.421688,130.122706
 "JA-1764","JAFF-0419","Sendaigawa Ryuiki","Kagoshima","JP-KS","Provincial Park",4,"川内川流域県立自然公園",31.946741,130.463344
 "JA-1766","JAFF-0420","Osumi Nanbu","Kagoshima","JP-KS","Provincial Park",0,"大隅南部県立自然公園",31.091486,130.827127
@@ -1119,7 +1119,7 @@
 "JA-1999",,Nadayama Ryokuchi,Hyogo,JP-HG,Prefectural Park,0,灘山緑地,34.562774,135.007244
 "JA-2000",,Awaji Hanasajiki,Hyogo,JP-HG,Prefectural Park,0,あわじ花さじき,34.553626,134.978436
 "JA-2001",,Yashiro Forest,Hyogo,JP-HG,Prefectural Park,0,やしろの森公園,34.908051,135.039751
-"JA-2002",,Naka,Yachiyo Forest",Hyogo,JP-HG,Prefectural Park,0,なか・やちよの森公園,35.028091,134.908438
+"JA-2002",,"Naka,Yachiyo Forest",Hyogo,JP-HG,Prefectural Park,0,なか・やちよの森公園,35.028091,134.908438
 "JA-2003",,Yumesaki no Mori,Hyogo,JP-HG,Prefectural Park,0,ゆめさきの森公園,34.9376, 134.664
 "JA-2004",,Toga Art,Toyama,JP-TY,Prefectural Park,0,利賀芸術公園,36.43237,137.04267
 "JA-2005",,Ishikawa Prefectural Forest,Ishikawa,JP-IS,Prefectural Park,0,石川県森林公園,36.689091,136.75032
