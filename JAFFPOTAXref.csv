@@ -35,7 +35,7 @@
 "JA-0101","JAFF-0034","Shokanbetsu-Teuri-Yagishiri","Hokkaido","JP-HK","Nature Park",48,"暑寒別天売焼尻国定公園（暑寒別）",43.729167,141.541667
 "JA-0102","JAFF-0035","Abashiri","Hokkaido","JP-HK","Nature Park",24,"網走国定公園",44.189224,143.747567
 "JA-0103","JAFF-0036","Niseko-Shakotan-Otaru Kaiga","Hokkaido","JP-HK","Nature Park",17,"ニセコ積丹小樽海岸国定公園",42.897255,140.569858
-"JA-0104","JAFF-0037","Hidaka Sanmyaku-Erimo","Hokkaido","JP-HK","Nature Park",101,"日高山脈襟裳国定公園（日高山脈）",42.406653,142.918413
+"JA-0104","JAFF-0037","Hidaka Sanmyaku-Erimo","Hokkaido","JP-HK","National Park",101,"日高山脈襟裳国立公園（日高山脈）",42.406653,142.918413
 "JA-0105","JAFF-0038","Onuma","Hokkaido","JP-HK","Nature Park",10,"大沼国定公園",41.985827,140.669247
 "JA-0106","JAFF-0039","Shimokita Hanto","Aomori","JP-AO","Nature Park",24,"下北半島国定公園",41.328551,141.060467
 "JA-0107","JAFF-0040","Tsugaru","Aomori","JP-AO","Nature Park",18,"津軽国定公園",41.253563,140.344893
@@ -108,7 +108,7 @@
 "JA-0007","JAFF-0108","Towada-Hachimantai","Akita,Aomori,Iwate","JP-AK,JP-IW","National Park",42,"十和田八幡平国立公園（八幡平）",39.83552,140.821381
 "JA-0027","JAFF-0109","Unzen-Amakusa","Kumamoto,Kagoshima","JP-KM,JP-KS","National Park",44,"雲仙天草国立公園（天草）",32.318482,130.279427
 "JA-0101","JAFF-0110","Shokanbetsu-Teuri-Yagishiri","Hokkaido","JP-HK","Nature Park",1,"暑寒別天売焼尻国定公園（天売焼尻）",44.430869,141.395416
-"JA-0104","JAFF-0111","Hidaka Sanmyaku-Erimo","Hokkaido","JP-HK","Nature Park",12,"日高山脈襟裳国定公園（襟裳）",41.943659,143.234253
+"JA-0104","JAFF-0111","Hidaka Sanmyaku-Erimo","Hokkaido","JP-HK","National Park",12,"日高山脈襟裳国立公園（襟裳）",41.943659,143.234253
 "JA-0119","JAFF-0112","Sado-Yahiko-Yoneyama","Niigata","JP-NI","Nature Park",10,"佐渡弥彦米山国定公園（弥彦米山）",37.740873,138.80596
 "JA-0026","JAFF-0113","Saikai","Nagasaki","JP-NS","National Park",11,"西海国立公園（五島）",32.914774,129.033281
 "JA-0023","JAFF-0114","Setonaikai","Ehime,Kagawa","JP-EH,JP-KG","National Park",31,"瀬戸内海国立公園（四国）",33.986927,133.039104
@@ -765,7 +765,7 @@
 "JA-1856",,"Shinohara Garen","Kanagawa","JP-KN","Provincial Park",0,"篠原園地",35.49129,139.62626
 "JA-1682",,"Muroto Koiki","Kochi","JP-KC","Provincial Park",0,"室戸広域公園",33.289079,134.171595
 "JA-1301",,"Nanasawa Shinrin","Kanagawa","JP-KN","Provincial Park",0,"七沢森林公園",35.447152,139.300817
-"JA-1120",,"Kashimanada Sea Side","Ibaraki","JP-IB", "Prefectural Park",0,"鹿島灘海浜公園",36.15049,140.57743
+"JA-1120",,"Kashimanada Sea Side","Ibaraki","JP-IB","Prefectural Park",0,"鹿島灘海浜公園",36.15049,140.57743
 "JA-1768",,"Yoshino","Kagoshima","JP-KS","Provincial Park",0,"鹿児島県立吉野公園",31.631802,130.593182
 "JA-1776",,"Fureai Sports Land","Kagoshima","JP-KS","Provincial Park",0,"鹿児島ふれあいスポーツランド",31.549336,130.490736
 "JA-1233",,"Shioiri","Tokyo","JP-TK","Provincial Park",0,"汐入公園",35.736347,139.809663
@@ -995,7 +995,7 @@
 "JA-1439",,"Gifu Seiryu Satoyama","Gifu","JP-GF","Provincial Park",0,"ぎふ清流里山公園",35.474625,137.033927
 "JA-1792",,"Odaiba Marine Park","Tokyo","JP-TK","Provincial Park",0,"お台場海浜公園",35.62986564,139.7753479
 "JA-1293",,"Odawara Suwanohara","Kanagawa","JP-KN","Provincial Park",0,"おだわら諏訪の原公園",35.282546,139.133847
-"JA-1438",,"Gifu World Fresh Water Aquarium","Gifu",JP-GF,"Prefectural Park",0,"世界淡水魚園",35.371067,136.809045
+"JA-1438",,"Gifu World Fresh Water Aquarium","Gifu","JP-GF","Prefectural Park",0,"世界淡水魚園",35.371067,136.809045
 "JA-1565",,"Uda Animal","Nara","JP-NR","Provincial Park",0,"うだ・アニマルパーク",34.489102,135.932414
 "JA-1103",,"Iwaki","Fukushima","JP-FS","Provincial Park",0,"いわき公園",37.010817,140.919973
 "JA-1860",,"Italian Embassy Villa Memoria","Tochigi","JP-TC","Provincial Park",0,"イタリア大使館別荘記念公園",36.72504,139.48553
@@ -1078,113 +1078,113 @@
 "JA-1958",,"Fumin-no-mori Mizunomi Enchi","Osaka","JP-OS","Provincial Park",0,"みずのみ園地",34.637513,135.65884
 "JA-1959",,"Fumin-no-mori Chihaya Enchi","Osaka","JP-OS","Provincial Park",0,"ちはや園地",34.412929,135.677055
 "JA-1960",,"Fumin-no-mori Horigo Enchi","Osaka","JP-OS","Provincial Park",0,"ほりご園地",34.333406,135.324134
-"JA-1961",,Chiba Port,Chiba,JP-CH,Prefectural Park,0,千葉ポートパーク,35.599115,140.098633
-"JA-1962",,Sodegaura Kaihin,Chiba,JP-CH,Prefectural Park,0,"袖ケ浦海浜公園",35.45581,139.953662
-"JA-1963",,Funabashi Port Shinsui,Chiba,JP-CH,Prefectural Park,0,"船橋港親水公園",35.688244,139.987277
-"JA-1964",,Shinminato,Chiba,JP-CH,Prefectural Park,0,新港公園,35.36563,139.895479
-"JA-1965",,Shiohama,Chiba,JP-CH,Prefectural Park,0,潮浜公園,35.379129,139.908607
-"JA-1966",,Futtsuminato,Chiba,JP-CH,Prefectural Park,0,富津みなと公園,35.32231,139.81932
-"JA-1967",,Naikou,Chiba,JP-CH,Prefectural Park,0,内港公園,35.38683486,139.9164308
-"JA-1968",,Naikou Kita,Chiba,JP-CH,Prefectural Park,0,内港北公園,35.38853893,139.9153049
-"JA-1969",,Kazusa Minatoko Kaihin,Chiba,JP-CH,Prefectural Park,0,上総湊港海浜公園,35.224057,139.870537
-"JA-1970",,Naaraiko Kaihin,Chiba,JP-CH,Prefectural Park,0,名洗港海浜公園,35.705988,140.838443
-"JA-1971",,Okitsuko Kaihin,Chiba,JP-CH,Prefectural Park,0,興津港海浜公園,35.132754,140.246975
-"JA-1972",,Senba,Ibaraki,JP-IB,Prefectural Park,0,千波公園（茨城県近代美術館の周辺のみ）,36.368195,140.46675
-"JA-1973",,Kencho Higashi Park SHIBA,Ibaraki,JP-IB,Prefectural Park,0,県庁東公園SHIBA,36.341147,140.449432
-"JA-1974",,Sawatarigawa Ryokuchi,Ibaraki,JP-IB,Prefectural Park,0,沢渡川緑地,36.380676,140.446547
-"JA-1975",,Sakuragawa Ryokuchi,Ibaraki,JP-IB,Prefectural Park,0,桜川緑地,36.363856,140.443841
-"JA-1976",,Kitauragawa Ryokuchi,Ibaraki,JP-IB,Prefectural Park,0,北浦川緑地,35.907661,140.115724
-"JA-1977",,Geidai Ryokuchi,Ibaraki,JP-IB,Prefectural Park,0,芸大緑地（アルスの森）,35.883759,140.110198
-"JA-1978",,Akatsuka,Ibaraki,JP-IB,Prefectural Park,0,赤塚公園,36.051601,140.130666
-"JA-1979",,Kasugaura Sogo,Ibaraki,JP-IB,Prefectural Park,0,霞ヶ浦総合公園,36.06349,140.220034
-"JA-1980",,Ibaraki Airport,Ibaraki,JP-IB,Prefectural Park,0,茨城空港公園,36.176552,140.406829
-"JA-1981",,Gunma Ikoi-no-mori,Gumma,JP-GM,Prefectural Park,0,群馬県憩の森,36.490952,138.936104
-"JA-1982",,Shizuoka Performing Arts,Shizuoka,JP-SZ,Prefectural Park,0,舞台芸術公園,34.98088,138.448591
-"JA-1983",,Shizuoka Prefectural Public Forest,Shizuoka,JP-SZ,Prefectural Park,0,静岡県県民の森,35.240724,138.281572
-"JA-1984",,Kyoto Botanical Gardens,Kyoto,JP-KY,Prefectural Park,0,京都府立植物園,35.049005,135.762637
-"JA-1985",,Katsuragawa Sports,Kyoto,JP-KY,Prefectural Park,0,桂川運動公園,34.999216,135.693511
-"JA-1986",,Wakagawa Riverside,Wakayama,JP-WK,Prefectural Park,0,和歌川河川公園,34.204614,135.179984
-"JA-1987",,Wakayama Prefecture Botanical Park Ryokka Center,Wakayama,JP-WK,Prefectural Park,0,和歌山県植物公園緑花センター,34.285805,135.328345
-"JA-1988",,Negoroyama Genkinomori,Wakayama,JP-WK,Prefectural Park,0,根来山げんきの森,34.294057,135.329074
-"JA-1989",,Gomadanzan Forest,Wakayama,JP-WK,Prefectural Park,0,護摩壇山森林公園,34.040607,135.566451
-"JA-1990",,Wakayama Prefecture Kii-fudoki-no-oka Museum of Archaeology and Folklore,Wakayama,JP-WK,Prefectural Park,0,紀伊風土記の丘,34.228262,135.229618
-"JA-1991",,Maiko,Hyogo,JP-HG,Prefectural Park,0,舞子公園,34.630801,135.034451
-"JA-1992",,Amagasaki no Mori Chuo Ryokuchi,Hyogo,JP-HG,Prefectural Park,0,尼崎の森中央緑地,34.695401,135.381801
-"JA-1993",,Takarazuka Nishitani no Mori,Hyogo,JP-HG,Prefectural Park,0,宝塚西谷の森公園,34.898361,135.295806
-"JA-1994",,Sasayana no Mori,Hyogo,JP-HG,Prefectural Park,0,ささやまの森公園,35.059441,135.361221
-"JA-1995",,Tamba Namikimichi Chuo,Hyogo,JP-HG,Prefectural Park,0,丹波並木道中央公園,35.077156,135.157134
-"JA-1996",,Awaji Ishi no Neya Ryokuchi,Hyogo,JP-HG,Prefectural Park,0,あわじ石の寝屋緑地,34.592884,135.001257
-"JA-1997",,Miki Sogo Bosai,Hyogo,JP-HG,Prefectural Park,0,三木総合防災公園,34.784061,135.049083
-"JA-1998",,Nishiina,Hyogo,JP-HG,Prefectural Park,0,西猪名公園,34.800851,135.418061
-"JA-1999",,Nadayama Ryokuchi,Hyogo,JP-HG,Prefectural Park,0,灘山緑地,34.562774,135.007244
-"JA-2000",,Awaji Hanasajiki,Hyogo,JP-HG,Prefectural Park,0,あわじ花さじき,34.553626,134.978436
-"JA-2001",,Yashiro Forest,Hyogo,JP-HG,Prefectural Park,0,やしろの森公園,34.908051,135.039751
-"JA-2002",,"Naka,Yachiyo Forest",Hyogo,JP-HG,Prefectural Park,0,なか・やちよの森公園,35.028091,134.908438
-"JA-2003",,Yumesaki no Mori,Hyogo,JP-HG,Prefectural Park,0,ゆめさきの森公園,34.9376, 134.664
-"JA-2004",,Toga Art,Toyama,JP-TY,Prefectural Park,0,利賀芸術公園,36.43237,137.04267
-"JA-2005",,Ishikawa Prefectural Forest,Ishikawa,JP-IS,Prefectural Park,0,石川県森林公園,36.689091,136.75032
-"JA-2006",,Konan Sports,Ishikawa,JP-IS,Prefectural Park,0,湖南運動公園,36.632612,136.674346
-"JA-2007",,Notojima Seaside,Ishikawa,JP-IS,Prefectural Park,0,のとじま臨海公園,37.148629,136.982421
-"JA-2008",,Yuuhidera Kenmin Nature Garden,Ishikawa,JP-IS,Prefectural Park,0,夕日寺健民自然園,36.572407,136.707445
-"JA-2009",,Ishikawa Kenmin-no-mori,Ishikawa,JP-IS,Prefectural Park,0,石川県県民の森,36.224598,136.455788
-"JA-2010",,Ishikawa Kenko-no-mori,Ishikawa,JP-IS,Prefectural Park,0,石川県健康の森,37.308867,136.929634
-"JA-2011",,Tottori Sakyu Kodomonokuni,Tottori,JP-TT,Prefectural Park,0,チュウブ鳥取砂丘こどもの国,35.533753,134.224483
-"JA-2012",,Tottori Hanakairo-Flower,Tottori,JP-TT,Prefectural Park,0,とっとり花回廊,35.348004,133.424502
-"JA-2013",,Forest Park Tottori Deainomori,Tottori,JP-TT,Prefectural Park,0,とっとり出合いの森,35.490705,134.169604
-"JA-2014",,Forest Park 21st Century,Tottori,JP-TT,Prefectural Park,0,21世紀の森,35.416831,134.207345
-"JA-2015",,Tottori Mukibanda Historic Site,Tottori,JP-TT,Prefectural Park,0,むきばんだ史跡公園,35.462011,133.452602
-"JA-2016",,Miyajima,Hiroshima,JP-HS,Prefectural Park,0,宮島公園,34.273562,132.30519
-"JA-2017",,Ehime Kodomonoshiro,Ehime,JP-EH,Prefectural Park,0,えひめこどもの城,33.761661,132.797009
-"JA-2018",,Ehime Forest,Ehime,JP-EH,Prefectural Park,0,えひめ森林公園,33.750116,132.74015
-"JA-2019",,Miyazaki Seaside,Miyazaki,JP-MZ,Prefectural Park,0,みやざき臨海公園,31.929898,131.468266
-"JA-2020",,Miyazaki Prefectural Aoshima Subtropical Botanic Garden,Miyazaki,JP-MZ,Prefectural Park,0,県立青島亜熱帯植物園,31.801806,131.470009
-"JA-2021",,Lupinus,Miyazaki,JP-MZ,Prefectural Park,0,宮崎県農業科学公園,32.171127,131.520582
-"JA-2022",,Kawaminami Yugaku no Mori,Miyazaki,JP-MZ,Prefectural Park,0,川南遊学の森,32.243423,131.488658
-"JA-2023",,Hinamoridai Kenmin Fureai no Mori,Miyazaki,JP-MZ,Prefectural Park,0,ひなもり台県民ふれあいの森,31.931893,130.940143
-"JA-2024",,Tomoni Manabu Mori,Miyazaki,JP-MZ,Prefectural Park,0,共に学ぶ森,31.991779,131.206981
-"JA-2025",,The Shigaraki Ceramic Cultural,Shiga,JP-SH,Prefectural Park,0,陶芸の森,34.885705,136.058903
-"JA-2026",,Biwako Kodomonokuni,Shiga,JP-SH,Prefectural Park,0,びわ湖こどもの国,35.320425,136.075328
-"JA-2027",,Shiga Prefecture Kibougaoka Cultural,Shiga,JP-SH,Prefectural Park,0,滋賀県希望が丘文化公園,35.054342,136.068114
-"JA-2028",,Omifuji Karyoku,Shiga,JP-SH,Prefectural Park,0,近江富士花緑公園,35.053675,136.044187
-"JA-2029",,Hinomine Omiko Regional,Tokushima,JP-TS,Prefectural Park,0,日峯大神子広域公園,34.031024,134.586934
-"JA-2030",,Naruto Uchinoumi,Tokushima,JP-TS,Prefectural Park,0,鳴門ウチノ海総合公園,34.210013,134.596571
-"JA-2031",,Asutamu Land Tokushima,Tokushima,JP-TS,Prefectural Park,0,あすたむらんど徳島,34.152996,134.441156
-"JA-2032",,Tokushima Prefectural Sanagouchi Ikimonofureainosato,Tokushima,JP-TS,Prefectural Park,0,徳島県立佐那河内いきものふれあいの里,33.968702,134.413716
-"JA-2033",,Takamaruyama Sennennomori,Tokushima,JP-TS,Prefectural Park,0,高丸山千年の森,33.881828,134.332222
-"JA-2034",,Kuramoto,Tokushima,JP-TS,Prefectural Park,0,蔵本公園,34.074848,134.513841
-"JA-2035",,Shikoku Saburo No Sato,Tokushima,JP-TS,Prefectural Park,0,四国三郎の郷(徳島県立美馬野外交流の郷）,34.042212,134.002099
-"JA-2036",,Tokushima Prefectural Dejima Wild Bird Garden,Tokushima,JP-TS,Prefectural Park,0,徳島県立出島野鳥園,33.959355,134.67166
-"JA-2037",,Shinmachigawa,Tokushima,JP-TS,Prefectural Park,0,新町川公園,34.076854,134.543965
-"JA-2038",,Imperial Palace Outer Garden,Tokyo,JP-TK,National Government Park,0,皇居外苑,35.68018,139.7583
-"JA-2039",,Kyoto Gyoen,Kyoto,JP-KY,National Government Park,0,京都御苑,35.02344,135.763292
-"JA-2040",,Shinjuku Gyoen,Tokyo,JP-TK,National Government Park,0,新宿御苑,35.685167,139.71003
-"JA-2041",,Donguri Land,Kagawa,JP-KG,Prefectural Park,0,ドングリランド,34.219049,134.074685
-"JA-2042",,Sanuki Kodomonokuni,Kagawa,JP-KG,Prefectural Park,0,さぬきこどもの国,34.212113,134.016759
-"JA-2043",,Sakaide Kansyo Ryokuchi,Kagawa,JP-KG,Prefectural Park,0,坂出緩衝緑地,34.32445,133.832245
-"JA-2044",,Setoohashi kinenkouen,Kagawa,JP-KG,Prefectural Park,0,瀬戸大橋記念公園,34.351371,133.826327
-"JA-2045",,Kagawayosui Memorial,Kagawa,JP-KG,Prefectural Park,0,香川用水記念公園,34.099153,133.765064
-"JA-2046",,Kozai Nishichiku Kowan Ryokuchi,Kagawa,JP-KG,Prefectural Park,0,香西西地区港湾緑地,34.357886,133.995509
-"JA-2047",,Sanuki Airport,Kagawa,JP-KG,Prefectural Park,0,さぬき空港公園,34.22086,134.014622
-"JA-2048",,Koutougawa,Kagawa,JP-KG,Prefectural Park,0,香東川公園,34.324758,134.009918
-"JA-2049",,Olive,Kagawa,JP-KG,Prefectural Park,0,香川県オリーブ公園,34.472854,134.273631
-"JA-2050",,Dokigawa,Kagawa,JP-KG,Prefectural Park,0,土器川公園,34.254013,133.836067
-"JA-2051",,Ritsurin Garden,Kagawa,JP-KG,Prefectural Park,0,栗林公園,34.329672,134.044143
-"JA-2052",,Ohno Odaiba,Ishikawa,JP-IS,Prefectural Park,0,大野お台場公園,36.617046,136.605962
-"JA-2053",,Aomori Prefectural Sport,Aomori,JP-AO,Prefectural Park,0,青森県総合運動公園,40.806291,140.706539
-"JA-2054",,Iwate Prefectural Sports,Iwate,JP-IW, Prefectural Park,0,岩手県営運動公園,39.736186,141.118784
-"JA-2055",,Fureai Ryokuchi,Akita,JP-AK, Prefectural Park,0,大館能代空港周辺ふれあい緑地,40.197807,140.360169
-"JA-2056",,Toyama Nature Museum,Toyama,JP-TY,Prefectural Park,0,県民公園自然博物園,36.639124,137.082118
-"JA-2057",,Yatyou no sono,Toyama,JP-TY,Prefectural Park,0,県民公園野鳥の園,36.660299,137.104322
-"JA-2058",,Ranjyou no mori,Toyama,JP-TY,Prefectural Park,0,県民公園頼成の森 ,36.636606,137.046574
-"JA-2059",,21st Century Forest,Toyama,JP-TY,Prefectural Park,0,富山県21世紀の森,36.428016,137.08427
-"JA-2060",,Arimine Shinrin Bunka,Toyama,JP-TY,Prefectural Park,0,富山県有峰森林文化公園 ,36.491547,137.458604
-"JA-2061",,Botanic Gardens of Toyama,Toyama,JP-TY,Prefectural Park,0,富山県中央植物園,36.662757,137.181323
-"JA-2062",,Kencho Mae,Toyama,JP-TY,Prefectural Park,0,県庁前公園,36.696387,137.21065
-"JA-2063",,Rinkai Bird,Toyama,JP-TY,Prefectural Park,0,富山新港臨海野鳥園,36.782274,137.104837
-"JA-2064",,Minami Suiro Ryokuchi,Toyama,JP-TY,Prefectural Park,0,南水路緑地,36.763144,137.113173
-"JA-2065",,Lumberyard Ryokuchi,Toyama,JP-TY,Prefectural Park,0,第一貯木場緑地広場,36.770187,137.096645
-"JA-2066",,Kaikou monument Ryokuchi,Toyama,JP-TY,Prefectural Park,0,開港記念碑緑地広場,36.774875,137.113377
-"JA-2067",,Genki no mori,Toyama,JP-TY,Prefectural Park,0,富山新港元気の森公園,36.775984,137.127593
-"JA-2068",,Ariake Shinsui Seaside,Tokyo,JP-TK, Prefectural Park,0,有明親水海浜公園,35.64319611,139.795599
-"JA-2069",,Harumi Greenway,Tokyo,JP-TK, Prefectural Park,0,晴海緑道公園,35.65063681,139.7792326
-"JA-2070",,Harumi Port,Tokyo,JP-TK, Prefectural Park,0,晴海ふ頭公園,35.64833518,139.7714005
+"JA-1961",,"Chiba Port","Chiba","JP-CH","Prefectural Park",0,"千葉ポートパーク",35.599115,140.098633
+"JA-1962",,"Sodegaura Kaihin","Chiba","JP-CH","Prefectural Park",0,"袖ケ浦海浜公園",35.45581,139.953662
+"JA-1963",,"Funabashi Port Shinsui","Chiba","JP-CH","Prefectural Park",0,"船橋港親水公園",35.688244,139.987277
+"JA-1964",,"Shinminato","Chiba","JP-CH","Prefectural Park",0,"新港公園",35.36563,139.895479
+"JA-1965",,"Shiohama","Chiba","JP-CH","Prefectural Park",0,"潮浜公園",35.379129,139.908607
+"JA-1966",,"Futtsuminato","Chiba","JP-CH","Prefectural Park",0,"富津みなと公園",35.32231,139.81932
+"JA-1967",,"Naikou","Chiba","JP-CH","Prefectural Park",0,"内港公園",35.38683486,139.9164308
+"JA-1968",,"Naikou Kita","Chiba","JP-CH","Prefectural Park",0,"内港北公園",35.38853893,139.9153049
+"JA-1969",,"Kazusa Minatoko Kaihin","Chiba","JP-CH","Prefectural Park",0,"上総湊港海浜公園",35.224057,139.870537
+"JA-1970",,"Naaraiko Kaihin","Chiba","JP-CH","Prefectural Park",0,"名洗港海浜公園",35.705988,140.838443
+"JA-1971",,"Okitsuko Kaihin","Chiba","JP-CH","Prefectural Park",0,"興津港海浜公園",35.132754,140.246975
+"JA-1972",,"Senba","Ibaraki","JP-IB","Prefectural Park",0,"千波公園（茨城県近代美術館の周辺のみ）",36.368195,140.46675
+"JA-1973",,"Kencho Higashi Park SHIBA","Ibaraki","JP-IB","Prefectural Park",0,"県庁東公園SHIBA",36.341147,140.449432
+"JA-1974",,"Sawatarigawa Ryokuchi","Ibaraki","JP-IB","Prefectural Park",0,"沢渡川緑地",36.380676,140.446547
+"JA-1975",,"Sakuragawa Ryokuchi","Ibaraki","JP-IB","Prefectural Park",0,"桜川緑地",36.363856,140.443841
+"JA-1976",,"Kitauragawa Ryokuchi","Ibaraki","JP-IB","Prefectural Park",0,"北浦川緑地",35.907661,140.115724
+"JA-1977",,"Geidai Ryokuchi","Ibaraki","JP-IB","Prefectural Park",0,"芸大緑地（アルスの森）",35.883759,140.110198
+"JA-1978",,"Akatsuka","Ibaraki","JP-IB","Prefectural Park",0,"赤塚公園",36.051601,140.130666
+"JA-1979",,"Kasugaura Sogo","Ibaraki","JP-IB","Prefectural Park",0,"霞ヶ浦総合公園",36.06349,140.220034
+"JA-1980",,"Ibaraki Airport","Ibaraki","JP-IB","Prefectural Park",0,"茨城空港公園",36.176552,140.406829
+"JA-1981",,"Gunma Ikoi-no-mori","Gumma","JP-GM","Prefectural Park",0,"群馬県憩の森",36.490952,138.936104
+"JA-1982",,"Shizuoka Performing Arts","Shizuoka","JP-SZ","Prefectural Park",0,"舞台芸術公園",34.98088,138.448591
+"JA-1983",,"Shizuoka Prefectural Public Forest","Shizuoka","JP-SZ","Prefectural Park",0,"静岡県県民の森",35.240724,138.281572
+"JA-1984",,"Kyoto Botanical Gardens","Kyoto","JP-KY","Prefectural Park",0,"京都府立植物園",35.049005,135.762637
+"JA-1985",,"Katsuragawa Sports","Kyoto","JP-KY","Prefectural Park",0,"桂川運動公園",34.999216,135.693511
+"JA-1986",,"Wakagawa Riverside","Wakayama","JP-WK","Prefectural Park",0,"和歌川河川公園",34.204614,135.179984
+"JA-1987",,"Wakayama Prefecture Botanical Park Ryokka Center","Wakayama","JP-WK","Prefectural Park",0,"和歌山県植物公園緑花センター",34.285805,135.328345
+"JA-1988",,"Negoroyama Genkinomori","Wakayama","JP-WK","Prefectural Park",0,"根来山げんきの森",34.294057,135.329074
+"JA-1989",,"Gomadanzan Forest","Wakayama","JP-WK","Prefectural Park",0,"護摩壇山森林公園",34.040607,135.566451
+"JA-1990",,"Wakayama Prefecture Kii-fudoki-no-oka Museum of Archaeology and Folklore","Wakayama","JP-WK","Prefectural Park",0,"紀伊風土記の丘",34.228262,135.229618
+"JA-1991",,"Maiko","Hyogo","JP-HG","Prefectural Park",0,"舞子公園",34.630801,135.034451
+"JA-1992",,"Amagasaki no Mori Chuo Ryokuchi","Hyogo","JP-HG","Prefectural Park",0,"尼崎の森中央緑地",34.695401,135.381801
+"JA-1993",,"Takarazuka Nishitani no Mori","Hyogo","JP-HG","Prefectural Park",0,"宝塚西谷の森公園",34.898361,135.295806
+"JA-1994",,"Sasayana no Mori","Hyogo","JP-HG","Prefectural Park",0,"ささやまの森公園",35.059441,135.361221
+"JA-1995",,"Tamba Namikimichi Chuo","Hyogo","JP-HG","Prefectural Park",0,"丹波並木道中央公園",35.077156,135.157134
+"JA-1996",,"Awaji Ishi no Neya Ryokuchi","Hyogo","JP-HG","Prefectural Park",0,"あわじ石の寝屋緑地",34.592884,135.001257
+"JA-1997",,"Miki Sogo Bosai","Hyogo","JP-HG","Prefectural Park",0,"三木総合防災公園",34.784061,135.049083
+"JA-1998",,"Nishiina","Hyogo","JP-HG","Prefectural Park",0,"西猪名公園",34.800851,135.418061
+"JA-1999",,"Nadayama Ryokuchi","Hyogo","JP-HG","Prefectural Park",0,"灘山緑地",34.562774,135.007244
+"JA-2000",,"Awaji Hanasajiki","Hyogo","JP-HG","Prefectural Park",0,"あわじ花さじき",34.553626,134.978436
+"JA-2001",,"Yashiro Forest","Hyogo","JP-HG","Prefectural Park",0,"やしろの森公園",34.908051,135.039751
+"JA-2002",,"Naka,Yachiyo Forest","Hyogo","JP-HG","Prefectural Park",0,"なか・やちよの森公園",35.028091,134.908438
+"JA-2003",,"Yumesaki no Mori","Hyogo","JP-HG","Prefectural Park",0,"ゆめさきの森公園",34.9376,134.664
+"JA-2004",,"Toga Art","Toyama","JP-TY","Prefectural Park",0,"利賀芸術公園",36.43237,137.04267
+"JA-2005",,"Ishikawa Prefectural Forest","Ishikawa","JP-IS","Prefectural Park",0,"石川県森林公園",36.689091,136.75032
+"JA-2006",,"Konan Sports","Ishikawa","JP-IS","Prefectural Park",0,"湖南運動公園",36.632612,136.674346
+"JA-2007",,"Notojima Seaside","Ishikawa","JP-IS","Prefectural Park",0,"のとじま臨海公園",37.148629,136.982421
+"JA-2008",,"Yuuhidera Kenmin Nature Garden","Ishikawa","JP-IS","Prefectural Park",0,"夕日寺健民自然園",36.572407,136.707445
+"JA-2009",,"Ishikawa Kenmin-no-mori","Ishikawa","JP-IS","Prefectural Park",0,"石川県県民の森",36.224598,136.455788
+"JA-2010",,"Ishikawa Kenko-no-mori","Ishikawa","JP-IS","Prefectural Park",0,"石川県健康の森",37.308867,136.929634
+"JA-2011",,"Tottori Sakyu Kodomonokuni","Tottori","JP-TT","Prefectural Park",0,"チュウブ鳥取砂丘こどもの国",35.533753,134.224483
+"JA-2012",,"Tottori Hanakairo-Flower","Tottori","JP-TT","Prefectural Park",0,"とっとり花回廊",35.348004,133.424502
+"JA-2013",,"Forest Park Tottori Deainomori","Tottori","JP-TT","Prefectural Park",0,"とっとり出合いの森",35.490705,134.169604
+"JA-2014",,"Forest Park 21st Century","Tottori","JP-TT","Prefectural Park",0,"21世紀の森",35.416831,134.207345
+"JA-2015",,"Tottori Mukibanda Historic Site","Tottori","JP-TT","Prefectural Park",0,"むきばんだ史跡公園",35.462011,133.452602
+"JA-2016",,"Miyajima","Hiroshima","JP-HS","Prefectural Park",0,"宮島公園",34.273562,132.30519
+"JA-2017",,"Ehime Kodomonoshiro","Ehime","JP-EH","Prefectural Park",0,"えひめこどもの城",33.761661,132.797009
+"JA-2018",,"Ehime Forest","Ehime","JP-EH","Prefectural Park",0,"えひめ森林公園",33.750116,132.74015
+"JA-2019",,"Miyazaki Seaside","Miyazaki","JP-MZ","Prefectural Park",0,"みやざき臨海公園",31.929898,131.468266
+"JA-2020",,"Miyazaki Prefectural Aoshima Subtropical Botanic Garden","Miyazaki","JP-MZ","Prefectural Park",0,"県立青島亜熱帯植物園",31.801806,131.470009
+"JA-2021",,"Lupinus","Miyazaki","JP-MZ","Prefectural Park",0,"宮崎県農業科学公園",32.171127,131.520582
+"JA-2022",,"Kawaminami Yugaku no Mori","Miyazaki","JP-MZ","Prefectural Park",0,"川南遊学の森",32.243423,131.488658
+"JA-2023",,"Hinamoridai Kenmin Fureai no Mori","Miyazaki","JP-MZ","Prefectural Park",0,"ひなもり台県民ふれあいの森",31.931893,130.940143
+"JA-2024",,"Tomoni Manabu Mori","Miyazaki","JP-MZ","Prefectural Park",0,"共に学ぶ森",31.991779,131.206981
+"JA-2025",,"The Shigaraki Ceramic Cultural","Shiga","JP-SH","Prefectural Park",0,"陶芸の森",34.885705,136.058903
+"JA-2026",,"Biwako Kodomonokuni","Shiga","JP-SH","Prefectural Park",0,"びわ湖こどもの国",35.320425,136.075328
+"JA-2027",,"Shiga Prefecture Kibougaoka Cultural","Shiga","JP-SH","Prefectural Park",0,"滋賀県希望が丘文化公園",35.054342,136.068114
+"JA-2028",,"Omifuji Karyoku","Shiga","JP-SH","Prefectural Park",0,"近江富士花緑公園",35.053675,136.044187
+"JA-2029",,"Hinomine Omiko Regional","Tokushima","JP-TS","Prefectural Park",0,"日峯大神子広域公園",34.031024,134.586934
+"JA-2030",,"Naruto Uchinoumi","Tokushima","JP-TS","Prefectural Park",0,"鳴門ウチノ海総合公園",34.210013,134.596571
+"JA-2031",,"Asutamu Land Tokushima","Tokushima","JP-TS","Prefectural Park",0,"あすたむらんど徳島",34.152996,134.441156
+"JA-2032",,"Tokushima Prefectural Sanagouchi Ikimonofureainosato","Tokushima","JP-TS","Prefectural Park",0,"徳島県立佐那河内いきものふれあいの里",33.968702,134.413716
+"JA-2033",,"Takamaruyama Sennennomori","Tokushima","JP-TS","Prefectural Park",0,"高丸山千年の森",33.881828,134.332222
+"JA-2034",,"Kuramoto","Tokushima","JP-TS","Prefectural Park",0,"蔵本公園",34.074848,134.513841
+"JA-2035",,"Shikoku Saburo No Sato","Tokushima","JP-TS","Prefectural Park",0,"四国三郎の郷(徳島県立美馬野外交流の郷）",34.042212,134.002099
+"JA-2036",,"Tokushima Prefectural Dejima Wild Bird Garden","Tokushima","JP-TS","Prefectural Park",0,"徳島県立出島野鳥園",33.959355,134.67166
+"JA-2037",,"Shinmachigawa","Tokushima","JP-TS","Prefectural Park",0,"新町川公園",34.076854,134.543965
+"JA-2038",,"Imperial Palace Outer Garden","Tokyo","JP-TK","National Government Park",0,"皇居外苑",35.68018,139.7583
+"JA-2039",,"Kyoto Gyoen","Kyoto","JP-KY","National Government Park",0,"京都御苑",35.02344,135.763292
+"JA-2040",,"Shinjuku Gyoen","Tokyo","JP-TK","National Government Park",0,"新宿御苑",35.685167,139.71003
+"JA-2041",,"Donguri Land","Kagawa","JP-KG","Prefectural Park",0,"ドングリランド",34.219049,134.074685
+"JA-2042",,"Sanuki Kodomonokuni","Kagawa","JP-KG","Prefectural Park",0,"さぬきこどもの国",34.212113,134.016759
+"JA-2043",,"Sakaide Kansyo Ryokuchi","Kagawa","JP-KG","Prefectural Park",0,"坂出緩衝緑地",34.32445,133.832245
+"JA-2044",,"Setoohashi kinenkouen","Kagawa","JP-KG","Prefectural Park",0,"瀬戸大橋記念公園",34.351371,133.826327
+"JA-2045",,"Kagawayosui Memorial","Kagawa","JP-KG","Prefectural Park",0,"香川用水記念公園",34.099153,133.765064
+"JA-2046",,"Kozai Nishichiku Kowan Ryokuchi","Kagawa","JP-KG","Prefectural Park",0,"香西西地区港湾緑地",34.357886,133.995509
+"JA-2047",,"Sanuki Airport","Kagawa","JP-KG","Prefectural Park",0,"さぬき空港公園",34.22086,134.014622
+"JA-2048",,"Koutougawa","Kagawa","JP-KG","Prefectural Park",0,"香東川公園",34.324758,134.009918
+"JA-2049",,"Olive","Kagawa","JP-KG","Prefectural Park",0,"香川県オリーブ公園",34.472854,134.273631
+"JA-2050",,"Dokigawa","Kagawa","JP-KG","Prefectural Park",0,"土器川公園",34.254013,133.836067
+"JA-2051",,"Ritsurin Garden","Kagawa","JP-KG","Prefectural Park",0,"栗林公園",34.329672,134.044143
+"JA-2052",,"Ohno Odaiba","Ishikawa","JP-IS","Prefectural Park",0,"大野お台場公園",36.617046,136.605962
+"JA-2053",,"Aomori Prefectural Sport","Aomori","JP-AO","Prefectural Park",0,"青森県総合運動公園",40.806291,140.706539
+"JA-2054",,"Iwate Prefectural Sports","Iwate","JP-IW"," Prefectural Park",0,"岩手県営運動公園",39.736186,141.118784
+"JA-2055",,"Fureai Ryokuchi","Akita","JP-AK"," Prefectural Park",0,"大館能代空港周辺ふれあい緑地",40.197807,140.360169
+"JA-2056",,"Toyama Nature Museum","Toyama","JP-TY","Prefectural Park",0,"県民公園自然博物園",36.639124,137.082118
+"JA-2057",,"Yatyou no sono","Toyama","JP-TY","Prefectural Park",0,"県民公園野鳥の園",36.660299,137.104322
+"JA-2058",,"Ranjyou no mori","Toyama","JP-TY","Prefectural Park",0,"県民公園頼成の森 ",36.636606,137.046574
+"JA-2059",,"21st Century Forest","Toyama","JP-TY","Prefectural Park",0,"富山県21世紀の森",36.428016,137.08427
+"JA-2060",,"Arimine Shinrin Bunka","Toyama","JP-TY","Prefectural Park",0,"富山県有峰森林文化公園 ",36.491547,137.458604
+"JA-2061",,"Botanic Gardens of Toyama","Toyama","JP-TY","Prefectural Park",0,"富山県中央植物園",36.662757,137.181323
+"JA-2062",,"Kencho Mae","Toyama","JP-TY","Prefectural Park",0,"県庁前公園",36.696387,137.21065
+"JA-2063",,"Rinkai Bird","Toyama","JP-TY","Prefectural Park",0,"富山新港臨海野鳥園",36.782274,137.104837
+"JA-2064",,"Minami Suiro Ryokuchi","Toyama","JP-TY","Prefectural Park",0,"南水路緑地",36.763144,137.113173
+"JA-2065",,"Lumberyard Ryokuchi","Toyama","JP-TY","Prefectural Park",0,"第一貯木場緑地広場",36.770187,137.096645
+"JA-2066",,"Kaikou monument Ryokuchi","Toyama","JP-TY","Prefectural Park",0,"開港記念碑緑地広場",36.774875,137.113377
+"JA-2067",,"Genki no mori","Toyama","JP-TY","Prefectural Park",0,"富山新港元気の森公園",36.775984,137.127593
+"JA-2068",,"Ariake Shinsui Seaside","Tokyo","JP-TK"," Prefectural Park",0,"有明親水海浜公園",35.64319611,139.795599
+"JA-2069",,"Harumi Greenway","Tokyo","JP-TK"," Prefectural Park",0,"晴海緑道公園",35.65063681,139.7792326
+"JA-2070",,"Harumi Port","Tokyo","JP-TK"," Prefectural Park",0,"晴海ふ頭公園",35.64833518,139.7714005
