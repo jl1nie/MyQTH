@@ -35,7 +35,7 @@
 "JA-0101","JAFF-0034","Shokanbetsu-Teuri-Yagishiri","Hokkaido","JP-HK","Nature Park",48,"暑寒別天売焼尻国定公園（暑寒別）",43.729167,141.541667
 "JA-0102","JAFF-0035","Abashiri","Hokkaido","JP-HK","Nature Park",24,"網走国定公園",44.189224,143.747567
 "JA-0103","JAFF-0036","Niseko-Shakotan-Otaru Kaiga","Hokkaido","JP-HK","Nature Park",17,"ニセコ積丹小樽海岸国定公園",42.897255,140.569858
-"JA-0104","JAFF-0037","Hidaka Sanmyaku-Erimo","Hokkaido","JP-HK","National Park",101,"日高山脈襟裳国立公園（日高山脈）",42.406653,142.918413
+"JA-2107","JAFF-0037","Hidaka Sanmyaku-Erimo-Tokachi","Hokkaido","JP-HK","National Park",101,"日高山脈襟裳十勝国立公園（日高山脈）",42.406653,142.918413
 "JA-0105","JAFF-0038","Onuma","Hokkaido","JP-HK","Nature Park",10,"大沼国定公園",41.985827,140.669247
 "JA-0106","JAFF-0039","Shimokita Hanto","Aomori","JP-AO","Nature Park",24,"下北半島国定公園",41.328551,141.060467
 "JA-0107","JAFF-0040","Tsugaru","Aomori","JP-AO","Nature Park",18,"津軽国定公園",41.253563,140.344893
@@ -108,7 +108,7 @@
 "JA-0007","JAFF-0108","Towada-Hachimantai","Akita,Aomori,Iwate","JP-AK,JP-IW","National Park",42,"十和田八幡平国立公園（八幡平）",39.83552,140.821381
 "JA-0027","JAFF-0109","Unzen-Amakusa","Kumamoto,Kagoshima","JP-KM,JP-KS","National Park",44,"雲仙天草国立公園（天草）",32.318482,130.279427
 "JA-0101","JAFF-0110","Shokanbetsu-Teuri-Yagishiri","Hokkaido","JP-HK","Nature Park",1,"暑寒別天売焼尻国定公園（天売焼尻）",44.430869,141.395416
-"JA-0104","JAFF-0111","Hidaka Sanmyaku-Erimo","Hokkaido","JP-HK","National Park",12,"日高山脈襟裳国立公園（襟裳）",41.943659,143.234253
+"JA-2107","JAFF-0111","Hidaka Sanmyaku-Erimo-Tokachi","Hokkaido","JP-HK","National Park",12,"日高山脈襟裳十勝国立公園（襟裳）",41.943659,143.234253
 "JA-0119","JAFF-0112","Sado-Yahiko-Yoneyama","Niigata","JP-NI","Nature Park",10,"佐渡弥彦米山国定公園（弥彦米山）",37.740873,138.80596
 "JA-0026","JAFF-0113","Saikai","Nagasaki","JP-NS","National Park",11,"西海国立公園（五島）",32.914774,129.033281
 "JA-0023","JAFF-0114","Setonaikai","Ehime,Kagawa","JP-EH,JP-KG","National Park",31,"瀬戸内海国立公園（四国）",33.986927,133.039104
@@ -257,7 +257,7 @@
 "JA-1432","JAFF-0259","Ontakesan","Gifu","JP-GF","Provincial Park",4,"御嶽山県立自然公園",35.902606,137.464209
 "JA-1457","JAFF-0260","Sakurabuchi","Aichi","JP-AI","Provincial Park",1,"桜淵県立自然公園",34.895722,137.506369
 "JA-1458","JAFF-0261","Ishimakisan Tame","Aichi","JP-AI","Provincial Park",2,"石巻山多米県立自然公園",34.789,137.460608
-"JA-1454","JAFF-0262","Dando Kogen","Aichi","JP-AI","Provincial Park",2,"段戸高原県立自然公園",35.167392,137.473203
+"JA-1454","JAFF-0262","Dando Kogen","Aichi","JP-AI","Provincial Park",2,"段戸高原県立自然公園",35.144345,137.489777
 "JA-1455","JAFF-0263","Furikusa Keikoku","Aichi","JP-AI","Provincial Park",2,"振草渓谷県立自然公園",35.076928,137.665133
 "JA-1456","JAFF-0264","Hongusan","Aichi","JP-AI","Provincial Park",7,"本宮山県立自然公園",34.908319,137.421003
 "JA-1453","JAFF-0265","Minami Chita","Aichi","JP-AI","Provincial Park",7,"南知多県立自然公園",34.747758,136.900089
@@ -334,7 +334,7 @@
 "JA-1626","JAFF-0336","Chomonkyo","Yamaguchi","JP-YC","Provincial Park",5,"長門峡県立自然公園",34.317717,131.569004
 "JA-1628","JAFF-0337","Iwakisan","Yamaguchi","JP-YC","Provincial Park",2,"石城山県立自然公園",33.987194,132.037797
 "JA-1627","JAFF-0338","Rakanzan","Yamaguchi","JP-YC","Provincial Park",3,"羅漢山県立自然公園",34.350414,132.052452
-"JA-1583","JAFF-0339","Nishi Inaba","Tottori","JP-TT","Provincial Park",0,"西因幡県立自然公園",35.034182,134.007304
+"JA-1583","JAFF-0339","Nishi Inaba","Tottori","JP-TT","Provincial Park",0,"西因幡県立自然公園",35.534194,134.007
 "JA-1581","JAFF-0340","Misasa Togoko","Tottori","JP-TT","Provincial Park",15,"三朝東郷湖県立自然公園",35.465438,133.891493
 "JA-1582","JAFF-0341","Okuhino","Tottori","JP-TT","Provincial Park",4,"奥日野県立自然公園",35.203698,133.314256
 "JA-1614","JAFF-0342","Nabarakyo","Hiroshima","JP-HS","Provincial Park",0,"南原峡県立自然公園",34.564281,132.513305
@@ -538,7 +538,7 @@
 "JA-1514",,"Hamadera","Osaka","JP-OS","Provincial Park",0,"浜寺公園",34.539328,135.438849
 "JA-1815",,"Shinagawa Kita Port Park","Tokyo","JP-TK","Provincial Park",0,"品川北ふ頭公園",35.63038628,139.7547798
 "JA-1727",,"Hyakkadai","Nagasaki","JP-NS","Provincial Park",0,"百花台公園",32.815509,130.296129
-"JA-1465",,"Owari Koiki Ryokudo","Aichi","JP-AI","Provincial Park",0,"尾張広域緑道",35.334097,136.930961
+"JA-1465",,"Owari Koiki Ryokudo","Aichi","JP-AI","Provincial Park",0,"尾張広域緑道",35.301065,136.955953
 "JA-1226",,"Ogunohara","Tokyo","JP-TK","Provincial Park",0,"尾久の原公園",35.751232,139.776269
 "JA-1486",,"Obanagawa","Shiga","JP-SH","Provincial Park",0,"尾花川公園",35.01792,135.860503
 "JA-1203",,"Yachiyo","Chiba","JP-CH","Provincial Park",0,"八千代広域公園",35.730418,140.111968
@@ -938,7 +938,7 @@
 "JA-1412",,"Okuetsu Fureai","Fukui","JP-FI","Provincial Park",0,"奥越ふれあい公園",35.96526,136.496576
 "JA-1394",,"Okuutatsuyama Kenmin","Ishikawa","JP-IS","Provincial Park",0,"奥卯辰山健民公園",36.560227,136.696921
 "JA-1488",,"Okubiwa Sports no Mori","Shiga","JP-SH","Provincial Park",0,"奥びわスポーツの森",35.411849,136.209566
-"JA-1447",,"Enshunada Kaihin","Shizuoka","JP-SZ","Provincial Park",0,"遠州灘海浜公園",34.663289,137.732982
+"JA-1447",,"Enshunada Kaihin","Shizuoka","JP-SZ","Provincial Park",0,"石人の星公園",34.663289,137.732982
 "JA-1232",,"Sarue","Tokyo","JP-TK","Provincial Park",0,"猿江恩賜公園",35.690143,139.8183
 "JA-1586",,"Encho-en","Tottori","JP-TT","Provincial Park",0,"燕趙園",35.465817,133.893264
 "JA-1409",,"Echizen Togei","Fukui","JP-FI","Provincial Park",0,"越前陶芸公園",35.935035,136.059861
@@ -1128,7 +1128,7 @@
 "JA-2008",,"Yuuhidera Kenmin Nature Garden","Ishikawa","JP-IS","Prefectural Park",0,"夕日寺健民自然園",36.572407,136.707445
 "JA-2009",,"Ishikawa Kenmin-no-mori","Ishikawa","JP-IS","Prefectural Park",0,"石川県県民の森",36.224598,136.455788
 "JA-2010",,"Ishikawa Kenko-no-mori","Ishikawa","JP-IS","Prefectural Park",0,"石川県健康の森",37.308867,136.929634
-"JA-2011",,"Tottori Sakyu Kodomonokuni","Tottori","JP-TT","Prefectural Park",0,"チュウブ鳥取砂丘こどもの国",35.533753,134.224483
+"JA-2011",,"Tottori Sakyu Kodomonokuni","Tottori","JP-TT","Prefectural Park",0,"鳥取砂丘こどもの国",35.533753,134.224483
 "JA-2012",,"Tottori Hanakairo-Flower","Tottori","JP-TT","Prefectural Park",0,"とっとり花回廊",35.348004,133.424502
 "JA-2013",,"Forest Park Tottori Deainomori","Tottori","JP-TT","Prefectural Park",0,"とっとり出合いの森",35.490705,134.169604
 "JA-2014",,"Forest Park 21st Century","Tottori","JP-TT","Prefectural Park",0,"21世紀の森",35.416831,134.207345
@@ -1188,3 +1188,5 @@
 "JA-2068",,"Ariake Shinsui Seaside","Tokyo","JP-TK"," Prefectural Park",0,"有明親水海浜公園",35.64319611,139.795599
 "JA-2069",,"Harumi Greenway","Tokyo","JP-TK"," Prefectural Park",0,"晴海緑道公園",35.65063681,139.7792326
 "JA-2070",,"Harumi Port","Tokyo","JP-TK"," Prefectural Park",0,"晴海ふ頭公園",35.64833518,139.7714005
+"JA-2105",,"Aichi Children's World","Aichi","JP-AI","Prefectural Park","愛知こどもの国",34.7923612564806,137.158100539658
+"JA-2106",,"Showa-no-mori","Aichi","AI-JP","Prefectural Park","昭和の森",35.170371,137.198853
