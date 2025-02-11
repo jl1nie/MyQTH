@@ -1677,6 +1677,7 @@ function redrawMarkers() {
     placeSummitMarkers([b['_northEast']['lat'], b['_southWest']['lng']],
 		       [b['_southWest']['lat'], b['_northEast']['lng']],z);
     //placeHamFairMarker({'lat':35.627288040687716, 'lng':139.79562967407333});
+	refresh_aprs_track();
 }
        
 map.on('moveend',function(e) {
@@ -2069,7 +2070,6 @@ async function refresh_spots() {
 
 onPeriodChange(prefs['spot_period']);
 
-var aprs_timer_id = null;
 var spot_timer_id = null;
 
   $('#spots-data').on('show.bs.modal', function(e) {
@@ -2089,9 +2089,6 @@ var spot_timer_id = null;
   $('#pemuact').on('hide.bs.modal', function(e) {
       clickPrefs();
   });
-
-refresh_aprs_track();
-aprs_timer_id = setInterval(refresh_aprs_track,180000);
 
 </script>
 </body>
